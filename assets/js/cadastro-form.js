@@ -459,24 +459,21 @@ submitButton.addEventListener('submit', (e) => {
     };
 
     console.log(formData)
-    const url = '/pages/cadastro/cadastro_action.php';
-    fetch(url, {
+    
+    fetch(././pages/cadastro/cadastro_action.php'{
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData),
+        body: formData
     })
-        .then(response => {
+    .then(response => {
             if (!response.ok) {
                 throw new Error('Erro ao enviar os dados');
             }
             return response.json();
         })
-        .then(data => {
+    .then(data => {
             console.log('Resposta do PHP:', data);
         })
-        .catch(error => {
+    .catch(error => {
             console.error('Erro ao enviar os dados:', error);
         });
     /*     } else {
