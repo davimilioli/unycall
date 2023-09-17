@@ -1,0 +1,35 @@
+.page-cadastro {
+    display: flex;
+    align-items: center;
+    margin: auto;
+
+    .cadastro-content {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        align-items: start;
+        height: 100vh;
+        width: 100vw;
+
+        .form-content {
+            padding: 3rem 3rem 1rem 3rem;
+            height: 99vh;
+            overflow-y: scroll;
+
+            .logo {
+                margin: auto auto 3rem auto;
+            }
+        }
+
+        .cadastro-description {
+            height: 100%;
+            background-color: $primary-color;
+            display: flex;
+            align-items: center;
+            padding: 4rem 5rem;
+
+            .cadastro-description-content {
+                color: #FFF
+            }
+        }
+    }
+}

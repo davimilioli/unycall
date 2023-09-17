@@ -1,0 +1,75 @@
+.form-content {
+    padding: 1rem;
+    border-radius: $radius;
+
+    .form-title {
+        margin-bottom: 2rem;
+
+        h1 {
+            color: $text-color;
+            font-size: 1.3rem;
+        }
+
+        p {
+            color: $description-color;
+            font-size: 0.875rem;
+            margin-top: 1rem;
+        }
+    }
+
+    #form {
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin: 0.7rem 0;
+
+            label {
+                color: #374151;
+                font-size: 0.875rem;
+                font-weight: 400;
+
+                span {
+                    color: #f43f5e;
+                }
+            }
+
+            input,
+            select {
+                width: 100%;
+                padding: .5rem;
+                border-radius: $radius;
+                background: none;
+                border: 3px solid $border-color;
+                background-color: #f9fafb;
+            }
+        }
+
+        .form-category {
+            margin-top: 2rem;
+
+            h2 {
+                font-size: 1.1rem;
+                text-align: center;
+            }
+        }
+
+        .inputs-group {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            width: 100%;
+
+            .form-group {
+                width: 100%;
+            }
+
+            &.endereco {
+                .form-group.numero {
+                    width: 20%;
+                }
+            }
+        }
+    }
+}
