@@ -5,18 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
-    <link rel="stylesheet" href="/assets/css/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/css/style.css">
 </head>
 
 <body>
     <div class="page-cadastro">
-        <div class="loading hide">
-            <div class="loading-content">
-                <div class="spinner-one">
-                    <div class="spinner-two"></div>
-                </div>
-            </div>
-        </div>
         <div class="cadastro-content">
             <div class="form-content">
                 <div class="logo">
@@ -26,7 +19,7 @@
                     <h1>Cadastro</h1>
                     <p>Preencha para ter acesso ao nosso sistema</p>
                 </div>
-                <form method="GET" action="" id="form">
+                <form method="POST" id="form">
                     <div class="form-category">
                         <h2>Dados pessoais</h2>
                         <div class="form-group">
@@ -66,8 +59,15 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-category">
+                    <div class="form-category endereco">
                         <h2>Endereço</h2>
+                        <div class="loading hide">
+                            <div class="loading-content">
+                                <div class="spinner-one">
+                                    <div class="spinner-two"></div>
+                                </div>
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="cep">Cep <span>*</span></label>
                             <input type="text" name="cep" id="cep" data-input-address required>
@@ -93,7 +93,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="estado">Estado <span>*</span></label>
-                                <select id="estado" data-input-address required>
+                                <select id="estado" name="estado" data-input-address required>
                                     <option selected>Estado</option>
                                     <option value="AC">Acre</option>
                                     <option value="AL">Alagoas</option>
@@ -147,7 +147,7 @@
                             </div>
                         </div>
                     </div>
-                    <input type="submit" value="Cadastrar" class="btn">
+                    <input type="submit" value="Cadastrar" class="btn" id="enviarForm">
                     <input type="reset" value="Limpar" id="limpar" class="btn secondary">
                 </form>
             </div>

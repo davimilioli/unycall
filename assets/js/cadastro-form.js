@@ -13,6 +13,7 @@ nome.addEventListener('keyup', () => {
     } else {
         nomeValido = true;
         nome.setAttribute('style', 'border-color: green');
+        console.log('NOME: ' + nomeValido);
     }
 })
 
@@ -60,6 +61,7 @@ function validationDateBirth() {
             dataNascimento.setAttribute('style', 'border-color: red')
         } else {
             validaData = true;
+            console.log('Data: ' + validaData)
             dataNascimento.setAttribute('style', 'border-color: green');
         }
     });
@@ -88,10 +90,11 @@ cpf.addEventListener("input", function () {
 
     if (validarCPF(formattedCPF)) {
         validaCpf = true;
-        cpf.setAttribute('style', 'border-color: red')
+        console.log('CPF: ' + validaCpf)
+        cpf.setAttribute('style', 'border-color: green');
     } else {
         validaCpf = false;
-        cpf.setAttribute('style', 'border-color: green');
+        cpf.setAttribute('style', 'border-color: red')
     }
 });
 
@@ -99,7 +102,7 @@ cpf.addEventListener("input", function () {
 function validarCPF(cpf) {
     cpf = cpf.replace(/[^\d]+/g, ''); // Remove caracteres não numéricos
 
-    if (cpf.length !== 12) return false;
+    if (cpf.length !== 11) return false;
 
     // Verificação do CPF
     let soma = 0;
@@ -130,13 +133,13 @@ function validarCPF(cpf) {
 const email = document.querySelector('#email');
 let validaEmail = false;
 
-
 email.addEventListener('input', function () {
     const emailValue = email.value;
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
     if (emailPattern.test(emailValue)) {
         validaEmail = true;
+        console.log('email: ' + validaEmail);
         email.setAttribute('style', 'border-color: green')
     } else {
         validaEmail = false;
@@ -169,6 +172,7 @@ celular.addEventListener('input', function () {
 
     if (celularValue.length === 14) {
         validaCelular = true;
+        console.log('Celular: ' + validaCelular);
         celular.setAttribute('style', 'border-color: green')
     } else {
         validaCelular = false;
@@ -201,6 +205,7 @@ telefone.addEventListener('input', function () {
 
     if (telefoneValue.length === 14) {
         validaTelefone = true;
+        console.log('Telefone: ' + validaTelefone)
         telefone.setAttribute('style', 'border-color: green')
     } else {
         validaTelefone = false;
@@ -293,9 +298,9 @@ async function getAddress(cep) {
         return;
     } else {
         validaCep = true;
+        console.log('CEP: ' + validaCep)
 
         cepInput.setAttribute('style', 'border-color: green');
-
 
         // Chamada para validar os campos de endereço, bairro, cidade e estado
         validateAddressFields();
@@ -337,7 +342,6 @@ function validateAddressFields() {
     const bairro = document.getElementById('bairro');
     const cidade = document.getElementById('cidade');
     const estado = document.getElementById('estado');
-
 
     // Validação de cada campo de endereço
     enderecoValid = endereco.value.trim() !== '';
@@ -383,8 +387,6 @@ function validateAddressFields() {
     }
 }
 
-
-
 /* VALIDAÇÃO LOGIN */
 const login = document.querySelector('#login');
 let validaLogin = false;
@@ -395,13 +397,13 @@ login.addEventListener('keyup', () => {
         login.setAttribute('style', 'border-color: red');
     } else {
         validaLogin = true;
+        console.log('Login: ' + validaLogin);
         login.setAttribute('style', 'border-color: green');
     }
 })
 
 /* VALIDAÇÃO SENHA */
 const senha = document.querySelector('#senha');
-
 let validaSenha = false
 
 senha.addEventListener('keyup', () => {
@@ -411,6 +413,7 @@ senha.addEventListener('keyup', () => {
 
     if (quantidadeAlfabeticos >= 8) {
         validaSenha = true;
+        console.log('Senha: ' + validaSenha)
         senha.setAttribute('style', 'border-color: green');
     } else {
         validaSenha = false;
@@ -427,22 +430,58 @@ function contarCaracteresAlfabeticos(senha) {
 
 /* VALIDAÇÃO CONFIRMAÇÃO */
 const confirmaSenha = document.querySelector('#confirmar-senha');
-let validaConfirma = false;
-
 confirmaSenha.addEventListener('keyup', () => {
     if (confirmaSenha.value != senha.value) {
         validaConfirma = false;
         confirmaSenha.setAttribute('style', 'border-color: red');
     } else {
         validaConfirma = true;
+        console.log('confirmar senha: ' + validaConfirma)
         confirmaSenha.setAttribute('style', 'border-color: green');
     }
 })
 
-const form = document.querySelector('#form');
+const submitButton = document.querySelector('#enviarForm');
 
-form.addEventListener('submit', (e) => {
-    if (nomeValido && validaData && validaCpf && validaEmail && validaCelular && validaTelefone && validaLogin && validaSenha && validaConfirma) {
-        console.log('sim')
-    }
-})
+submitButton.addEventListener('submit', (e) => {
+    e.preventDefault(); // Evitar o envio padrão do formulário
+
+    /*     if (nome !== '' && dataNascimento !== '' && cpf !== '' && email !== '' && celular !== '' && telefone !== '' && login !== '' && senha !== '') {*/
+    const formData = {
+        nome: nome.value,
+        dataNascimento: dataNascimento.value,
+        cpf: cpf.value,
+        email: email.value,
+        celular: celular.value,
+        telefone: telefone.value,
+        login: login.value,
+        senha: senha.value,
+    };
+
+    console.log(formData)
+    const url = '/pages/cadastro/cadastro_action.php';
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData),
+    })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Erro ao enviar os dados');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Resposta do PHP:', data);
+        })
+        .catch(error => {
+            console.error('Erro ao enviar os dados:', error);
+        });
+    /*     } else {
+            console.log('Alguma validação falhou');
+        } */
+});
+
+
