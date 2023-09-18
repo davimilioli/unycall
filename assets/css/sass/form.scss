@@ -1,6 +1,13 @@
 .form-content {
     padding: 1rem;
     border-radius: $radius;
+    position: relative;
+
+    .loading{
+        left: 0;
+        top: 0;
+        height: 100vh;
+    }
 
     .form-title {
         margin-bottom: 2rem;
@@ -52,10 +59,6 @@
             h2 {
                 font-size: 1.1rem;
                 text-align: center;
-            }
-
-            &.endereco {
-                position: relative;
             }
         }
 

@@ -441,44 +441,74 @@ confirmaSenha.addEventListener('keyup', () => {
     }
 })
 
-const submitButton = document.querySelector('#enviarForm');
+function loading(msg){
+    const loading = document.querySelector('.loading');
+    const message = document.querySelector('.loading-message')
+    loading.classList.toggle('hide');
+    message.innerHTML = msg;
+}
 
-submitButton.addEventListener('submit', (e) => {
-    e.preventDefault(); // Evitar o envio padrão do formulário
 
-    /*     if (nome !== '' && dataNascimento !== '' && cpf !== '' && email !== '' && celular !== '' && telefone !== '' && login !== '' && senha !== '') {*/
-    const formData = {
-        nome: nome.value,
-        dataNascimento: dataNascimento.value,
-        cpf: cpf.value,
-        email: email.value,
-        celular: celular.value,
-        telefone: telefone.value,
-        login: login.value,
-        senha: senha.value,
-    };
+function submitForm() {
+    const form = document.querySelector('#form');
 
-    console.log(formData)
-    
-    fetch(././pages/cadastro/cadastro_action.php'{
-        method: 'POST',
-        body: formData
-    })
-    .then(response => {
-            if (!response.ok) {
-                throw new Error('Erro ao enviar os dados');
-            }
-            return response.json();
-        })
-    .then(data => {
-            console.log('Resposta do PHP:', data);
-        })
-    .catch(error => {
-            console.error('Erro ao enviar os dados:', error);
-        });
-    /*     } else {
+    form.addEventListener('submit', (e) => {
+        e.preventDefault(); // Evitar o envio padrão do formulário
+
+        // Verifique se todos os campos são diferentes de null
+        if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && login.value !== '' && senha.value !== '') {
+            const formData = {
+                nome: nome.value,
+                dataNascimento: dataNascimento.value,
+                cpf: cpf.value,
+                email: email.value,
+                celular: celular.value,
+                telefone: telefone.value,
+                login: login.value,
+                senha: senha.value,
+            };
+
+            console.log(formData);
+
+            fetch('/pages/cadastro/cadastro_action.php', {
+                method: 'POST',
+                body: JSON.stringify(formData), // Envie os dados como JSON
+                headers: {
+                    'Content-Type': 'application/json', // Defina o cabeçalho Content-Type para JSON
+                },
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Erro ao enviar os dados');
+                    }
+                    /* loading('Enviando formulario..', true); */
+                    return response.json();
+                })
+                .then(data => {
+                    console.log('Resposta do PHP:', data);
+                    loading('Validando formulario..', true);
+/*                     setTimeout(() => {
+                        window.location.href = '/index.php';
+                    }, 3000) */
+                    
+                    
+                })
+                .catch(error => {
+                    loading('Erro ao enviar formulário:', true);
+                    setTimeout(() => {
+                        loading('Erro ao enviar formulário:', false);
+                    }, 1000)
+                    console.error('Erro ao enviar os dados:', error);
+                });
+        } else {
             console.log('Alguma validação falhou');
-        } */
-});
+        }
+    });
+}
+
+const btnForm = document.querySelector('#enviarForm');
+btnForm.addEventListener('click', submitForm);
+
+
 
 
