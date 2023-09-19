@@ -27,7 +27,7 @@
                     <h1>Cadastro</h1>
                     <p>Preencha para ter acesso ao nosso sistema</p>
                 </div>
-                <form method="POST" id="form">
+                <form method="POST" action="cadastro_action.php" id="form">
                     <div class="form-category">
                         <h2>Dados pessoais</h2>
                         <div class="form-group">
@@ -62,8 +62,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="telefone">Telefone <span>*</span></label>
-                                <input type="text" name="telefone" id="telefone" placeholder="(+55) XX-XXXXXXX"
-                                    required>
+                                <input type="text" name="telefone" id="telefone" placeholder="(+55) XX-XXXXXXX" required>
                             </div>
                         </div>
                     </div>
@@ -161,7 +160,7 @@
             </div>
         </div>
     </div>
-    <script src="../../assets/js/cadastro-form.js"></script>
+    <!--     <script src="../../assets/js/cadastro-form.js"></script> -->
 </body>
 
 </html>

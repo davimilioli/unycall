@@ -441,7 +441,7 @@ confirmaSenha.addEventListener('keyup', () => {
     }
 })
 
-function loading(msg){
+function loading(msg) {
     const loading = document.querySelector('.loading');
     const message = document.querySelector('.loading-message')
     loading.classList.toggle('hide');
@@ -456,7 +456,7 @@ function submitForm() {
         e.preventDefault(); // Evitar o envio padrão do formulário
 
         // Verifique se todos os campos são diferentes de null
-        if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && login.value !== '' && senha.value !== '') {
+        /* if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && login.value !== '' && senha.value !== '') {
             const formData = {
                 nome: nome.value,
                 dataNascimento: dataNascimento.value,
@@ -470,28 +470,28 @@ function submitForm() {
 
             console.log(formData);
 
-            fetch('/pages/cadastro/cadastro_action.php', {
+            fetch('/php/cadastro_action.php', {
                 method: 'POST',
-                body: JSON.stringify(formData), // Envie os dados como JSON
+                body: formData, 
                 headers: {
-                    'Content-Type': 'application/json', // Defina o cabeçalho Content-Type para JSON
+                    'Content-Type': 'application/json', 
                 },
             })
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Erro ao enviar os dados');
                     }
-                    /* loading('Enviando formulario..', true); */
+                    loading('Enviando formulario..', true);
                     return response.json();
                 })
                 .then(data => {
                     console.log('Resposta do PHP:', data);
                     loading('Validando formulario..', true);
-/*                     setTimeout(() => {
+                    setTimeout(() => {
                         window.location.href = '/index.php';
-                    }, 3000) */
-                    
-                    
+                    }, 3000)
+
+
                 })
                 .catch(error => {
                     loading('Erro ao enviar formulário:', true);
@@ -502,7 +502,7 @@ function submitForm() {
                 });
         } else {
             console.log('Alguma validação falhou');
-        }
+        } */
     });
 }
 
