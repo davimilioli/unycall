@@ -1,0 +1,1 @@
+<a href="../pages/cadastro/cadastro.php">Cadastro</a>
