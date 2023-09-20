@@ -203,7 +203,7 @@ telefone.addEventListener('input', function () {
 
     telefone.value = formattedTelefone;
 
-    if (telefoneValue.length === 14) {
+    if (telefoneValue.length === 13) {
         validaTelefone = true;
         console.log('Telefone: ' + validaTelefone)
         telefone.setAttribute('style', 'border-color: green')
@@ -447,68 +447,20 @@ function loading(msg) {
     loading.classList.toggle('hide');
     message.innerHTML = msg;
 }
-
-
+/* 
 function submitForm() {
     const form = document.querySelector('#form');
 
     form.addEventListener('submit', (e) => {
-        e.preventDefault(); // Evitar o envio padrão do formulário
+        e.preventDefault();
 
         // Verifique se todos os campos são diferentes de null
-        /* if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && login.value !== '' && senha.value !== '') {
-            const formData = {
-                nome: nome.value,
-                dataNascimento: dataNascimento.value,
-                cpf: cpf.value,
-                email: email.value,
-                celular: celular.value,
-                telefone: telefone.value,
-                login: login.value,
-                senha: senha.value,
-            };
-
-            console.log(formData);
-
-            fetch('/php/cadastro_action.php', {
-                method: 'POST',
-                body: formData, 
-                headers: {
-                    'Content-Type': 'application/json', 
-                },
-            })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro ao enviar os dados');
-                    }
-                    loading('Enviando formulario..', true);
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('Resposta do PHP:', data);
-                    loading('Validando formulario..', true);
-                    setTimeout(() => {
-                        window.location.href = '/index.php';
-                    }, 3000)
-
-
-                })
-                .catch(error => {
-                    loading('Erro ao enviar formulário:', true);
-                    setTimeout(() => {
-                        loading('Erro ao enviar formulário:', false);
-                    }, 1000)
-                    console.error('Erro ao enviar os dados:', error);
-                });
+        if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && login.value !== '' && senha.value !== '') {
         } else {
             console.log('Alguma validação falhou');
-        } */
+        }
     });
 }
 
 const btnForm = document.querySelector('#enviarForm');
-btnForm.addEventListener('click', submitForm);
-
-
-
-
+btnForm.addEventListener('click', submitForm); */
