@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <div class="page-cadastro">
+    <section class="page-cadastro">
         <div class="cadastro-content">
             <div class="form-content">
                 <div class="loading hide">
@@ -159,7 +159,8 @@
 
             </div>
         </div>
-    </div>
+        </div>
+    </section>
     <!--     <script src="../../assets/js/cadastro-form.js"></script> -->
 </body>
 
