@@ -27,7 +27,7 @@
                     <h1>Cadastro</h1>
                     <p>Preencha para ter acesso ao nosso sistema</p>
                 </div>
-                <form method="POST" action="cadastro_action.php" id="form">
+                <form method="POST" action="cadastro_action.php" class="form">
                     <div class="form-category">
                         <h2>Dados pessoais</h2>
                         <div class="form-group">
@@ -41,6 +41,10 @@
                         <div class="form-group">
                             <label for="cpf">CPF <span>*</span></label>
                             <input type="text" name="cpf" id="cpf" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="nomeMaterno">Nome Materno <span>*</span></label>
+                            <input type="text" name="nomeMaterno" id="nomeMaterno" required>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
@@ -134,7 +138,7 @@
                         <h2>Login</h2>
                         <div class="form-group">
                             <label for="login">Usuario <span>*</span></label>
-                            <input type="text" name="login" id="login" minlength="6" maxlength="6" required>
+                            <input type="text" name="login" id="login" minlength="6" maxlength="6"1 required>
                         </div>
                         <div class="inputs-group">
                             <div class="form-group">
@@ -147,7 +151,7 @@
                             </div>
                         </div>
                     </div>
-                    <input type="submit" value="Cadastrar" class="btn" id="enviarForm">
+                    <input type="submit" value="Cadastrar" class="btn" class="enviarForm">
                     <input type="reset" value="Limpar" id="limpar" class="btn secondary">
                 </form>
             </div>

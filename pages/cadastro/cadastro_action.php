@@ -1,55 +1,55 @@
 <?php
-require_once '../../config/config_db.php';
+require_once(__DIR__ . '/../../config/config_db.php');
 
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+require_once(__DIR__ . '/../../modelSql/UsuarioMySql.php');
+$usuarioSql = new UsuarioMySql($pdo);
 
-    /*     $array = ['nome', 'nascimento', 'cpf', 'email', 'celular', 'telefone', 'login', 'senha'];
-    foreach ($array as $input) {
-        $inputs = $_POST[$input];
-        echo $inputs;
-    } */
-}
+
+
+var_dump($_POST);
 $nome = filter_input(INPUT_POST, 'nome');
 $nascimento = filter_input(INPUT_POST, 'nascimento');
-$dataFormatada = date_create_from_format('d/m/Y', $nascimento);
-
-if ($dataFormatada !== false) {
-    $nascimento = $dataFormatada->format('Y-m-d');
-}
-
-$cpf = filter_input(INPUT_POST, 'cpf', FILTER_VALIDATE_INT);
+$cpf = filter_input(INPUT_POST, 'cpf');
+$nomeMaterno = filter_input(INPUT_POST, 'nomeMaterno');
 $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 $sexo = filter_input(INPUT_POST, 'sexo');
-$celular = filter_input(INPUT_POST, 'celular', FILTER_VALIDATE_INT);
-$telefone = filter_input(INPUT_POST, 'telefone', FILTER_VALIDATE_INT);
-$login = filter_input(INPUT_POST, 'login');
+$celular = filter_input(INPUT_POST, 'celular');
+$telefone = filter_input(INPUT_POST, 'telefone');
+$login  = filter_input(INPUT_POST, 'login');
 $senha = filter_input(INPUT_POST, 'senha');
 /* ------------------------------------------------ */
-$cep = filter_input(INPUT_POST, 'cep');
+/* $cep = filter_input(INPUT_POST, 'cep');
 $endereco = filter_input(INPUT_POST, 'endereco');
 $numero = filter_input(INPUT_POST, 'numend', FILTER_VALIDATE_INT);
 $bairro = filter_input(INPUT_POST, 'bairro');
 $cidade = filter_input(INPUT_POST, 'cidade');
 $estado = filter_input(INPUT_POST, 'estado');
-$complemento = filter_input(INPUT_POST, 'complemento');
+$complemento = filter_input(INPUT_POST, 'complemento'); */
 
+if ($nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $celular && $telefone && $login && $senha) {
 
-var_dump($_POST);
-if ($nome && $nascimento && $cpf && $email && $sexo && $celular && $telefone && $login && $senha) {
-    $sql = $pdo->prepare("INSERT INTO usuarios (nome, nascimento, cpf, email, sexo, celular, telefone, login, senha) VALUES (:nome, :nascimento, :cpf, :email, :sexo, :celular, :telefone, :login, :senha)");
-    $sql->bindParam(':nome', $nome);
-    $sql->bindParam(':nascimento', $nascimento);
-    $sql->bindParam(':cpf', $cpf);
-    $sql->bindParam(':email', $email);
-    $sql->bindParam(':sexo', $sexo);
-    $sql->bindParam(':celular', $celular);
-    $sql->bindParam(':telefone', $telefone);
-    $sql->bindParam(':login', $login);
-    $sql->bindParam(':senha', $senha);
-    $sql->execute();
+    if ($usuarioSql->consultarEmail($email) === false) {
+        $dados = new Usuario();
+        $dados->setarNome($nome);
+        $dados->setarNascimento($nascimento);
+        $dados->setarEmail($email);
+        $dados->setarCpf($cpf);
+        $dados->setarNomeMaterno($nomeMaterno);
+        $dados->setarSexo($sexo);
+        $dados->setarCelular($celular);
+        $dados->setarTelefone($telefone);
+        $dados->setarLogin($login);
+        $dados->setarSenha($senha);
+        $usuarioSql->criarUsuario($dados);
+    } else {
+        echo 'email cadastrado';
+    }
+} else {
+    echo 'nenhum dado foi enviado';
 }
 
-if ($cep && $endereco && $numero && $bairro && $cidade && $estado) {
+
+/* if ($cep && $endereco && $numero && $bairro && $cidade && $estado) {
     $sql = $pdo->prepare("INSERT INTO endereco (id_usuario, cep, endereco, numero, bairro, cidade, estado, complemento) VALUES (:id_usuario, :cep, :endereco, :numero, :bairro, :cidade, :estado, :complemento)");
     $insertId = $pdo->lastInsertId();
     $sql->bindParam(':id_usuario', $insertId);
@@ -63,3 +63,4 @@ if ($cep && $endereco && $numero && $bairro && $cidade && $estado) {
 
     $sql->execute();
 }
+ */
