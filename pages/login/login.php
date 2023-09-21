@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
     <meta charset="UTF-8">
@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <section class="page-cadastro">
+    <section class="page-form">
         <div class="cadastro-content">
             <div class="form-content">
                 <div class="loading hide">
@@ -27,7 +27,7 @@
                     <h1>Login</h1>
                     <p>Preencha os campos abaixo para ter acesso ao nosso sistema</p>
                 </div>
-                <form method="POST" action="login.php" class="form">
+                <form method="POST" action="login_action.php" class="form">
                     <div class="form-category">
                         <h2>Fazer login</h2>
                         <div class="form-group">
@@ -42,13 +42,22 @@
                     <input type="submit" value="Entrar" class="btn" class="enviarForm">
                     <input type="reset" value="Limpar" id="limpar" class="btn secondary">
                 </form>
+                <?php if (isset($_GET['erroSistema'])) :  ?>
+                    <div class="message_error">
+                        <p>É necessario logar</p>
+                    </div>
+                <?php endif ?>
+                <?php if (isset($_GET['erroLogin'])) :  ?>
+                    <div class="message_error">
+                        <p>Usuario ou senha incorretos</p>
+                    </div>
+                <?php endif ?>
             </div>
             <div class="cadastro-description">
                 <div class="cadastro-description-content">
                     <h1>Lorem ipsum dolor, sit amet consectetur adipisicx! Ipsa a ratione mollitia.</h1>
                     <p>Lorem ipsum dolor, sit amet consectetur adipisicx! Ipsa a ratione mollitia.</p>
                 </div>
-
             </div>
         </div>
         </div>

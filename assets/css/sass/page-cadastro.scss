@@ -1,4 +1,4 @@
-.page-cadastro {
+.page-form {
     display: flex;
     align-items: center;
     margin: auto;
@@ -12,7 +12,8 @@
 
         .form-content {
             padding: 3rem 2rem 1rem 2rem;
-            #form{
+
+            #form {
                 height: 65vh;
                 overflow: auto;
                 padding: 1rem;
@@ -33,6 +34,13 @@
             .cadastro-description-content {
                 color: #FFF
             }
+        }
+
+        .message_error {
+            background: #f43f5e;
+            padding: 1rem;
+            color: #FFF;
+            margin-top: 1rem;
         }
     }
 }

@@ -9,7 +9,7 @@
 </head>
 
 <body>
-    <section class="page-cadastro">
+    <section class="page-form">
         <div class="cadastro-content">
             <div class="form-content">
                 <div class="loading hide">
