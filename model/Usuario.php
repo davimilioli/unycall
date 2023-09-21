@@ -126,7 +126,7 @@ class Usuario
 
     public function setarSenha($senha)
     {
-        $this->senha = trim($senha);
+        $this->senha = password_hash(trim($senha), PASSWORD_DEFAULT);
     }
 
     public function pegarSenha()
@@ -139,7 +139,8 @@ interface UsuarioSqlInterface
 {
     public function criarUsuario(Usuario $usuario);
     public function consultarEmail($email);
-    public function consultarDados();
+    public function consultarDadosLogin($login, $senha);
+    public function doisFatores($id, $resposta, $categoria);
 }
 
 /* $login = new Login;

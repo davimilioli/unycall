@@ -60,19 +60,60 @@ class UsuarioMySql implements UsuarioSqlInterface
         }
     }
 
-    public function consultarDados()
+    public function consultarDadosLogin($login, $senha)
     {
-        $array = [];
-
-        $sql = $this->pdo->prepare("SELECT * FROM usuarios");
+        $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE login = :login");
+        $sql->bindValue(':login', $login);
         $sql->execute();
-        if ($sql->rowCount() > 0) {
-            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($data as $item) {
-                $array[] = $item;
+
+        $data = $sql->fetch(PDO::FETCH_ASSOC);
+        if ($data && isset($data['senha'])) {
+            if (password_verify($senha, $data['senha'])) {
+                $usuario = new Usuario();
+                $usuario->setarId($data['id']);
+                return array(
+                    'resposta' => true,
+                    'id' => $usuario->pegarId()
+                );
             }
         }
 
-        return $array;
+        return false;
+    }
+
+    public function doisFatores($id, $resposta, $categoria)
+    {
+        $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE id = :id");
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+
+        if ($sql->rowCount() > 0) {
+            $data = $sql->fetch(PDO::FETCH_ASSOC);
+            $nomeMaterno = $data['nomematerno'];
+            $nascimento = date("Y-m-d", strtotime(str_replace("-", "/", $data['nascimento'])));
+            echo $nascimento;
+            /* echo $nascimento; */
+
+            if ($categoria == 'nascimento') {
+                echo "CATEGORIA: $categoria <br>";
+
+                if ($resposta == $nascimento) {
+                    echo "RESPOSTA: $nascimento <br>";
+                    return array(
+                        'resposta' => true,
+                        'nascimento' => $nascimento,
+                    );
+                }
+            } else if ($categoria == 'nomeMaterno') {
+                echo "CATEGORIA: $categoria <br>";
+                if ($resposta === $nomeMaterno) {
+                    echo "RESPOSTA: $nomeMaterno <br>";
+                    return array(
+                        'resposta' => true,
+                        'nomeMaterno' => $nomeMaterno,
+                    );
+                }
+            }
+        }
     }
 }
