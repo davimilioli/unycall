@@ -7,36 +7,16 @@
     font-family: 'Poppins', sans-serif;
 }
 
+.logo {
+    img {
+
+        width: 80px;
+    }
+}
+
 .container {
     max-width: 1280px;
     margin: auto;
-}
-
-
-.logo {
-    display: flex;
-    margin: auto;
-    justify-content: center;
-
-    .logo-content {
-        width: 30px;
-        height: 80px;
-        display: block;
-        background-color: $primary-color;
-        position: relative;
-
-        &::after {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 35px;
-            display: block;
-            background-color: $text-color;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%
-        }
-    }
 }
 
 .btn {
@@ -48,6 +28,7 @@
     cursor: pointer;
     opacity: 1;
     transition: .3s;
+    text-decoration: none;
 
     &.secondary {
         background-color: transparent;
@@ -74,7 +55,7 @@
     height: 100%;
     z-index: 20;
     position: absolute;
-    display:flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     margin: auto;
@@ -109,7 +90,7 @@
         }
     }
 
-    .loading-message{
+    .loading-message {
         color: #444;
         font-size: 1.5rem;
     }

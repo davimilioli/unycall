@@ -13,14 +13,21 @@
         .form-content {
             padding: 3rem 2rem 1rem 2rem;
 
-            #form {
+            .form {
                 height: 65vh;
                 overflow: auto;
                 padding: 1rem;
             }
 
             .logo {
-                margin: auto auto 3rem auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 2rem;
+
+                img {
+                    width: auto;
+                }
             }
         }
 
@@ -41,6 +48,39 @@
             padding: 1rem;
             color: #FFF;
             margin-top: 1rem;
+        }
+
+        @media (max-width: 1020px) {
+            grid-template-columns: 1fr 1fr;
+        }
+
+
+        @media (max-width: 630px) {
+            grid-template-columns: 1fr;
+
+            .cadastro-description {
+                display: none;
+            }
+
+            .form-content {
+                padding: 3rem 1rem 1rem 1rem;
+
+                .form {
+                    padding: .5rem;
+                    height: auto;
+                    overflow: auto;
+
+                    .form-buttons {
+                        display: flex;
+                        gap: 5px;
+                        margin-top: 1rem;
+
+                        .btn {
+                            width: 100%;
+                        }
+                    }
+                }
+            }
         }
     }
 }

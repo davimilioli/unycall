@@ -3,6 +3,16 @@
     border-radius: $radius;
     position: relative;
 
+    .form-link {
+        color: $text-color;
+        transition: .3s;
+
+        &:hover {
+            color: $primary-color;
+            transition: .3s;
+        }
+    }
+
     .loading {
         left: 0;
         top: 0;
@@ -77,5 +87,6 @@
                 }
             }
         }
+
     }
 }

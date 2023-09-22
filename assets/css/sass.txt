@@ -1,1 +1,1 @@
-sass --watch sass/style.scss:style.css --no-source-map --style compressed
+sass --watch sass/style.scss:css/style.css --no-source-map --style compressed
