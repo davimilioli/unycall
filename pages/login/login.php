@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../../assets/css/css/style.css">
     <title>Login</title>
 </head>
 
 <body>
+    <?php require_once(__DIR__ . '../../../includes/header.php'); ?>
     <section class="page-form">
         <div class="cadastro-content">
             <div class="form-content">
@@ -20,12 +22,11 @@
                         <p class="loading-message">aaaa</p>
                     </div>
                 </div>
-                <div class="logo">
-                    <div class="logo-content"></div>
-                </div>
+                <div class="logo"><img src="/assets/img/logo.png" alt="Logo UnyCall"></div>
                 <div class="form-title">
                     <h1>Login</h1>
                     <p>Preencha os campos abaixo para ter acesso ao nosso sistema</p>
+                    <p>Não possui cadastro? <a href="../cadastro/cadastro.php" class="form-link">Acesse aqui</a></p>
                 </div>
                 <form method="POST" action="login_action.php" class="form">
                     <div class="form-category">

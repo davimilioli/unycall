@@ -15,7 +15,7 @@ if ($login && $senha) {
         $_SESSION['usuario'] = $login;
         echo 'fununciou';
 
-        header('location: dois_fatores.php?id=' . $consultarDados['id']);
+        header('location: ../cliente/cliente.php?id=' . $consultarDados['id']);
         exit;
     } else {
         header('location: login.php?erroLogin=true');

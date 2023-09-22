@@ -41,11 +41,15 @@ if ($nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $celular 
         $dados->setarLogin($login);
         $dados->setarSenha($senha);
         $usuarioSql->criarUsuario($dados);
+        header('location: ../login/login.php');
+        exit;
     } else {
-        echo 'email cadastrado';
+        header('location: cadastro.php?msgSistema=email');
+        exit;
     }
 } else {
-    echo 'nenhum dado foi enviado';
+    header('location: cadastro.php?msgSistema=campos');
+    exit;
 }
 
 

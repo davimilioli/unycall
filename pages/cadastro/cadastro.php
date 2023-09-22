@@ -4,11 +4,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
     <title>Cadastro</title>
     <link rel="stylesheet" href="../../assets/css/css/style.css">
 </head>
 
 <body>
+    <?php require_once(__DIR__ . '../../../includes/header.php'); ?>
     <section class="page-form">
         <div class="cadastro-content">
             <div class="form-content">
@@ -20,12 +22,11 @@
                         <p class="loading-message">aaaa</p>
                     </div>
                 </div>
-                <div class="logo">
-                    <div class="logo-content"></div>
-                </div>
+                <div class="logo"><img src="/assets/img/logo.png" alt="Logo UnyCall"></div>
                 <div class="form-title">
                     <h1>Cadastro</h1>
                     <p>Preencha para ter acesso ao nosso sistema</p>
+                    <p>Já possui cadastro? <a href="../login/login.php" class="form-link">Acesse aqui</a></p>
                 </div>
                 <form method="POST" action="cadastro_action.php" class="form">
                     <div class="form-category">
@@ -138,7 +139,7 @@
                         <h2>Login</h2>
                         <div class="form-group">
                             <label for="login">Usuario <span>*</span></label>
-                            <input type="text" name="login" id="login" minlength="6" maxlength="6"1 required>
+                            <input type="text" name="login" id="login" minlength="6" maxlength="6" 1 required>
                         </div>
                         <div class="inputs-group">
                             <div class="form-group">
@@ -151,8 +152,15 @@
                             </div>
                         </div>
                     </div>
-                    <input type="submit" value="Cadastrar" class="btn" class="enviarForm">
-                    <input type="reset" value="Limpar" id="limpar" class="btn secondary">
+                    <div class="form-buttons">
+                        <input type="submit" value="Cadastrar" class="btn" class="enviarForm">
+                        <input type="reset" value="Limpar" id="limpar" class="btn secondary">
+                    </div>
+                    <?php if (isset($_GET['msgSistema'])) :  ?>
+                        <div class="message_error">
+                            <p>Email já cadastrado!</p>
+                        </div>
+                    <?php endif ?>
                 </form>
             </div>
             <div class="cadastro-description">
