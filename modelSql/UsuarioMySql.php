@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/../entity/User.php');
+require_once(__DIR__ . '/../entidade/Usuario.php');
 
 class UsuarioMySql implements UsuarioSqlInterface
 {
@@ -26,7 +26,6 @@ class UsuarioMySql implements UsuarioSqlInterface
         $sql->bindValue(':login', $usuario->pegarLogin());
         $sql->bindValue(':senha', $usuario->pegarSenha());
         $sql->execute();
-
         $usuario->setarId($this->pdo->lastInsertId());
 
         return $usuario;
