@@ -1,5 +1,6 @@
 <?php
 require_once(__DIR__ . '/../entidade/Usuario.php');
+require_once(__DIR__ . '/../entidade/Endereco.php');
 
 class UsuarioMySql implements UsuarioSqlInterface
 {
@@ -59,6 +60,7 @@ class UsuarioMySql implements UsuarioSqlInterface
         }
     }
 
+    // CONSULTA PARA FAZER LOGIN
     public function consultarDadosLogin($login, $senha)
     {
         $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE login = :login");
