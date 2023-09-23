@@ -11,7 +11,7 @@ require_once(__DIR__ . '/Sistema.php');
 
 $sistema = new Sistema($pdo);
 $lista = $sistema->consultarDados();
-
+require_once(__DIR__ . '../modulos/modulos.php');
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -31,6 +31,9 @@ $lista = $sistema->consultarDados();
         <main class="page-cliente-usuarios">
             <div class="category-title">
                 <h4>Lista Usuarios</h4>
+                <div>
+                    <p>Usuarios encontrados: <?= count($lista) ?></p>
+                </div>
             </div>
             <section class="list-users">
                 <?php foreach ($lista as $item) : ?>
@@ -48,7 +51,7 @@ $lista = $sistema->consultarDados();
                                 </div>
                                 <div class="card-info">
                                     <h3>CPF</h3>
-                                    <p><?= $item['usuario']->pegarCpf() ?></p>
+                                    <p><?= formatarCpf($item['usuario']->pegarCpf()) ?></p>
                                 </div>
                                 <div class="card-info">
                                     <h3>Email</h3>

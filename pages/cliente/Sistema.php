@@ -20,7 +20,7 @@ class Sistema
     {
         $array = [];
 
-        $sql = $this->pdo->query("SELECT * FROM usuarios, endereco");
+        $sql = $this->pdo->query("SELECT * FROM usuarios");
 
         if ($sql->rowCount() > 0) {
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
@@ -37,23 +37,89 @@ class Sistema
                 $usuario->setarTelefone($item['telefone']);
                 $usuario->setarLogin($item['login']);
 
-                $endereco = new Endereco();
-                $endereco->setarIdUsuarioEndereco($item['id_usuario']);
-                $endereco->setarCepEndereco($item['cep']);
-                $endereco->setarLogradouroEndereco($item['logradouro']);
-                $endereco->setarNumeroEndereco($item['numero']);
-                $endereco->setarBairroEndereco($item['bairro']);
-                $endereco->setarCidadeEndereco($item['cidade']);
-                $endereco->setarEstadoEndereco($item['estado']);
-                $endereco->setarComplementoEndereco($item['complemento']);
-
                 $array[] = [
                     'usuario' => $usuario,
-                    'endereco' => $endereco
+                    'quantidade' => count($data)
                 ];
             }
         }
 
         return $array;
+    }
+
+    public function procurarId($id)
+    {
+        $sql = $this->pdo->prepare("SELECT * FROM usuarios, endereco WHERE usuarios.id = :id AND endereco.id_usuario = :id_usuario");
+        $sql->bindValue(':id', $id);
+        $sql->bindValue(':id_usuario', $id);
+        $sql->execute();
+
+        if ($sql->rowCount() > 0) {
+            $data = $sql->fetch(PDO::FETCH_ASSOC);
+            $usuario = new Usuario();
+            $usuario->setarId($data['id']);
+            $usuario->setarNome($data['nome']);
+            $usuario->setarNascimento($data['nascimento']);
+            $usuario->setarCpf($data['cpf']);
+            $usuario->setarNomeMaterno($data['nomematerno']);
+            $usuario->setarEmail($data['email']);
+            $usuario->setarSexo($data['sexo']);
+            $usuario->setarCelular($data['celular']);
+            $usuario->setarTelefone($data['telefone']);
+            $usuario->setarLogin($data['login']);
+
+            $endereco = new Endereco();
+            $endereco->setarIdUsuarioEndereco($data['id_usuario']);
+            $endereco->setarCepEndereco($data['cep']);
+            $endereco->setarLogradouroEndereco($data['logradouro']);
+            $endereco->setarNumeroEndereco($data['numero']);
+            $endereco->setarBairroEndereco($data['bairro']);
+            $endereco->setarCidadeEndereco($data['cidade']);
+            $endereco->setarEstadoEndereco($data['estado']);
+            $endereco->setarComplementoEndereco($data['complemento']);
+
+            return [
+                'usuario' => $usuario,
+                'endereco' => $endereco
+            ];
+        }
+    }
+
+    public function atualizarUsuario(Usuario $usuario)
+    {
+        $sql = $this->pdo->prepare(
+            "UPDATE usuarios SET nome = :nome, nascimento = :nascimento, cpf = :cpf, email = :email, nomematerno = :nomematerno, celular = :celular, telefone = :telefone, login = :login WHERE id = :id"
+        );
+        var_dump($usuario);
+        $sql->bindValue(':nome', $usuario->pegarNome());
+        $sql->bindValue(':nascimento', $usuario->pegarNascimento());
+        $sql->bindValue(':cpf', $usuario->pegarCpf());
+        $sql->bindValue(':email', $usuario->pegarEmail());
+        $sql->bindValue(':nomematerno', $usuario->pegarNomeMaterno());
+        $sql->bindValue(':celular', $usuario->pegarCelular());
+        $sql->bindValue(':telefone', $usuario->pegarTelefone());
+        $sql->bindValue(':login', $usuario->pegarLogin());
+        $sql->bindValue(':id', $usuario->pegarId());
+        $sql->execute();
+
+        return true;
+    }
+
+    public function atualizarEndereco(Endereco $endereco)
+    {
+        $sql = $this->pdo->prepare(
+            "UPDATE endereco SET cep = :cep, logradouro = :logradouro, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, complemento = :complemento WHERE id_usuario = :id_usuario"
+        );
+        $sql->bindValue(':cep', $endereco->pegarCepEndereco());
+        $sql->bindValue(':logradouro', $endereco->pegarLogradouroEndereco());
+        $sql->bindValue(':numero', $endereco->pegarNumeroEndereco());
+        $sql->bindValue(':bairro', $endereco->pegarBairroEndereco());
+        $sql->bindValue(':cidade', $endereco->pegarCidadeEndereco());
+        $sql->bindValue(':estado', $endereco->pegarEstadoEndereco());
+        $sql->bindValue(':complemento', $endereco->pegarComplementoEndereco());
+        $sql->bindValue(':id_usuario', $endereco->pegarIdUsuarioEndereco());
+        $sql->execute();
+
+        return true;
     }
 }
