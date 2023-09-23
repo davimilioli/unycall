@@ -1,105 +1,234 @@
 .page-cliente {
-    margin-top: 2rem;
+    display: flex;
 
-    .table-usuarios {
-        position: relative;
+    .page-cliente-aside {
+        padding: 1rem 0;
+        background: #FFF;
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+        height: 100vh;
+        width: 16rem;
 
-        table {
-            border-collapse: collapse;
+        .page-cliente-aside-content {
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
             width: 100%;
-        }
+            padding: 0 1rem;
 
-        th,
-        td {
-            border: 1px solid #dddddd;
-            text-align: center;
-            padding: 10px;
-        }
+            .aside-category {
+                .aside-category-title {
+                    width: 100%;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: .35rem .35rem .35rem 1rem;
+                    border-radius: $radius;
+                    color: $description-color;
+                    transition: .3s;
+                    cursor: pointer;
 
-        th {
-            background-color: #f2f2f2;
-
-        }
-
-        tr {
-            transition: .3s;
-
-            &:hover {
-                background-color: #ececec;
-                transition: .3s;
-            }
-        }
-
-        .modal-table {
-            display: none;
-
-            &.active {
-                display: flex;
-                background-color: #0000006c;
-                position: absolute;
-                top: 0;
-                padding: 1rem;
-                width: 100vw;
-                height: 100vh;
-                left: -25%;
-                align-items: start;
-                justify-content: center;
-                margin: auto;
-
-                .form-content {
-                    width: 60%;
-                    background-color: #FFF;
-
-                    .header-modal {
+                    .aside-category-titles {
                         display: flex;
+                        gap: 16px;
                         align-items: center;
-                        justify-content: space-between;
-                        width: 100%;
-                        position: absolute;
-                        top: 0;
-                        background: #FFF;
-                        left: 0;
-                        padding: 1rem;
-                        box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
-
-                        #closeModal {
-                            background: none;
-                            border: none;
-                            font-size: 1rem;
-                            cursor: pointer;
-                        }
+                        font-size: 0.9rem;
                     }
 
-                    .form {
-                        display: grid;
-                        grid-template-columns: 1fr 1fr 1fr;
-                        margin: 3rem 0;
+                    &:hover {
+                        background-color: #f0eded;
+                        transition: .3s;
+                    }
 
-                        .form-category {
-                            height: 50vh;
-                            overflow-y: scroll;
-                            padding: 1rem;
-                        }
+                    .icon-arrow {
+                        transition: .3s;
 
-                        .form-buttons {
-                            width: 100%;
-                            position: absolute;
-                            bottom: 0;
-                            background: #FFF;
-                            left: 0;
-                            padding: 1rem;
-                            display: flex;
-                            justify-content: end;
-                            box-shadow: 0 -1px 2px rgba(0, 0, 0, .2);
+                        &.active {
+                            transform: rotate(-180deg);
+                            transition: .3s;
                         }
                     }
                 }
 
+                .aside-nav {
+                    display: none;
+
+                    .aside-list {
+                        list-style: none;
+
+                        .aside-list-item {
+                            width: 100%;
+                            border-radius: $radius;
+                            display: flex;
+                            padding: .35rem .35rem .35rem 1rem;
+                            transition: .3s;
+                            cursor: pointer;
+                            padding-left: 3rem;
+                            font-size: 0.9rem;
+
+                            a {
+                                text-decoration: none;
+                                color: $description-color;
+                            }
+
+
+                            &:hover {
+                                background-color: #f0eded;
+                                transition: .3s;
+                            }
+                        }
+                    }
+
+                    &.active {
+                        display: flex;
+                        flex-direction: column;
+                    }
+                }
             }
+        }
+
+    }
+
+    .category-title {
+        padding: 2rem 1rem;
+        color: $description-color;
+        background-color: rgb(245, 247, 250);
+        margin-bottom: 1rem;
+        border: 1px solid #e3e6ed;
+        border-radius: $radius;
+
+        h4 {
+            font-size: 1.25rem;
+        }
+    }
+
+    .page-cliente-usuarios {
+        padding: 1rem;
+        width: 100%;
+
+        .list-users {
+            .card-user {
+                padding: 1rem;
+                position: relative;
+                border: 1px solid #e3e6ed;
+                border-radius: $radius;
+                background-color: #FFF;
+                width: 18rem;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+                top: 0;
+                transition: box-shadow .2s ease-in-out, transform .2s ease-in-out, top .2s ease-in-out;
 
 
+                h2,
+                h3 {
+                    color: #4b5563;
+                    font-size: 1rem;
+                }
+
+
+
+                p {
+                    color: $description-color;
+                }
+
+                .card-body {
+                    .card-info {
+                        padding: 0.5rem;
+                    }
+                }
+
+                .card-footer {
+                    border-top: 1px solid #e3e6ed;
+                    padding: 0.5rem 0;
+                    width: 100%;
+                    display: flex;
+                    gap: 10px;
+
+                    .btn {
+                        width: 100%;
+                        font-size: 0.8rem;
+                        text-align: center;
+                    }
+                }
+
+                &:hover {
+                    top: -3px;
+                    box-shadow: 0 0 16px -7px rgba(0, 0, 0, .5);
+                }
+            }
         }
     }
 
 
+    .page-cliente-editar {
+        padding: 1rem;
+        width: 100%;
+
+        .form-content {
+            padding: 0;
+            background-color: #FFF;
+
+            .header-modal {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                width: 100%;
+                position: absolute;
+                top: 0;
+                background: #FFF;
+                left: 0;
+                padding: 1rem;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+
+                #closeModal {
+                    background: none;
+                    border: none;
+                    font-size: 1rem;
+                    cursor: pointer;
+                }
+            }
+
+            .form {
+                .form-container {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    align-items: start;
+                    gap: 1rem;
+                }
+
+                .form-group {
+                    margin: 13px 0 0 0;
+                }
+
+                .form-buttons {
+                    width: 100%;
+                    display: flex;
+                    justify-content: end;
+                    gap: 10px;
+                }
+
+            }
+        }
+    }
 }
+
+
+/* 
+                .modal-table {
+                    display: none;
+
+                    &.active {
+                        display: flex;
+                        background-color: #0000006c;
+                        position: absolute;
+                        top: 0;
+                        padding: 1rem;
+                        width: 100vw;
+                        height: 100vh;
+                        left: -25%;
+                        align-items: start;
+                        justify-content: center;
+                        margin: auto;
+
+                       
+                    }
+                } */
