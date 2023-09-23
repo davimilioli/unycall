@@ -15,9 +15,8 @@ class Usuario
     private $login;
     private $senha;
 
-    public function setarId(int $id)
+    public function setarId($id)
     {
-
         $this->id = trim($id);
     }
 
@@ -83,7 +82,7 @@ class Usuario
     public function setarSexo($sexo)
     {
 
-        $this->sexo = $sexo;
+        $this->sexo = ucfirst($sexo);
     }
 
     public function pegarSexo()
@@ -93,7 +92,6 @@ class Usuario
 
     public function setarCelular($celular)
     {
-
         $celular = preg_replace('/[^0-9]/', '', $celular);
         $this->celular = $celular;
     }
