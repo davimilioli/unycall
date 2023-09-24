@@ -11,9 +11,9 @@ try {
     die("Erro na conexão com o banco de dados: " . $e->getMessage());
 }
 
-/* function inserirUsuario($pdo)
+function inserirUsuario($pdo)
 {
-    $nomes = ["João", "Maria", "Pedro", "Ana", "Carlos"];
+    $nomes = ["João Dos Santos", "Maria Souza", "Pedro Cabral", "Ana", "Carlos"];
     $sobrenomes = ["Silva", "Santos", "Oliveira", "Pereira", "Ferreira"];
 
     $nome = $nomes[array_rand($nomes)];
@@ -27,6 +27,7 @@ try {
     $login = strtolower($nome[0] . $sobrenome);
     $senha = password_hash($login, PASSWORD_DEFAULT);
 
+    $emailSemEspacos = str_replace(' ', '', $email);
     $sql = "INSERT INTO usuarios (nome, nascimento, cpf, email, nomematerno, sexo, celular, telefone, login, senha) 
             VALUES (:nome, :nascimento, :cpf, :email, :nomematerno, :sexo, :celular, :telefone, :login, :senha)";
 
@@ -34,7 +35,7 @@ try {
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':nascimento', $nascimento);
     $stmt->bindParam(':cpf', $cpf);
-    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':email', $emailSemEspacos);
     $stmt->bindParam(':nomematerno', $sobrenome);
     $stmt->bindParam(':sexo', $sexo);
     $stmt->bindParam(':celular', $celular);
@@ -43,19 +44,24 @@ try {
     $stmt->bindParam(':senha', $senha);
 
     $stmt->execute();
+
+    $lastUserId = $pdo->lastInsertId();
+
+    return $lastUserId;
 }
 
 
-for ($i = 0; $i < 10; $i++) {
-    inserirUsuario($pdo);
+/* for ($i = 0; $i < 10; $i++) {
+    $lastUserId = inserirUsuario($pdo);
+    inserirEndereco($pdo, $lastUserId);
 }
 
-echo "Usuários inseridos com sucesso!";
+echo "Foi!"; */
 
 
 function inserirEndereco($pdo, $id_usuario)
 {
-    $ceps = ["12345-678", "98765-432", "54321-876", "87654-321"];
+    $ceps = ["12345678", "98765432", "54321876", "87654321"];
     $logradouros = ["Rua A", "Avenida B", "Praça C", "Estrada D"];
     $numeros = ["123", "456", "789", "1011"];
     $bairros = ["Bairro X", "Bairro Y", "Bairro Z"];
@@ -86,11 +92,3 @@ function inserirEndereco($pdo, $id_usuario)
 
     $stmt->execute();
 }
-
-
-$consulta = $pdo->query("SELECT id FROM usuarios");
-$usuarios = $consulta->fetchAll(PDO::FETCH_ASSOC);
-
-foreach ($usuarios as $usuario) {
-    inserirEndereco($pdo, $usuario['id']);
-} */
