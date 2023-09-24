@@ -40,19 +40,26 @@
                             <input type="text" name="senha" id="senha" required>
                         </div>
                     </div>
-                    <input type="submit" value="Entrar" class="btn" class="enviarForm" id="entrar">
-                    <input type="reset" value="Limpar" id="limpar" class="btn secondary">
+                    <div class="form-buttons">
+                        <div class="form-actions">
+                            <input type="submit" value="Entrar" class="btn" class="enviarForm" id="entrar">
+                            <input type="reset" value="Limpar" id="limpar" class="btn secondary">
+                        </div>
+                        <?php if (isset($_GET['erroLogin'])) :  ?>
+                            <div class="message_error">
+                                <p>
+                                    <img src="/assets/img/icons/danger.svg">Usuario ou senha incorretos
+                                </p>
+                            </div>
+                        <?php elseif (isset($_GET['erroSistema'])) :  ?>
+                            <div class="message_error">
+                                <p>
+                                    <img src="/assets/img/icons/danger.svg">É necessário logar
+                                </p>
+                            </div>
+                        <?php endif ?>
+                    </div>
                 </form>
-                <?php if (isset($_GET['erroSistema'])) :  ?>
-                    <div class="message_error">
-                        <p>É necessario logar</p>
-                    </div>
-                <?php endif ?>
-                <?php if (isset($_GET['erroLogin'])) :  ?>
-                    <div class="message_error">
-                        <p>Usuario ou senha incorretos</p>
-                    </div>
-                <?php endif ?>
             </div>
             <div class="cadastro-description">
                 <div class="cadastro-description-content">
@@ -63,24 +70,6 @@
         </div>
         </div>
     </section>
-    <!--     <section class="page-login">
-        <div class="form-content">
-            <form class="form">
-                <div class="form-group">
-                    <label>Login</label>
-                    <input type="text" name="login" id="">
-                </div>
-                <div class="form-group">
-                    <label>Senha</label>
-                    <input type="text" name="senha" id="">
-                </div>
-                <div class="buttons-form">
-                    <input type="submit" value="Cadastrar" class="btn" class="enviarForm">
-                    <input type="reset" value="Limpar" id="limpar" class="btn secondary">
-                </div>
-            </form>
-        </div>
-    </section> -->
     <script src="../../assets/js/login-form.js"></script>
 </body>
 

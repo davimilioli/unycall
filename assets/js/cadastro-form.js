@@ -268,7 +268,7 @@ cep.addEventListener('keyup', function (e) {
 });
 
 async function getAddress(cep) {
-    toggleLoading();
+    loading('buscando cep');
 
     const url = `https://viacep.com.br/ws/${cep}/json/`;
 
@@ -293,8 +293,8 @@ async function getAddress(cep) {
         city.disabled = false;
         state.disabled = false;
 
-        toggleLoading();
         validateAddressFields();
+        loading();
         return;
     } else {
         validaCep = true;
@@ -304,6 +304,7 @@ async function getAddress(cep) {
 
         // Chamada para validar os campos de endereço, bairro, cidade e estado
         validateAddressFields();
+        loading();
     }
 
     address.value = data.logradouro !== undefined ? data.logradouro : '';
@@ -311,13 +312,6 @@ async function getAddress(cep) {
     state.value = data.uf !== undefined ? data.uf : '';
     neighborhood.value = data.bairro !== undefined ? data.bairro : '';
 
-    toggleLoading();
-}
-
-function toggleLoading() {
-    const loading = document.querySelector('.loading');
-    loading.classList.toggle('hide');
-    validateAddressFields();
 }
 
 const clearInputs = document.querySelector('#limpar');
@@ -441,26 +435,51 @@ confirmaSenha.addEventListener('keyup', () => {
     }
 })
 
+const btnCadastrar = document.querySelector('#cadastrar');
+const form = document.querySelector('.form');
+console.log(btnCadastrar);
+
+btnCadastrar.addEventListener('click', (e) => {
+    e.preventDefault()
+
+    if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && login.value !== '' && senha.value !== '') {
+        form.setAttribute('action', '/pages/cadastro/cadastro_action.php');
+        loading('validando cadastro')
+
+        setTimeout(() => {
+            form.submit();
+            loading('validando cadastro')
+        }, 2000)
+    } else {
+        const btnsForm = document.querySelector('.form-actions');
+        const existingMsgErro = document.querySelector('.message_error');
+
+        if (!existingMsgErro) {
+            const msgErro = document.createElement('div');
+            msgErro.classList.add('message_error');
+            const erroContent = `
+            <p>
+              <img src="/assets/img/icons/danger.svg">Preencha os campos
+            </p>
+          `;
+            msgErro.innerHTML = erroContent;
+            btnsForm.parentNode.insertBefore(msgErro, btnsForm.nextElementSibling);
+
+            const inputs = form.querySelectorAll('input');
+            inputs.forEach((input) => {
+                input.addEventListener('click', () => {
+                    if (msgErro) {
+                        msgErro.innerHTML = ''; // Limpar a mensagem de erro se algum input for clicado
+                    }
+                });
+            });
+        }
+    }
+})
+
 function loading(msg) {
     const loading = document.querySelector('.loading');
     const message = document.querySelector('.loading-message')
     loading.classList.toggle('hide');
     message.innerHTML = msg;
 }
-/* 
-function submitForm() {
-    const form = document.querySelector('#form');
-
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
-
-        // Verifique se todos os campos são diferentes de null
-        if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && login.value !== '' && senha.value !== '') {
-        } else {
-            console.log('Alguma validação falhou');
-        }
-    });
-}
-
-const btnForm = document.querySelector('#enviarForm');
-btnForm.addEventListener('click', submitForm); */

@@ -14,8 +14,8 @@ $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 $sexo = filter_input(INPUT_POST, 'sexo');
 $celular = filter_input(INPUT_POST, 'celular');
 $telefone = filter_input(INPUT_POST, 'telefone');
-$login  = filter_input(INPUT_POST, 'login');
-$senha = filter_input(INPUT_POST, 'senha');
+$login  = filter_input(INPUT_POST, 'loginCadastro');
+$senha = filter_input(INPUT_POST, 'senhaCadastro');
 
 $cep = filter_input(INPUT_POST, 'cep');
 $logradouro = filter_input(INPUT_POST, 'endereco');

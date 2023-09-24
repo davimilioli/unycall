@@ -14,7 +14,7 @@
     }
 
     .form-title {
-        margin-bottom: 2rem;
+        margin-bottom: 1rem;
 
         h1 {
             color: $text-color;
@@ -62,6 +62,10 @@
             h2 {
                 font-size: 1.1rem;
                 text-align: center;
+
+                @media (max-width: 630px) {
+                    margin-top: 1rem;
+                }
             }
         }
 
@@ -79,6 +83,27 @@
                 .form-group.numero {
                     width: 20%;
                 }
+            }
+        }
+
+        .form-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            .form-actions {
+                display: flex;
+            }
+
+
+            @media (max-width: 630px) {
+                .message_error {
+                    p {
+                        margin-top: 1rem;
+                        justify-content: center;
+                    }
+                }
+
             }
         }
 

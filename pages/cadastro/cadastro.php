@@ -19,7 +19,7 @@
                         <div class="spinner-one">
                             <div class="spinner-two"></div>
                         </div>
-                        <p class="loading-message">aaaa</p>
+                        <p class="loading-message"></p>
                     </div>
                 </div>
                 <div class="logo"><img src="/assets/img/logo.png" alt="Logo UnyCall"></div>
@@ -28,7 +28,7 @@
                     <p>Preencha para ter acesso ao nosso sistema</p>
                     <p>Já possui cadastro? <a href="../login/login.php" class="form-link">Acesse aqui</a></p>
                 </div>
-                <form method="POST" action="cadastro_action.php" class="form">
+                <form method="POST" class="form">
                     <div class="form-category">
                         <h2>Dados pessoais</h2>
                         <div class="form-group">
@@ -139,12 +139,12 @@
                         <h2>Login</h2>
                         <div class="form-group">
                             <label for="login">Usuario <span>*</span></label>
-                            <input type="text" name="login" id="login" minlength="6" maxlength="6" 1 required>
+                            <input type="text" name="loginCadastro" id="login" minlength="6" maxlength="6" 1 required>
                         </div>
                         <div class="inputs-group">
                             <div class="form-group">
                                 <label for="senha">Senha <span>*</span></label>
-                                <input type="text" name="senha" id="senha" required>
+                                <input type="text" name="senhaCadastro" id="senha" required>
                             </div>
                             <div class="form-group">
                                 <label for="confirmar-senha">Confirmar senha <span>*</span></label>
@@ -153,14 +153,19 @@
                         </div>
                     </div>
                     <div class="form-buttons">
-                        <input type="submit" value="Cadastrar" class="btn" class="enviarForm">
-                        <input type="reset" value="Limpar" id="limpar" class="btn secondary">
-                    </div>
-                    <?php if (isset($_GET['msgSistema'])) :  ?>
-                        <div class="message_error">
-                            <p>Email já cadastrado!</p>
+                        <div class="form-actions">
+                            <input type="submit" value="Cadastrar" class="btn" id="cadastrar">
+                            <input type="reset" value="Limpar" id="limpar" class="btn secondary">
                         </div>
-                    <?php endif ?>
+                        <?php if (isset($_GET['msgSistema'])) :  ?>
+                            <div class="message_error">
+                                <p>
+                                    <img src="/assets/img/icons/danger.svg">E-mail já cadastrado
+                                </p>
+                            </div>
+                        <?php endif ?>
+                    </div>
+
                 </form>
             </div>
             <div class="cadastro-description">
@@ -173,7 +178,7 @@
         </div>
         </div>
     </section>
-    <!--     <script src="../../assets/js/cadastro-form.js"></script> -->
+    <script src="../../assets/js/cadastro-form.js"></script>
 </body>
 
 </html>
