@@ -19,23 +19,6 @@
 CREATE DATABASE IF NOT EXISTS `db_site` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `db_site`;
 
--- Copiando estrutura para tabela db_site.endereco
-CREATE TABLE IF NOT EXISTS `endereco` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) NOT NULL,
-  `cep` varchar(9) DEFAULT NULL,
-  `logradouro` varchar(255) DEFAULT NULL,
-  `numero` varchar(10) DEFAULT NULL,
-  `bairro` varchar(100) DEFAULT NULL,
-  `cidade` varchar(100) DEFAULT NULL,
-  `estado` char(2) DEFAULT NULL,
-  `complemento` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_usuario` (`id_usuario`),
-  CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`)
-)
-
--- Exportação de dados foi desmarcado.
 
 -- Copiando estrutura para tabela db_site.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -52,6 +35,23 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `senha` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 )
+
+-- Copiando estrutura para tabela db_site.endereco
+CREATE TABLE IF NOT EXISTS `endereco` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `cep` varchar(9) NULL,
+  `logradouro` varchar(255) NULL,
+  `numero` varchar(10) NOT NULL,
+  `bairro` varchar(100) NOT NULL,
+  `cidade` varchar(100) NOT NULL,
+  `estado` char(2) NOT NULL,
+  `complemento` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `id_usuario` (`id_usuario`),
+  CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`)
+)
+
 
 -- Exportação de dados foi desmarcado.
 
