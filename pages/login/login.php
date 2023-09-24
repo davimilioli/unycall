@@ -19,7 +19,7 @@
                         <div class="spinner-one">
                             <div class="spinner-two"></div>
                         </div>
-                        <p class="loading-message">aaaa</p>
+                        <p class="loading-message">Validando Usuario</p>
                     </div>
                 </div>
                 <div class="logo"><img src="/assets/img/logo.png" alt="Logo UnyCall"></div>
@@ -28,7 +28,7 @@
                     <p>Preencha os campos abaixo para ter acesso ao nosso sistema</p>
                     <p>Não possui cadastro? <a href="../cadastro/cadastro.php" class="form-link">Acesse aqui</a></p>
                 </div>
-                <form method="POST" action="login_action.php" class="form">
+                <form method="POST" class="form">
                     <div class="form-category">
                         <h2>Fazer login</h2>
                         <div class="form-group">
@@ -40,7 +40,7 @@
                             <input type="text" name="senha" id="senha" required>
                         </div>
                     </div>
-                    <input type="submit" value="Entrar" class="btn" class="enviarForm">
+                    <input type="submit" value="Entrar" class="btn" class="enviarForm" id="entrar">
                     <input type="reset" value="Limpar" id="limpar" class="btn secondary">
                 </form>
                 <?php if (isset($_GET['erroSistema'])) :  ?>
@@ -81,6 +81,7 @@
             </form>
         </div>
     </section> -->
+    <script src="../../assets/js/login-form.js"></script>
 </body>
 
 </html>
