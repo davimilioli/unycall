@@ -4,15 +4,49 @@ require_once(__DIR__ . '../../Sistema.php');
 $sistema = new Sistema($pdo);
 
 $id = filter_input(INPUT_POST, 'id');
+echo '<hr>';
+echo "ID: $id";
+echo '<hr>';
 $nome = filter_input(INPUT_POST, 'nome');
+echo '<hr>';
+echo "NOME: $nome";
+echo '<hr>';
 $nascimento = filter_input(INPUT_POST, 'nascimento');
+echo '<hr>';
+echo "NASCIMENTO: $nascimento";
+echo '<hr>';
+
 $cpf = filter_input(INPUT_POST, 'cpf');
+echo '<hr>';
+echo "CPF: $cpf";
+echo '<hr>';
 $nomeMaterno = filter_input(INPUT_POST, 'nomeMaterno');
+echo '<hr>';
+echo "MATERNO: $nomeMaterno";
+echo '<hr>';
+
 $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
+echo '<hr>';
+echo "EMAIL: $email";
+echo '<hr>';
+
 $sexo = filter_input(INPUT_POST, 'sexo');
+echo '<hr>';
+echo "SEXO: $sexo";
+echo '<hr>';
+
 $celular = filter_input(INPUT_POST, 'celular');
+echo '<hr>';
+echo "CELULAR: $celular";
+echo '<hr>';
 $telefone = filter_input(INPUT_POST, 'telefone');
+echo '<hr>';
+echo "TELEFONE: $telefone";
+echo '<hr>';
 $login = filter_input(INPUT_POST, 'login');
+echo '<hr>';
+echo "LOGIN: $login";
+echo '<hr>';
 
 $cep = filter_input(INPUT_POST, 'cep');
 $logradouro = filter_input(INPUT_POST, 'endereco');
@@ -77,5 +111,6 @@ if ($id && $nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $c
     header('location: ../lista_usuarios.php');
     exit;
 } else {
-    echo 'falso';
+    header('location: ../editar_usuario.php?id=' . $id);
+    exit;
 }
