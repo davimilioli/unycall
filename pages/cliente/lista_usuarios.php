@@ -55,7 +55,7 @@ require_once(__DIR__ . '../modulos/modulos.php');
                                 </div>
                                 <div class="card-info">
                                     <h3>Email</h3>
-                                    <p><?= $item['usuario']->pegarEmail() ?></p>
+                                    <p><?= strlen($item['usuario']->pegarEmail()) > 20 ? substr($item['usuario']->pegarEmail(), 1, 20) . '...' : $item['usuario']->pegarEmail(); ?></p>
                                 </div>
                             </div>
                         </div>
