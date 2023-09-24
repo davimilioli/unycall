@@ -15,6 +15,7 @@ if ($id) {
     require_once(__DIR__ . '../modulos/modulos.php');
 }
 
+
 ?>
 
 
@@ -49,25 +50,24 @@ if ($id) {
                 </div>
                 <form method="POST" action="./actions/editar_action.php" class="form">
                     <input type="hidden" name="id" value="<?= $usuario->pegarId() ?>">
-                    <input type="hidden" name="idUsuario" value="<?= $endereco->pegarIdUsuarioEndereco() ?>">
                     <div class="form-container">
                         <div class="form-category">
                             <h2>Dados pessoais</h2>
                             <div class="form-group">
                                 <label for="nome">Nome </label>
-                                <input type="text" name="nome" id="nome" value="<?= $usuario->pegarNome() ?>" disabled>
+                                <input type="text" name="nome" id="nome" value="<?= $usuario->pegarNome() ?>">
                             </div>
                             <div class="form-group">
                                 <label for="data-nascimento">Data de Nascimento </label>
-                                <input type="text" name="nascimento" id="data-nascimento" value="<?= formatarNascimento($usuario->pegarNascimento()) ?>" disabled>
+                                <input type="text" name="nascimento" id="data-nascimento" value="<?= formatarNascimento($usuario->pegarNascimento()) ?>">
                             </div>
                             <div class="form-group">
                                 <label for="cpf">CPF </label>
-                                <input type="text" name="cpf" id="cpf" value="<?= formatarCpf($usuario->pegarCpf()) ?>" disabled>
+                                <input type="text" name="cpf" id="cpf" value="<?= formatarCpf($usuario->pegarCpf()) ?>">
                             </div>
                             <div class="form-group">
                                 <label for="nomeMaterno">Nome Materno </label>
-                                <input type="text" name="nomeMaterno" id="nomeMaterno" value="<?= $usuario->pegarNomeMaterno() ?>" disabled>
+                                <input type="text" name="nomeMaterno" id="nomeMaterno" value="<?= $usuario->pegarNomeMaterno() ?>">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
@@ -75,7 +75,7 @@ if ($id) {
                             </div>
                             <div class="form-group">
                                 <label for="sexo">Sexo </label>
-                                <input type="text" name="sexo" id="sexo" value="<?= $usuario->pegarSexo() ?>" disabled>
+                                <input type="text" name="sexo" id="sexo" value="<?= $usuario->pegarSexo() ?>">
                             </div>
                             <div class="inputs-group">
                                 <div class="form-group">
@@ -131,9 +131,9 @@ if ($id) {
                             </div>
                         </div>
                     </div>
-                    <div class=" form-buttons">
+                    <div class="form-buttons">
                         <input type="submit" value="Atualizar" class="btn" class="atualizarDados">
-                        <input type="reset" value="Excluir" id="excluirDados" class="btn secondary">
+                        <a class="btn secondary" id="excluirUsuario" data-id="<?= $usuario->pegarId() ?>">Excluir</a>
                     </div>
                 </form>
             </div>

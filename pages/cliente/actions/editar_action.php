@@ -12,9 +12,8 @@ $email = filter_input(INPUT_POST, 'email', FILTER_VALIDATE_EMAIL);
 $sexo = filter_input(INPUT_POST, 'sexo');
 $celular = filter_input(INPUT_POST, 'celular');
 $telefone = filter_input(INPUT_POST, 'telefone');
-$login  = filter_input(INPUT_POST, 'login');
+$login = filter_input(INPUT_POST, 'login');
 
-$id_usuario = filter_input(INPUT_POST, 'idUsuario');
 $cep = filter_input(INPUT_POST, 'cep');
 $logradouro = filter_input(INPUT_POST, 'endereco');
 $numero = filter_input(INPUT_POST, 'numend');
@@ -47,6 +46,7 @@ function formatarCep($cep)
     return $cepFormatado;
 }
 
+
 if ($id && $nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $celular && $telefone && $login) {
     $usuario = new Usuario();
     $usuario->setarId($id);
@@ -61,9 +61,9 @@ if ($id && $nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $c
     $usuario->setarLogin($login);
     $sistema->atualizarUsuario($usuario);
 
-    if ($id_usuario && $cep && $logradouro && $numero && $bairro && $cidade && $estado) {
+    if ($cep && $logradouro && $numero && $bairro && $cidade && $estado) {
         $endereco = new Endereco();
-        $endereco->setarIdUsuarioEndereco($id_usuario);
+        $endereco->setarIdUsuarioEndereco($id);
         $endereco->setarCepEndereco(formatarCep($cep));
         $endereco->setarLogradouroEndereco($logradouro);
         $endereco->setarNumeroEndereco($numero);

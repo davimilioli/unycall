@@ -90,7 +90,6 @@ class Sistema
         $sql = $this->pdo->prepare(
             "UPDATE usuarios SET nome = :nome, nascimento = :nascimento, cpf = :cpf, email = :email, nomematerno = :nomematerno, celular = :celular, telefone = :telefone, login = :login WHERE id = :id"
         );
-        var_dump($usuario);
         $sql->bindValue(':nome', $usuario->pegarNome());
         $sql->bindValue(':nascimento', $usuario->pegarNascimento());
         $sql->bindValue(':cpf', $usuario->pegarCpf());
@@ -120,6 +119,22 @@ class Sistema
         $sql->bindValue(':id_usuario', $endereco->pegarIdUsuarioEndereco());
         $sql->execute();
 
+        return true;
+    }
+
+    public function deletarUsuario($id)
+    {
+        $this->pdo->beginTransaction();
+
+        $sql1 = $this->pdo->prepare("DELETE FROM endereco WHERE id_usuario = :id");
+        $sql1->bindValue(':id', $id);
+        $sql1->execute();
+
+        $sql2 = $this->pdo->prepare("DELETE FROM usuarios WHERE id = :id");
+        $sql2->bindValue(':id', $id);
+        $sql2->execute();
+
+        $this->pdo->commit();
         return true;
     }
 }

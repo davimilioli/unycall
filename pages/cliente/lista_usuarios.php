@@ -61,13 +61,15 @@ require_once(__DIR__ . '../modulos/modulos.php');
                         </div>
                         <div class="card-footer">
                             <a class="btn" href="editar_usuario.php?id=<?= $item['usuario']->pegarId() ?>">Editar</a>
-                            <a class="btn secondary" href="excluir.usuario.php?id=<?= $item['usuario']->pegarId() ?>">Excluir</a>
+                            <a class="btn secondary" id="excluirUsuario" data-id="<?= $item['usuario']->pegarId() ?>">Excluir</a>
                         </div>
+                        <div class="modal-exclude"></div>
                     </div>
                 <?php endforeach ?>
             </section>
         </main>
     </div>
+    <script src="../../assets/js/lista-usuarios.js"></script>
 </body>
 
 </html>
