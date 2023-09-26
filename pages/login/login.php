@@ -9,7 +9,7 @@
     <title>Login</title>
 </head>
 
-<body>
+<body style="overflow: hidden;">
     <?php require_once(__DIR__ . '../../../includes/header.php'); ?>
     <section class="page-form">
         <div class="cadastro-content">
@@ -22,7 +22,6 @@
                         <p class="loading-message">Validando Usuario</p>
                     </div>
                 </div>
-                <div class="logo"><img src="/assets/img/logo.png" alt="Logo UnyCall"></div>
                 <div class="form-title">
                     <h1>Login</h1>
                     <p>Preencha os campos abaixo para ter acesso ao nosso sistema</p>

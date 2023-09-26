@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="../../assets/css/css/style.css">
 </head>
 
-<body>
+<body style="overflow: hidden;">
     <?php require_once(__DIR__ . '../../../includes/header.php'); ?>
     <section class="page-form">
         <div class="cadastro-content">
@@ -22,7 +22,6 @@
                         <p class="loading-message"></p>
                     </div>
                 </div>
-                <div class="logo"><img src="/assets/img/logo.png" alt="Logo UnyCall"></div>
                 <div class="form-title">
                     <h1>Cadastro</h1>
                     <p>Preencha para ter acesso ao nosso sistema</p>
