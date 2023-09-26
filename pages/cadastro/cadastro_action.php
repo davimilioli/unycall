@@ -49,7 +49,7 @@ if ($nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $celular 
             $endereco->setarBairroEndereco($bairro);
             $endereco->setarCidadeEndereco($cidade);
             $endereco->setarEstadoEndereco($estado);
-            $endereco->setarComplementoEndereco($complemento);
+            $endereco->setarComplementoEndereco($complemento ?? null);
             $enderecoSql->criarEndereco($endereco);
         }
         header('location: ../login/login.php');

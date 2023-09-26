@@ -76,7 +76,7 @@ class Sistema
             $endereco->setarBairroEndereco($data['bairro']);
             $endereco->setarCidadeEndereco($data['cidade']);
             $endereco->setarEstadoEndereco($data['estado']);
-            $endereco->setarComplementoEndereco($data['complemento']);
+            $endereco->setarComplementoEndereco($data['complemento'] ?? null);
 
             return [
                 'usuario' => $usuario,

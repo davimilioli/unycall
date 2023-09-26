@@ -37,7 +37,7 @@ if ($id) {
         <main class="page-cliente-editar">
             <div class="category-title">
                 <h4>Editar Usuario</h4>
-                <p>ID: <?= $usuario->pegarId() ?></p>
+                <p>ID: <?= $endereco->pegarIdUsuarioEndereco() ?></p>
             </div>
             <div class="form-content">
                 <div class="loading hide">
@@ -49,7 +49,7 @@ if ($id) {
                     </div>
                 </div>
                 <form method="POST" action="./actions/editar_action.php" class="form">
-                    <input type="hidden" name="id" value="<?= $usuario->pegarId() ?>">
+                    <input type="hidden" name="id" value="<?= $endereco->pegarIdUsuarioEndereco() ?>">
                     <div class="form-container">
                         <div class="form-category">
                             <h2>Dados pessoais</h2>

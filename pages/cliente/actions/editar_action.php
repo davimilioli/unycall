@@ -56,6 +56,34 @@ $cidade = filter_input(INPUT_POST, 'cidade');
 $estado = filter_input(INPUT_POST, 'estado');
 $complemento = filter_input(INPUT_POST, 'complemento');
 
+echo '<hr>';
+echo "CEP: $cep";
+echo '<hr>';
+
+echo '<hr>';
+echo "LOGRADOURO: $logradouro";
+echo '<hr>';
+
+echo '<hr>';
+echo "NUMERO: $numero";
+echo '<hr>';
+
+echo '<hr>';
+echo "BAIRRO: $bairro";
+echo '<hr>';
+
+echo '<hr>';
+echo "CIDADE: $cidade";
+echo '<hr>';
+
+echo '<hr>';
+echo "ESTADO: $estado";
+echo '<hr>';
+
+echo '<hr>';
+echo "COMPLEMENTO: $complemento";
+echo '<hr>';
+
 function formatarNascimento($nascimento)
 {
     $nascimentoFormatado = date("Y-m-d", strtotime(str_replace("/", "-", $nascimento)));
@@ -104,7 +132,7 @@ if ($id && $nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $c
         $endereco->setarBairroEndereco($bairro);
         $endereco->setarCidadeEndereco($cidade);
         $endereco->setarEstadoEndereco($estado);
-        $endereco->setarComplementoEndereco($complemento);
+        $endereco->setarComplementoEndereco($complemento ?? null);
         $sistema->atualizarEndereco($endereco);
     }
 
