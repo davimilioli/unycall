@@ -12,6 +12,12 @@ class Endereco
     private string $estado;
     private ?string $complemento;
 
+    public function __construct(int $id = 0, int $id_usuario = 0)
+    {
+        $this->id = $id;
+        $this->id_usuario = $id_usuario;
+    }
+
     public function setarIdEndereco(int $id)
     {
         $this->id = trim($id);

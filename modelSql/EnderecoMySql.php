@@ -4,7 +4,6 @@ require_once(__DIR__ . '/../entidade/Usuario.php');
 
 class EnderecoMySql implements EnderedoSqlInterface
 {
-
     private $pdo;
 
     // IMPLEMENTAÇÃO QUE USA O DRIVER DO PDO
@@ -23,9 +22,10 @@ class EnderecoMySql implements EnderedoSqlInterface
         $sql->bindValue(':bairro', $endereco->pegarBairroEndereco());
         $sql->bindValue(':cidade', $endereco->pegarCidadeEndereco());
         $sql->bindValue(':estado', $endereco->pegarEstadoEndereco());
-        $sql->bindValue(':complemento', $endereco->pegarComplementoEndereco());
+        $sql->bindValue(':complemento', $endereco->pegarComplementoEndereco() ?? null);
         $sql->execute();
 
+        $endereco->setarIdEndereco($this->pdo->lastInsertId());
         return $endereco;
     }
 }
