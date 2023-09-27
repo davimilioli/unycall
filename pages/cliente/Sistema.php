@@ -2,52 +2,38 @@
 
 require_once(__DIR__ . '/../../config/config_db.php');
 require_once(__DIR__ . '/../../modelSql/UsuarioMySql.php');
+require_once(__DIR__ . '/../../modelSql/EnderecoMySql.php');
 require_once(__DIR__ . '/../../entidade/Usuario.php');
 require_once(__DIR__ . '/../../entidade/Endereco.php');
+
 
 class Sistema
 {
 
-    private $pdo;
+    /*  private $pdo; */
+    private $usuarioSql;
+    private $enderecoSql;
+
 
     // IMPLEMENTAÇÃO QUE USA O DRIVER DO PDO
-    public function __construct(PDO $driver)
+    /*     public function __construct(PDO $driver)
     {
         $this->pdo = $driver;
-    }
+    } */
 
-    public function consultarDados()
+    public function __construct($pdo)
     {
-        $array = [];
-
-        $sql = $this->pdo->query("SELECT * FROM usuarios");
-
-        if ($sql->rowCount() > 0) {
-            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
-            foreach ($data as $item) {
-                $usuario = new Usuario();
-                $usuario->setarId($item['id']);
-                $usuario->setarNome($item['nome']);
-                $usuario->setarNascimento($item['nascimento']);
-                $usuario->setarCpf($item['cpf']);
-                $usuario->setarNomeMaterno($item['nomematerno']);
-                $usuario->setarEmail($item['email']);
-                $usuario->setarSexo($item['sexo']);
-                $usuario->setarCelular($item['celular']);
-                $usuario->setarTelefone($item['telefone']);
-                $usuario->setarLogin($item['login']);
-
-                $array[] = [
-                    'usuario' => $usuario,
-                    'quantidade' => count($data)
-                ];
-            }
-        }
-
-        return $array;
+        $this->usuarioSql = new UsuarioMySql($pdo);
+        $this->enderecoSql = new EnderecoMySql($pdo);
     }
 
-    public function procurarId($id)
+    public function consultarDadosUsuario()
+    {
+        return $this->usuarioSql->consultarDados();
+    }
+
+    /* PAREI AQUI */
+    /*     public function procurarId($id)
     {
         $sql = $this->pdo->prepare("SELECT * FROM usuarios, endereco WHERE usuarios.id = :id AND endereco.id_usuario = :id_usuario");
         $sql->bindValue(':id', $id);
@@ -83,46 +69,41 @@ class Sistema
                 'endereco' => $endereco
             ];
         }
-    }
+    } */
 
-    public function atualizarUsuario(Usuario $usuario)
+    public function atualizarDadosUsuario($dadosUsuario)
     {
-        $sql = $this->pdo->prepare(
-            "UPDATE usuarios SET nome = :nome, nascimento = :nascimento, cpf = :cpf, email = :email, nomematerno = :nomematerno, celular = :celular, telefone = :telefone, login = :login WHERE id = :id"
-        );
-        $sql->bindValue(':nome', $usuario->pegarNome());
-        $sql->bindValue(':nascimento', $usuario->pegarNascimento());
-        $sql->bindValue(':cpf', $usuario->pegarCpf());
-        $sql->bindValue(':email', $usuario->pegarEmail());
-        $sql->bindValue(':nomematerno', $usuario->pegarNomeMaterno());
-        $sql->bindValue(':celular', $usuario->pegarCelular());
-        $sql->bindValue(':telefone', $usuario->pegarTelefone());
-        $sql->bindValue(':login', $usuario->pegarLogin());
-        $sql->bindValue(':id', $usuario->pegarId());
-        $sql->execute();
 
-        return true;
+        $usuario = new Usuario();
+        $usuario->setarId($dadosUsuario['id']);
+        $usuario->setarNome($dadosUsuario['nome']);
+        $usuario->setarNascimento($dadosUsuario['nascimento']);
+        $usuario->setarEmail($dadosUsuario['email']);
+        $usuario->setarCpf(formatarCpf($dadosUsuario['cpf']));
+        $usuario->setarNomeMaterno($dadosUsuario['nomematerno']);
+        $usuario->setarSexo($dadosUsuario['sexo']);
+        $usuario->setarCelular(formatarNumero($dadosUsuario['celular']));
+        $usuario->setarTelefone(formatarNumero($dadosUsuario['telefone']));
+        $usuario->setarLogin($dadosUsuario['login']);
+        $this->usuarioSql->atualizarUsuario($usuario);
     }
 
-    public function atualizarEndereco(Endereco $endereco)
+
+    public function atualizarDadosEndereco($dadosEndereco)
     {
-        $sql = $this->pdo->prepare(
-            "UPDATE endereco SET cep = :cep, logradouro = :logradouro, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, complemento = :complemento WHERE id_usuario = :id_usuario"
-        );
-        $sql->bindValue(':cep', $endereco->pegarCepEndereco());
-        $sql->bindValue(':logradouro', $endereco->pegarLogradouroEndereco());
-        $sql->bindValue(':numero', $endereco->pegarNumeroEndereco());
-        $sql->bindValue(':bairro', $endereco->pegarBairroEndereco());
-        $sql->bindValue(':cidade', $endereco->pegarCidadeEndereco());
-        $sql->bindValue(':estado', $endereco->pegarEstadoEndereco());
-        $sql->bindValue(':complemento', $endereco->pegarComplementoEndereco());
-        $sql->bindValue(':id_usuario', $endereco->pegarIdUsuarioEndereco());
-        $sql->execute();
-
-        return true;
+        $endereco = new Endereco();
+        $endereco->setarIdUsuarioEndereco($dadosEndereco['id_usuario']);
+        $endereco->setarCepEndereco($dadosEndereco['cep']);
+        $endereco->setarLogradouroEndereco($dadosEndereco['logradouro']);
+        $endereco->setarNumeroEndereco($dadosEndereco['numero']);
+        $endereco->setarBairroEndereco($dadosEndereco['bairro']);
+        $endereco->setarCidadeEndereco($dadosEndereco['cidade']);
+        $endereco->setarEstadoEndereco($dadosEndereco['estado']);
+        $endereco->setarComplementoEndereco($dadosEndereco['complemento']);
+        $this->enderecoSql->atualizarEndereco($endereco);
     }
 
-    public function deletarUsuario($id)
+    /*     public function deletarUsuario($id)
     {
         $this->pdo->beginTransaction();
 
@@ -136,5 +117,5 @@ class Sistema
 
         $this->pdo->commit();
         return true;
-    }
+    } */
 }

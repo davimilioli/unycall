@@ -110,35 +110,38 @@ function formatarCep($cep)
 
 
 if ($id && $nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $celular && $telefone && $login) {
-    $usuario = new Usuario();
-    $usuario->setarId($id);
-    $usuario->setarNome($nome);
-    $usuario->setarNascimento(formatarNascimento($nascimento));
-    $usuario->setarEmail($email);
-    $usuario->setarCpf(formatarCpf($cpf));
-    $usuario->setarNomeMaterno($nomeMaterno);
-    $usuario->setarSexo($sexo);
-    $usuario->setarCelular(formatarNumero($celular));
-    $usuario->setarTelefone(formatarNumero($celular));
-    $usuario->setarLogin($login);
-    $sistema->atualizarUsuario($usuario);
+    $dadosUsuario = array(
+        'id' => $id,
+        'nome' => $nome,
+        'nascimento' => $nascimento,
+        'cpf' => $cpf,
+        'nomematerno' => $nomeMaterno,
+        'email' => $email,
+        'sexo' => $sexo,
+        'celular' => $celular,
+        'telefone' => $telefone,
+        'login' => $login,
+    );
+
+    $sistema->atualizarDadosUsuario($dadosUsuario, $usuarioSql = null);
 
     if ($cep && $logradouro && $numero && $bairro && $cidade && $estado) {
-        $endereco = new Endereco();
-        $endereco->setarIdUsuarioEndereco($id);
-        $endereco->setarCepEndereco(formatarCep($cep));
-        $endereco->setarLogradouroEndereco($logradouro);
-        $endereco->setarNumeroEndereco($numero);
-        $endereco->setarBairroEndereco($bairro);
-        $endereco->setarCidadeEndereco($cidade);
-        $endereco->setarEstadoEndereco($estado);
-        $endereco->setarComplementoEndereco($complemento ?? null);
-        $sistema->atualizarEndereco($endereco);
+        $dadosEndereco = array(
+            'id_usuario' => $id,
+            'cep' => formatarCep($cep),
+            'logradouro' => $logradouro,
+            'numero' => $numero,
+            'bairro' => $bairro,
+            'cidade' => $cidade,
+            'estado' => $estado,
+            'complemento' => $complemento ?? null
+        );
+        $sistema->atualizarDadosEndereco($dadosEndereco, $usuarioSql);
     }
 
-    header('location: ../lista_usuarios.php');
-    exit;
-} else {
+    /*     header('location: ../lista_usuarios.php');
+    exit; */
+} /* else {
     header('location: ../editar_usuario.php?id=' . $id);
     exit;
-}
+} */

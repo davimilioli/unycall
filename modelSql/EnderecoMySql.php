@@ -28,4 +28,22 @@ class EnderecoMySql implements EnderedoSqlInterface
         $endereco->setarIdEndereco($this->pdo->lastInsertId());
         return $endereco;
     }
+
+    public function atualizarEndereco(Endereco $endereco)
+    {
+        $sql = $this->pdo->prepare(
+            "UPDATE endereco SET cep = :cep, logradouro = :logradouro, numero = :numero, bairro = :bairro, cidade = :cidade, estado = :estado, complemento = :complemento WHERE id_usuario = :id_usuario"
+        );
+        $sql->bindValue(':cep', $endereco->pegarCepEndereco());
+        $sql->bindValue(':logradouro', $endereco->pegarLogradouroEndereco());
+        $sql->bindValue(':numero', $endereco->pegarNumeroEndereco());
+        $sql->bindValue(':bairro', $endereco->pegarBairroEndereco());
+        $sql->bindValue(':cidade', $endereco->pegarCidadeEndereco());
+        $sql->bindValue(':estado', $endereco->pegarEstadoEndereco());
+        $sql->bindValue(':complemento', $endereco->pegarComplementoEndereco());
+        $sql->bindValue(':id_usuario', $endereco->pegarIdUsuarioEndereco());
+        $sql->execute();
+
+        return true;
+    }
 }

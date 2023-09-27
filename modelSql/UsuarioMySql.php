@@ -81,4 +81,54 @@ class UsuarioMySql implements UsuarioSqlInterface
 
         return false;
     }
+
+    public function atualizarUsuario(Usuario $usuario)
+    {
+        $sql = $this->pdo->prepare(
+            "UPDATE usuarios SET nome = :nome, nascimento = :nascimento, cpf = :cpf, email = :email, nomematerno = :nomematerno, celular = :celular, telefone = :telefone, login = :login WHERE id = :id"
+        );
+        $sql->bindValue(':nome', $usuario->pegarNome());
+        $sql->bindValue(':nascimento', $usuario->pegarNascimento());
+        $sql->bindValue(':cpf', $usuario->pegarCpf());
+        $sql->bindValue(':email', $usuario->pegarEmail());
+        $sql->bindValue(':nomematerno', $usuario->pegarNomeMaterno());
+        $sql->bindValue(':celular', $usuario->pegarCelular());
+        $sql->bindValue(':telefone', $usuario->pegarTelefone());
+        $sql->bindValue(':login', $usuario->pegarLogin());
+        $sql->bindValue(':id', $usuario->pegarId());
+        $sql->execute();
+
+        return true;
+    }
+
+    public function consultarDados()
+    {
+        $array = [];
+
+        $sql = $this->pdo->query("SELECT * FROM usuarios");
+
+        if ($sql->rowCount() > 0) {
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($data as $item) {
+                $usuario = new Usuario();
+                $usuario->setarId($item['id']);
+                $usuario->setarNome($item['nome']);
+                $usuario->setarNascimento($item['nascimento']);
+                $usuario->setarCpf($item['cpf']);
+                $usuario->setarNomeMaterno($item['nomematerno']);
+                $usuario->setarEmail($item['email']);
+                $usuario->setarSexo($item['sexo']);
+                $usuario->setarCelular($item['celular']);
+                $usuario->setarTelefone($item['telefone']);
+                $usuario->setarLogin($item['login']);
+
+                $array[] = [
+                    'usuario' => $usuario,
+                    'quantidade' => count($data)
+                ];
+            }
+        }
+
+        return $array;
+    }
 }

@@ -10,7 +10,7 @@ if (!isset($sessao)) {
 require_once(__DIR__ . '/Sistema.php');
 
 $sistema = new Sistema($pdo);
-$lista = $sistema->consultarDados();
+$lista = $sistema->consultarDadosUsuario();
 require_once(__DIR__ . '../modulos/modulos.php');
 ?>
 <!DOCTYPE html>
