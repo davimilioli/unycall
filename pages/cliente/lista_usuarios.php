@@ -32,40 +32,49 @@ require_once(__DIR__ . '../modulos/modulos.php');
             <div class="category-title">
                 <h4>Lista Usuarios</h4>
                 <div>
-                    <p>Usuarios encontrados: <?= count($lista) ?></p>
+                    <a href="#" class="btn">
+                        <img src="/assets/img/icons/plus.svg">Adicionar Usuario
+                    </a>
                 </div>
             </div>
             <section class="list-users">
-                <?php foreach ($lista as $item) : ?>
-                    <div class="card-user">
-                        <div class="card-header"></div>
-                        <div class="card-body">
-                            <div class="card-info">
-                                <h2>Nome</h2>
-                                <p><?= $item['usuario']->pegarNome() ?></p>
-                            </div>
-                            <div class="card-body-content">
-                                <div class="card-info">
-                                    <h3>ID</h3>
-                                    <p><?= $item['usuario']->pegarId() ?></p>
-                                </div>
-                                <div class="card-info">
-                                    <h3>CPF</h3>
-                                    <p><?= formatarCpf($item['usuario']->pegarCpf()) ?></p>
-                                </div>
-                                <div class="card-info">
-                                    <h3>Email</h3>
-                                    <p><?= strlen($item['usuario']->pegarEmail()) > 20 ? substr($item['usuario']->pegarEmail(), 1, 20) . '...' : $item['usuario']->pegarEmail(); ?></p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <a class="btn" href="editar_usuario.php?id=<?= $item['usuario']->pegarId() ?>">Editar</a>
-                            <a class="btn secondary" id="excluirUsuario" data-id="<?= $item['usuario']->pegarId() ?>">Excluir</a>
-                        </div>
-                        <div class="modal-exclude"></div>
-                    </div>
-                <?php endforeach ?>
+                <div class="list-users-content">
+                    <h2 class="list-users-count">Total de registros (<?= count($lista) ?>)</h2>
+                    <table class="list-users-table">
+                        <?php foreach ($lista as $item) : ?>
+                            <thead>
+                                <tr>
+                                    <th class="table-id">#</th>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>Email</th>
+                                    <th>Celular</th>
+                                    <th>Telefone</th>
+                                    <th>Ações</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="table-id"><?= $item['usuario']->pegarId() ?></td>
+                                    <td><?= $item['usuario']->pegarNome() ?></td>
+                                    <td><?= formatarCpf($item['usuario']->pegarCpf()) ?></td>
+                                    <td><?= $item['usuario']->pegarEmail() ?></td>
+                                    <td><?= formatarNumero($item['usuario']->pegarCelular()) ?></td>
+                                    <td><?= formatarNumero($item['usuario']->pegarTelefone()) ?></td>
+                                    <td class="table-buttons">
+                                        <a class="btn" href="editar_usuario.php?id=<?= $item['usuario']->pegarId() ?>">
+                                            <img src="/assets/img/icons/edit.svg">
+                                        </a>
+                                        <a class="btn secondary" id="excluirUsuario" data-id="<?= $item['usuario']->pegarId() ?>">
+                                            <img src="/assets/img/icons/trash.svg">
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        <?php endforeach ?>
+                    </table>
+                    <div class="modal-exclude"></div>
+                </div>
             </section>
         </main>
     </div>

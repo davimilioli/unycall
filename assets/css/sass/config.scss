@@ -28,6 +28,10 @@
     opacity: 1;
     transition: .3s;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: .9rem;
 
     &.secondary {
         background-color: transparent;
