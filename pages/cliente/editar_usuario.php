@@ -45,25 +45,31 @@ if ($id) {
                     </div>
                 </div>
                 <form method="POST" action="./actions/editar_action.php" class="form">
+
                     <input type="hidden" name="id" value="<?= $usuario['id'] ?>">
+                    <input type="hidden" name="nome" value="<?= $usuario['nome'] ?>">
+                    <input type="hidden" name="nascimento" value="<?= $usuario['nascimento'] ?>">
+                    <input type="hidden" name="cpf" value="<?= $usuario['cpf'] ?>">
+                    <input type="hidden" name="sexo" value="<?= $usuario['sexo'] ?>">
+
                     <div class="form-container">
                         <div class="form-category">
                             <h2>Dados pessoais</h2>
                             <div class="form-group">
                                 <label for="nome">Nome </label>
-                                <input type="text" name="nome" id="nome" value="<?= $usuario['nome'] ?>">
+                                <input type="text" id="nome" value="<?= $usuario['nome'] ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="data-nascimento">Data de Nascimento </label>
-                                <input type="text" name="nascimento" id="data-nascimento" value="<?= formatarNascimento($usuario['nascimento']) ?>">
+                                <input type="text" id="data-nascimento" value="<?= formatarNascimento($usuario['nascimento']) ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="cpf">CPF </label>
-                                <input type="text" name="cpf" id="cpf" value="<?= formatarCpf($usuario['cpf']) ?>">
+                                <input type="text" id="cpf" value="<?= formatarCpf($usuario['cpf']) ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="nomeMaterno">Nome Materno </label>
-                                <input type="text" name="nomeMaterno" id="nomeMaterno" value="<?= $usuario['nomematerno'] ?>">
+                                <input type="text" name="nomeMaterno" id="nomeMaterno" value="<?= $usuario['nomematerno'] ?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
@@ -71,7 +77,7 @@ if ($id) {
                             </div>
                             <div class="form-group">
                                 <label for="sexo">Sexo </label>
-                                <input type="text" name="sexo" id="sexo" value="<?= $usuario['sexo'] ?>">
+                                <input type="text" value="<?= $usuario['sexo'] ?>" readonly>
                             </div>
                             <div class="inputs-group">
                                 <div class="form-group">

@@ -140,7 +140,7 @@ if ($id && $nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $c
 
     header('location: ../lista_usuarios.php');
     exit;
-} else {
+} /* else {
     header('location: ../editar_usuario.php?id=' . $id);
     exit;
-}
+} */
