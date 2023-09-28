@@ -46,4 +46,50 @@ class EnderecoMySql implements EnderedoSqlInterface
 
         return true;
     }
+
+    public function consultarIdUsuarioEndereco($id)
+    {
+        $sql = $this->pdo->prepare("SELECT * FROM endereco WHERE id_usuario = :id_usuario");
+        $sql->bindValue(':id_usuario', $id);
+        $sql->execute();
+
+        return true;
+    }
+
+    public function consultaEndereco()
+    {
+        $array = [];
+
+        $sql = $this->pdo->query("SELECT * FROM endereco");
+
+        if ($sql->rowCount() > 0) {
+            $data = $sql->fetchAll(PDO::FETCH_ASSOC);
+            foreach ($data as $item) {
+
+                $endereco = new Endereco();
+                $endereco->setarIdUsuarioEndereco($item['id_usuario']);
+                $endereco->setarCepEndereco($item['cep']);
+                $endereco->setarLogradouroEndereco($item['logradouro']);
+                $endereco->setarNumeroEndereco($item['numero']);
+                $endereco->setarBairroEndereco($item['bairro']);
+                $endereco->setarCidadeEndereco($item['cidade']);
+                $endereco->setarEstadoEndereco($item['estado']);
+                $endereco->setarComplementoEndereco($item['complemento'] ?? null);
+
+
+                $array[] = $endereco;
+            }
+        }
+
+        return $array;
+    }
+
+    public function deletarEndereco($id)
+    {
+        echo $id;
+        $sql = $this->pdo->prepare("DELETE FROM endereco WHERE id_usuario = :id_usuario");
+        $sql->bindValue(':id_usuario', $id);
+        $sql->execute();
+        return true;
+    }
 }

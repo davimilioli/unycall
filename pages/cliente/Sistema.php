@@ -10,16 +10,8 @@ require_once(__DIR__ . '/../../entidade/Endereco.php');
 class Sistema
 {
 
-    /*  private $pdo; */
     private $usuarioSql;
     private $enderecoSql;
-
-
-    // IMPLEMENTAÇÃO QUE USA O DRIVER DO PDO
-    /*     public function __construct(PDO $driver)
-    {
-        $this->pdo = $driver;
-    } */
 
     public function __construct($pdo)
     {
@@ -29,51 +21,66 @@ class Sistema
 
     public function consultarDadosUsuario()
     {
-        return $this->usuarioSql->consultarDados();
+        return $this->usuarioSql->consultaUsuario();
     }
 
-    /* PAREI AQUI */
-    /*     public function procurarId($id)
+
+    public function procurarIdUsuario($id)
     {
-        $sql = $this->pdo->prepare("SELECT * FROM usuarios, endereco WHERE usuarios.id = :id AND endereco.id_usuario = :id_usuario");
-        $sql->bindValue(':id', $id);
-        $sql->bindValue(':id_usuario', $id);
-        $sql->execute();
+        $consultaId = $this->usuarioSql->consultarId($id);
+        $consultaIdUsuarioEndereco = $this->enderecoSql->consultarIdUsuarioEndereco($id);
 
-        if ($sql->rowCount() > 0) {
-            $data = $sql->fetch(PDO::FETCH_ASSOC);
-            $usuario = new Usuario();
-            $usuario->setarId($data['id']);
-            $usuario->setarNome($data['nome']);
-            $usuario->setarNascimento($data['nascimento']);
-            $usuario->setarCpf($data['cpf']);
-            $usuario->setarNomeMaterno($data['nomematerno']);
-            $usuario->setarEmail($data['email']);
-            $usuario->setarSexo($data['sexo']);
-            $usuario->setarCelular($data['celular']);
-            $usuario->setarTelefone($data['telefone']);
-            $usuario->setarLogin($data['login']);
+        $usuarioDados = $this->usuarioSql->consultaUsuario();
+        $enderecoDados = $this->enderecoSql->consultaEndereco();
 
-            $endereco = new Endereco();
-            $endereco->setarIdUsuarioEndereco($data['id_usuario']);
-            $endereco->setarCepEndereco($data['cep']);
-            $endereco->setarLogradouroEndereco($data['logradouro']);
-            $endereco->setarNumeroEndereco($data['numero']);
-            $endereco->setarBairroEndereco($data['bairro']);
-            $endereco->setarCidadeEndereco($data['cidade']);
-            $endereco->setarEstadoEndereco($data['estado']);
-            $endereco->setarComplementoEndereco($data['complemento'] ?? null);
+        if ($consultaId && $consultaIdUsuarioEndereco) {
 
-            return [
-                'usuario' => $usuario,
-                'endereco' => $endereco
-            ];
+            $dadosUsuario = [];
+            foreach ($usuarioDados as $item) {
+
+                if ($id == $item->pegarId()) {
+                    $dadosUsuario = array(
+                        'id' => $item->pegarId(),
+                        'nome' => $item->pegarNome(),
+                        'nascimento' => $item->pegarNascimento(),
+                        'cpf' => $item->pegarCpf(),
+                        'email' => $item->pegarEmail(),
+                        'sexo' => $item->pegarSexo(),
+                        'nomematerno' => $item->pegarNomeMaterno(),
+                        'celular' => $item->pegarCelular(),
+                        'telefone' => $item->pegarTelefone(),
+                        'login' => $item->pegarLogin()
+                    );
+                }
+            }
+
+            $dadosEndereco = [];
+            foreach ($enderecoDados as $item) {
+
+                if ($id == $item->pegarIdUsuarioEndereco()) {
+                    $dadosEndereco  = array(
+                        'id_usuario' => $item->pegarIdUsuarioEndereco(),
+                        'cep' => $item->pegarCepEndereco(),
+                        'logradouro' => $item->pegarLogradouroEndereco(),
+                        'numero' => $item->pegarNumeroEndereco(),
+                        'bairro' => $item->pegarBairroEndereco(),
+                        'cidade' => $item->pegarCidadeEndereco(),
+                        'estado' => $item->pegarEstadoEndereco(),
+                        'complemento' => $item->pegarComplementoEndereco() ?? null
+                    );
+                }
+            }
+
+            return array(
+                'usuario' => $dadosUsuario,
+                'endereco' => $dadosEndereco
+            );
         }
-    } */
+    }
+
 
     public function atualizarDadosUsuario($dadosUsuario)
     {
-
         $usuario = new Usuario();
         $usuario->setarId($dadosUsuario['id']);
         $usuario->setarNome($dadosUsuario['nome']);
@@ -103,19 +110,11 @@ class Sistema
         $this->enderecoSql->atualizarEndereco($endereco);
     }
 
-    /*     public function deletarUsuario($id)
+    public function deletarDados($id)
     {
-        $this->pdo->beginTransaction();
-
-        $sql1 = $this->pdo->prepare("DELETE FROM endereco WHERE id_usuario = :id");
-        $sql1->bindValue(':id', $id);
-        $sql1->execute();
-
-        $sql2 = $this->pdo->prepare("DELETE FROM usuarios WHERE id = :id");
-        $sql2->bindValue(':id', $id);
-        $sql2->execute();
-
-        $this->pdo->commit();
-        return true;
-    } */
+        $this->enderecoSql->deletarEndereco($id);
+        if ($this->enderecoSql->deletarEndereco($id)) {
+            $this->usuarioSql->deletarUsuario($id);
+        }
+    }
 }

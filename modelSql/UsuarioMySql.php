@@ -101,13 +101,23 @@ class UsuarioMySql implements UsuarioSqlInterface
         return true;
     }
 
-    public function consultarDados()
+    public function consultarId($id)
+    {
+        $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE id = :id");
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+
+        return true;
+    }
+
+    public function consultaUsuario()
     {
         $array = [];
 
         $sql = $this->pdo->query("SELECT * FROM usuarios");
 
         if ($sql->rowCount() > 0) {
+
             $data = $sql->fetchAll(PDO::FETCH_ASSOC);
             foreach ($data as $item) {
                 $usuario = new Usuario();
@@ -122,13 +132,19 @@ class UsuarioMySql implements UsuarioSqlInterface
                 $usuario->setarTelefone($item['telefone']);
                 $usuario->setarLogin($item['login']);
 
-                $array[] = [
-                    'usuario' => $usuario,
-                    'quantidade' => count($data)
-                ];
+                $array[] = $usuario;
             }
         }
 
         return $array;
+    }
+
+    public function deletarUsuario($id)
+    {
+        echo $id;
+        $sql = $this->pdo->prepare("DELETE FROM usuarios WHERE id = :id");
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+        return true;
     }
 }

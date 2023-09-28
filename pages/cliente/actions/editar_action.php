@@ -108,7 +108,6 @@ function formatarCep($cep)
     return $cepFormatado;
 }
 
-
 if ($id && $nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $celular && $telefone && $login) {
     $dadosUsuario = array(
         'id' => $id,
@@ -139,9 +138,9 @@ if ($id && $nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $c
         $sistema->atualizarDadosEndereco($dadosEndereco, $usuarioSql);
     }
 
-    /*     header('location: ../lista_usuarios.php');
-    exit; */
-} /* else {
+    header('location: ../lista_usuarios.php');
+    exit;
+} else {
     header('location: ../editar_usuario.php?id=' . $id);
     exit;
-} */
+}

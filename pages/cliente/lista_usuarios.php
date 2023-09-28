@@ -41,31 +41,31 @@ require_once(__DIR__ . '../modulos/modulos.php');
                 <div class="list-users-content">
                     <h2 class="list-users-count">Total de registros (<?= count($lista) ?>)</h2>
                     <table class="list-users-table">
+                        <thead>
+                            <tr>
+                                <th class="table-id">#</th>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Email</th>
+                                <th>Celular</th>
+                                <th>Telefone</th>
+                                <th>Ações</th>
+                            </tr>
+                        </thead>
                         <?php foreach ($lista as $item) : ?>
-                            <thead>
-                                <tr>
-                                    <th class="table-id">#</th>
-                                    <th>Nome</th>
-                                    <th>CPF</th>
-                                    <th>Email</th>
-                                    <th>Celular</th>
-                                    <th>Telefone</th>
-                                    <th>Ações</th>
-                                </tr>
-                            </thead>
                             <tbody>
                                 <tr>
-                                    <td class="table-id"><?= $item['usuario']->pegarId() ?></td>
-                                    <td><?= $item['usuario']->pegarNome() ?></td>
-                                    <td><?= formatarCpf($item['usuario']->pegarCpf()) ?></td>
-                                    <td><?= $item['usuario']->pegarEmail() ?></td>
-                                    <td><?= formatarNumero($item['usuario']->pegarCelular()) ?></td>
-                                    <td><?= formatarNumero($item['usuario']->pegarTelefone()) ?></td>
+                                    <td class="table-id"><?= $item->pegarId() ?></td>
+                                    <td><?= $item->pegarNome() ?></td>
+                                    <td><?= formatarCpf($item->pegarCpf()) ?></td>
+                                    <td><?= $item->pegarEmail() ?></td>
+                                    <td><?= formatarNumero($item->pegarCelular()) ?></td>
+                                    <td><?= formatarNumero($item->pegarTelefone()) ?></td>
                                     <td class="table-buttons">
-                                        <a class="btn" href="editar_usuario.php?id=<?= $item['usuario']->pegarId() ?>">
+                                        <a class="btn" href="editar_usuario.php?id=<?= $item->pegarId() ?>">
                                             <img src="/assets/img/icons/edit.svg">
                                         </a>
-                                        <a class="btn secondary" id="excluirUsuario" data-id="<?= $item['usuario']->pegarId() ?>">
+                                        <a class="btn secondary" id="excluirUsuario" data-id="<?= $item->pegarId() ?>">
                                             <img src="/assets/img/icons/trash.svg">
                                         </a>
                                     </td>

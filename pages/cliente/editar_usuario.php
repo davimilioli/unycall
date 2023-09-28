@@ -8,16 +8,12 @@ $sistema = new Sistema($pdo);
 $id = filter_input(INPUT_GET, 'id');
 
 if ($id) {
-    $dados = $sistema->procurarId($id);
+    $dados = $sistema->procurarIdUsuario($id);
     $usuario = $dados['usuario'];
     $endereco = $dados['endereco'];
-
     require_once(__DIR__ . '../modulos/modulos.php');
 }
-
-
 ?>
-
 
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -37,7 +33,7 @@ if ($id) {
         <main class="page-cliente-editar">
             <div class="category-title">
                 <h4>Editar Usuario</h4>
-                <p>ID: <?= $endereco->pegarIdUsuarioEndereco() ?></p>
+                <p>ID: <?= $usuario['id'] ?></p>
             </div>
             <div class="form-content">
                 <div class="loading hide">
@@ -49,42 +45,42 @@ if ($id) {
                     </div>
                 </div>
                 <form method="POST" action="./actions/editar_action.php" class="form">
-                    <input type="hidden" name="id" value="<?= $endereco->pegarIdUsuarioEndereco() ?>">
+                    <input type="hidden" name="id" value="<?= $usuario['id'] ?>">
                     <div class="form-container">
                         <div class="form-category">
                             <h2>Dados pessoais</h2>
                             <div class="form-group">
                                 <label for="nome">Nome </label>
-                                <input type="text" name="nome" id="nome" value="<?= $usuario->pegarNome() ?>">
+                                <input type="text" name="nome" id="nome" value="<?= $usuario['nome'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="data-nascimento">Data de Nascimento </label>
-                                <input type="text" name="nascimento" id="data-nascimento" value="<?= formatarNascimento($usuario->pegarNascimento()) ?>">
+                                <input type="text" name="nascimento" id="data-nascimento" value="<?= formatarNascimento($usuario['nascimento']) ?>">
                             </div>
                             <div class="form-group">
                                 <label for="cpf">CPF </label>
-                                <input type="text" name="cpf" id="cpf" value="<?= formatarCpf($usuario->pegarCpf()) ?>">
+                                <input type="text" name="cpf" id="cpf" value="<?= formatarCpf($usuario['cpf']) ?>">
                             </div>
                             <div class="form-group">
                                 <label for="nomeMaterno">Nome Materno </label>
-                                <input type="text" name="nomeMaterno" id="nomeMaterno" value="<?= $usuario->pegarNomeMaterno() ?>">
+                                <input type="text" name="nomeMaterno" id="nomeMaterno" value="<?= $usuario['nomematerno'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="text" name="email" id="email" value="<?= $usuario->pegarEmail() ?>">
+                                <input type="text" name="email" id="email" value="<?= $usuario['email'] ?>">
                             </div>
                             <div class="form-group">
                                 <label for="sexo">Sexo </label>
-                                <input type="text" name="sexo" id="sexo" value="<?= $usuario->pegarSexo() ?>">
+                                <input type="text" name="sexo" id="sexo" value="<?= $usuario['sexo'] ?>">
                             </div>
                             <div class="inputs-group">
                                 <div class="form-group">
                                     <label for="celular">Celular </label>
-                                    <input type="text" name="celular" id="celular" value="<?= formatarNumero($usuario->pegarCelular()) ?>">
+                                    <input type="text" name="celular" id="celular" value="<?= formatarNumero($usuario['celular']) ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="telefone">Telefone </label>
-                                    <input type="text" name="telefone" id="telefone" value="<?= formatarNumero($usuario->pegarTelefone()) ?>">
+                                    <input type="text" name="telefone" id="telefone" value="<?= formatarNumero($usuario['telefone']) ?>">
                                 </div>
                             </div>
                         </div>
@@ -92,53 +88,55 @@ if ($id) {
                             <h2>Endereço</h2>
                             <div class="form-group">
                                 <label for="cep">Cep </label>
-                                <input type="text" name="cep" id="cep" value="<?= formatarCep($endereco->pegarCepEndereco()) ?>">
+                                <input type="text" name="cep" id="cep" value="<?= formatarCep($endereco['cep']) ?>">
                             </div>
                             <div class="inputs-group endereco">
                                 <div class="form-group">
                                     <label for="endereco">Endereço </label>
-                                    <input type="text" name="endereco" id="endereco" value="<?= $endereco->pegarLogradouroEndereco() ?>">
+                                    <input type="text" name="endereco" id="endereco" value="<?= $endereco['logradouro'] ?>">
                                 </div>
                                 <div class="form-group numero">
                                     <label for="numend">N° </label>
-                                    <input type="text" name="numend" id="numend" value="<?= $endereco->pegarNumeroEndereco() ?>">
+                                    <input type="text" name="numend" id="numend" value="<?= $endereco['numero'] ?>">
                                 </div>
                             </div>
                             <div class="inputs-group">
                                 <div class="form-group">
                                     <label for="bairro">Bairro </label>
-                                    <input type="text" name="bairro" id="bairro" value="<?= $endereco->pegarBairroEndereco() ?>">
+                                    <input type="text" name="bairro" id="bairro" value="<?= $endereco['bairro'] ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="cidade">Cidade </label>
-                                    <input type="text" name="cidade" id="cidade" value="<?= $endereco->pegarCidadeEndereco() ?>">
+                                    <input type="text" name="cidade" id="cidade" value="<?= $endereco['cidade'] ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="estado">Estado </label>
-                                    <input type="text" id="estado" name="estado" value="<?= $endereco->pegarEstadoEndereco() ?>">
+                                    <input type="text" id="estado" name="estado" value="<?= $endereco['estado'] ?>">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="complemento">Complemento</label>
-                                <input type="text" name="complemento" id="complemento" value="<?= $endereco->pegarComplementoEndereco() ?>">
+                                <input type="text" name="complemento" id="complemento" value="<?= $endereco['complemento'] ?>">
                             </div>
                         </div>
                         <div class="form-category">
                             <h2>Login</h2>
                             <div class="form-group">
                                 <label for="login">Usuario </label>
-                                <input type="text" name="login" id="login" value="<?= $usuario->pegarLogin() ?>">
+                                <input type="text" name="login" id="login" value="<?= $usuario['login'] ?>">
                             </div>
                         </div>
                     </div>
                     <div class="form-buttons">
                         <input type="submit" value="Atualizar" class="btn" class="atualizarDados">
-                        <a class="btn secondary" id="excluirUsuario" data-id="<?= $usuario->pegarId() ?>">Excluir</a>
+                        <a class="btn secondary" id="excluirUsuario" data-id="<?= $usuario['id'] ?>">Excluir</a>
                     </div>
                 </form>
+                <div class="modal-exclude"></div>
             </div>
         </main>
     </div>
+    <script src="../../assets/js/lista-usuarios.js"></script>
 </body>
 
 </html>
