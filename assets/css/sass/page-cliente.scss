@@ -318,6 +318,8 @@
                             margin-bottom: 1rem;
                         }
                     }
+
+
                 }
 
                 .form-buttons {
@@ -325,6 +327,12 @@
                     display: flex;
                     gap: 10px;
                     justify-content: end;
+                    
+                    .form-actions{
+                        width: 100%;
+                        gap: 10px;
+                        align-items: center;
+                    }
 
                     @media(max-width: 629px) {
                         margin-top: 1rem;

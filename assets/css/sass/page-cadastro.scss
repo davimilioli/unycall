@@ -36,22 +36,6 @@
             }
         }
 
-        .message_error {
-            width: 100%;
-
-            p {
-                color: #f43f5e;
-                width: 100%;
-                font-size: 13px;
-                text-align: end;
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                justify-content: end;
-            }
-
-        }
-
         @media (max-width: 1020px) {
             grid-template-columns: 1fr 1fr;
         }
@@ -92,4 +76,20 @@
             }
         }
     }
+}
+
+.message_error {
+    width: 100%;
+
+    p {
+        color: #f43f5e;
+        width: 100%;
+        font-size: 13px;
+        text-align: end;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        justify-content: end;
+    }
+
 }
