@@ -175,9 +175,8 @@
 
             </div>
         </div>
-        </div>
     </section>
-    <script src="../../assets/js/cadastro-form.js"></script>
+<!--     <script src="../../assets/js/cadastro-form.js"></script> -->
 </body>
 
 </html>

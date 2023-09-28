@@ -13,6 +13,9 @@
                     <li class="aside-list-item">
                         <a href="./lista_usuarios.php">Lista de Usuarios</a>
                     </li>
+                    <li class="aside-list-item">
+                        <a href="./adicionar_usuario.php">Adicionar Usuario</a>
+                    </li>
                 </ul>
             </nav>
         </div>

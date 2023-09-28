@@ -32,7 +32,7 @@ require_once(__DIR__ . '../modulos/modulos.php');
             <div class="category-title">
                 <h4>Lista Usuarios</h4>
                 <div>
-                    <a href="#" class="btn">
+                    <a href="adicionar_usuario.php" class="btn">
                         <img src="/assets/img/icons/plus.svg">Adicionar Usuario
                     </a>
                 </div>
