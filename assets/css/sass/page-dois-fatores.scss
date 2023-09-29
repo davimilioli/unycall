@@ -1,0 +1,30 @@
+.page-dois-fatores {
+    background-color: #FFF;
+    display: flex;
+    align-items: center;
+    margin: auto;
+    justify-content: center;
+
+    height: 100vh;
+
+    .cadastro-content {
+        width: 36rem;
+
+        .form {
+            text-align: center;
+
+            .form-actions,
+            .btn {
+                width: 100%;
+            }
+
+            .message_error {
+                margin-top: 1rem;
+
+                p {
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}

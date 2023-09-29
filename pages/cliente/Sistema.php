@@ -9,7 +9,6 @@ require_once(__DIR__ . '/../../entidade/Endereco.php');
 
 class Sistema
 {
-
     private $usuarioSql;
     private $enderecoSql;
 
@@ -23,7 +22,6 @@ class Sistema
     {
         return $this->usuarioSql->consultaUsuario();
     }
-
 
     public function procurarIdUsuario($id)
     {
@@ -78,7 +76,6 @@ class Sistema
         }
     }
 
-
     public function atualizarDadosUsuario($dadosUsuario)
     {
         $usuario = new Usuario();
@@ -94,7 +91,6 @@ class Sistema
         $usuario->setarLogin($dadosUsuario['login']);
         $this->usuarioSql->atualizarUsuario($usuario);
     }
-
 
     public function atualizarDadosEndereco($dadosEndereco)
     {
@@ -116,5 +112,59 @@ class Sistema
         if ($this->enderecoSql->deletarEndereco($id)) {
             $this->usuarioSql->deletarUsuario($id);
         }
+    }
+
+    public function pegarPergunta()
+    {
+        $perguntas = array(
+            'qual-o-nome-da-sua-mae' => 'Qual o nome da sua mae?',
+            'qual-a-data-do-seu-nascimento' => 'Qual a data do seu nascimento?',
+            'qual-o-cep-do-seu-endereco' => 'Qual o CEP do seu endereço'
+        );
+
+        $slugAleatoria = array_rand($perguntas);
+        $perguntaAleatoria = $perguntas[$slugAleatoria];
+        return array(
+            'pergunta' => $perguntaAleatoria,
+            'slug' => $slugAleatoria
+        );
+    }
+
+    public function consultarResposta($id, $slug, $resposta)
+    {
+        $procurarDados = $this->procurarIdUsuario($id);
+        $consultaId = $procurarDados['usuario']['id'];
+        if ($consultaId) {
+
+            if ($slug == 'qual-o-nome-da-sua-mae') {
+                $nomeMaterno = $procurarDados['usuario']['nomematerno'];
+                echo $nomeMaterno;
+                if ($nomeMaterno == $resposta) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } elseif ($slug == 'qual-a-data-do-seu-nascimento') {
+                $nascimento = $procurarDados['usuario']['nascimento'];
+                $respostaFormatada = date("Y-m-d", strtotime(str_replace("/", "-", $resposta)));
+                if ($nascimento == $respostaFormatada) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } elseif ($slug == 'qual-o-cep-do-seu-endereco') {
+                $cep = $procurarDados['endereco']['cep'];
+                $cepFormatado = str_replace("-", "", $resposta);
+                if ($cep == $cepFormatado) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                echo 'Consulta indisponivel';
+            }
+        }
+
+        return false;
     }
 }

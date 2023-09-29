@@ -1,6 +1,7 @@
 .page-cliente {
     display: flex;
     background-color: #f0eded;
+    height: 100vh;
 
     @media(max-width: 629px) {
         display: block;
@@ -327,8 +328,8 @@
                     display: flex;
                     gap: 10px;
                     justify-content: end;
-                    
-                    .form-actions{
+
+                    .form-actions {
                         width: 100%;
                         gap: 10px;
                         align-items: center;
@@ -344,7 +345,6 @@
                         }
                     }
                 }
-
             }
         }
     }
