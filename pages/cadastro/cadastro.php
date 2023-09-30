@@ -39,6 +39,15 @@
                             <input type="text" name="nascimento" id="data-nascimento" required>
                         </div>
                         <div class="form-group">
+                            <label for="">Sexo <span>*</span></label>
+                            <select name="sexo" required>
+                                <option value="" selected>Sexo</option>
+                                <option value="masculino">Masculino</option>
+                                <option value="feminino">Feminino</option>
+                                <option value="outros">Outros</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
                             <label for="cpf">CPF <span>*</span></label>
                             <input type="text" name="cpf" id="cpf" required>
                         </div>
@@ -49,15 +58,6 @@
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="text" name="email" id="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="">Sexo <span>*</span></label>
-                            <select name="sexo" required>
-                                <option value="" selected>Sexo</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="feminino">Feminino</option>
-                                <option value="outros">Outros</option>
-                            </select>
                         </div>
                         <div class="inputs-group">
                             <div class="form-group">
@@ -137,17 +137,17 @@
                     <div class="form-category">
                         <h2>Login</h2>
                         <div class="form-group">
-                            <label for="login">Usuario <span>*</span></label>
+                            <label for="login">Login <span>*</span></label>
                             <input type="text" name="loginCadastro" id="login" minlength="6" maxlength="6" 1 required>
                         </div>
                         <div class="inputs-group">
                             <div class="form-group">
                                 <label for="senha">Senha <span>*</span></label>
-                                <input type="text" name="senhaCadastro" id="senha" required>
+                                <input type="text" name="senhaCadastro" id="senha" minlength="8" required>
                             </div>
                             <div class="form-group">
                                 <label for="confirmar-senha">Confirmar senha <span>*</span></label>
-                                <input type="text" name="confirmar-senha" id="confirmar-senha" required>
+                                <input type="text" name="confirmar-senha" id="confirmar-senha" minlength="8" required>
                             </div>
                         </div>
                     </div>
