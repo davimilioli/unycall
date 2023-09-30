@@ -10,7 +10,7 @@
 </head>
 
 <body style="overflow: hidden;">
-    <?php require_once(__DIR__ . '../../../includes/header.php'); ?>
+    <?php require_once(__DIR__ . '../../includes/header.php'); ?>
     <section class="page-form">
         <div class="cadastro-content">
             <div class="form-content">

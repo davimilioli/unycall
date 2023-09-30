@@ -7,7 +7,7 @@ console.log(form);
 bntEntrar.addEventListener('click', (e) => {
     e.preventDefault()
 
-    form.setAttribute('action', '/pages/login/login_action.php');
+    form.setAttribute('action', '/login/login_action.php');
     loading('validando usuario')
 
     setTimeout(() => {

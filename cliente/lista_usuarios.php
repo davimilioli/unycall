@@ -55,17 +55,17 @@ require_once(__DIR__ . '../modulos/modulos.php');
                         <?php foreach ($lista as $item) : ?>
                             <tbody>
                                 <tr>
-                                    <td class="table-id"><?= $item->pegarId() ?></td>
-                                    <td><?= $item->pegarNome() ?></td>
-                                    <td><?= formatarCpf($item->pegarCpf()) ?></td>
-                                    <td><?= $item->pegarEmail() ?></td>
-                                    <td><?= formatarNumero($item->pegarCelular()) ?></td>
-                                    <td><?= formatarNumero($item->pegarTelefone()) ?></td>
+                                    <td class="table-id" title="<?= $item->pegarId() ?>"><?= $item->pegarId() ?></td>
+                                    <td title="<?= $item->pegarNome() ?>"><?= $item->pegarNome() ?></td>
+                                    <td title="<?= formatarCpf($item->pegarCpf()) ?>"><?= formatarCpf($item->pegarCpf()) ?></td>
+                                    <td title="<?= $item->pegarEmail() ?>"><?= $item->pegarEmail() ?></td>
+                                    <td title="<?= formatarNumero($item->pegarCelular()) ?>"><?= formatarNumero($item->pegarCelular()) ?></td>
+                                    <td title="<?= formatarNumero($item->pegarTelefone()) ?>"><?= formatarNumero($item->pegarTelefone()) ?></td>
                                     <td class="table-buttons">
-                                        <a class="btn" href="editar_usuario.php?id=<?= $item->pegarId() ?>">
+                                        <a class="btn" title="editar <?= $item->pegarNome() ?>" href="editar_usuario.php?id=<?= $item->pegarId() ?>">
                                             <img src="/assets/img/icons/edit.svg">
                                         </a>
-                                        <a class="btn secondary" id="excluirUsuario" data-id="<?= $item->pegarId() ?>">
+                                        <a class="btn secondary" title="excluir <?= $item->pegarNome() ?>" id="excluirUsuario" data-id="<?= $item->pegarId() ?>">
                                             <img src="/assets/img/icons/trash.svg">
                                         </a>
                                     </td>

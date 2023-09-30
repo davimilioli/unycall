@@ -40,29 +40,29 @@ $sistema = new Sistema($pdo);
                             <h2>Dados pessoais</h2>
                             <div class="form-group">
                                 <label for="nome">Nome <span>*</span></label>
-                                <input type="text" name="nome" id="nome" value="Davi Jacuru Milioli">
+                                <input type="text" name="nome" id="nome">
                             </div>
                             <div class="form-group">
                                 <label for="data-nascimento">Data de Nascimento <span>*</span></label>
-                                <input type="text" name="nascimento" id="data-nascimento" value="21/08/2002">
+                                <input type="text" name="nascimento" id="data-nascimento">
                             </div>
                             <div class="form-group">
                                 <label for="cpf">CPF <span>*</span></label>
-                                <input type="text" name="cpf" id="cpf" value="111.111.111-11">
+                                <input type="text" name="cpf" id="cpf">
                             </div>
                             <div class="form-group">
                                 <label for="nomeMaterno">Nome Materno <span>*</span></label>
-                                <input type="text" name="nomeMaterno" id="nomeMaterno" value="Deivi Malahu Milao">
+                                <input type="text" name="nomeMaterno" id="nomeMaterno">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email <span>*</span></label>
-                                <input type="text" name="email" id="email" value="davi@gmail.com">
+                                <input type="text" name="email" id="email">
                             </div>
                             <div class="form-group">
                                 <label for="">Sexo <span>*</span></label>
                                 <select name="sexo" required>
-                                    <option value="">Sexo</option>
-                                    <option value="masculino"selected > Masculino</option>
+                                    <option value="" selected>Sexo</option>
+                                    <option value="masculino">Masculino</option>
                                     <option value="feminino">Feminino</option>
                                     <option value="outros">Outros</option>
                                 </select>
@@ -70,11 +70,11 @@ $sistema = new Sistema($pdo);
                             <div class="inputs-group">
                                 <div class="form-group">
                                     <label for="celular">Celular <span>*</span></label>
-                                    <input type="text" name="celular" id="celular" value="(555) 21-5555555555">
+                                    <input type="text" name="celular" id="celular">
                                 </div>
                                 <div class="form-group">
                                     <label for="telefone">Telefone <span>*</span></label>
-                                    <input type="text" name="telefone" id="telefone" value="(555) 21-5555555555">
+                                    <input type="text" name="telefone" id="telefone">
                                 </div>
                             </div>
                         </div>
@@ -82,32 +82,32 @@ $sistema = new Sistema($pdo);
                             <h2>Endereço</h2>
                             <div class="form-group">
                                 <label for="cep">Cep <span>*</span></label>
-                                <input type="text" name="cep" id="cep" value="21765-370">
+                                <input type="text" name="cep" id="cep">
                             </div>
                             <div class="inputs-group endereco">
                                 <div class="form-group">
                                     <label for="endereco">Endereço <span>*</span></label>
-                                    <input type="text" name="endereco" id="endereco" value="Rua Tninho galvao">
+                                    <input type="text" name="endereco" id="endereco">
                                 </div>
                                 <div class="form-group numero">
                                     <label for="numend">N° <span>*</span></label>
-                                    <input type="text" name="numend" id="numend" value="44">
+                                    <input type="text" name="numend" id="numend">
                                 </div>
                             </div>
                             <div class="inputs-group">
                                 <div class="form-group">
                                     <label for="bairro">Bairro <span>*</span></label>
-                                    <input type="text" name="bairro" id="bairro" value="Realengo">
+                                    <input type="text" name="bairro" id="bairro">
                                 </div>
                                 <div class="form-group">
                                     <label for="cidade">Cidade <span>*</span></label>
-                                    <input type="text" name="cidade" id="cidade" value="Rio de Janeiro">
+                                    <input type="text" name="cidade" id="cidade">
                                 </div>
                                 <div class="form-group">
                                     <label for="estado">Estado <span>*</span></label>
-                                        <select id="estado" name="estado" data-input-address required>
-                                        <option>Estado</option>
-                                        <option value="AC" selected>Acre</option>
+                                    <select id="estado" name="estado" data-input-address required>
+                                        <option selected value="">Estado</option>
+                                        <option value="AC">Acre</option>
                                         <option value="AL">Alagoas</option>
                                         <option value="AP">Amapá</option>
                                         <option value="AM">Amazonas</option>
@@ -139,25 +139,25 @@ $sistema = new Sistema($pdo);
                             </div>
                             <div class="form-group">
                                 <label for="complemento">Complemento</label>
-                                <input type="text" name="complemento" id="complemento" value="casa">
+                                <input type="text" name="complemento" id="complemento">
                             </div>
                         </div>
                         <div class="form-category">
-                        <h2>Login</h2>
-                        <div class="form-group">
-                            <label for="login">Usuario <span>*</span></label>
-                            <input type="text" name="loginCadastro" id="login" minlength="6" maxlength="6" 1 required value="saloma">
-                        </div>
-                        <div class="inputs-group">
+                            <h2>Login</h2>
                             <div class="form-group">
-                                <label for="senha">Senha <span>*</span></label>
-                                <input type="text" name="senhaCadastro" id="senha" required value="testando">
+                                <label for="login">Usuario <span>*</span></label>
+                                <input type="text" name="loginCadastro" id="login" minlength="6" maxlength="6" 1 required>
                             </div>
-                            <div class="form-group">
-                                <label for="confirmar-senha">Confirmar senha <span>*</span></label>
-                                <input type="text" name="confirmar-senha" id="confirmar-senha" required value="testando">
+                            <div class="inputs-group">
+                                <div class="form-group">
+                                    <label for="senha">Senha <span>*</span></label>
+                                    <input type="text" name="senhaCadastro" id="senha" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmar-senha">Confirmar senha <span>*</span></label>
+                                    <input type="text" name="confirmar-senha" id="confirmar-senha" required>
+                                </div>
                             </div>
-                        </div>
                         </div>
                     </div>
                     <div class="form-buttons">
@@ -178,7 +178,7 @@ $sistema = new Sistema($pdo);
             </div>
         </main>
     </div>
-<!--    <script src="../../assets/js/cadastro-form.js"></script> -->
+    <!--    <script src="../../assets/js/cadastro-form.js"></script> -->
 </body>
 
 </html>

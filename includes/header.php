@@ -1,6 +1,6 @@
 <header class="header">
     <div class="logo">
-        <a href="/index.php"><img src="/assets/img/logo.png" alt="Logo UnyCall"></a>
+        <a href="/index.html"><img src="/assets/img/logo.png" alt="Logo UnyCall"></a>
     </div>
     <nav class="menu">
         <ul class="menu-list">
@@ -11,8 +11,8 @@
         </ul>
     </nav>
     <div class="header-actions">
-        <a class="btn" href="/pages/cadastro/cadastro.php">Cadastrar-se</a>
-        <a class="btn secondary" href="/pages/login/login.php">Login</a>
+        <a class="btn" href="/cadastro/cadastro.php">Cadastrar-se</a>
+        <a class="btn secondary" href="/login/login.php">Login</a>
     </div>
     <button type="button" class="menu-mobile">
         <span></span>
