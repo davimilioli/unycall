@@ -47,7 +47,8 @@ class Sistema
                         'nomematerno' => $item->pegarNomeMaterno(),
                         'celular' => $item->pegarCelular(),
                         'telefone' => $item->pegarTelefone(),
-                        'login' => $item->pegarLogin()
+                        'login' => $item->pegarLogin(),
+                        'permissao' => $item->pegarPermissao()
                     );
                 }
             }
@@ -89,6 +90,7 @@ class Sistema
         $usuario->setarCelular(formatarNumero($dadosUsuario['celular']));
         $usuario->setarTelefone(formatarNumero($dadosUsuario['telefone']));
         $usuario->setarLogin($dadosUsuario['login']);
+        $usuario->setarPermissao($dadosUsuario['permissao']);
         $this->usuarioSql->atualizarUsuario($usuario);
     }
 

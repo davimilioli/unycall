@@ -49,6 +49,7 @@ require_once(__DIR__ . '../modulos/modulos.php');
                                 <th>Email</th>
                                 <th>Celular</th>
                                 <th>Telefone</th>
+                                <th>Permissão</th>
                                 <th>Ações</th>
                             </tr>
                         </thead>
@@ -61,6 +62,9 @@ require_once(__DIR__ . '../modulos/modulos.php');
                                     <td title="<?= $item->pegarEmail() ?>"><?= $item->pegarEmail() ?></td>
                                     <td title="<?= formatarNumero($item->pegarCelular()) ?>"><?= formatarNumero($item->pegarCelular()) ?></td>
                                     <td title="<?= formatarNumero($item->pegarTelefone()) ?>"><?= formatarNumero($item->pegarTelefone()) ?></td>
+                                    <td title="<?= $item->pegarPermissao() == null ? 'Não Possui' : ucfirst($item->pegarPermissao()) ?>" id="<?= $item->pegarPermissao() == null ? 'comum' : $item->pegarPermissao() ?>">
+                                        <p><?= $item->pegarPermissao() == null ? 'Não Possui' : ucfirst($item->pegarPermissao()) ?></p>
+                                    </td>
                                     <td class="table-buttons">
                                         <a class="btn" title="editar <?= $item->pegarNome() ?>" href="editar_usuario.php?id=<?= $item->pegarId() ?>">
                                             <img src="/assets/img/icons/edit.svg">

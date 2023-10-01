@@ -95,8 +95,6 @@
                 }
             }
         }
-
-
     }
 
     .category-title {
@@ -109,10 +107,6 @@
         margin-bottom: 1rem;
         border-radius: $radius;
         box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
-
-        @media(max-width: 629px) {
-            flex-direction: column;
-        }
 
         h4 {
             font-size: 1rem;
@@ -170,12 +164,31 @@
                     tbody {
                         tr {
                             td {
-                                width: 20%;
+                                width: 15%;
                                 font-size: 13px;
                                 color: $text-color;
                                 padding: 8px;
                                 border-bottom: 1px solid $border-color;
                                 text-align: left;
+
+                                & p {
+                                    padding: 0.5rem;
+                                    color: #FFF;
+                                    border-radius: $radius;
+                                    width: 50%;
+                                }
+
+                                &#comum p {
+                                    background-color: rgb(108, 117, 125);
+                                }
+
+                                &#comum p {
+                                    background-color: rgb(108, 117, 125);
+                                }
+
+                                &#administrador p {
+                                    background-color: $primary-color;
+                                }
                             }
                         }
                     }
@@ -304,7 +317,7 @@
 
                 .form-container {
                     display: grid;
-                    grid-template-columns: 1fr 1fr 1fr;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
                     align-items: start;
                     gap: 1rem;
 
@@ -333,6 +346,7 @@
                         width: 100%;
                         gap: 10px;
                         align-items: center;
+                        justify-content: end;
                     }
 
                     @media(max-width: 629px) {

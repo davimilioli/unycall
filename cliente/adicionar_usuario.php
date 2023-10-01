@@ -146,7 +146,7 @@ $sistema = new Sistema($pdo);
                             <h2>Login</h2>
                             <div class="form-group">
                                 <label for="login">Usuario <span>*</span></label>
-                                <input type="text" name="loginCadastro" id="login" minlength="6" maxlength="6" 1 required>
+                                <input type="text" name="loginCadastro" id="login" minlength="6" maxlength="6" required>
                             </div>
                             <div class="inputs-group">
                                 <div class="form-group">
@@ -157,6 +157,16 @@ $sistema = new Sistema($pdo);
                                     <label for="confirmar-senha">Confirmar senha <span>*</span></label>
                                     <input type="text" name="confirmar-senha" id="confirmar-senha" required>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="form-category">
+                            <h2>Permissão</h2>
+                            <div class="form-group">
+                                <label for="permissao">Permissão </label>
+                                <select name="permissao" id="permissao">
+                                    <option value="" selected>Nenhuma</option>
+                                    <option value="administrador">Administrador</option>
+                                </select>
                             </div>
                         </div>
                     </div>

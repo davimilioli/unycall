@@ -132,6 +132,16 @@ if ($id) {
                                 <input type="text" name="login" id="login" value="<?= $usuario['login'] ?>">
                             </div>
                         </div>
+                        <div class="form-category">
+                            <h2>Permissão</h2>
+                            <div class="form-group">
+                                <label for="permissao">Permissão </label>
+                                <select name="permissao" id="permissao">
+                                    <option value="" <?= $usuario['permissao'] == 'null' ? 'selected' : '' ?>>Nenhuma</option>
+                                    <option value="administrador" <?= $usuario['permissao'] == 'administrador' ? 'selected' : '' ?>>Administrador</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="form-buttons">
                         <input type="submit" value="Atualizar" class="btn" class="atualizarDados">

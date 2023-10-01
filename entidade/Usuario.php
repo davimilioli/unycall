@@ -14,6 +14,7 @@ class Usuario
     private $telefone;
     private $login;
     private $senha;
+    private $permissao;
 
     public function setarId($id)
     {
@@ -131,13 +132,23 @@ class Usuario
     {
         return $this->senha;
     }
+
+    public function setarPermissao($permissao)
+    {
+        $this->permissao = $permissao;
+    }
+
+    public function pegarPermissao()
+    {
+        return $this->permissao;
+    }
 }
 
 interface UsuarioSqlInterface
 {
     public function criarUsuario(Usuario $usuario);
     public function consultarEmail($email);
-    public function consultarDadosLogin($login, $senha);
+    public function consultarDadosLogin($login, $senha, $tipoLogin);
     public function atualizarUsuario(Usuario $usuario);
     public function consultarId($id);
     public function consultaUsuario();

@@ -15,7 +15,7 @@ class UsuarioMySql implements UsuarioSqlInterface
     // CRIAR USUARIO
     public function criarUsuario(Usuario $usuario)
     {
-        $sql = $this->pdo->prepare("INSERT INTO usuarios (nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha) VALUES (:nome, :nascimento, :cpf, :nomematerno, :email, :sexo, :celular, :telefone, :login, :senha)");
+        $sql = $this->pdo->prepare("INSERT INTO usuarios (nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha, permissao) VALUES (:nome, :nascimento, :cpf, :nomematerno, :email, :sexo, :celular, :telefone, :login, :senha, :permissao)");
         $sql->bindValue(':nome', $usuario->pegarNome());
         $sql->bindValue(':nascimento', $usuario->pegarNascimento());
         $sql->bindValue(':cpf', $usuario->pegarCpf());
@@ -26,6 +26,7 @@ class UsuarioMySql implements UsuarioSqlInterface
         $sql->bindValue(':telefone', $usuario->pegarTelefone());
         $sql->bindValue(':login', $usuario->pegarLogin());
         $sql->bindValue(':senha', $usuario->pegarSenha());
+        $sql->bindValue(':permissao', $usuario->pegarPermissao());
         $sql->execute();
         $usuario->setarId($this->pdo->lastInsertId());
 
@@ -61,8 +62,9 @@ class UsuarioMySql implements UsuarioSqlInterface
     }
 
     // CONSULTA PARA FAZER LOGIN
-    public function consultarDadosLogin($login, $senha)
+    public function consultarDadosLogin($login, $senha, $tipoLogin)
     {
+        echo $tipoLogin;
         $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE login = :login");
         $sql->bindValue(':login', $login);
         $sql->execute();
@@ -85,7 +87,7 @@ class UsuarioMySql implements UsuarioSqlInterface
     public function atualizarUsuario(Usuario $usuario)
     {
         $sql = $this->pdo->prepare(
-            "UPDATE usuarios SET nome = :nome, nascimento = :nascimento, cpf = :cpf, email = :email, nomematerno = :nomematerno, celular = :celular, telefone = :telefone, login = :login WHERE id = :id"
+            "UPDATE usuarios SET nome = :nome, nascimento = :nascimento, cpf = :cpf, email = :email, nomematerno = :nomematerno, celular = :celular, telefone = :telefone, login = :login, permissao = :permissao WHERE id = :id"
         );
         $sql->bindValue(':nome', $usuario->pegarNome());
         $sql->bindValue(':nascimento', $usuario->pegarNascimento());
@@ -96,6 +98,7 @@ class UsuarioMySql implements UsuarioSqlInterface
         $sql->bindValue(':telefone', $usuario->pegarTelefone());
         $sql->bindValue(':login', $usuario->pegarLogin());
         $sql->bindValue(':id', $usuario->pegarId());
+        $sql->bindValue(':permissao', $usuario->pegarPermissao());
         $sql->execute();
 
         return true;
@@ -131,7 +134,7 @@ class UsuarioMySql implements UsuarioSqlInterface
                 $usuario->setarCelular($item['celular']);
                 $usuario->setarTelefone($item['telefone']);
                 $usuario->setarLogin($item['login']);
-
+                $usuario->setarPermissao($item['permissao']);
                 $array[] = $usuario;
             }
         }

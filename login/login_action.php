@@ -11,15 +11,14 @@ $login = filter_input(INPUT_POST, 'login');
 $senha = filter_input(INPUT_POST, 'senha');
 
 if ($login && $senha && $tipoLogin) {
-    echo $tipoLogin;
-    $consultarDados = $usuarioSql->consultarDadosLogin($login, $senha);
+    $consultarDados = $usuarioSql->consultarDadosLogin($login, $senha, $tipoLogin);
     if ($consultarDados['resposta'] === true) {
         $_SESSION['usuario'] = $login;
 
         header('location: ../cliente/dois_fatores.php?id=' . $consultarDados['id']);
         exit;
-    } else {
+    } /* else {
         header('location: login.php?erroLogin=true');
         exit;
-    }
+    } */
 }

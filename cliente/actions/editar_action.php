@@ -48,6 +48,11 @@ echo '<hr>';
 echo "LOGIN: $login";
 echo '<hr>';
 
+$permissao = filter_input(INPUT_POST, 'permissao');
+echo '<hr>';
+echo "PERMISSÃO: $permissao";
+echo '<hr>';
+
 $cep = filter_input(INPUT_POST, 'cep');
 $logradouro = filter_input(INPUT_POST, 'endereco');
 $numero = filter_input(INPUT_POST, 'numend');
@@ -120,6 +125,7 @@ if ($id && $nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $c
         'celular' => $celular,
         'telefone' => $telefone,
         'login' => $login,
+        'permissao' => $permissao ?? null
     );
 
     $sistema->atualizarDadosUsuario($dadosUsuario, $usuarioSql = null);
@@ -137,7 +143,6 @@ if ($id && $nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $c
         );
         $sistema->atualizarDadosEndereco($dadosEndereco, $usuarioSql);
     }
-
     header('location: ../lista_usuarios.php');
     exit;
 } else {
