@@ -23,5 +23,22 @@ function loading(msg) {
     message.innerHTML = msg;
 }
 
+const btnType = document.querySelectorAll('.button-type');
+const inputType = document.querySelector('[name=tipoLogin]');
 
+btnType.forEach((btn) => {
+    btn.addEventListener('click', () => {
 
+        btnType.forEach((otherBtn) => {
+            otherBtn.classList.add('secondary');
+        });
+
+        if (btn.id == 'usuario-normal') {
+            inputType.value = 'normal';
+        } else {
+            inputType.value = 'administrador';
+        }
+
+        btn.classList.remove('secondary');
+    });
+});

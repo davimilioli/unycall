@@ -138,6 +138,10 @@ interface UsuarioSqlInterface
     public function criarUsuario(Usuario $usuario);
     public function consultarEmail($email);
     public function consultarDadosLogin($login, $senha);
+    public function atualizarUsuario(Usuario $usuario);
+    public function consultarId($id);
+    public function consultaUsuario();
+    public function deletarUsuario($id);
 }
 
 /* $login = new Login;

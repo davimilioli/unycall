@@ -28,8 +28,13 @@
                     <p>Não possui cadastro? <a href="../cadastro/cadastro.php" class="form-link">Acesse aqui</a></p>
                 </div>
                 <form method="POST" class="form">
+                    <input type="hidden" name="tipoLogin" value="normal">
                     <div class="form-category">
-                        <h2>Fazer login</h2>
+                        <h2>Fazer login como?</h2>
+                        <div class="type-login">
+                            <button type="button" id="usuario-normal" class="btn button-type">Usuario comum</button>
+                            <button type="button" id="usuario-adm" class="btn secondary button-type">Administrador</button>
+                        </div>
                         <div class="form-group">
                             <label for="login">Nome <span>*</span></label>
                             <input type="text" name="login" id="login" minlength="6" maxlength="6" required>
