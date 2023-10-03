@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-$sessao = $_SESSION['usuario'];
+$sessao = $_SESSION['administrador'];
 if (!isset($sessao)) {
-    header('location: ../login/login.php?erroSistema=true');
+    header('location: cliente.php?' . $_GET['id'] . 'erroPermissao=true');
     exit;
 }
 

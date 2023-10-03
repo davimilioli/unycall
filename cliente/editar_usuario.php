@@ -1,7 +1,13 @@
 <?php
 session_start();
-require_once(__DIR__ . '/Sistema.php');
 
+$sessao = $_SESSION['administrador'];
+if (!isset($sessao)) {
+    header('location: cliente.php?' . $_GET['id'] . 'erroPermissao=true');
+    exit;
+}
+
+require_once(__DIR__ . '/Sistema.php');
 
 $sistema = new Sistema($pdo);
 
