@@ -1,8 +1,7 @@
 <?php
 session_start();
 
-$sessao = $_SESSION['usuario'];
-if (!isset($sessao)) {
+if (isset($_SESSION['normal']) && isset($_SESSION['administrador'])) {
     header('location: ../login/login.php?erroSistema=true');
     exit;
 }

@@ -1,6 +1,5 @@
 <?php
 session_start();
-$sessao = $_SESSION['usuario'];
 
 require_once(__DIR__ . '/Sistema.php');
 
@@ -33,7 +32,7 @@ $pegarPergunta = $sistema->pegarPergunta();
                         <p class="loading-message"></p>
                     </div>
                 </div>
-                <form method="POST" action="./actions/dois_fatores_action.php" class="form">
+                <form method="POST" action="./actions/dois_fatores_action.php?sessao=<?= $sessao ?>" class="form">
                     <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
                     <input type="hidden" name="slug" value="<?= $pegarPergunta['slug'] ?>">
                     <h2><?= $pegarPergunta['pergunta'] ?></h2>

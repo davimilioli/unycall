@@ -12,13 +12,37 @@ $senha = filter_input(INPUT_POST, 'senha');
 
 if ($login && $senha && $tipoLogin) {
     $consultarDados = $usuarioSql->consultarDadosLogin($login, $senha, $tipoLogin);
-    if ($consultarDados['resposta'] === true) {
-        $_SESSION['usuario'] = $login;
+    if (isset($consultarDados['resposta']) && $consultarDados['resposta']) {
 
-        header('location: ../cliente/dois_fatores.php?id=' . $consultarDados['id']);
-        exit;
-    } /* else {
+        if ($tipoLogin == 'administrador') {
+
+            if ($consultarDados['permissao'] == 'administrador') {
+                $_SESSION['administrador'] = $login;
+                echo 'ademar logado';
+
+                header('Location: ../cliente/cliente.php?id=' . $consultarDados['id']);
+                exit;
+            } else {
+                echo 'usuariozinho comum tentou entrar!!!';
+                header('Location: login.php?erroPermissao=true');
+                exit;
+            }
+        } elseif ($tipoLogin == 'normal') {
+
+            if ($consultarDados['permissao'] == null) {
+                $_SESSION['usuario'] = $login;
+                echo 'usuariozinho logado';
+                header('Location: ../cliente/dois_fatores.php?id=' . $consultarDados['id']);
+                exit;
+            }
+        } else {
+            echo 'login ou senha falsos';
+            header('location: login.php?erroLogin=true');
+            exit;
+        }
+    } else {
+        echo 'dados invalidos';
         header('location: login.php?erroLogin=true');
         exit;
-    } */
+    }
 }

@@ -64,7 +64,6 @@ class UsuarioMySql implements UsuarioSqlInterface
     // CONSULTA PARA FAZER LOGIN
     public function consultarDadosLogin($login, $senha, $tipoLogin)
     {
-        echo $tipoLogin;
         $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE login = :login");
         $sql->bindValue(':login', $login);
         $sql->execute();
@@ -74,9 +73,12 @@ class UsuarioMySql implements UsuarioSqlInterface
             if (password_verify($senha, $data['senha'])) {
                 $usuario = new Usuario();
                 $usuario->setarId($data['id']);
+                $usuario->setarPermissao($data['permissao']);
+                /* var_dump($usuario->setarPermissao($data['permissao'])); */
                 return array(
                     'resposta' => true,
-                    'id' => $usuario->pegarId()
+                    'id' => $usuario->pegarId(),
+                    'permissao' => $usuario->pegarPermissao()
                 );
             }
         }

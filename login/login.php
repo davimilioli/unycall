@@ -61,6 +61,12 @@
                                     <img src="/assets/img/icons/danger.svg">É necessário logar
                                 </p>
                             </div>
+                        <?php elseif (isset($_GET['erroPermissao'])) :  ?>
+                            <div class="message_error">
+                                <p>
+                                    <img src="/assets/img/icons/danger.svg">Você não tem permissão
+                                </p>
+                            </div>
                         <?php endif ?>
                     </div>
                 </form>
