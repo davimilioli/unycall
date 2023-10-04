@@ -31,15 +31,22 @@ require_once(__DIR__ . '../modulos/modulos.php');
         <main class="page-cliente-usuarios">
             <div class="category-title">
                 <h4>Lista Usuarios</h4>
-                <div>
-                    <a href="adicionar_usuario.php" class="btn">
-                        <img src="/assets/img/icons/plus.svg">Adicionar Usuario
-                    </a>
-                </div>
             </div>
             <section class="list-users">
                 <div class="list-users-content">
-                    <h2 class="list-users-count">Total de registros (<?= count($lista) ?>)</h2>
+                    <div class="list-users-title">
+                        <h2 class="list-users-count">Total de registros (<?= count($lista) ?>)</h2>
+                        <div class="list-users-actions">
+                            <a href="gerar_pdf.php" target="_blank" class="btn pdf">
+                                <img src="/assets/img/icons/list.svg">
+                                Download PDF
+                            </a>
+                            <a href="adicionar_usuario.php" class="btn">
+                                <img src="/assets/img/icons/plus.svg">
+                                Adicionar Usuario
+                            </a>
+                        </div>
+                    </div>
                     <table class="list-users-table">
                         <thead>
                             <tr>
