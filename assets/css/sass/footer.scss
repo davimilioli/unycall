@@ -1,0 +1,32 @@
+.footer {
+    background-color: #f4f7fe;
+    padding: 2rem 0;
+
+    .footer-content {
+
+        display: flex;
+        flex-wrap: wrap;
+        color: #fff;
+        padding: 20px;
+        justify-content: space-between;
+
+        .footer-item {
+            color: $text-color;
+            flex-basis: calc(25% - 20px);
+            margin-right: 20px;
+            margin-bottom: 20px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+
+        @media screen and (max-width: 768px) {
+            .footer-item {
+                flex-basis: 100%;
+                margin-right: 0;
+            }
+        }
+    }
+}
