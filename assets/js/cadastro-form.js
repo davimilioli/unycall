@@ -252,10 +252,10 @@ cep.addEventListener('input', function (e) {
     e.target.value = formattedCEP;
 
     // Se o CEP foi alterado, remova o atributo disabled dos campos
-    address.disabled = false;
+/*     address.disabled = false;
     neighborhood.disabled = false;
     city.disabled = false;
-    state.disabled = false;
+    state.disabled = false; */
 });
 
 cep.addEventListener('keyup', function (e) {
@@ -288,12 +288,12 @@ async function getAddress(cep) {
         });
 
         // Remova o atributo disabled dos campos
-        address.disabled = false;
+/*         address.disabled = false;
         neighborhood.disabled = false;
         city.disabled = false;
-        state.disabled = false;
+        state.disabled = false; */
 
-        validateAddressFields();
+        /* validateAddressFields(); */
         loading();
         return;
     } else {
@@ -303,7 +303,7 @@ async function getAddress(cep) {
         cepInput.setAttribute('style', 'border-color: green');
 
         // Chamada para validar os campos de endereço, bairro, cidade e estado
-        validateAddressFields();
+        /* validateAddressFields(); */
         loading();
     }
 
@@ -325,12 +325,14 @@ clearInputs.addEventListener('click', function () {
     });
 
     numEndereco.value = '';
-    complemento.value = '';
-    validateAddressFields();
+    complemento.value = ''; 
+
+    /* validateAddressFields(); */
 });
 
 // VALIDAÇÃO DE ENDEREÇO
 
+// FUNÇÃO DESABILITADA POIS NÃO ESTAVA DEIXANDO ENVIAR OS DADOS PARA O PHP
 function validateAddressFields() {
     const endereco = document.getElementById('endereco');
     const bairro = document.getElementById('bairro');
