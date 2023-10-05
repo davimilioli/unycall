@@ -45,4 +45,8 @@ if ($login && $senha && $tipoLogin) {
         header('location: login.php?erroLogin=true');
         exit;
     }
+}else {
+    echo 'dados invalidos';
+    header('location: login.php?erroLogin=true');
+    exit;
 }
