@@ -33,6 +33,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `telefone` varchar(15) NOT NULL,
   `login` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
+  `permissao` varchar(20) DEFAULT NULL,
   PRIMARY KEY (`id`)
 )
 

@@ -69,7 +69,7 @@ require_once(__DIR__ . '../modulos/modulos.php');
                                     <td title="<?= $item->pegarEmail() ?>"><?= $item->pegarEmail() ?></td>
                                     <td title="<?= formatarNumero($item->pegarCelular()) ?>"><?= formatarNumero($item->pegarCelular()) ?></td>
                                     <td title="<?= formatarNumero($item->pegarTelefone()) ?>"><?= formatarNumero($item->pegarTelefone()) ?></td>
-                                    <td title="<?= $item->pegarPermissao() == null ? 'Não Possui' : ucfirst($item->pegarPermissao()) ?>" id="<?= $item->pegarPermissao() == null ? 'comum' : $item->pegarPermissao() ?>">
+                                    <td class="table-permissao" title="<?= $item->pegarPermissao() == null ? 'Não Possui' : ucfirst($item->pegarPermissao()) ?>" id="<?= $item->pegarPermissao() == null ? 'comum' : $item->pegarPermissao() ?>">
                                         <p><?= $item->pegarPermissao() == null ? 'Não Possui' : ucfirst($item->pegarPermissao()) ?></p>
                                     </td>
                                     <td class="table-buttons">
