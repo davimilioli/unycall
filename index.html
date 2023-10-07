@@ -12,20 +12,19 @@
 <body>
     <header class="header">
         <div class="logo">
-            <a href="/index.php"><img src="/assets/img/logo.png" alt="Logo UnyCall"></a>
+            <a href="/index.html"><img src="/assets/img/logo.png" alt="Logo UnyCall"></a>
         </div>
         <nav class="menu">
             <ul class="menu-list">
-                <li class="menu-list-item"><a href="#">Página Inicial</a></li>
                 <li class="menu-list-item"><a href="#">Sobre</a></li>
                 <li class="menu-list-item"><a href="#">Serviços</a></li>
                 <li class="menu-list-item"><a href="#">Contato</a></li>
             </ul>
+            <div class="header-actions">
+                <a class="btn secondary" href="/php/cadastro/cadastro.php">Cadastrar-se</a>
+                <a class="btn" href="/php/login/login.php">Login</a>
+            </div>
         </nav>
-        <div class="header-actions">
-            <a class="btn" href="/cadastro/cadastro.php">Cadastrar-se</a>
-            <a class="btn secondary" href="/login/login.php">Login</a>
-        </div>
         <button type="button" class="menu-mobile">
             <span></span>
             <span></span>
@@ -64,26 +63,20 @@
                         <p class="price-month">+ 2 Meses Grátis</p>
                     </div>
                     <div class="anuncio-temp">
-                        <div class="anuncio-temp-item">
-                            02
+                        <div class="anuncio-temp-item" id="hours">
+                            24
                         </div>
                         <span>
                             :
                         </span>
-                        <div class="anuncio-temp-item">
-                            02
+                        <div class="anuncio-temp-item" id="minutes">
+                            00
                         </div>
                         <span>
                             :
                         </span>
-                        <div class="anuncio-temp-item">
-                            02
-                        </div>
-                        <span>
-                            :
-                        </span>
-                        <div class="anuncio-temp-item">
-                            02
+                        <div class="anuncio-temp-item" id="seconds">
+                            00
                         </div>
                     </div>
                     <div class="anuncio-footer">
@@ -92,7 +85,7 @@
                     </div>
                 </div>
                 <div class="anuncio-image">
-                    <img src="">
+                    <img src="/assets/img/undraw_sharing_articles_re_jnkp.svg">
                 </div>
             </div>
         </section>
@@ -121,7 +114,7 @@
                                     é pago de forma integral.
                                 </span>
                                 <p class="item-header-price-month">+ 2 Meses Grátis</p>
-                                <a href="#" class="btn">Adicionar ao carrinho</a>
+                                <a href="#" class="btn">Comprar</a>
                                 <span class="item-header-estimated">
                                     R$ 22,99/mes* ao renovar
                                 </span>
@@ -180,7 +173,7 @@
                                     é pago de forma integral.
                                 </span>
                                 <p class="item-header-price-month">+ 2 Meses Grátis</p>
-                                <a href="#" class="btn">Adicionar ao carrinho</a>
+                                <a href="#" class="btn">Comprar</a>
                                 <span class="item-header-estimated">
                                     R$ 22,99/mes* ao renovar
                                 </span>
@@ -236,7 +229,7 @@
                                     é pago de forma integral.
                                 </span>
                                 <p class="item-header-price-month">+ 2 Meses Grátis</p>
-                                <a href="#" class="btn">Adicionar ao carrinho</a>
+                                <a href="#" class="btn">Comprar</a>
                                 <span class="item-header-estimated">
                                     R$ 22,99/mes* ao renovar
                                 </span>
@@ -320,7 +313,7 @@
                     </ul>
                 </div>
                 <div class="solutions-company-image">
-                    <img src="" alt="">
+                    <img src="/assets/img/undraw_our_solution_re_8yk6.svg" alt="">
                 </div>
             </div>
         </section>
@@ -393,7 +386,7 @@
         <section class="solutions-company">
             <div class="solutions-company-content container">
                 <div class="solutions-company-image">
-                    <img src="" alt="">
+                    <img src="/assets/img/undraw_analysis_dq08.svg" alt="">
                 </div>
                 <div class="solutions-company-description">
                     <h2>Aumente a velocidade da sua internet</h2>
@@ -433,7 +426,7 @@
         <section class="security">
             <div class="security-content container">
                 <div class="security-description">
-                    <img src="/assets/img/ilustra-gerenciamento-seguranca.png" alt="">
+                    <img src="/assets/img/undraw_security_on_re_e491.svg" alt="">
                     <div class="security-description-list">
                         <h2>Segurança de dados</h2>
                         <ul class="list-content">
@@ -542,7 +535,7 @@
         <section class="solutions-company">
             <div class="solutions-company-content container">
                 <div class="solutions-company-image">
-                    <img src="" alt="">
+                    <img src="/assets/img/undraw_analysis_dq08.svg" alt="">
                 </div>
                 <div class="solutions-company-description">
                     <h2>Aumente a velocidade da sua internet</h2>
@@ -594,6 +587,8 @@
                 <div class="logo">
                     <a href="/index.php"><img src="/assets/img/logo.png" alt="Logo UnyCall"></a>
                 </div>
+                <p>
+                </p>
             </div>
             <div class="footer-item">
                 <h4>Contato</h4>
@@ -621,7 +616,7 @@
             </div>
         </div>
     </footer>
-
+    <script src="/assets/js/home.js"></script>
 </body>
 
 </html>
