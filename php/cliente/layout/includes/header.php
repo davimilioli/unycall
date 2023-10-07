@@ -1,6 +1,6 @@
 <header class="header">
     <div class="logo">
-        <a href="#">
+        <a href="../../cliente.php">
             <img src="/assets/img/logo.png" alt="Logo UnyCall">
         </a>
     </div>
