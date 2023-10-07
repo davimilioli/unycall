@@ -1,0 +1,99 @@
+.container {
+    width: 100%;
+    max-width: $xxl;
+    margin: 0 auto;
+    padding: 4rem 0;
+    box-sizing: border-box;
+}
+
+.page-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.page-content-flex {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    justify-content: space-between;
+}
+
+h1,
+h2,
+h3 {
+    color: $primary-color;
+}
+
+h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 40px;
+}
+
+p {
+    color: $description-color;
+}
+
+.tooltip-container {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip-trigger::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 84%;
+    left: 63%;
+    transform: translateX(-86%);
+    padding: 6px 10px;
+    background-color: #333;
+    color: #fff;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s, visibility 0.2s;
+    width: 225px;
+
+}
+
+.tooltip-trigger:hover::before {
+    opacity: 1;
+    visibility: visible;
+}
+
+@media screen and (max-width: $xxl) {
+    .container {
+        max-width: $xl;
+    }
+}
+
+@media screen and (max-width: $xl) {
+    .container {
+        max-width: $lg;
+    }
+
+    h1 {
+        font-size: 2.5rem;
+    }
+}
+
+@media screen and (max-width: $lg) {
+    .container {
+        max-width: $md;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+}
+
+@media screen and (max-width: $sm) {
+    .container {
+        max-width: $sm;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+}

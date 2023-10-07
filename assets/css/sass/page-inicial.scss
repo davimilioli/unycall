@@ -1,146 +1,228 @@
-.pagina-inicial {
-    margin-top: 5rem;
+.page-home {
+    margin-top: 8rem;
 
-    .titles-blocks {
-        border: 1px solid #FFF;
-        border-radius: 30px;
-        padding: 0 1rem;
+    .list-content {
+        margin-top: .8rem;
 
-        &.secondary {
-            border-color: $description-color;
+        li {
+            font-weight: 400;
+            margin-top: .5rem;
+            display: flex;
+            gap: 10px;
+            position: relative;
+            align-items: center;
+
+            &::before {
+                content: '';
+                width: 20px;
+                height: 20px;
+                display: block;
+                background-image: url('../../img/icons/check.svg');
+            }
         }
     }
 
-    .full-banner {
-        height: 685px;
-        background-color: $primary-color !important;
+    .anuncio {
+        .anuncio-content {
 
-        .full-banner-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            height: 100%;
-            gap: 100px;
+            .anuncio-description {
+                p {
+                    margin-top: .5rem;
+                    font-size: 1.1rem;
+                    line-height: 32px;
+                    font-weight: 500;
 
-            .full-banner-description {
-                color: #FFF;
-                max-width: 800px;
-
-                h1 {
-                    font-weight: 700;
-                    font-size: 3.5rem;
+                    strong {
+                        color: $primary-color;
+                    }
                 }
-
-
-            }
-        }
-    }
-
-    .about-us {
-        margin: 3rem 0;
-
-        .about-us-image {
-            img {
-                max-width: 100%;
-            }
-        }
-
-        .about-us-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            height: 100%;
-            gap: 100px;
-
-            h2 {
-                font-size: 2.5rem;
-                font-weight: 700;
-                color: $text-color;
             }
 
-            p {
-                margin: 1rem 0;
-                color: $description-color;
+            .anuncio-image {
+                display: flex;
+                justify-content: center;
+
+                img {
+                    width: 100%;
+                    max-width: 100%;
+                }
             }
-        }
-    }
 
-    .solutions {
-        background-color: #f4f7fe;
-        padding: 5rem 0;
+            .anuncio-price {
+                margin-top: 2rem;
 
-        .solutions-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            align-items: center;
-            height: 100%;
-            gap: 50px;
+                p {
+                    font-size: 1.25rem;
+                    color: $primary-color;
 
-            .solutions-description {
-                h2 {
-                    font-size: 2.5rem;
-                    font-weight: 700;
-                    color: $text-color;
+                    strong {
+                        font-size: 3rem;
+                        font-weight: 700;
+                    }
+
+                    &.price-month {
+                        color: $primary-color;
+                    }
+                }
+            }
+
+            .anuncio-temp {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                margin-top: 1rem;
+
+                .anuncio-temp-item {
+                    border: 1px solid $primary-color;
+                    padding: 1rem;
+                    border-radius: $radius;
+                    display: flex;
+                    font-size: 24px;
+                    font-weight: 500;
+                    height: 64px;
+                    justify-content: center;
+                    width: 64px;
+                    align-items: center;
+                    color: $primary-color;
+                }
+            }
+
+            .anuncio-footer {
+
+                .btn {
+                    margin-top: 1rem;
+                    width: 40%;
+                    text-align: center;
+                    justify-content: center;
                 }
 
                 p {
-                    margin: 1rem 0;
-                    color: $description-color;
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                    color: $primary-color;
+                    font-size: 1rem;
                 }
-
             }
+        }
+    }
 
-            .solutions-blocks {
+    .plans {
+
+        .plans-content {
+            .plans-cards {
                 display: flex;
                 align-items: center;
-                gap: 30px;
 
-                .solutions-block-container {
+                .plans-cards-item {
+                    max-width: 360px;
                     display: flex;
                     flex-direction: column;
-                    gap: 20px;
+                    border-radius: $radius;
+                    padding: 2.1rem 2rem;
+                    text-align: center;
+                    border: 1px solid #d5dfff;
+                    position: relative;
+                    /* box-shadow: 0 0 9px -5px rgba(0, 0, 0, .5); */
+                    top: 0;
+                    transition: box-shadow .2s ease-in-out, transform .2s ease-in-out, top .2s ease-in-out;
 
-                    &:nth-child(1) {
-                        margin-top: -3rem;
-                    }
-
-                    .solutions-block-item {
-                        position: relative;
-                        padding: 45px 30px;
-                        background: #FFFFFF;
-                        border-radius: $radius;
-                        width: 366px;
-                        height: 336px;
-                        text-align: center;
-                        top: 0;
-
-                        transition: box-shadow .2s ease-in-out, transform .2s ease-in-out, top .2s ease-in-out;
+                    .plans-cards-item-title {
+                        margin-bottom: 2rem;
 
                         h3 {
-                            color: $text-color;
-                            font-size: 1.25rem;
-                            margin-bottom: 1rem;
+                            font-size: 1.5rem;
                         }
 
                         p {
-                            color: $description-color;
-                            margin-bottom: 1rem;
-                        }
-
-                        img {
-                            max-width: 100%;
-                            width: 90px;
-                            height: 90px;
-                        }
-
-                        &:hover {
-                            top: -3px;
-                            box-shadow: 0 0 16px -7px rgba(0, 0, 0, .5);
+                            color: $primary-color;
+                            font-size: .9rem;
                         }
                     }
+
+                    .plans-cards-item-header {
+                        margin-bottom: 2rem;
+
+                        .item-header-promotion {
+                            display: flex;
+                            gap: 5px;
+                            align-items: center;
+                            justify-content: center;
+
+                            .item-header-promotion-price {
+                                text-decoration-line: line-through;
+                                color: #727586;
+                            }
+
+                            .item-header-promotion-percentage {
+                                background-color: $primary-color;
+                                border-radius: 20px;
+                                color: #FFF;
+                                padding: .25rem .75rem;
+                                font-size: .9rem;
+                                font-weight: 600;
+                            }
+                        }
+
+                        .item-header-price {
+                            margin-bottom: 2rem;
+                            border-bottom: 2px solid $primary-color;
+                            padding: 0 0 2rem 0;
+
+                            p {
+                                font-size: 1.25rem;
+                                color: $primary-color;
+
+                                strong {
+                                    font-size: 3rem;
+                                    font-weight: 700;
+                                }
+
+                                &.item-header-price-month {
+                                    color: $primary-color;
+                                    font-weight: 500;
+                                }
+                            }
+
+                            .item-header-estimated {
+                                font-size: 0.875rem;
+                                color: $description-color;
+                                opacity: 8;
+                            }
+
+                            .btn {
+                                text-align: center;
+                                display: flex;
+                                justify-content: center;
+                                margin: 1rem 0;
+                            }
+                        }
+
+                        .item-header-body {
+                            h4 {
+                                font-size: 1.125rem;
+                                color: $primary-color;
+                                text-align: start;
+                                margin-bottom: 1.3rem;
+                            }
+                        }
+
+                        .item-header-footer {
+                            margin-top: 1rem;
+
+                            .btn {
+                                display: flex;
+                                justify-content: center;
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    &:hover {
+                        top: -3px;
+                        box-shadow: 0 0 16px -7px rgba(0, 0, 0, .5);
+                    }
                 }
-
-
             }
         }
     }
