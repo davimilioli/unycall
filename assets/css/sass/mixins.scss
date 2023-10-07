@@ -1,6 +1,7 @@
 @mixin content-flex {
     display: flex;
     align-items: center;
+    margin: auto;
 }
 
 @mixin content-grid {

@@ -1,9 +1,8 @@
 .page-home {
-    margin-top: 8rem;
+    margin-top: 5rem;
 
     @media(max-width: 630px) {
         margin-top: 3rem;
-        padding: 1rem;
     }
 
     .list-content {
@@ -29,6 +28,10 @@
 
     @import './components/anuncio.scss';
     @import './components/planos.scss';
-
+    @import './components/world.scss';
+    @import './components/solutions-company.scss';
+    @import './components/feedback.scss';
+    @import './components/security.scss';
+    @import './components/join.scss';
 
 }

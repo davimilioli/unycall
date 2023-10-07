@@ -1,0 +1,27 @@
+.solutions-company {
+    .solutions-company-content {
+        @include content-flex;
+        justify-content: space-between;
+
+        .solutions-company-description {
+            .list-content li {
+                color: #727586;
+            }
+        }
+
+        .solutions-company-image {
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: 55%;
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 630px) {
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+    }
+}

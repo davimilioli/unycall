@@ -1,0 +1,28 @@
+.world {
+    background-color: #fafbff;
+
+    .world-content {
+
+        .world-title {
+            text-align: center;
+
+            h2 {
+                margin-bottom: 1rem;
+            }
+
+            p {
+                color: $description-color;
+
+                @media (max-width: 630px) {
+                    font-size: .9rem;
+                }
+            }
+        }
+
+        img {
+            margin-top: 3rem;
+            max-width: 100%;
+            width: 100%;
+        }
+    }
+}

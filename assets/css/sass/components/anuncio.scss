@@ -1,4 +1,8 @@
 .anuncio {
+    background-color: #fafbff;
+    background-position: center center;
+    background-repeat: no-repeat;
+
     .anuncio-content {
         @include content-flex;
         justify-content: space-between;

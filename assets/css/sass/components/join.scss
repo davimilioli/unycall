@@ -1,0 +1,27 @@
+.join {
+    .join-content {
+        @include content-flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: auto;
+
+        .btn {
+            width: 20%;
+            display: flex;
+            justify-content: center;
+            margin-bottom: 1rem;
+
+            @media (max-width: 630px) {
+                width: 100%;
+            }
+        }
+
+        p {
+            color: $primary-color;
+            display: flex;
+            align-items: center;
+        }
+
+
+    }
+}
