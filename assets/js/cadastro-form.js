@@ -252,10 +252,10 @@ cep.addEventListener('input', function (e) {
     e.target.value = formattedCEP;
 
     // Se o CEP foi alterado, remova o atributo disabled dos campos
-/*     address.disabled = false;
-    neighborhood.disabled = false;
-    city.disabled = false;
-    state.disabled = false; */
+    /*     address.disabled = false;
+        neighborhood.disabled = false;
+        city.disabled = false;
+        state.disabled = false; */
 });
 
 cep.addEventListener('keyup', function (e) {
@@ -288,10 +288,10 @@ async function getAddress(cep) {
         });
 
         // Remova o atributo disabled dos campos
-/*         address.disabled = false;
-        neighborhood.disabled = false;
-        city.disabled = false;
-        state.disabled = false; */
+        /*         address.disabled = false;
+                neighborhood.disabled = false;
+                city.disabled = false;
+                state.disabled = false; */
 
         /* validateAddressFields(); */
         loading();
@@ -325,7 +325,7 @@ clearInputs.addEventListener('click', function () {
     });
 
     numEndereco.value = '';
-    complemento.value = ''; 
+    complemento.value = '';
 
     /* validateAddressFields(); */
 });
@@ -445,7 +445,7 @@ btnCadastrar.addEventListener('click', (e) => {
     e.preventDefault()
 
     if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && login.value !== '' && senha.value !== '') {
-        form.setAttribute('action', '/cadastro/cadastro_action.php');
+        form.setAttribute('action', '/php/cadastro/cadastro_action.php');
         loading('validando cadastro')
 
         setTimeout(() => {
