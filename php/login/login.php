@@ -32,8 +32,8 @@
                     <div class="form-category">
                         <h2>Fazer login como?</h2>
                         <div class="type-login">
-                            <button type="button" id="usuario-normal" class="btn button-type">Usuario comum</button>
-                            <button type="button" id="usuario-adm" class="btn secondary button-type">Administrador</button>
+                            <button type="button" class="btn secondary button-type">Usuario comum</button>
+                            <button type="button" class="btn secondary button-type">Administrador</button>
                         </div>
                         <div class="form-group">
                             <label for="login">Nome <span>*</span></label>

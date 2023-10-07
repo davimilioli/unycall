@@ -2,7 +2,6 @@ const login = document.querySelector('#login');
 const senha = document.querySelector('#senha');
 const bntEntrar = document.querySelector('#entrar');
 const form = document.querySelector('.form');
-console.log(form);
 
 bntEntrar.addEventListener('click', (e) => {
     e.preventDefault()
@@ -28,17 +27,30 @@ const inputType = document.querySelector('[name=tipoLogin]');
 
 btnType.forEach((btn) => {
     btn.addEventListener('click', () => {
+        console.log(btn.textContent);
 
         btnType.forEach((otherBtn) => {
-            otherBtn.classList.add('secondary');
+            otherBtn.classList.remove('active');
         });
 
-        if (btn.id == 'usuario-normal') {
-            inputType.value = 'normal';
-        } else {
+        if (btn.textContent == 'Administrador') {
+            btn.classList.add('active');
             inputType.value = 'administrador';
+        } else if (btn.textContent == 'Usuario comum') {
+            btn.classList.add('active');
+            inputType.value = 'normal';
         }
-
-        btn.classList.remove('secondary');
     });
 });
+
+function setState() {
+    btnType.forEach((btn) => {
+        if (btn.textContent == 'Administrador' && inputType.value == 'administrador') {
+            btn.classList.add('active');
+        } else if (btn.textContent == 'Usuario comum' && inputType.value == 'normal') {
+            btn.classList.add('active');
+        }
+    })
+}
+
+setState();
