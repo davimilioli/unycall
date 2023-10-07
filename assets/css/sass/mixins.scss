@@ -1,0 +1,9 @@
+@mixin content-flex {
+    display: flex;
+    align-items: center;
+}
+
+@mixin content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

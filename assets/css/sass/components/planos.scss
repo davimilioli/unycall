@@ -1,0 +1,164 @@
+.plans {
+
+    .plans-content {
+        .plans-cards {
+            @include content-flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+
+            .plans-cards-item {
+                max-width: 360px;
+                display: flex;
+                flex-direction: column;
+                border-radius: $radius;
+                padding: 2.1rem 2rem;
+                text-align: center;
+                border: 1px solid #d5dfff;
+                position: relative;
+                /* box-shadow: 0 0 9px -5px rgba(0, 0, 0, .5); */
+                top: 0;
+                transition: box-shadow .2s ease-in-out, transform .2s ease-in-out, top .2s ease-in-out;
+
+                .plans-cards-item-title {
+                    margin-bottom: 2rem;
+
+                    h3 {
+                        font-size: 1.5rem;
+                    }
+
+                    p {
+                        color: $primary-color;
+                        font-size: .9rem;
+                    }
+                }
+
+                .plans-cards-item-header {
+                    margin-bottom: 2rem;
+
+                    .item-header-promotion {
+                        display: flex;
+                        gap: 5px;
+                        align-items: center;
+                        justify-content: center;
+
+                        .item-header-promotion-price {
+                            text-decoration-line: line-through;
+                            color: #727586;
+                        }
+
+                        .item-header-promotion-percentage {
+                            background-color: $primary-color;
+                            border-radius: 20px;
+                            color: #FFF;
+                            padding: .25rem .75rem;
+                            font-size: .9rem;
+                            font-weight: 600;
+                        }
+                    }
+
+                    .item-header-price {
+                        margin-bottom: 2rem;
+                        border-bottom: 2px solid $primary-color;
+                        padding: 0 0 2rem 0;
+
+                        p {
+                            font-size: 1.25rem;
+                            color: $primary-color;
+
+                            strong {
+                                font-size: 3rem;
+                                font-weight: 700;
+                            }
+
+                            &.item-header-price-month {
+                                color: $primary-color;
+                                font-weight: 500;
+                            }
+                        }
+
+                        .item-header-estimated {
+                            font-size: 0.875rem;
+                            color: $description-color;
+                            opacity: 8;
+                        }
+
+                        .btn {
+                            text-align: center;
+                            display: flex;
+                            justify-content: center;
+                            margin: 1rem 0;
+                        }
+                    }
+
+                    .item-header-body {
+                        h4 {
+                            font-size: 1.125rem;
+                            color: $primary-color;
+                            text-align: start;
+                            margin-bottom: 1.3rem;
+                        }
+                    }
+
+                    .item-header-footer {
+                        margin-top: 1rem;
+
+                        .btn {
+                            display: flex;
+                            justify-content: center;
+                            width: 100%;
+                        }
+                    }
+                }
+
+                &:hover {
+                    top: -3px;
+                    box-shadow: 0 0 16px -7px rgba(0, 0, 0, .5);
+                }
+
+                &.active {
+                    border: 2px solid $primary-color;
+                    top: -30px;
+
+                    .plans-cards-item-tpromo {
+                        position: absolute;
+                        top: -25px;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        width: 80%;
+                        left: 36px;
+                        right: 0;
+                        background-color: $danger;
+                        padding: 0.5rem;
+                        color: #FFF;
+                        text-transform: uppercase;
+                        font-weight: 500;
+                        border-radius: $radius * 5;
+                    }
+
+                    &:hover {
+                        top: -33px;
+                    }
+                }
+            }
+
+            @media (max-width: 630px) {
+                gap: 20px;
+                justify-content: center;
+
+                .plans-cards-item {
+                    margin-top: 1rem;
+
+                    &.active {
+                        top: 0;
+
+                        &:hover {
+                            top: -3px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

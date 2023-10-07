@@ -1,0 +1,98 @@
+.anuncio {
+    .anuncio-content {
+        @include content-flex;
+        justify-content: space-between;
+
+        .anuncio-description {
+            p {
+                margin-top: .5rem;
+                font-size: 1.1rem;
+                line-height: 32px;
+                font-weight: 500;
+
+                strong {
+                    color: $primary-color;
+                }
+            }
+        }
+
+        .anuncio-image {
+            display: flex;
+            justify-content: center;
+
+            img {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+
+        .anuncio-price {
+            margin-top: 2rem;
+
+            p {
+                font-size: 1.25rem;
+                color: $primary-color;
+
+                strong {
+                    font-size: 3rem;
+                    font-weight: 700;
+                }
+
+                &.price-month {
+                    color: $primary-color;
+                }
+            }
+        }
+
+        .anuncio-temp {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 1rem;
+
+            .anuncio-temp-item {
+                border: 1px solid $primary-color;
+                padding: 1rem;
+                border-radius: $radius;
+                display: flex;
+                font-size: 24px;
+                font-weight: 500;
+                height: 64px;
+                justify-content: center;
+                width: 64px;
+                align-items: center;
+                color: $primary-color;
+            }
+        }
+
+        .anuncio-footer {
+
+            .btn {
+                margin-top: 1rem;
+                width: 40%;
+                text-align: center;
+                justify-content: center;
+
+            }
+
+            p {
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                color: $primary-color;
+                font-size: 1rem;
+            }
+
+            @media(max-width: 630px) {
+                .btn {
+                    width: 100%;
+                }
+
+                p {
+                    text-align: center;
+                    justify-content: center;
+                }
+            }
+        }
+    }
+}

@@ -6,18 +6,7 @@
     box-sizing: border-box;
 }
 
-.page-content-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.page-content-flex {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    justify-content: space-between;
-}
+@import 'mixins.scss';
 
 h1,
 h2,
@@ -91,6 +80,7 @@ p {
 @media screen and (max-width: $sm) {
     .container {
         max-width: $sm;
+        padding: 2rem 0;
     }
 
     h1 {
