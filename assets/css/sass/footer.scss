@@ -2,8 +2,9 @@
     background-color: #f4f7fe;
     padding: 2rem 0;
 
-    .footer-content {
 
+    .footer-content {
+        max-width: 1280px;
         display: flex;
         flex-wrap: wrap;
         color: #fff;
@@ -12,21 +13,22 @@
 
         .footer-item {
             color: $text-color;
-            flex-basis: calc(25% - 20px);
-            margin-right: 20px;
-            margin-bottom: 20px;
+            max-width: 360px;
+
 
             &:last-child {
                 margin-right: 0;
             }
-        }
 
+            @media screen and (max-width: 630px) {
 
-        @media screen and (max-width: 768px) {
-            .footer-item {
-                flex-basis: 100%;
+                width: 100%;
+                max-width: 100%;
                 margin-right: 0;
+
             }
         }
+
+
     }
 }

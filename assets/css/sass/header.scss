@@ -12,6 +12,9 @@
     background-color: #FFF;
 
     .menu {
+        display: flex;
+        gap: 20px;
+
         .menu-list {
             display: flex;
             gap: 30px;

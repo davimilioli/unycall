@@ -38,10 +38,13 @@ ul {
     &.secondary {
         background-color: transparent;
         color: $text-color;
+        /* 
+        border: 1px solid $text-color; */
 
         &:hover {
             text-decoration: underline;
         }
+
     }
 
     &:hover {

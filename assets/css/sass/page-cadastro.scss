@@ -38,7 +38,7 @@
                         display: flex;
                         justify-content: center;
 
-                        @media (max-width: 630px){
+                        @media (max-width: 630px) {
                             padding: .8rem;
 
                         }
@@ -55,7 +55,11 @@
             padding: 4rem 5rem;
 
             .cadastro-description-content {
-                color: #FFF
+                color: #FFF;
+
+                p {
+                    color: #FFF;
+                }
             }
         }
 
