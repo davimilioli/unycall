@@ -10,7 +10,27 @@
 </head>
 
 <body style="overflow: hidden;">
-    <?php require_once(__DIR__ . '../../includes/header.php'); ?>
+    <header class="header">
+        <div class="logo">
+            <a href="/index.html"><img src="/assets/img/logo.png" alt="Logo UnyCall"></a>
+        </div>
+        <nav class="menu">
+            <ul class="menu-list">
+                <li class="menu-list-item"><a href="#">Sobre</a></li>
+                <li class="menu-list-item"><a href="#">Serviços</a></li>
+                <li class="menu-list-item"><a href="#">Contato</a></li>
+            </ul>
+            <div class="header-actions">
+                <a class="btn secondary" href="/php/cadastro/cadastro.php">Cadastrar-se</a>
+                <a class="btn" href="/php/login/login.php">Login</a>
+            </div>
+        </nav>
+        <button type="button" class="menu-mobile">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
     <section class="page-form">
         <div class="cadastro-content">
             <div class="form-content">

@@ -18,9 +18,6 @@
             <a class="btn" href="sair.php">Sair</a>
         </div>
     </nav>
-    <div class="header-actions">
-        <a class="btn" href="sair.php">Sair</a>
-    </div>
     <button type="button" class="menu-mobile">
         <span></span>
         <span></span>
