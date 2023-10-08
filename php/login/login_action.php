@@ -9,19 +9,16 @@ $usuarioSql = new UsuarioMySql($pdo);
 $tipoLogin = filter_input(INPUT_POST, 'tipoLogin');
 $login = filter_input(INPUT_POST, 'login');
 $senha = filter_input(INPUT_POST, 'senha');
-
 if ($login && $senha && $tipoLogin) {
     $consultarDados = $usuarioSql->consultarDadosLogin($login, $senha, $tipoLogin);
     if (isset($consultarDados['resposta']) && $consultarDados['resposta']) {
 
         if ($tipoLogin == 'administrador') {
             if ($consultarDados['permissao'] == 'administrador') {
-                echo 'ademar logado';
 
                 header('Location: ../cliente/cliente.php?id=' . $consultarDados['id']);
                 exit;
             } else {
-                echo 'usuariozinho comum tentou entrar!!!';
                 header('Location: login.php?erroPermissao=true');
                 exit;
             }
@@ -30,6 +27,9 @@ if ($login && $senha && $tipoLogin) {
             if ($consultarDados['permissao'] == null) {
                 echo 'usuariozinho logado';
                 header('Location: ../cliente/dois_fatores.php?id=' . $consultarDados['id']);
+                exit;
+            } else {
+                header('Location: login.php?avisoAdm=true');
                 exit;
             }
         } else {

@@ -87,6 +87,12 @@
                                     <img src="/assets/img/icons/danger.svg">Você não tem permissão
                                 </p>
                             </div>
+                        <?php elseif (isset($_GET['avisoAdm'])) :  ?>
+                            <div class="message_error">
+                                <p>
+                                    <img src="/assets/img/icons/danger.svg">Você precisa entrar como administrador
+                                </p>
+                            </div>
                         <?php endif ?>
                     </div>
                 </form>
