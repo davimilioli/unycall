@@ -15,9 +15,21 @@
         width: 16rem;
         height: 100vh;
 
-        @media(max-width: 629px) {
+        @media(max-width: $sm) {
+            position: fixed;
+            left: 260px;
             display: none;
+            transition: .3s;
+
+            &.active {
+                transition: .3s;
+                display: block;
+                top: 80px;
+                left: 0;
+                z-index: 9;
+            }
         }
+
 
         .page-cliente-aside-content {
             overflow: auto;
@@ -73,12 +85,12 @@
                             padding: .35rem .35rem .35rem 1rem;
                             transition: .3s;
                             cursor: pointer;
-                            padding-left: 3rem;
                             font-size: 0.9rem;
 
                             a {
                                 text-decoration: none;
                                 color: $description-color;
+                                padding-left: 2rem;
                             }
 
                             &:hover {
@@ -147,89 +159,129 @@
                     font-size: 1rem;
                 }
 
-                .list-users-table {
-                    border-collapse: collapse;
-                    width: 100%;
 
-                    .table-id {
-                        width: 5%;
-                    }
+                .list-users-table-content {
+                    display: flex;
+                    align-items: center;
+                    overflow: auto;
 
-                    .table-permissao{
-                        width: 10%;
-                    }
-
-                    .table-buttons{
-                        width: 5%;
-                    }
-
-                    thead {
-
-                        border-bottom: 2px solid $border-color;
-
-                        tr {
-
-                            th {
-                                font-size: 14px;
-                                font-weight: 500;
-                                padding: 8px;
-                                color: $text-color;
-                                border-bottom: 2px solid $border-color;
-                                border-top: 2px solid $border-color;
-                                text-align: left;
-                            }
-
-                            td {
-                                width: 20%;
-                            }
-                        }
-                    }
-
-                    tbody {
-                        tr {
-                            td {
-                                width: 15%;
-                                font-size: 13px;
-                                color: $text-color;
-                                padding: 8px;
-                                border-bottom: 1px solid $border-color;
-                                text-align: left;
-
-                                & p {
-                                    padding: 0.5rem;
-                                    color: #FFF;
-                                    border-radius: $radius;
-                                    width: 100%;
-                                    text-align: center;
-                                }
-
-                                &#comum p {
-                                    background-color: #6c757d;
-                                }
-
-                                &#comum p {
-                                    background-color: #6c757d;
-                                }
-
-                                &#administrador p {
-                                    background-color: $primary-color;
-                                }
-                            }
-                        }
-                    }
-
-                    .table-buttons {
-                        display: flex;
-                        gap: 10px;
+                    .list-users-table {
+                        flex-shrink: 0;
+                        border-collapse: collapse;
                         width: 100%;
 
-                        .btn {
-                            background-color: #f5f7fa;
-                            color: $text-color;
 
-                            &:hover {
-                                background-color: #dfdfe0;
+                        .table-id {
+                            width: 5%;
+                        }
+
+                        .table-permissao {
+                            width: 10%;
+                        }
+
+                        .table-buttons {
+                            width: 5%;
+                        }
+
+                        thead {
+                            border-bottom: 2px solid $border-color;
+
+                            tr {
+
+                                th {
+                                    font-size: 14px;
+                                    font-weight: 500;
+                                    padding: 8px;
+                                    color: $text-color;
+                                    border-bottom: 2px solid $border-color;
+                                    border-top: 2px solid $border-color;
+                                    text-align: left;
+                                }
+
+                                td {
+                                    width: 20%;
+
+                                    @media(max-width: $sm) {
+                                        width: 100%;
+                                    }
+                                }
                             }
+                        }
+
+                        tbody {
+                            tr {
+                                td {
+                                    width: 15%;
+                                    font-size: 13px;
+                                    color: $text-color;
+                                    padding: .25rem;
+                                    border-bottom: 1px solid $border-color;
+                                    text-align: left;
+
+                                    @media(max-width: $sm) {
+                                        width: 100%;
+                                    }
+
+                                    & p {
+                                        padding: 0.5rem;
+                                        color: #FFF;
+                                        border-radius: $radius;
+                                        width: 100%;
+                                        text-align: center;
+                                    }
+
+                                    &#comum p {
+                                        background-color: #6c757d;
+                                    }
+
+                                    &#comum p {
+                                        background-color: #6c757d;
+                                    }
+
+                                    &#administrador p {
+                                        background-color: $primary-color;
+                                    }
+                                }
+                            }
+                        }
+
+                        .table-buttons {
+                            display: flex;
+                            gap: 10px;
+                            width: 100%;
+
+                            .btn {
+                                background-color: #f5f7fa;
+                                color: $text-color;
+
+                                &:hover {
+                                    background-color: #dfdfe0;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                @media(max-width: $sm) {
+                    padding: .2rem 1rem;
+
+                    .list-users-table-content {
+                        padding: .5rem 0;
+                    }
+
+                    .list-users-count {
+                        font-size: .9rem;
+                    }
+
+                    .list-users-actions {
+                        align-items: initial;
+
+                        .btn {
+                            height: 40px;
+                            width: 40px;
+                            font-size: 0;
+                            padding: .5rem;
+
                         }
                     }
                 }

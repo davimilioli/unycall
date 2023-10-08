@@ -32,6 +32,7 @@ $lista = $sistema->consultarDadosUsuario();
 
         </main>
     </div>
+    <script src="../../assets/js/cliente.js"></script>
 </body>
 
 </html>

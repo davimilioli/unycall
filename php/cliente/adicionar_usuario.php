@@ -195,6 +195,7 @@ session_start();
             </div>
         </main>
     </div>
+    <script src="../../assets/js/cliente.js"></script>
     <!--    <script src="../../assets/js/cadastro-form.js"></script> -->
 </body>
 

@@ -35,6 +35,10 @@
             }
         }
 
+        .header-actions {
+            display: none;
+        }
+
     }
 
     .header-actions {
@@ -48,9 +52,35 @@
 
     @media(max-width: 767px) {
 
-        .menu,
-        .header-actions {
+        .menu {
             display: none;
+            position: fixed;
+            right: -213px;
+
+            &.active {
+                display: block;
+                flex-direction: column;
+                gap: 13px;
+                top: 80px;
+                right: 0;
+                width: 63%;
+                height: 100%;
+                background-color: #FFF;
+                padding: 1rem;
+                z-index: 9;
+
+                .menu-list {
+                    flex-direction: column;
+
+                    .menu-list-item {
+                        width: 100%;
+                    }
+                }
+
+                .header-actions {
+                    display: block;
+                }
+            }
         }
 
         .menu-mobile {
@@ -65,7 +95,7 @@
                 display: block;
                 width: 30px;
                 height: 3px;
-                background-color: $text-color;
+                background-color: $description-color;
                 margin: 5px 0;
                 transition: .3s;
             }
@@ -79,7 +109,43 @@
                 }
             }
         }
+
+        .header-actions {
+            display: none;
+        }
     }
 
+
+    &.cliente {
+
+        .aside-open {
+            display: none;
+
+            @media(max-width: $sm) {
+
+                display: block;
+                background: none;
+                border: none;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                img {
+                    transform: rotate(180deg);
+                }
+
+                &.active {
+                    background-color: #CCC;
+                    border-radius: $radius;
+
+                    img {
+                        transform: rotate(-0deg);
+                    }
+                }
+            }
+
+        }
+
+    }
 
 }
