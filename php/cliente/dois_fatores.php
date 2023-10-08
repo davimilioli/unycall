@@ -1,10 +1,12 @@
 <?php
+if (isset($_GET['type']) && $_GET['type'] == 'usuario') {
+    session_name('usuario');
+}
+
 session_start();
 
 require_once(__DIR__ . '/Sistema.php');
-
 $sistema = new Sistema($pdo);
-
 $pegarPergunta = $sistema->pegarPergunta();
 
 ?>
@@ -15,7 +17,7 @@ $pegarPergunta = $sistema->pegarPergunta();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
-    <title>Dois Fatores</title>
+    <title>Unycall - Dois Fatores</title>
     <link rel="stylesheet" href="../../assets/css/css/style.css">
 </head>
 
@@ -32,7 +34,7 @@ $pegarPergunta = $sistema->pegarPergunta();
                         <p class="loading-message"></p>
                     </div>
                 </div>
-                <form method="POST" action="./actions/dois_fatores_action.php?sessao=<?= $sessao ?>" class="form">
+                <form method="POST" action="./actions/dois_fatores_action.php?id=<?= $_GET['id'] ?>" class="form">
                     <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
                     <input type="hidden" name="slug" value="<?= $pegarPergunta['slug'] ?>">
                     <h2><?= $pegarPergunta['pergunta'] ?></h2>

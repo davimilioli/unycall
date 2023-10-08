@@ -1,13 +1,17 @@
 const btnExcluir = document.querySelectorAll('[data-id]');
-const modalExclude = document.querySelector('.modal-exclude')
+const modalExclude = document.querySelector('.modal-exclude');
+const permissao = document.querySelectorAll('[data-permissao]');
+const idAdm = document.querySelectorAll('[data-id-adm]');
 
 btnExcluir.forEach((btn) => {
-    const btnAttr = btn.getAttribute('data-id');
-    console.log(btnAttr)
+    const btnAttrId = btn.getAttribute('data-id');
+    const btnAttrPerm = btn.getAttribute('data-permissao');
+    const btnAttrAdm = btn.getAttribute('data-id-adm');
+
     btn.addEventListener('click', () => {
 
         modalExclude.classList.add('active');
-        modalExclude.setAttribute('id', btnAttr);
+        modalExclude.setAttribute('id', btnAttrId);
 
         const modalContent = `
             <div class="modal-content">
@@ -16,7 +20,7 @@ btnExcluir.forEach((btn) => {
                     <button type="button" class="closeModal">X</button>
                 </div>
                 <div class="buttons-modal">
-                    <a href="./actions/excluir_action.php?id=${btnAttr}" class="btn">Sim</a>
+                    <a href="./actions/excluir_action.php?id=${btnAttrAdm}&exclude=${btnAttrId}" class="btn">Sim</a>
                     <button class="btn secondary closeModal">Não</button>
                 </div>
             </div>

@@ -1,16 +1,17 @@
 <?php
-session_start();
+require_once(__DIR__ . '/Sistema.php');
+$sistema = new Sistema($pdo);
 
-if (isset($_SESSION['normal']) && isset($_SESSION['administrador'])) {
-    header('location: ../login/login.php?erroSistema=true');
-    exit;
+$verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
+if ($verificarPerm['usuario']['permissao'] == 'administrador') {
+    session_name('administrador');
+} else {
+    session_name('usuario');
 }
 
-require_once(__DIR__ . '/Sistema.php');
+session_start();
 
-$sistema = new Sistema($pdo);
 $lista = $sistema->consultarDadosUsuario();
-
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -19,7 +20,7 @@ $lista = $sistema->consultarDadosUsuario();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
-    <title>Administração</title>
+    <title>Unycall - Painel <?= $verificarPerm['usuario']['permissao'] == 'administrador' ? 'Administrativo' : 'do Cliente' ?></title>
     <link rel="stylesheet" href="../../assets/css/css/style.css">
 </head>
 

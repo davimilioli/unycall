@@ -1,11 +1,16 @@
 <?php
-session_start();
+require_once(__DIR__ . '/Sistema.php');
+$sistema = new Sistema($pdo);
 
-$sessao = $_SESSION['administrador'];
-if (!isset($sessao)) {
+$verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
+if ($verificarPerm['usuario']['permissao'] == 'administrador') {
+    session_name('administrador');
+} else {
     header('location: cliente.php?' . $_GET['id'] . 'erroPermissao=true');
     exit;
 }
+
+session_start();
 
 require_once(__DIR__ . '/Sistema.php');
 
@@ -20,7 +25,7 @@ require_once(__DIR__ . '../modulos/modulos.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
-    <title>Administração</title>
+    <title>Unycall - Lista de Usuários</title>
     <link rel="stylesheet" href="../../assets/css/css/style.css">
 </head>
 
@@ -41,7 +46,7 @@ require_once(__DIR__ . '../modulos/modulos.php');
                                 <img src="/assets/img/icons/list.svg">
                                 Download PDF
                             </a>
-                            <a href="adicionar_usuario.php" class="btn">
+                            <a href="adicionar_usuario.php?id=<?= $_GET['id'] ?>" class="btn">
                                 <img src="/assets/img/icons/plus.svg">
                                 Adicionar Usuario
                             </a>
@@ -73,10 +78,10 @@ require_once(__DIR__ . '../modulos/modulos.php');
                                         <p><?= $item->pegarPermissao() == null ? 'Não Possui' : ucfirst($item->pegarPermissao()) ?></p>
                                     </td>
                                     <td class="table-buttons">
-                                        <a class="btn" title="editar <?= $item->pegarNome() ?>" href="editar_usuario.php?id=<?= $item->pegarId() ?>">
+                                        <a class="btn" title="editar <?= $item->pegarNome() ?>" href="editar_usuario.php?id=<?= $_GET['id'] ?>&edit=<?= $item->pegarId() ?>">
                                             <img src="/assets/img/icons/edit.svg">
                                         </a>
-                                        <a class="btn secondary" title="excluir <?= $item->pegarNome() ?>" id="excluirUsuario" data-id="<?= $item->pegarId() ?>">
+                                        <a class="btn secondary" title="excluir <?= $item->pegarNome() ?>" id="excluirUsuario" data-id-adm="<?= $_GET['id'] ?>" data-permissao="<?= $verificarPerm['usuario']['permissao'] ?>" data-id="<?= $item->pegarId() ?>">
                                             <img src="/assets/img/icons/trash.svg">
                                         </a>
                                     </td>

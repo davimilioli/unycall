@@ -1,17 +1,18 @@
 <?php
-session_start();
+require_once(__DIR__ . '/Sistema.php');
+$sistema = new Sistema($pdo);
 
-$sessao = $_SESSION['administrador'];
-if (!isset($sessao)) {
+$verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
+if ($verificarPerm['usuario']['permissao'] == 'administrador') {
+    session_name('administrador');
+} else {
     header('location: cliente.php?' . $_GET['id'] . 'erroPermissao=true');
     exit;
 }
 
-require_once(__DIR__ . '/Sistema.php');
+session_start();
 
-$sistema = new Sistema($pdo);
-
-$id = filter_input(INPUT_GET, 'id');
+$id = filter_input(INPUT_GET, 'edit');
 
 if ($id) {
     $dados = $sistema->procurarIdUsuario($id);
@@ -28,7 +29,7 @@ if ($id) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
-    <title>Administração</title>
+    <title>Unycall - Editor de Usuário</title>
     <link rel="stylesheet" href="../../assets/css/css/style.css">
 </head>
 
@@ -50,7 +51,7 @@ if ($id) {
                         <p class="loading-message">aaaa</p>
                     </div>
                 </div>
-                <form method="POST" action="./actions/editar_action.php" class="form">
+                <form method="POST" action="./actions/editar_action.php?id=<?= $_GET['id'] ?>" class="form">
 
                     <input type="hidden" name="id" value="<?= $usuario['id'] ?>">
                     <input type="hidden" name="nome" value="<?= $usuario['nome'] ?>">
@@ -151,7 +152,7 @@ if ($id) {
                     </div>
                     <div class="form-buttons">
                         <input type="submit" value="Atualizar" class="btn" class="atualizarDados">
-                        <a class="btn secondary" id="excluirUsuario" data-id="<?= $usuario['id'] ?>">Excluir</a>
+                        <a class="btn secondary" id="excluirUsuario" data-id-adm="<?= $_GET['id'] ?>" data-id="<?= $usuario['id'] ?>">Excluir</a>
                     </div>
                 </form>
                 <div class="modal-exclude"></div>

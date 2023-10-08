@@ -1,15 +1,16 @@
 <?php
-session_start();
+require_once(__DIR__ . '/Sistema.php');
+$sistema = new Sistema($pdo);
 
-$sessao = $_SESSION['administrador'];
-if (!isset($sessao)) {
+$verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
+if ($verificarPerm['usuario']['permissao'] == 'administrador') {
+    session_name('administrador');
+} else {
     header('location: cliente.php?' . $_GET['id'] . 'erroPermissao=true');
     exit;
 }
 
-require_once(__DIR__ . '/Sistema.php');
-
-$sistema = new Sistema($pdo);
+session_start();
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +20,7 @@ $sistema = new Sistema($pdo);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
-    <title>Administração</title>
+    <title>Unycall - Adicionar Usuário</title>
     <link rel="stylesheet" href="../../assets/css/css/style.css">
 </head>
 

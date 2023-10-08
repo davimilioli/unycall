@@ -3,6 +3,20 @@
 require_once(__DIR__ . '../../Sistema.php');
 $sistema = new Sistema($pdo);
 
+$verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
+if ($verificarPerm['usuario']['permissao'] == 'administrador') {
+    session_name('administrador');
+} else {
+    header('location: cliente.php?' . $_GET['id'] . 'erroPermissao=true');
+    exit;
+}
+
+session_start();
+
+
+require_once(__DIR__ . '../../Sistema.php');
+$sistema = new Sistema($pdo);
+
 $id = filter_input(INPUT_POST, 'id');
 echo '<hr>';
 echo "ID: $id";
@@ -143,9 +157,9 @@ if ($id && $nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $c
         );
         $sistema->atualizarDadosEndereco($dadosEndereco, $usuarioSql);
     }
-    header('location: ../lista_usuarios.php');
+    header('location: ../lista_usuarios.php?id=' . $_GET['id']);
     exit;
 } else {
-    header('location: ../editar_usuario.php?id=' . $id);
+    header('location: ../editar_usuario.php?id=' . $_GET['id']);
     exit;
 }
