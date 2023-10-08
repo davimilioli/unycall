@@ -141,6 +141,94 @@
 
         }
 
+        .menu-profile {
+            position: relative;
+
+            .menu-profile-button {
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+
+            .menu-profile-content {
+                display: none;
+
+                &.active {
+                    display: block;
+                    background-color: #FFF;
+                    box-shadow: 0 0 9px -5px rgba(0, 0, 0, .5);
+                    position: absolute;
+                    top: 100%;
+                    right: 20px;
+                    width: 282px;
+                    overflow-x: auto;
+                    border-radius: $radius;
+
+                    .menu-profile-header {
+                        padding: 1rem;
+                        border-bottom: 1px solid #dad9da;
+
+                        .menu-profile-header-name {
+                            font-weight: 500;
+                            font-size: 1rem;
+                        }
+
+                        .menu-profile-header-email {
+                            font-weight: 400;
+                            font-size: .9rem;
+                            color: $description-color;
+                        }
+                    }
+
+                    .menu-profile-body {
+                        .menu-profile-body-list {
+                            padding: .5rem;
+
+                            .menu-profile-body-title {
+                                width: 100%;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                padding: .35rem .35rem .35rem 1rem;
+                                border-radius: $radius;
+                                color: $description-color;
+                                transition: .3s;
+                                cursor: pointer;
+
+                                a {
+                                    text-decoration: none;
+                                    color: #4b5563;
+                                }
+
+                                .menu-profile-body-titles {
+                                    display: flex;
+                                    gap: 16px;
+                                    align-items: center;
+                                    font-size: 0.9rem;
+                                }
+
+                                &:hover {
+                                    background-color: #f0eded;
+                                    transition: .3s;
+                                }
+
+                            }
+                        }
+                    }
+
+                    .menu-profile-footer {
+                        padding: 1rem;
+                        border-top: 1px solid #dad9da;
+
+                        .btn {
+                            display: flex;
+                            justify-content: center;
+                        }
+                    }
+                }
+            }
+        }
+
     }
 
 }
