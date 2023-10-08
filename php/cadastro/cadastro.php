@@ -7,9 +7,16 @@
     <link rel="shortcut icon" href="../../assets/img/favicon.ico" type="image/x-icon">
     <title>Unycall - Cadastro</title>
     <link rel="stylesheet" href="../../assets/css/css/style.css">
+    <style>
+        @media (min-width: 1020px) {
+            body {
+                overflow: hidden;
+            }
+        }
+    </style>
 </head>
 
-<body style="overflow: hidden;">
+<body>
     <header class="header">
         <div class="logo">
             <a href="/index.html"><img src="/assets/img/logo.png" alt="Logo UnyCall"></a>
