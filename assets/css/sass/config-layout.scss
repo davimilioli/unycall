@@ -53,6 +53,38 @@ h2 {
     visibility: visible;
 }
 
+.list-content {
+    margin-top: .8rem;
+
+    li {
+        font-weight: 400;
+        margin-top: .5rem;
+        display: flex;
+        gap: 10px;
+        position: relative;
+        align-items: center;
+
+        a {
+            text-decoration: none;
+            color: $description-color;
+            transition: .3s;
+
+            &:hover {
+                color: $primary-color;
+                transition: .3s;
+            }
+        }
+
+        &.before::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            display: block;
+            background-image: url('../../img/icons/check.svg');
+        }
+    }
+}
+
 @media screen and (max-width: $xxl) {
     .container {
         max-width: $xl;

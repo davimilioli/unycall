@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <title>Inicial</title>
+    <link rel="stylesheet" href="/assets/css/css/style.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="/index.html"><img src="/assets/img/logo.png" alt="Logo UnyCall"></a>
+        </div>
+        <nav class="menu">
+            <ul class="menu-list">
+                <li class="menu-list-item"><a href="#">Sobre</a></li>
+                <li class="menu-list-item"><a href="#">Serviços</a></li>
+                <li class="menu-list-item"><a href="#">Contato</a></li>
+            </ul>
+            <div class="header-actions">
+                <a class="btn secondary" href="/php/cadastro/cadastro.php">Cadastrar-se</a>
+                <a class="btn" href="/php/login/login.php">Login</a>
+            </div>
+        </nav>
+        <button type="button" class="menu-mobile">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
+    <main class="page-contato">
+        <div class="cards">
+            <div class="cards-content container">
+                <div class="cards-item">
+                    <div class="cards-item-header">
+                        <h3>Escritório no Brasil</h3>
+                    </div>
+                    <div class="cards-item-body">
+                        <ul class="list-content">
+                            <li>
+                                <a href="tel:+5521999999999">(21) 99999-9999</a>
+                            </li>
+                            <li>
+                                <a href="tel:+5521999999999">(21) 99999-9999</a>
+                            </li>
+                            <li>
+                                <a href="tel:+5521999999999">Rua Oswaldo Santos, 277 - Rio de Janeiro, Rj -
+                                    21444-333</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="cards-item">
+                    <div class="cards-item-header">
+                        <h3>Escritório no Canadá</h3>
+                    </div>
+                    <div class="cards-item-body">
+                        <div class="cards-item-body">
+                            <ul class="list-content">
+                                <li>
+                                    <a href="tel:+5521999999999">(21) 99999-9999</a>
+                                </li>
+                                <li>
+                                    <a href="tel:+5521999999999">(21) 99999-9999</a>
+                                </li>
+                                <li>
+                                    <a href="tel:+5521999999999">Rua Oswaldo Santos, 277 - Rio de Janeiro, Rj -
+                                        21444-333</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="cards-item">
+                    <div class="cards-item-header">
+                        <h3>Nossas Redes Socias</h3>
+                    </div>
+                    <div class="cards-item-body">
+                        <div class="cards-item-body">
+                            <ul class="list-content">
+                                <li>
+                                    <a href="tel:+5521999999999">(21) 99999-9999</a>
+                                </li>
+                                <li>
+                                    <a href="tel:+5521999999999">(21) 99999-9999</a>
+                                </li>
+                                <li>
+                                    <a href="tel:+5521999999999">Rua Oswaldo Santos, 277 - Rio de Janeiro, Rj -
+                                        21444-333</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <section class="page-contato-form container">
+            <div class="form-content">
+                <div class="loading hide">
+                    <div class="loading-content">
+                        <div class="spinner-one">
+                            <div class="spinner-two"></div>
+                        </div>
+                        <p class="loading-message"></p>
+                    </div>
+                </div>
+                <form method="POST" class="form">
+                    <div class="form-category">
+                        <h2>Preencha os campos abaixo</h2>
+                        <p>Preencha o formulário abaixo que um de nossos especialistas entrará em contato com você.</p>
+                        <div class="form-group">
+                            <label for="nome">Nome <span>*</span></label>
+                            <input type="text" name="nome" id="nome" minlength="15" maxlength="80" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="cpf">CPF <span>*</span></label>
+                            <input type="text" name="cpf" id="cpf" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="text" name="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="mensagem" id="mensagem" cols="30" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-buttons">
+                        <p>Ao enviar o formulario, aceito a <a href="#">Política de Privacidade</a></p>
+                        <div class="form-actions">
+                            <input type="reset" value="Limpar" id="limpar" class="btn secondary">
+                            <input type="submit" value="Cadastrar" class="btn" id="cadastrar">
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+        </section>
+    </main>
+    <footer class="footer">
+        <div class="footer-content container">
+            <div class="footer-item">
+                <div class="logo">
+                    <a href="/index.php"><img src="/assets/img/logo.png" alt="Logo UnyCall"></a>
+                </div>
+                <p>
+                </p>
+            </div>
+            <div class="footer-item">
+                <h4>Contato</h4>
+                <ul>
+                    <li>Fale Conosco</li>
+                    <li>Trabale Conosco</li>
+                    <li>Cadastre-se</li>
+                </ul>
+            </div>
+            <div class="footer-item">
+                <h4>Contato</h4>
+                <ul>
+                    <li>Fale Conosco</li>
+                    <li>Trabale Conosco</li>
+                    <li>Cadastre-se</li>
+                </ul>
+            </div>
+            <div class="footer-item">
+                <h4>Contato</h4>
+                <ul>
+                    <li>Fale Conosco</li>
+                    <li>Trabale Conosco</li>
+                    <li>Cadastre-se</li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="/assets/js/home.js"></script>
+</body>
+
+</html>

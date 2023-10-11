@@ -5,33 +5,11 @@
         margin-top: 3rem;
     }
 
-    .list-content {
-        margin-top: .8rem;
-
-        li {
-            font-weight: 400;
-            margin-top: .5rem;
-            display: flex;
-            gap: 10px;
-            position: relative;
-            align-items: center;
-
-            &::before {
-                content: '';
-                width: 20px;
-                height: 20px;
-                display: block;
-                background-image: url('../../img/icons/check.svg');
-            }
-        }
-    }
-
     @import './components/anuncio.scss';
     @import './components/planos.scss';
     @import './components/world.scss';
     @import './components/solutions-company.scss';
-    @import './components/feedback.scss';
+    @import './components/cards.scss';
     @import './components/security.scss';
     @import './components/join.scss';
-
 }
