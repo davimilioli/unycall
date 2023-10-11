@@ -2,6 +2,72 @@
     margin-top: 5rem;
     @import './components/cards.scss';
 
+    .contato-header {
+        background-color: #fafbff;
+
+        .contato-header-content {
+            @include content-flex;
+            justify-content: space-between;
+
+            .contato-header-description {
+                max-width: 100%;
+                width: 50%;
+                height: 100%;
+
+
+                h1 {
+                    margin-bottom: 2rem;
+                }
+
+                p {
+                    color: $description-color;
+                }
+
+                @media (max-width: $sm) {
+                    width: 100%;
+                    margin-bottom: 2rem;
+                }
+            }
+
+            .contato-header-image {
+                img {
+                    max-width: 100%;
+                    width: 70%;
+                    display: flex;
+                    justify-content: center;
+                    margin: auto;
+                }
+            }
+
+            @media (max-width: $sm) {
+                flex-wrap: wrap;
+            }
+        }
+    }
+
+    .cards {
+        .cards-content {
+            .cards-item {
+                min-height: 250px;
+                max-height: 300px;
+
+                .cards-item-body {
+                    .list-content {
+                        li a {
+                            display: flex;
+                            gap: 10px;
+                        }
+
+                        &.contact {
+                            display: flex;
+                            gap: 10px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     .page-contato-form {
         .form-content {
             width: 45rem;
@@ -27,7 +93,31 @@
                     p {
                         font-size: 14px;
                     }
+
+                    @media (max-width: $sm) {
+                        flex-direction: column;
+                        margin-top: 0;
+
+                        p {
+                            text-align: center;
+                            margin: 1rem 0;
+                        }
+
+                        .form-actions {
+                            width: 100%;
+
+                            .btn {
+                                width: 100%;
+                            }
+                        }
+
+                    }
                 }
+            }
+
+            @media (max-width: $sm) {
+                width: 100%;
+                padding: 0;
             }
         }
     }

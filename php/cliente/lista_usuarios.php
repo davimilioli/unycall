@@ -96,6 +96,7 @@ require_once(__DIR__ . '../modulos/modulos.php');
             </section>
         </main>
     </div>
+    <script src="../../assets/js/header.js"></script>
     <script src="../../assets/js/cliente.js"></script>
     <script src="../../assets/js/lista-usuarios.js"></script>
 </body>
