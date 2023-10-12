@@ -17,8 +17,6 @@ $usuario = $sistema->procurarIdUsuario($_GET['id']);
     <nav class="menu">
         <ul class="menu-list">
             <li class="menu-list-item"><a href="#">Inicial</a></li>
-            <li class="menu-list-item"><a href="#">Sobre</a></li>
-            <li class="menu-list-item"><a href="#">Serviços</a></li>
             <li class="menu-list-item"><a href="#">Contato</a></li>
         </ul>
     </nav>

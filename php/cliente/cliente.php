@@ -29,7 +29,16 @@ $lista = $sistema->consultarDadosUsuario();
     <div class="page-cliente">
         <?php require_once(__DIR__ . '/layout/includes/aside.php'); ?>
         <main class="page-cliente-main">
+            <div class="page-cliente-main-content">
+                <div class="page-cliente-main-header">
+                    <h2>Olá, Davi Jacuru Milioli</h2>
+                </div>
+                <div class="page-cliente-main-header">
+                    
+                </div>
 
+
+            </div>
         </main>
     </div>
     <script src="../../assets/js/header.js"></script>

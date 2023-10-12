@@ -109,6 +109,20 @@
         }
     }
 
+    .page-cliente-main {
+        padding: 1rem;
+        width: 100%;
+
+        .page-cliente-main-content {
+            .page-cliente-main-header {
+                h2 {
+                    font-size: 1.2rem;
+                    color: $text-color;
+                }
+            }
+        }
+    }
+
     .category-title {
         display: flex;
         justify-content: space-between;
