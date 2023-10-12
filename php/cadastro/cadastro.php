@@ -186,7 +186,7 @@
                         <?php if (isset($_GET['msgSistema'])) :  ?>
                             <div class="message_error">
                                 <p>
-                                    <img src="/assets/img/icons/danger.svg">E-mail já cadastrado
+                                    <img src="/assets/img/icons/danger.svg">CPF já cadastrado
                                 </p>
                             </div>
                         <?php endif ?>

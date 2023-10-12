@@ -147,7 +147,7 @@ class Usuario
 interface UsuarioSqlInterface
 {
     public function criarUsuario(Usuario $usuario);
-    public function consultarEmail($email);
+    public function consultarCpf($cpf);
     public function consultarDadosLogin($login, $senha, $tipoLogin);
     public function atualizarUsuario(Usuario $usuario);
     public function consultarId($id);

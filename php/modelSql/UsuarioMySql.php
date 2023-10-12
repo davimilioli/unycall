@@ -33,13 +33,14 @@ class UsuarioMySql implements UsuarioSqlInterface
         return $usuario;
     }
 
-    // CONSULTAR EMAIL
-    public function consultarEmail($email)
+    // CONSULTAR CPF
+    public function consultarCpf($cpf)
     {
-        $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE email = :email");
-        $sql->bindValue(':email', $email);
-        $sql->execute();
+        $cpfFormatado = str_replace(['.', '-'], '', $cpf);
 
+        $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE cpf = :cpf");
+        $sql->bindValue(':cpf', $cpfFormatado);
+        $sql->execute();
 
         if ($sql->rowCount() > 0) {
             $data = $sql->fetch(PDO::FETCH_ASSOC);

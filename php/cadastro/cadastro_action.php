@@ -67,7 +67,7 @@ echo "Complemento: " . $complemento . "<br>"; */
 if ($nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $celular && $telefone && $login && $senha && $cep && $logradouro && $numero && $bairro && $cidade && $estado) {
     $referente = $_SERVER['HTTP_REFERER'];
 
-    if ($usuarioSql->consultarEmail($email) === false) {
+    if ($usuarioSql->consultarCpf($cpf) === false) {
         $dados = new Usuario();
         $dados->setarNome($nome);
         $dados->setarNascimento($nascimento);
@@ -98,11 +98,9 @@ if ($nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $celular 
             $nomeArquivo = $caminho['filename'];
 
             if ($nomeArquivo == 'adicionar_usuario') {
-                echo 'Arquivo: ' . $nomeArquivo;
                 header('location: ../../cliente/lista_usuarios.php');
                 exit;
             } elseif ($nomeArquivo == 'cadastro') {
-                echo 'Arquivo: ' .  $nomeArquivo;
                 header('location: ../../login/login.php');
                 exit;
             }
@@ -117,7 +115,7 @@ if ($nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $celular 
                 header('location: cliente/adicionar_usuario.php?erro=true');
                 exit;
             } else {
-                header('location: cadastro.php?msgSistema=email');
+                header('location: cadastro.php?msgSistema=cpf');
                 exit;
             }
         }
