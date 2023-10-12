@@ -1,0 +1,41 @@
+.page-services {
+    margin-top: 5rem;
+
+    .cards.block-1 {
+        background-color: #fafbff;
+
+        .cards-content {
+            flex-wrap: wrap;
+
+            .cards-item {
+                width: 30%;
+                height: 100%;
+
+                .cards-item-footer {
+                    justify-content: end
+                }
+            }
+
+        }
+
+    }
+
+    .cards.block-2 {
+
+        .cards-content {
+            flex-wrap: wrap;
+
+            .cards-item {
+                width: 350px;
+                min-height: 480px;
+                max-height: 480px;
+                background-color: #FFF;
+
+            }
+
+        }
+
+    }
+}
+
+@import './components/cards.scss';
