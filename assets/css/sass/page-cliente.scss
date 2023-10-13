@@ -156,6 +156,11 @@
                     justify-content: space-between;
                     padding: 1rem 0;
 
+                    @media (max-width: $sm) {
+                        flex-direction: column;
+                        gap: 10px;
+                    }
+
                     .list-users-actions {
                         display: flex;
                         align-items: center;
@@ -163,6 +168,52 @@
 
                         .btn.pdf {
                             background-color: #6c757d;
+                        }
+
+                        .form-content {
+                            position: relative;
+                            padding: 0;
+
+                            .form {
+                                .form-group {
+                                    #buscarNome {
+                                        height: 46px;
+                                    }
+                                }
+                            }
+                        }
+
+                        .resultado-busca {
+                            position: absolute;
+                            bottom: -150px;
+                            width: 100%;
+                            padding: .5rem;
+
+                            .resultado-busca-content {
+                                background-color: #FFF;
+                                box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+                                height: 150px;
+                                overflow: scroll;
+
+                                .resultado-busca-lista {
+                                    margin: 1rem 0;
+
+                                    a {
+                                        text-decoration: none;
+                                        width: 100%;
+                                        padding: .5rem;
+                                        transition: .3s;
+                                        color: #000;
+
+                                        &:hover {
+                                            background-color: #f0eded;
+                                            transition: .3s;
+                                        }
+                                    }
+                                }
+
+
+                            }
                         }
                     }
                 }

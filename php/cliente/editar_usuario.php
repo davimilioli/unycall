@@ -51,9 +51,7 @@ if ($id) {
                         <p class="loading-message">aaaa</p>
                     </div>
                 </div>
-                <form method="POST" action="./actions/editar_action.php?id=<?= $_GET['id'] ?>" class="form">
-
-                    <input type="hidden" name="id" value="<?= $usuario['id'] ?>">
+                <form method="POST" action="./actions/editar_action.php?id=<?= $_GET['id'] ?>" class="form" <input type="hidden" name="id" value="<?= $usuario['id'] ?>">
                     <input type="hidden" name="nome" value="<?= $usuario['nome'] ?>">
                     <input type="hidden" name="nascimento" value="<?= $usuario['nascimento'] ?>">
                     <input type="hidden" name="cpf" value="<?= $usuario['cpf'] ?>">

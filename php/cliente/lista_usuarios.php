@@ -42,9 +42,20 @@ require_once(__DIR__ . '../modulos/modulos.php');
                     <div class="list-users-title">
                         <h2 class="list-users-count">Total de registros (<?= count($lista) ?>)</h2>
                         <div class="list-users-actions">
+                            <div class="form-content">
+                                <form action="" class="form">
+                                    <div class="form-group">
+                                        <input type="text" name="buscarNome" id="buscarNome" placeholder="Digite o nome de usuário">
+                                    </div>
+                                </form>
+                                <div class="resultado-busca">
+                                    <ul class="resultado-busca-content">
+                                    </ul>
+                                </div>
+                            </div>
                             <a href="gerar_pdf.php" target="_blank" class="btn pdf">
                                 <img src="/assets/img/icons/list.svg">
-                                Download PDF
+                                Importar Lista
                             </a>
                             <a href="adicionar_usuario.php?id=<?= $_GET['id'] ?>" class="btn">
                                 <img src="/assets/img/icons/plus.svg">
@@ -102,3 +113,7 @@ require_once(__DIR__ . '../modulos/modulos.php');
 </body>
 
 </html>
+
+<style>
+
+</style>

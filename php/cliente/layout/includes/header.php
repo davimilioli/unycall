@@ -1,8 +1,5 @@
 <?php
-require_once(__DIR__ . '../../../Sistema.php');
-$sistema = new Sistema($pdo);
-
-$usuario = $sistema->procurarIdUsuario($_GET['id']);
+$dados = $sistema->procurarIdUsuario($_GET['id']);
 ?>
 
 <header class="header cliente">
@@ -31,8 +28,8 @@ $usuario = $sistema->procurarIdUsuario($_GET['id']);
         </button>
         <div class="menu-profile-content">
             <div class="menu-profile-header">
-                <div class="menu-profile-header-name"><?= $usuario['usuario']['nome'] ?></div>
-                <div class="menu-profile-header-email"><?= strlen($usuario['usuario']['email']) > 30 ? substr($usuario['usuario']['email'], 0, 30) . '...' : $usuario['usuario']['email'] ?></div>
+                <div class="menu-profile-header-name"><?= $dados['usuario']['nome'] ?></div>
+                <div class="menu-profile-header-email"><?= strlen($dados['usuario']['email']) > 30 ? substr($dados['usuario']['email'], 0, 30) . '...' : $dados['usuario']['email'] ?></div>
             </div>
             <div class="menu-profile-body">
                 <ul class="menu-profile-body-list">
