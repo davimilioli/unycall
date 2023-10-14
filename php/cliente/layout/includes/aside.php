@@ -4,10 +4,10 @@
             <div class="aside-category">
                 <div class="aside-category-title">
                     <span class="aside-category-titles">
-                        <img src="./assets/img/icons/user.svg">
+                        <img src="/assets/img/icons/user.svg">
                         Usuarios
                     </span>
-                    <img class="icon-arrow" src="./assets/img/icons/arrow-drop.svg">
+                    <img class="icon-arrow" src="/assets/img/icons/arrow-drop.svg">
                 </div>
                 <nav class="aside-nav">
                     <ul class="aside-list">

@@ -4,15 +4,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="./assets/css/css/style.css">
+    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/assets/css/css/style.css">
     <title>Unycall - Login</title>
 </head>
 
 <body style="overflow: hidden;">
     <header class="header">
         <div class="logo">
-            <a href="/index.html"><img src="./assets/img/logo.png" alt="Logo UnyCall"></a>
+            <a href="/index.html"><img src="/assets/img/logo.png" alt="Logo UnyCall"></a>
         </div>
         <nav class="menu">
             <ul class="menu-list">
@@ -72,25 +72,25 @@
                         <?php if (isset($_GET['erroLogin'])) :  ?>
                             <div class="message_error">
                                 <p>
-                                    <img src="./assets/img/icons/danger.svg">Usuario ou senha incorretos
+                                    <img src="/assets/img/icons/danger.svg">Usuario ou senha incorretos
                                 </p>
                             </div>
                         <?php elseif (isset($_GET['erroSistema'])) :  ?>
                             <div class="message_error">
                                 <p>
-                                    <img src="./assets/img/icons/danger.svg">É necessário logar
+                                    <img src="/assets/img/icons/danger.svg">É necessário logar
                                 </p>
                             </div>
                         <?php elseif (isset($_GET['erroPermissao'])) :  ?>
                             <div class="message_error">
                                 <p>
-                                    <img src="./assets/img/icons/danger.svg">Você não tem permissão
+                                    <img src="/assets/img/icons/danger.svg">Você não tem permissão
                                 </p>
                             </div>
                         <?php elseif (isset($_GET['avisoAdm'])) :  ?>
                             <div class="message_error">
                                 <p>
-                                    <img src="./assets/img/icons/danger.svg">Você precisa entrar como administrador
+                                    <img src="/assets/img/icons/danger.svg">Você precisa entrar como administrador
                                 </p>
                             </div>
                         <?php endif ?>
@@ -106,7 +106,7 @@
         </div>
         </div>
     </section>
-    <script src="./assets/js/login-form.js"></script>
+    <script src="/assets/js/login-form.js"></script>
 </body>
 
 </html>
