@@ -23,13 +23,3 @@
         <?php endif ?>
     </div>
 </aside>
-
-<script>
-    const asideTitle = document.querySelector('.aside-category-title');
-    const asideNav = document.querySelector('.aside-nav');
-    const iconArrow = document.querySelector('.icon-arrow');
-    asideTitle.addEventListener('click', () => {
-        asideNav.classList.toggle('active');
-        iconArrow.classList.toggle('active');
-    })
-</script>
