@@ -13,7 +13,7 @@ $dados = $sistema->procurarIdUsuario($_GET['id']);
     </div>
     <nav class="menu">
         <ul class="menu-list">
-            <li class="menu-list-item"><a href="#">Inicial</a></li>
+            <li class="menu-list-item"><a href="/php/cliente/cliente.php?id=<?= $_GET['id'] ?>">Inicial</a></li>
             <li class="menu-list-item"><a href="#">Contato</a></li>
         </ul>
     </nav>

@@ -110,14 +110,60 @@
     }
 
     .page-cliente-main {
-        padding: 1rem;
         width: 100%;
 
         .page-cliente-main-content {
+
+            &.container {
+                padding: 1rem;
+            }
+
             .page-cliente-main-header {
+                background-color: #f5f7fa;
+                padding: 2rem 1rem;
+                border-radius: $radius;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+
                 h2 {
                     font-size: 1.2rem;
                     color: $text-color;
+                }
+            }
+
+            .page-cliente-main-body {
+                margin-top: 1rem;
+                @include content-grid;
+                gap: 20px;
+
+                .tab {
+                    width: 100%;
+                    background-color: #FFF;
+                    border-radius: $radius;
+                    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+
+                    .tab-header {
+                        padding: 1rem;
+                        border-bottom: 1px solid $border-color;
+                    }
+
+                    .tab-content {
+                        display: flex;
+                        align-items: center;
+                        padding: 1rem;
+                        justify-content: space-between;
+
+
+                        .tab-content-description {
+                            display: flex;
+                            align-items: center;
+                            gap: 10px;
+
+                            p {
+                                color: $description-color;
+                            }
+                        }
+
+                    }
                 }
             }
         }

@@ -29,14 +29,42 @@ $lista = $sistema->consultarDadosUsuario();
     <div class="page-cliente">
         <?php require_once(__DIR__ . '/layout/includes/aside.php'); ?>
         <main class="page-cliente-main">
-            <div class="page-cliente-main-content">
+            <div class="page-cliente-main-content container">
                 <div class="page-cliente-main-header">
                     <h2>Olá, Davi Jacuru Milioli</h2>
                 </div>
-                <div class="page-cliente-main-header">
-                    
+                <div class="page-cliente-main-body">
+                    <div class="tab">
+                        <div class="tab-header">
+                            <h3>Gerencie seus planos</h3>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-content-description">
+                                <img src="/assets/img/icons/dynamic-form.svg">
+                                <div>
+                                    <h4>Plano Premium</h4>
+                                    <p>Expira em 2024/02/10</p>
+                                </div>
+                            </div>
+                            <a href="#" class="btn">Gerenciar</a>
+                        </div>
+                    </div>
+                    <div class="tab">
+                        <div class="tab-header">
+                            <h3>Faturas</h3>
+                        </div>
+                        <div class="tab-content">
+                            <div class="tab-content-description">
+                                <img src="/assets/img/icons/dynamic-form.svg">
+                                <div>
+                                    <h4>Fatura de Outubro</h4>
+                                    <p>Expira em 2024/02/10</p>
+                                </div>
+                            </div>
+                            <a href="#" class="btn">Gerenciar</a>
+                        </div>
+                    </div>
                 </div>
-
 
             </div>
         </main>
