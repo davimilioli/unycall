@@ -461,7 +461,7 @@ btnCadastrar.addEventListener('click', (e) => {
             msgErro.classList.add('message_error');
             const erroContent = `
             <p>
-              <img src="/assets/img/icons/danger.svg">Preencha os campos
+              <img src="./assets/img/icons/danger.svg">Preencha os campos
             </p>
           `;
             msgErro.innerHTML = erroContent;

@@ -24,9 +24,9 @@ require_once(__DIR__ . '../modulos/modulos.php');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
     <title>Unycall - Lista de Usuários</title>
-    <link rel="stylesheet" href="/assets/css/css/style.css">
+    <link rel="stylesheet" href="./assets/css/css/style.css">
 </head>
 
 <body>
@@ -54,11 +54,11 @@ require_once(__DIR__ . '../modulos/modulos.php');
                                 </div>
                             </div>
                             <a href="gerar_pdf.php" target="_blank" class="btn pdf">
-                                <img src="/assets/img/icons/list.svg">
+                                <img src="./assets/img/icons/list.svg">
                                 Importar Lista
                             </a>
                             <a href="adicionar_usuario.php?id=<?= $_GET['id'] ?>" class="btn">
-                                <img src="/assets/img/icons/plus.svg">
+                                <img src="./assets/img/icons/plus.svg">
                                 Adicionar Usuario
                             </a>
                         </div>
@@ -91,10 +91,10 @@ require_once(__DIR__ . '../modulos/modulos.php');
                                         </td>
                                         <td class="table-buttons">
                                             <a class="btn" title="editar <?= $item->pegarNome() ?>" href="editar_usuario.php?id=<?= $_GET['id'] ?>&edit=<?= $item->pegarId() ?>">
-                                                <img src="/assets/img/icons/edit.svg">
+                                                <img src="./assets/img/icons/edit.svg">
                                             </a>
                                             <a class="btn secondary" title="excluir <?= $item->pegarNome() ?>" id="excluirUsuario" data-id-adm="<?= $_GET['id'] ?>" data-permissao="<?= $verificarPerm['usuario']['permissao'] ?>" data-id="<?= $item->pegarId() ?>">
-                                                <img src="/assets/img/icons/trash.svg">
+                                                <img src="./assets/img/icons/trash.svg">
                                             </a>
                                         </td>
                                     </tr>
@@ -107,8 +107,8 @@ require_once(__DIR__ . '../modulos/modulos.php');
             </section>
         </main>
     </div>
-    <script src="/assets/js/header.js"></script>
-    <script src="/assets/js/cliente.js"></script>
+    <script src="./assets/js/header.js"></script>
+    <script src="./assets/js/cliente.js"></script>
     <script src="/assets/js/lista-usuarios.js"></script>
 </body>
 

@@ -16,9 +16,9 @@ $pegarPergunta = $sistema->pegarPergunta();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="./assets/img/favicon.ico" type="image/x-icon">
     <title>Unycall - Dois Fatores</title>
-    <link rel="stylesheet" href="/assets/css/css/style.css">
+    <link rel="stylesheet" href="./assets/css/css/style.css">
 </head>
 
 <body style="overflow: hidden;">
@@ -51,7 +51,7 @@ $pegarPergunta = $sistema->pegarPergunta();
                     <?php if (isset($_GET['erro'])) :  ?>
                         <div class="message_error">
                             <p>
-                                <img src="/assets/img/icons/danger.svg">Resposta errada, tente novamente!
+                                <img src="./assets/img/icons/danger.svg">Resposta errada, tente novamente!
                             </p>
                         </div>
                     <?php endif ?>
