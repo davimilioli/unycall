@@ -2,7 +2,8 @@
 session_name('usuario');
 session_start();
 
-require_once(__DIR__ . '../../Sistema.php');
+require_once('../../config/config_db.php');
+require '../../autoload.php';
 $sistema = new Sistema($pdo);
 
 $id = filter_input(INPUT_POST, 'id');

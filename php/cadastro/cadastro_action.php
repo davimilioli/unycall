@@ -1,7 +1,7 @@
 <?php
-require_once(__DIR__ . '/../config/config_db.php');
-require_once(__DIR__ . '/../modelSql/UsuarioMySql.php');
-require_once(__DIR__ . '/../modelSql/EnderecoMySql.php');
+require_once('../config/config_db.php');
+require_once('../autoload.php');
+$sistema = new Sistema($pdo);
 $usuarioSql = new UsuarioMySql($pdo);
 $enderecoSql = new EnderecoMySql($pdo);
 $referente = '';
@@ -98,10 +98,10 @@ if ($nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $celular 
             $nomeArquivo = $caminho['filename'];
 
             if ($nomeArquivo == 'adicionar_usuario') {
-                header('location: ../../cliente/lista_usuarios.php');
+                header('location: ../cliente/lista_usuarios.php');
                 exit;
             } elseif ($nomeArquivo == 'cadastro') {
-                header('location: ../../login/login.php');
+                header('location: ../login/login.php');
                 exit;
             }
         }
@@ -112,7 +112,7 @@ if ($nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $celular 
             $nomeArquivo = $caminho['filename'];
 
             if ($nomeArquivo == 'adicionar_usuario') {
-                header('location: cliente/adicionar_usuario.php?erro=true');
+                header('location: ../cliente/adicionar_usuario.php?erro=true');
                 exit;
             } else {
                 header('location: cadastro.php?msgSistema=cpf');
@@ -127,7 +127,7 @@ if ($nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $celular 
         $nomeArquivo = $caminho['filename'];
 
         if ($nomeArquivo == 'adicionar_usuario') {
-            header('location: cliente/adicionar_usuario.php?msgSistema=campos');
+            header('location: ../cliente/adicionar_usuario.php?msgSistema=campos');
             exit;
         } else {
             header('location: cadastro.php?msgSistema=campos');

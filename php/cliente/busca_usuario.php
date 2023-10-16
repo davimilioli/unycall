@@ -1,5 +1,6 @@
 <?php
-require_once(__DIR__ . '/Sistema.php');
+require_once('../config/config_db.php');
+require_once('../autoload.php');
 $sistema = new Sistema($pdo);
 
 $nome = isset($_POST['buscarNome']) ? ucwords($_POST['buscarNome']) : null;

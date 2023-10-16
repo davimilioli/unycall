@@ -1,6 +1,9 @@
 <?php
+require_once('../config/config_db.php');
+require_once('../autoload.php');
+
 require_once(__DIR__ . '../../lib/tcpdf/tcpdf.php');
-require_once(__DIR__ . '/Sistema.php');
+
 require_once(__DIR__ . '../modulos/modulos.php');
 
 $sistema = new Sistema($pdo);

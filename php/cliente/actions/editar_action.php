@@ -1,6 +1,6 @@
 <?php
-
-require_once(__DIR__ . '../../Sistema.php');
+require_once('../../config/config_db.php');
+require '../../autoload.php';
 $sistema = new Sistema($pdo);
 
 $verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
@@ -13,9 +13,6 @@ if ($verificarPerm['usuario']['permissao'] == 'administrador') {
 
 session_start();
 
-
-require_once(__DIR__ . '../../Sistema.php');
-$sistema = new Sistema($pdo);
 
 $id = filter_input(INPUT_POST, 'id');
 echo '<hr>';
@@ -159,7 +156,7 @@ if ($id && $nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $c
     }
     header('location: ../lista_usuarios.php?id=' . $_GET['id']);
     exit;
-} else {
-    header('location: ../editar_usuario.php?id=' . $_GET['id']);
+} /* else {
+    header('location: ../editar_usuario.php?id=' . $_GET['id'] . '&edit=' . $id);
     exit;
-}
+} */

@@ -1,5 +1,6 @@
 <?php
-require_once(__DIR__ . '/Sistema.php');
+require_once('../config/config_db.php');
+require_once('../autoload.php');
 $sistema = new Sistema($pdo);
 
 $verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
@@ -197,7 +198,7 @@ session_start();
     </div>
     <script src="/assets/js/header.js"></script>
     <script src="/assets/js/cliente.js"></script>
-    <!--    <script src="/assets/js/cadastro-form.js"></script> -->
+    <script src="/assets/js/cadastro-form.js"></script>
 </body>
 
 </html>

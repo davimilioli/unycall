@@ -1,5 +1,6 @@
 <?php
-require_once(__DIR__ . '/Sistema.php');
+require_once('../config/config_db.php');
+require_once('../autoload.php');
 $sistema = new Sistema($pdo);
 
 $verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
@@ -12,10 +13,8 @@ if ($verificarPerm['usuario']['permissao'] == 'administrador') {
 
 session_start();
 
-require_once(__DIR__ . '/Sistema.php');
-
-$sistema = new Sistema($pdo);
 $lista = $sistema->consultarDadosUsuario();
+
 require_once(__DIR__ . '../modulos/modulos.php');
 ?>
 <!DOCTYPE html>

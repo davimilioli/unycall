@@ -1,10 +1,10 @@
 <?php
 
-require_once(__DIR__ . '/../config/config_db.php');
-require_once(__DIR__ . '/../modelSql/UsuarioMySql.php');
-require_once(__DIR__ . '/../modelSql/EnderecoMySql.php');
-require_once(__DIR__ . '/../entidade/Usuario.php');
-require_once(__DIR__ . '/../entidade/Endereco.php');
+require_once(__DIR__ . '../../config/config_db.php');
+require_once('UsuarioMySql.php');
+require_once('EnderecoMySql.php');
+require_once('Usuario.php');
+require_once('Endereco.php');
 
 
 class Sistema

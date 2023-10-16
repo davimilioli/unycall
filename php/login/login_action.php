@@ -2,8 +2,8 @@
 
 session_start();
 
-require_once(__DIR__ . '/../config/config_db.php');
-require_once(__DIR__ . '/../modelSql/UsuarioMySql.php');
+require_once('../config/config_db.php');
+require_once('../autoload.php');
 $usuarioSql = new UsuarioMySql($pdo);
 
 $tipoLogin = filter_input(INPUT_POST, 'tipoLogin');

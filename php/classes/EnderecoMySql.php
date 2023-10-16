@@ -1,6 +1,6 @@
 <?php
-require_once(__DIR__ . '/../entidade/Endereco.php');
-require_once(__DIR__ . '/../entidade/Usuario.php');
+require_once('Endereco.php');
+require_once('Usuario.php');
 
 class EnderecoMySql implements EnderedoSqlInterface
 {
