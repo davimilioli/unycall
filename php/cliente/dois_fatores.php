@@ -1,12 +1,14 @@
 <?php
+require_once('../config/config_db.php');
+require_once('../autoload.php');
+$sistema = new Sistema($pdo);
+
 if (isset($_GET['type']) && $_GET['type'] == 'usuario') {
     session_name('usuario');
 }
 
 session_start();
 
-require_once(__DIR__ . '/Sistema.php');
-$sistema = new Sistema($pdo);
 $pegarPergunta = $sistema->pegarPergunta();
 
 ?>

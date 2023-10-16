@@ -1,10 +1,10 @@
 <?php
+require_once('../../config/config_db.php');
+require_once('../../autoload.php');
+$sistema = new Sistema($pdo);
+
 session_name('usuario');
 session_start();
-
-require_once('../../config/config_db.php');
-require '../../autoload.php';
-$sistema = new Sistema($pdo);
 
 $id = filter_input(INPUT_POST, 'id');
 $slug = filter_input(INPUT_POST, 'slug');

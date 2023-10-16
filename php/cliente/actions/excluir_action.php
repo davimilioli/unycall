@@ -1,6 +1,6 @@
 <?php
 require_once('../../config/config_db.php');
-require '../../autoload.php';
+require_once('../../autoload.php');
 $sistema = new Sistema($pdo);
 
 $verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
