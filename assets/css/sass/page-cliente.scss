@@ -1,7 +1,6 @@
 .page-cliente {
     display: flex;
     background-color: #f0eded;
-    height: 100vh;
     margin-top: 5rem;
 
     @media(max-width: 629px) {
@@ -13,7 +12,6 @@
         background: #FFF;
         box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
         width: 16rem;
-        height: 100vh;
 
         @media(max-width: $sm) {
             position: fixed;
@@ -547,6 +545,78 @@
                         }
                     }
                 }
+            }
+        }
+    }
+
+    .page-cliente-info {
+        padding: 1rem;
+        width: 50%;
+        margin: 0 auto;
+
+        .page-cliente-info-content {
+            display: block;
+
+            .content-title {
+
+                h2 {
+                    font-size: 1.25rem;
+                }
+
+            }
+
+            .page-cliente-info-block {
+                background-color: #FFF;
+                border-radius: $radius;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+                border: 1px solid $border-color;
+                margin-top: 1rem;
+
+                .info-block-header {
+                    border-bottom: 1px solid $border-color;
+                    padding: 1rem;
+
+                    h3 {
+                        font-size: 1rem;
+                    }
+                }
+
+                .info-block-sub-header {
+                    border-bottom: 1px solid $border-color;
+                    padding: 1rem;
+
+                    p {
+                        color: $description-color;
+                    }
+                }
+
+                .info-block {
+                    border-bottom: 1px solid $border-color;
+                    padding: 1rem;
+                    display: flex;
+                    justify-content: space-between;
+
+                    p {
+                        width: 50%;
+                        color: $description-color;
+                        font-size: 0.875rem;
+                    }
+
+                    div {
+                        width: 50%;
+                        color: $text-color;
+                        width: 50%;
+                    }
+
+                    &.action {
+                        justify-content: end;
+                    }
+                }
+
+                .info-block:last-child {
+                    border-bottom: none;
+                }
+
             }
         }
     }
