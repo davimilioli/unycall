@@ -16,9 +16,9 @@
         </div>
         <nav class="menu">
             <ul class="menu-list">
-                <li class="menu-list-item"><a href="#">Sobre</a></li>
-                <li class="menu-list-item"><a href="#">Serviços</a></li>
-                <li class="menu-list-item"><a href="#">Contato</a></li>
+                <!-- <li class="menu-list-item"><a href="#">Sobre</a></li> -->
+                <li class="menu-list-item"><a href="../../servicos.html">Serviços</a></li>
+                <li class="menu-list-item"><a href="../../contato.html">Contato</a></li>
             </ul>
             <div class="header-actions">
                 <a class="btn secondary" href="/php/cadastro/cadastro.php">Cadastrar-se</a>
