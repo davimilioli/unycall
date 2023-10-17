@@ -9,13 +9,18 @@ function openAside() {
 
 function dropdownAside() {
 
-    const asideTitle = document.querySelector('.aside-category-title');
-    const asideNav = document.querySelector('.aside-nav');
-    const iconArrow = document.querySelector('.icon-arrow');
-    asideTitle.addEventListener('click', () => {
-        asideNav.classList.toggle('active');
-        iconArrow.classList.toggle('active');
-    })
+    const asideTitles = document.querySelectorAll('.aside-category-title');
+
+    asideTitles.forEach((title) => {
+        title.addEventListener('click', () => {
+            const asideCategory = title.parentElement;
+            const asideNav = asideCategory.querySelector('.aside-nav');
+            const iconArrow = asideCategory.querySelector('.icon-arrow');
+            asideNav.classList.toggle('active');
+            iconArrow.classList.toggle('active');
+        });
+    });
+
 }
 
 openAside();
