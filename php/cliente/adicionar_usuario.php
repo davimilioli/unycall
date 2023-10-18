@@ -25,7 +25,7 @@ session_start();
     <link rel="stylesheet" href="/assets/css/css/style.css">
 </head>
 
-<body>
+<body class="system">
     <?php require_once(__DIR__ . '/layout/includes/header.php'); ?>
     <div class="page-cliente">
         <?php require_once(__DIR__ . '/layout/includes/aside.php'); ?>
@@ -196,7 +196,6 @@ session_start();
             </div>
         </main>
     </div>
-    <script src="/assets/js/header.js"></script>
     <script src="/assets/js/cliente.js"></script>
     <script src="/assets/js/cadastro-form.js"></script>
 </body>

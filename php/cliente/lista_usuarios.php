@@ -28,7 +28,7 @@ require_once(__DIR__ . '../modulos/modulos.php');
     <link rel="stylesheet" href="/assets/css/css/style.css">
 </head>
 
-<body>
+<body class="system">
     <?php require_once(__DIR__ . '/layout/includes/header.php'); ?>
     <div class="page-cliente">
         <?php require_once(__DIR__ . '/layout/includes/aside.php'); ?>
@@ -76,8 +76,8 @@ require_once(__DIR__ . '../modulos/modulos.php');
                                     <th>Ações</th>
                                 </tr>
                             </thead>
-                            <?php foreach ($lista as $item) : ?>
-                                <tbody>
+                            <tbody>
+                                <?php foreach ($lista as $item) : ?>
                                     <tr>
                                         <td class="table-id" title="<?= $item->pegarId() ?>"><?= $item->pegarId() ?></td>
                                         <td title="<?= $item->pegarNome() ?>"><?= $item->pegarNome() ?></td>
@@ -97,8 +97,8 @@ require_once(__DIR__ . '../modulos/modulos.php');
                                             </a>
                                         </td>
                                     </tr>
-                                </tbody>
-                            <?php endforeach ?>
+                                <?php endforeach ?>
+                            </tbody>
                         </table>
                     </div>
                     <div class="modal-exclude"></div>
@@ -106,7 +106,6 @@ require_once(__DIR__ . '../modulos/modulos.php');
             </section>
         </main>
     </div>
-    <script src="/assets/js/header.js"></script>
     <script src="/assets/js/cliente.js"></script>
     <script src="/assets/js/lista-usuarios.js"></script>
 </body>

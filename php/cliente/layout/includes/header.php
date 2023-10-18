@@ -11,7 +11,7 @@ $dados = $sistema->procurarIdUsuario($_GET['id']);
             <img src="/assets/img/logo.png" alt="Logo UnyCall">
         </a>
     </div>
-    <nav class="menu">
+    <!--     <nav class="menu">
         <ul class="menu-list">
             <li class="menu-list-item"><a href="/php/cliente/cliente.php?id=<?= $_GET['id'] ?>">Inicial</a></li>
             <li class="menu-list-item"><a href="#">Contato</a></li>
@@ -21,15 +21,18 @@ $dados = $sistema->procurarIdUsuario($_GET['id']);
         <span></span>
         <span></span>
         <span></span>
-    </button>
+    </button> -->
     <div class="menu-profile">
         <button class="menu-profile-button">
             <img src="/assets/img/icons/profile.svg">
         </button>
         <div class="menu-profile-content">
             <div class="menu-profile-header">
-                <div class="menu-profile-header-name"><?= $dados['usuario']['nome'] ?></div>
-                <div class="menu-profile-header-email"><?= strlen($dados['usuario']['email']) > 30 ? substr($dados['usuario']['email'], 0, 30) . '...' : $dados['usuario']['email'] ?></div>
+                <div class="menu-profile-header-profile">
+                    <div class="menu-profile-header-name"><?= $dados['usuario']['nome'] ?></div>
+                    <div class="menu-profile-header-email"><?= strlen($dados['usuario']['email']) > 30 ? substr($dados['usuario']['email'], 0, 30) . '...' : $dados['usuario']['email'] ?></div>
+                </div>
+                <button type="button" id="closeMenuProfile">X</button>
             </div>
             <div class="menu-profile-body">
                 <ul class="menu-profile-body-list">
@@ -49,7 +52,19 @@ $dados = $sistema->procurarIdUsuario($_GET['id']);
 <script>
     const openMenuProfile = document.querySelector('.menu-profile-button');
     const menuProfile = document.querySelector('.menu-profile-content');
+    const bodyOverflow = document.querySelector('body');
+
     openMenuProfile.addEventListener('click', () => {
         menuProfile.classList.toggle('active')
+        bodyOverflow.classList.toggle('active');
     })
+
+    if (window.innerWidth < 640) {
+        const closeProfile = document.querySelector('#closeMenuProfile');
+        closeProfile.addEventListener('click', () => {
+            menuProfile.classList.remove('active');
+            bodyOverflow.classList.remove('active')
+        })
+
+    }
 </script>

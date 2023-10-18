@@ -25,12 +25,12 @@ $lista = $sistema->consultarDadosUsuario();
     <link rel="stylesheet" href="/assets/css/css/style.css">
 </head>
 
-<body>
+<body class="system">
     <?php require_once(__DIR__ . '/layout/includes/header.php'); ?>
     <div class="page-cliente">
         <?php require_once(__DIR__ . '/layout/includes/aside.php'); ?>
         <main class="page-cliente-main">
-            <div class="page-cliente-main-content container">
+            <div class="page-cliente-main-content">
                 <div class="page-cliente-main-header">
                     <h2>Olá, Davi Jacuru Milioli</h2>
                 </div>
@@ -70,7 +70,6 @@ $lista = $sistema->consultarDadosUsuario();
             </div>
         </main>
     </div>
-    <script src="/assets/js/header.js"></script>
     <script src="/assets/js/cliente.js"></script>
 </body>
 

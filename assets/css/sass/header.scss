@@ -5,7 +5,7 @@
     justify-content: space-between;
     padding: 6px 24px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
-    border-bottom: 1px solid #CCC;
+    border-bottom: 1px solid $border-color;
     position: fixed;
     top: 0;
     z-index: 20;
@@ -110,7 +110,6 @@
         }
     }
 
-
     &.cliente {
 
         .aside-open {
@@ -138,7 +137,6 @@
                     }
                 }
             }
-
         }
 
         .menu-profile {
@@ -164,19 +162,28 @@
                     overflow-x: auto;
                     border-radius: $radius;
 
+                    #closeMenuProfile {
+                        display: none;
+                    }
+
                     .menu-profile-header {
                         padding: 1rem;
                         border-bottom: 1px solid #dad9da;
 
-                        .menu-profile-header-name {
-                            font-weight: 500;
-                            font-size: 1rem;
-                        }
+                        .menu-profile-header-profile {
+                            display: flex;
+                            flex-direction: column;
 
-                        .menu-profile-header-email {
-                            font-weight: 400;
-                            font-size: .9rem;
-                            color: $description-color;
+                            .menu-profile-header-name {
+                                font-weight: 500;
+                                font-size: 1rem;
+                            }
+
+                            .menu-profile-header-email {
+                                font-weight: 400;
+                                font-size: .9rem;
+                                color: $description-color;
+                            }
                         }
                     }
 
@@ -211,7 +218,6 @@
                                     background-color: #f0eded;
                                     transition: .3s;
                                 }
-
                             }
                         }
                     }
@@ -225,10 +231,32 @@
                             justify-content: center;
                         }
                     }
+
+                    @media (max-width: $sm) {
+                        top: 0;
+                        position: fixed;
+                        right: 0;
+                        left: 0;
+                        width: 100vw;
+                        height: 100vh;
+
+                        .menu-profile-header {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+
+                            #closeMenuProfile {
+                                padding: 1rem;
+                                display: block;
+                                border: none;
+                                background: none;
+                                color: $description-color;
+                                font-size: 1.4rem;
+                            }
+                        }
+                    }
                 }
             }
         }
-
     }
-
 }

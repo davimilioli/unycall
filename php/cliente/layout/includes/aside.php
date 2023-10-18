@@ -1,5 +1,15 @@
 <aside class="page-cliente-aside">
     <nav class="page-cliente-aside-content">
+        <div class="page-cliente-aside-header">
+            <div class="aside-category">
+                <div class="aside-category-title">
+                    <span class="aside-category-titles">
+                        <img src="/assets/img/icons/dashboard.svg">
+                        <a href="/php/cliente/cliente.php?id=<?= $_GET['id'] ?>">Dashboard</a>
+                    </span>
+                </div>
+            </div>
+        </div>
         <?php if ($verificarPerm['usuario']['permissao'] == 'administrador') : ?>
             <div class="aside-category">
                 <div class="aside-category-title">

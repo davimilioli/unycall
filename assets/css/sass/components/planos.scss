@@ -5,6 +5,12 @@
             text-align: center
         }
 
+        @media(max-width: $sm) {
+            h2 {
+                margin-bottom: 0;
+            }
+        }
+
         .plans-cards {
             @include content-flex;
             justify-content: center;
@@ -151,7 +157,7 @@
                 }
             }
 
-            @media (max-width: 630px) {
+            @media (max-width: $sm) {
                 gap: 20px;
                 justify-content: center;
 
