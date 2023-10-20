@@ -147,10 +147,46 @@ class UsuarioMySql implements UsuarioSqlInterface
 
     public function deletarUsuario($id)
     {
-        echo $id;
         $sql = $this->pdo->prepare("DELETE FROM usuarios WHERE id = :id");
         $sql->bindValue(':id', $id);
         $sql->execute();
         return true;
+    }
+    public function consultaUnicaUsuario($coluna, $valor)
+    {
+        $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE $coluna = :valor");
+        $sql->bindValue(':valor', $valor);
+        $sql->execute();
+
+        if ($sql->rowCount() > 0) {
+            $data = $sql->fetch(PDO::FETCH_ASSOC);
+            $usuario = new Usuario();
+            $usuario->setarId($data['id']);
+
+            return array(
+                'id' => $usuario,
+                'resposta' => true
+            );
+        } else {
+            return array(
+                'resposta' => false
+            );
+        }
+    }
+
+    public function alterarSenha($usuario)
+    {
+        $id = $usuario->pegarId();
+        $novaSenha = $usuario->pegarSenha();
+
+        $sql = $this->pdo->prepare("UPDATE usuarios SET senha = :senha WHERE id = :id");
+        $sql->bindValue(':senha', $novaSenha);
+        $sql->bindValue(':id', $id);
+
+        if ($sql->execute()) {
+            echo 'Senha atualizada com sucesso.';
+        } else {
+            echo 'Ocorreu um erro ao atualizar a senha.';
+        }
     }
 }

@@ -92,4 +92,18 @@ class EnderecoMySql implements EnderedoSqlInterface
         $sql->execute();
         return true;
     }
+
+
+    public function consultaUnicaUsuario($coluna, $valor)
+    {
+        $sql = $this->pdo->prepare("SELECT * FROM endereco WHERE $coluna = :valor");
+        $sql->bindValue(':valor', $valor);
+        $sql->execute();
+
+        if ($sql->rowCount() > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

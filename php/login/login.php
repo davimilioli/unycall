@@ -46,6 +46,7 @@
                     <h1>Login</h1>
                     <p>Preencha os campos abaixo para ter acesso ao nosso sistema</p>
                     <p>Não possui cadastro? <a href="../cadastro/cadastro.php" class="form-link">Acesse aqui</a></p>
+                    <p>Esqueceu sua senha? <a href="./esqueceu_senha.php" class="form-link">Acesse aqui</a></p>
                 </div>
                 <form method="POST" class="form">
                     <input type="hidden" name="tipoLogin" value="normal">
@@ -56,12 +57,12 @@
                             <button type="button" class="btn secondary button-type">Administrador</button>
                         </div>
                         <div class="form-group">
-                            <label for="login">Nome <span>*</span></label>
+                            <label for="login">Login <span>*</span></label>
                             <input type="text" name="login" id="login" minlength="6" maxlength="6" required>
                         </div>
                         <div class="form-group">
                             <label for="senha">Senha <span>*</span></label>
-                            <input type="text" name="senha" id="senha" required>
+                            <input type="password" name="senha" id="senha" required>
                         </div>
                     </div>
                     <div class="form-buttons">
