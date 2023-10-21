@@ -5,46 +5,43 @@ $sistema = new Sistema($pdo);
 
 $usuario = filter_input(INPUT_POST, 'usuario');
 $email = filter_input(INPUT_POST, 'email');
-echo $usuario;
-echo $email;
 
 if ($usuario && $email) {
     $consulta = $sistema->esqueceuSenha($usuario, $email);
 
     if ($consulta) {
-        header('location: ./esqueceu_senha.php?id=' . $consulta . '&success=true');
+        header('location: ./esqueceu_senha.php?id=' . $consulta . '&question=true');
+        exit;
+    } else {
+        header('location: ./esqueceu_senha.php?dados=false');
         exit;
     }
 }
 
 $slug = filter_input(INPUT_POST, 'slug');
 $resposta = filter_input(INPUT_POST, 'resposta');
+$id = filter_input(INPUT_POST, 'id');
 
 if ($slug && $resposta) {
-    $id = filter_input(INPUT_POST, 'id');
-    echo '<hr>';
-    echo $slug;
-    echo $resposta;
-    echo '<hr>';
-    echo $id;
-    $sistema->consultarResposta($slug, $resposta);
-
-    if ($sistema->consultarResposta($slug, $resposta)) {
+    $consultarResposta = $sistema->consultarResposta($id, $slug, $resposta);
+    if ($consultarResposta) {
+        var_dump($consultarResposta);
         header('location: ./esqueceu_senha.php?id=' . $id . '&password=true');
         exit;
-        echo 'resposta correta';
-    } /* else {
-        header('location: ../dois_fatores.php?id=' . $id . '&erro=true');
+    } else {
+        header('location: ./esqueceu_senha.php?id=' . $id . '&question=true&response=false');
         exit;
-    } */
+    }
 }
-
 
 $senha = filter_input(INPUT_POST, 'senha');
 $confirmarSenha = filter_input(INPUT_POST, 'confirmarSenha');
 
 if ($senha == $confirmarSenha) {
-    $id = filter_input(INPUT_POST, 'id');
     $sistema->receberSenha($id, $senha);
+    header('location: ./login.php');
+    exit;
 } else {
+    header('location: ./esqueceu_senha.php?id=' . $id . '&samePasswords=false');
+    exit;
 }

@@ -132,68 +132,34 @@ class Sistema
         );
     }
 
-    public function consultarResposta($slug, $resposta, $id = 0)
+    public function consultarResposta($id, $slug, $resposta)
     {
 
-        if ($id != null) {
-            $procurarDados = $this->procurarIdUsuario($id);
-            $consultaId = $procurarDados['usuario']['id'];
+        $procurarDados = $this->procurarIdUsuario($id);
 
-            if ($slug == 'qual-o-nome-da-sua-mae') {
-                $nomeMaterno = $procurarDados['usuario']['nomematerno'];
-                echo $nomeMaterno;
-                if ($nomeMaterno == $resposta) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } elseif ($slug == 'qual-a-data-do-seu-nascimento') {
-                $nascimento = $procurarDados['usuario']['nascimento'];
-                $respostaFormatada = date("Y-m-d", strtotime(str_replace("/", "-", $resposta)));
-                if ($nascimento == $respostaFormatada) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } elseif ($slug == 'qual-o-cep-do-seu-endereco') {
-                $cep = $procurarDados['endereco']['cep'];
-                $cepFormatado = str_replace("-", "", $resposta);
-                if ($cep == $cepFormatado) {
-                    return true;
-                } else {
-                    return false;
-                }
+        if ($slug == 'qual-o-nome-da-sua-mae') {
+            $nomeMaterno = $procurarDados['usuario']['nomematerno'];
+            echo $nomeMaterno;
+            if ($nomeMaterno == $resposta) {
+                return true;
             } else {
-                echo 'Consulta indisponivel';
+                return false;
             }
-        } else {
-
-            if ($slug == 'qual-o-nome-da-sua-mae') {
-                $nomeMaterno = $this->usuarioSql->consultaUnicaUsuario('nomematerno', $resposta);
-                if ($nomeMaterno) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } elseif ($slug == 'qual-a-data-do-seu-nascimento') {
-                $respostaFormatada = date("Y-m-d", strtotime(str_replace("/", "-", $resposta)));
-                $nascimento = $this->usuarioSql->consultaUnicaUsuario('nomematerno', $respostaFormatada);
-                if ($nascimento) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } elseif ($slug == 'qual-o-cep-do-seu-endereco') {
-                $cepFormatado = str_replace("-", "", $resposta);
-                $cep = $this->usuarioSql->consultaUnicaUsuario('nomematerno', $cepFormatado);
-                echo $cep;
-                if ($cep) {
-                    return true;
-                } else {
-                    return false;
-                }
+        } elseif ($slug == 'qual-a-data-do-seu-nascimento') {
+            $nascimento = $procurarDados['usuario']['nascimento'];
+            $respostaFormatada = date("Y-m-d", strtotime(str_replace("/", "-", $resposta)));
+            if ($nascimento == $respostaFormatada) {
+                return true;
             } else {
-                echo 'Consulta indisponivel';
+                return false;
+            }
+        } elseif ($slug == 'qual-o-cep-do-seu-endereco') {
+            $cep = $procurarDados['endereco']['cep'];
+            $cepFormatado = str_replace("-", "", $resposta);
+            if ($cep == $cepFormatado) {
+                return true;
+            } else {
+                return false;
             }
         }
 
@@ -219,5 +185,7 @@ class Sistema
         $usuario->setarSenha($senha);
 
         $this->usuarioSql->alterarSenha($usuario);
+
+        return true;
     }
 }

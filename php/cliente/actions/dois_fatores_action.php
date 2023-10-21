@@ -16,10 +16,11 @@ echo '<hr>';
 echo 'RESPOSTA: ' . $resposta; */
 
 if ($id && $slug && $resposta) {
-    $sistema->consultarResposta($slug, $resposta, $id);
+    $sistema->consultarResposta($id, $slug, $respost);
 
-    if ($sistema->consultarResposta($slug, $resposta, $id)) {
+    if ($sistema->consultarResposta($id, $slug, $resposta)) {
         header('location: ../cliente.php?id=' . $id);
+        exit;
     } else {
         header('location: ../dois_fatores.php?id=' . $id . '&erro=true');
         exit;

@@ -6,14 +6,15 @@ $sistema = new Sistema($pdo);
 session_name('usuario');
 session_start();
 
-$urlSucesso = isset($_GET['success']) && $_GET['success'] ? true : false;
-$urlErro = isset($_GET['erro']) && $_GET['erro'] ? true : false;
-$senhaAprovada = isset($_GET['password']) && $_GET['password'] ? true : false;
+$urlDados = !empty($_GET['dados']);
+$urlSucesso = !empty($_GET['success']);
+$senhaAprovada = !empty($_GET['password']);
+$usuarioId = isset($_GET['id']) ? $_GET['id'] : '';
+$urlPergunta = !empty($_GET['question']);
+$urlResposta = !empty($_GET['response']);
+$urlSenhasIguais = !empty($_GET['samePasswords']);
 $pegarPergunta = $sistema->pegarPergunta();
 
-$idUser = isset($_GET['id']) && $_GET['id'] ? $_GET['id'] : '';
-
-var_dump($urlSucesso);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -38,11 +39,11 @@ var_dump($urlSucesso);
                         <p class="loading-message"></p>
                     </div>
                 </div>
-                <form method="POST" action="./esqueceu_senha_action.php" class="form" style="display: <?= ($urlSucesso == false || $senhaAprovada == true) ? 'block' : 'none' ?>">
+                <form method="POST" action="./esqueceu_senha_action.php" class="form" style="display: <?= $urlPergunta == true || $senhaAprovada == true  || $urlSenhasIguais == true ? 'none' : 'block' ?>">
                     <input type="hidden" name="tipo" value="dados">
                     <h2>Preencha os campos abaixo</h2>
                     <div class="form-group">
-                        <label for="usuario">Usuario <span>*</span></label>
+                        <label for="usuario">Login <span>*</span></label>
                         <input type="text" name="usuario" required>
                     </div>
                     <div class="form-group">
@@ -56,19 +57,18 @@ var_dump($urlSucesso);
                             <input type="reset" value="Limpar" id="limpar" class="btn secondary">
                         </div>
                     </div>
-                    <?php if (isset($_GET['erro'])) :  ?>
+                    <?php if ($urlDados) :  ?>
                         <div class="message_error">
                             <p>
-                                <img src="/assets/img/icons/danger.svg">Resposta errada, tente novamente!
+                                <img src="/assets/img/icons/danger.svg">Usuário ou Email inválidos
                             </p>
                         </div>
                     <?php endif ?>
                 </form>
-                <form method="POST" action="./esqueceu_senha_action.php?id=<?= $idUser ?>" class="form" style="display: <?= $urlSucesso == true && $senhaAprovada != true ? 'block' : 'none' ?>">
-                    <input type="hidden" name="id" value="<?= $idUser ?>">
+                <form method="POST" action="./esqueceu_senha_action.php?id=<?= $usuarioId ?>" class="form" style="display: <?= $urlPergunta == true ? 'block' : 'none' ?>">
+                    <input type="hidden" name="id" value="<?= $usuarioId ?>">
                     <input type="hidden" name="tipo" value="resposta">
                     <input type="hidden" name="slug" value="<?= $pegarPergunta['slug'] ?>">
-                    <?php echo $pegarPergunta['slug'] ?>
                     <h2><?= $pegarPergunta['pergunta'] ?></h2>
                     <div class="form-group">
                         <input type="text" name="resposta" required>
@@ -80,16 +80,16 @@ var_dump($urlSucesso);
                             <input type="reset" value="Limpar" id="limpar" class="btn secondary">
                         </div>
                     </div>
-                    <?php if (isset($_GET['erro'])) :  ?>
+                    <?php if ($urlResposta) :  ?>
                         <div class="message_error">
                             <p>
-                                <img src="/assets/img/icons/danger.svg">Resposta errada, tente novamente!
+                                <img src="/assets/img/icons/danger.svg">Resposta errada, tente novamente
                             </p>
                         </div>
                     <?php endif ?>
                 </form>
-                <form method="POST" action="./esqueceu_senha_action.php" class="form" style="display: <?= $urlSucesso == false && $senhaAprovada == true  ?  'block' : 'none' ?>">
-                    <input type="hidden" name="id" value="<?= $idUser ?>">
+                <form method="POST" action="./esqueceu_senha_action.php" class="form" style="display: <?= $urlSucesso == false && $senhaAprovada == true || $urlSenhasIguais == true ?  'block' : 'none' ?>">
+                    <input type="hidden" name="id" value="<?= $usuarioId ?>">
                     <input type="hidden" name="tipo" value="dados">
                     <h2>Preencha os campos abaixo</h2>
                     <div class="form-group">
@@ -107,10 +107,10 @@ var_dump($urlSucesso);
                             <input type="reset" value="Limpar" id="limpar" class="btn secondary">
                         </div>
                     </div>
-                    <?php if (isset($_GET['erro'])) :  ?>
+                    <?php if ($urlSenhasIguais) :  ?>
                         <div class="message_error">
                             <p>
-                                <img src="/assets/img/icons/danger.svg">Resposta errada, tente novamente!
+                                <img src="/assets/img/icons/danger.svg">Senhas não iguais
                             </p>
                         </div>
                     <?php endif ?>
