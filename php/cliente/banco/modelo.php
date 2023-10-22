@@ -11,9 +11,41 @@ if ($verificarPerm['usuario']['permissao'] == 'administrador') {
 }
 
 session_start();
-
-
 $tabelas = $pdo->query("SHOW TABLES");
+
+function tipoDado($tipo)
+{
+    $limparTipo = preg_replace('/\(\d+\)/', '', $tipo);
+    $resultado = '';
+    if ($limparTipo == 'int') {
+        $resultado =  'Inteiro';
+    } elseif ($limparTipo == 'varchar') {
+        $resultado = 'Varchar';
+    } elseif ($limparTipo == 'char') {
+        $resultado = 'Char';
+    } else if ($limparTipo == 'date') {
+        $resultado = 'Data';
+    } else {
+        $resultado = 'Outro';
+    }
+
+    return $resultado;
+}
+
+function tamanhoDado($dado)
+{
+    $abertura = strpos($dado, '(');
+    $fechadura = strpos($dado, ')');
+    if ($abertura !== false && $fechadura !== false) {
+        $tamanho = substr($dado, $abertura + 1, $fechadura - $abertura - 1);
+    } else {
+        $tamanho = '';
+    }
+
+    return $tamanho;
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -31,20 +63,42 @@ $tabelas = $pdo->query("SHOW TABLES");
     <div class="page-cliente">
         <?php require_once('../layout/includes/aside.php'); ?>
         <main class="page-cliente-model-db">
+            <div class="category-title">
+                <h4>Banco de Dados</h4>
+            </div>
             <div class="model-db-content">
                 <?php foreach ($tabelas as $tabela) : ?>
-                    <?php $tabelaNome = $tabela['Tables_in_db_site']; ?>
-                    <div class="card-db">
-                        <div class="card-db-header">
-                            <?= $tabela['Tables_in_db_site']; ?>
+                    <div class="table-db">
+                        <?php $tabelaNome = $tabela['Tables_in_db_site']; ?>
+                        <div class="table-db-title">
+                            <h2><?= ucfirst($tabelaNome) ?></h2>
                         </div>
-                        <div class="card-db-body">
-                            <ul>
+                        <table class="table-db-content">
+                            <thead>
+                                <tr>
+                                    <th>Nome</th>
+                                    <th>Tipo</th>
+                                    <th>Tamanho/Itens</th>
+                                    <th>Permitir Nulo</th>
+                                    <th>Chave</th>
+                                    <th>Padrão</th>
+                                    <th>Extras</th>
+                                </tr>
+                            </thead>
+                            <tbody>
                                 <?php foreach ($pdo->query("SHOW COLUMNS FROM $tabelaNome") as $coluna) : ?>
-                                    <li><?= $coluna['Field'] ?></li>
+                                    <tr>
+                                        <td><?= $coluna['Field'] ?></td>
+                                        <td><?= tipoDado($coluna['Type']) ?></td>
+                                        <td><?= tamanhoDado($coluna['Type']) ?></td>
+                                        <td><?= $coluna['Null'] == 'NO' ? 'Não' : 'Sim' ?></td>
+                                        <td><?= $coluna['Key'] == 'PRI' ? 'Primária' : $coluna['Key'] ?></td>
+                                        <td><?= $coluna['Default'] ?></td>
+                                        <td><?= $coluna['Extra'] == 'auto_increment' ? 'Auto Increment' : $coluna['Extra'] ?></td>
+                                    </tr>
                                 <?php endforeach ?>
-                            </ul>
-                        </div>
+                            </tbody>
+                        </table>
                     </div>
                 <?php endforeach ?>
             </div>

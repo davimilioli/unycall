@@ -708,29 +708,90 @@
                 gap: 10px;
                 flex-wrap: wrap;
 
-                .card-db {
+                .table-db {
                     background: #FFF;
+                    width: 49%;
                     box-shadow: $bx-shadow;
-                    max-width: 100%;
-                    width: 317px;
-                    height: 100%;
+                    border-radius: $radius;
+                    padding: 0 1.6rem;
 
-                    .card-db-header {
-                        text-align: center;
-                        padding: 1rem;
-                        border-bottom: 1px solid $border-color;
-                        font-weight: 600;
-                        font-size: 1.5rem;
+                    .table-db-title {
+                        width: 100%;
+                        padding: 1rem 0;
+                        border-bottom: 2px solid $border-color;
+
+                        h2 {
+                            text-align: center;
+                            font-size: 1rem;
+                        }
                     }
 
-                    .card-db-body {
-                        ul {
-                            li {
-                                padding: 0.5rem;
-                                border-bottom: 1px solid $border-color;
+                    .table-db-content {
+                        flex-shrink: 0;
+                        border-collapse: collapse;
+                        width: 100%;
+
+                        thead {
+                            border-bottom: 2px solid $border-color;
+
+                            tr {
+
+                                th {
+                                    font-size: 14px;
+                                    font-weight: 500;
+                                    padding: 8px;
+                                    color: $text-color;
+                                    text-align: left;
+
+                                }
+
+                                td {
+                                    width: 20%;
+
+                                    @media(max-width: $sm) {
+                                        width: 100%;
+                                    }
+                                }
+                            }
+                        }
+
+                        tbody {
+                            tr {
 
                                 &:last-child {
                                     border-bottom: none;
+                                }
+
+                                td {
+                                    width: 15%;
+                                    font-size: 13px;
+                                    color: $text-color;
+                                    padding: .25rem;
+                                    text-align: left;
+
+                                    @media(max-width: $sm) {
+                                        width: 100%;
+                                    }
+
+                                    & p {
+                                        padding: 0.5rem;
+                                        color: #FFF;
+                                        border-radius: $radius;
+                                        width: 100%;
+                                        text-align: center;
+                                    }
+
+                                    &#comum p {
+                                        background-color: #6c757d;
+                                    }
+
+                                    &#comum p {
+                                        background-color: #6c757d;
+                                    }
+
+                                    &#administrador p {
+                                        background-color: $primary-color;
+                                    }
                                 }
                             }
                         }
