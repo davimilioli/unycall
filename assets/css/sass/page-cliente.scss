@@ -139,7 +139,7 @@
                     background-color: #f5f7fa;
                     padding: 2rem 1rem;
                     border-radius: $radius;
-                    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+                    box-shadow: $bx-shadow;
 
                     h2 {
                         font-size: 1.2rem;
@@ -156,7 +156,7 @@
                         width: 100%;
                         background-color: #FFF;
                         border-radius: $radius;
-                        box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+                        box-shadow: $bx-shadow;
 
                         .tab-header {
                             padding: 1rem;
@@ -215,7 +215,7 @@
             background-color: #f5f7fa;
             margin-bottom: 1rem;
             border-radius: $radius;
-            box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+            box-shadow: $bx-shadow;
 
             h4 {
                 font-size: 1rem;
@@ -234,7 +234,7 @@
             .list-users {
                 .list-users-content {
                     background-color: #FFF;
-                    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+                    box-shadow: $bx-shadow;
                     padding: 0 1.6rem;
                     border-radius: $radius;
 
@@ -279,7 +279,7 @@
 
                                 .resultado-busca-content {
                                     background-color: #FFF;
-                                    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+                                    box-shadow: $bx-shadow;
                                     height: 150px;
                                     overflow: scroll;
                                     border-radius: $radius;
@@ -469,7 +469,7 @@
                 .modal-content {
                     padding: 1rem;
                     background-color: #FFF;
-                    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+                    box-shadow: $bx-shadow;
                     width: 20%;
 
                     .modal-header {
@@ -554,7 +554,7 @@
                     background: #FFF;
                     left: 0;
                     padding: 1rem;
-                    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+                    box-shadow: $bx-shadow;
 
                     #closeModal {
                         background: none;
@@ -633,7 +633,7 @@
                     background-color: #f5f7fa;
                     margin-bottom: 1rem;
                     border-radius: .375rem;
-                    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+                    box-shadow: $bx-shadow;
 
                     h2 {
                         color: #4b5563;
@@ -645,7 +645,7 @@
                 .page-cliente-info-block {
                     background-color: #FFF;
                     border-radius: $radius;
-                    box-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+                    box-shadow: $bx-shadow;
                     border: 1px solid $border-color;
                     margin-top: 1rem;
 
@@ -694,6 +694,57 @@
                         border-bottom: none;
                     }
 
+                }
+            }
+        }
+
+        .page-cliente-model-db {
+            padding: 1rem;
+            width: 100%;
+            margin-left: 16rem;
+
+            .model-db-content {
+                display: flex;
+                gap: 10px;
+                flex-wrap: wrap;
+
+                .card-db {
+                    background: #FFF;
+                    box-shadow: $bx-shadow;
+                    max-width: 100%;
+                    width: 317px;
+                    height: 100%;
+
+                    .card-db-header {
+                        text-align: center;
+                        padding: 1rem;
+                        border-bottom: 1px solid $border-color;
+                        font-weight: 600;
+                        font-size: 1.5rem;
+                    }
+
+                    .card-db-body {
+                        ul {
+                            li {
+                                padding: 0.5rem;
+                                border-bottom: 1px solid $border-color;
+
+                                &:last-child {
+                                    border-bottom: none;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            @media(max-width: $sm) {
+                margin: 0;
+
+                .model-db-content {
+                    .card-db {
+                        width: 100%;
+                    }
                 }
             }
         }

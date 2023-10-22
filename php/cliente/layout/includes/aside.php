@@ -30,6 +30,22 @@
                     </ul>
                 </div>
             </div>
+            <div class="aside-category">
+                <div class="aside-category-title">
+                    <span class="aside-category-titles">
+                        <img src="/assets/img/icons/database.svg">
+                        Banco de dados
+                    </span>
+                    <img class="icon-arrow" src="/assets/img/icons/arrow-drop.svg">
+                </div>
+                <div class="aside-nav">
+                    <ul class="aside-list">
+                        <li class="aside-list-item">
+                            <a href="./banco/modelo.php?id=<?= $_GET['id'] ?>">Modelo</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         <?php endif ?>
         <div class="aside-category">
             <div class="aside-category-title">
