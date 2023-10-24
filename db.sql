@@ -19,7 +19,6 @@
 CREATE DATABASE IF NOT EXISTS `db_site` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `db_site`;
 
-
 -- Copiando estrutura para tabela db_site.usuarios
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -28,31 +27,75 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `cpf` varchar(14) NOT NULL,
   `email` varchar(255) NOT NULL,
   `nomematerno` varchar(255) NOT NULL,
-  `sexo` varchar(10) NOT NULL,
+  `sexo` char(10) NOT NULL,
   `celular` varchar(15) NOT NULL,
   `telefone` varchar(15) NOT NULL,
   `login` varchar(50) NOT NULL,
   `senha` varchar(255) NOT NULL,
-  `permissao` varchar(20) DEFAULT NULL,
+  `permissao` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-)
+) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Exportação de dados foi desmarcado.
 
 -- Copiando estrutura para tabela db_site.endereco
 CREATE TABLE IF NOT EXISTS `endereco` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuario` int(11) NOT NULL,
-  `cep` varchar(9) NULL,
-  `logradouro` varchar(255) NULL,
+  `cep` varchar(9) NOT NULL,
+  `logradouro` varchar(255) NOT NULL,
   `numero` varchar(10) NOT NULL,
   `bairro` varchar(100) NOT NULL,
   `cidade` varchar(100) NOT NULL,
-  `estado` varchar(10) NOT NULL,
+  `estado` char(2) NOT NULL,
   `complemento` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `id_usuario` (`id_usuario`),
   CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`)
-)
+) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela db_site.assinaturas
+CREATE TABLE IF NOT EXISTS `assinaturas` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_usuario` int(11) NOT NULL,
+  `id_pagamento` int(11) DEFAULT NULL,
+  `id_servico` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `id_usuario` (`id_usuario`),
+  KEY `id_pagamento` (`id_pagamento`),
+  KEY `id_servico` (`id_servico`),
+  CONSTRAINT `assinaturas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `assinaturas_ibfk_2` FOREIGN KEY (`id_pagamento`) REFERENCES `pagamentos` (`id`),
+  CONSTRAINT `assinaturas_ibfk_3` FOREIGN KEY (`id_servico`) REFERENCES `servicos` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela db_site.pagamentos
+CREATE TABLE IF NOT EXISTS `pagamentos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) DEFAULT NULL,
+  `cpf` int(11) DEFAULT NULL,
+  `servico_assinado` varchar(255) DEFAULT NULL,
+  `preco_servico` varchar(255) DEFAULT NULL,
+  `total` int(11) DEFAULT NULL,
+  `data_pagamento` date DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Exportação de dados foi desmarcado.
+
+-- Copiando estrutura para tabela db_site.servicos
+CREATE TABLE IF NOT EXISTS `servicos` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nome` varchar(255) DEFAULT NULL,
+  `tipo_servico` varchar(255) DEFAULT NULL,
+  `disp_regiao` varchar(255) DEFAULT NULL,
+  `custo` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportação de dados foi desmarcado.
 
