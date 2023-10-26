@@ -58,7 +58,7 @@
             <div class="aside-nav">
                 <ul class="aside-list">
                     <li class="aside-list-item">
-                        <a href="#">Gerenciar</a>
+                        <a href="./assinatura/gerenciar.php?id=66">Gerenciar</a>
                     </li>
                 </ul>
             </div>

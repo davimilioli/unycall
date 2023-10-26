@@ -809,5 +809,59 @@
                 }
             }
         }
+
+        .page-cliente-signature {
+            padding: 1rem;
+            width: 100%;
+            margin-left: 16rem;
+
+            .signature-content {
+                background: #FFF;
+                box-shadow: $bx-shadow;
+
+                .signature-list-header {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                    align-items: center;
+                    padding: 1rem;
+                }
+
+                .signature-list-content {
+
+                    .signature-list-options-content {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                        align-items: center;
+                        transition: .3s;
+                        padding: 1rem;
+
+                        input[type="checkbox"] {
+                            width: initial;
+                        }
+
+                        &:hover {
+                            background: #cccccc;
+                            transition: .3s;
+                        }
+
+                        .signature-list-option {
+                            display: flex;
+                            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                            align-items: center;
+                        }
+                    }
+
+
+                }
+
+                .form-content {
+                    .form {
+                        .form-buttons {
+                            justify-content: end;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
