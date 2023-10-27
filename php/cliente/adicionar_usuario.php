@@ -49,23 +49,23 @@ session_start();
                             <h2>Dados pessoais</h2>
                             <div class="form-group">
                                 <label for="nome">Nome <span>*</span></label>
-                                <input type="text" name="nome" id="nome">
+                                <input type="text" name="nome" id="nome" required>
                             </div>
                             <div class="form-group">
                                 <label for="data-nascimento">Data de Nascimento <span>*</span></label>
-                                <input type="text" name="nascimento" id="data-nascimento">
+                                <input type="text" name="nascimento" id="data-nascimento" required>
                             </div>
                             <div class="form-group">
                                 <label for="cpf">CPF <span>*</span></label>
-                                <input type="text" name="cpf" id="cpf">
+                                <input type="text" name="cpf" id="cpf" required>
                             </div>
                             <div class="form-group">
                                 <label for="nomeMaterno">Nome Materno <span>*</span></label>
-                                <input type="text" name="nomeMaterno" id="nomeMaterno">
+                                <input type="text" name="nomeMaterno" id="nomeMaterno" required>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email <span>*</span></label>
-                                <input type="text" name="email" id="email">
+                                <input type="text" name="email" id="email" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Sexo <span>*</span></label>
@@ -79,11 +79,11 @@ session_start();
                             <div class="inputs-group">
                                 <div class="form-group">
                                     <label for="celular">Celular <span>*</span></label>
-                                    <input type="text" name="celular" id="celular">
+                                    <input type="text" name="celular" id="celular" required maxlength="17">
                                 </div>
                                 <div class="form-group">
                                     <label for="telefone">Telefone <span>*</span></label>
-                                    <input type="text" name="telefone" id="telefone">
+                                    <input type="text" name="telefone" id="telefone" required maxlength="16">
                                 </div>
                             </div>
                         </div>
@@ -91,26 +91,26 @@ session_start();
                             <h2>Endereço</h2>
                             <div class="form-group">
                                 <label for="cep">Cep <span>*</span></label>
-                                <input type="text" name="cep" id="cep">
+                                <input type="text" name="cep" id="cep" required>
                             </div>
                             <div class="inputs-group endereco">
                                 <div class="form-group">
                                     <label for="endereco">Endereço <span>*</span></label>
-                                    <input type="text" name="endereco" id="endereco">
+                                    <input type="text" name="endereco" id="endereco" required>
                                 </div>
                                 <div class="form-group numero">
                                     <label for="numend">N° <span>*</span></label>
-                                    <input type="text" name="numend" id="numend">
+                                    <input type="text" name="numend" id="numend" required>
                                 </div>
                             </div>
                             <div class="inputs-group">
                                 <div class="form-group">
                                     <label for="bairro">Bairro <span>*</span></label>
-                                    <input type="text" name="bairro" id="bairro">
+                                    <input type="text" name="bairro" id="bairro" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="cidade">Cidade <span>*</span></label>
-                                    <input type="text" name="cidade" id="cidade">
+                                    <input type="text" name="cidade" id="cidade" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="estado">Estado <span>*</span></label>
@@ -160,11 +160,11 @@ session_start();
                             <div class="inputs-group">
                                 <div class="form-group">
                                     <label for="senha">Senha <span>*</span></label>
-                                    <input type="text" name="senhaCadastro" id="senha" required>
+                                    <input type="password" name="senhaCadastro" id="senha" minlength="8" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="confirmar-senha">Confirmar senha <span>*</span></label>
-                                    <input type="text" name="confirmar-senha" id="confirmar-senha" required>
+                                    <input type="password" name="confirmar-senha" id="confirmar-senha" minlength="8" required>
                                 </div>
                             </div>
                         </div>

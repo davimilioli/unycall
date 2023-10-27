@@ -45,8 +45,6 @@
                 <div class="form-title">
                     <h1>Login</h1>
                     <p>Preencha os campos abaixo para ter acesso ao nosso sistema</p>
-                    <p>Não possui cadastro? <a href="../cadastro/cadastro.php" class="form-link">Acesse aqui</a></p>
-                    <p>Esqueceu sua senha? <a href="./esqueceu_senha.php" class="form-link">Acesse aqui</a></p>
                 </div>
                 <form method="POST" class="form">
                     <input type="hidden" name="tipoLogin" value="normal">
@@ -95,6 +93,14 @@
                                 </p>
                             </div>
                         <?php endif ?>
+                    </div>
+                    <div class="form-title">
+
+                        <div class="form-title-actions">
+                            <p> <a href="../cadastro/cadastro.php" class="form-link">Não possui cadastro?</a> </p>
+                            <p>ou</p>
+                            <p> <a href="./esqueceu_senha.php" class="form-link">Esqueceu sua senha?</a></p>
+                        </div>
                     </div>
                 </form>
             </div>
