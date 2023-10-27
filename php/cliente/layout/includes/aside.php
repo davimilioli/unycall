@@ -58,12 +58,12 @@
             <div class="aside-nav">
                 <ul class="aside-list">
                     <li class="aside-list-item">
-                        <a href="./assinatura/gerenciar.php?id=66">Gerenciar</a>
+                        <a href="./assinatura/gerenciar.php?id=<?= $_GET['id'] ?>">Gerenciar</a>
                     </li>
                 </ul>
             </div>
         </div>
-        <div class="aside-category">
+        <!--         <div class="aside-category">
             <div class="aside-category-title">
                 <span class="aside-category-titles">
                     <img src="/assets/img/icons/user.svg">
@@ -81,6 +81,6 @@
                     </li>
                 </ul>
             </div>
-        </div>
+        </div> -->
     </nav>
 </aside>

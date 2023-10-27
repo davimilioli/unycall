@@ -811,53 +811,127 @@
         }
 
         .page-cliente-signature {
-            padding: 1rem;
             width: 100%;
             margin-left: 16rem;
+            padding: 1rem;
 
             .signature-content {
+                padding: 1rem;
                 background: #FFF;
                 box-shadow: $bx-shadow;
 
-                .signature-list-header {
-                    display: grid;
-                    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-                    align-items: center;
-                    padding: 1rem;
-                }
+                .card-signature-active {
+                    background: #FFF;
+                    width: 250px;
+                    border: 1px solid $border-color;
+                    border-radius: $radius;
+                    box-shadow: $bx-shadow;
 
-                .signature-list-content {
-
-                    .signature-list-options-content {
-                        display: grid;
-                        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-                        align-items: center;
-                        transition: .3s;
+                    .signature-active-header {
+                        border-bottom: 1px solid $border-color;
                         padding: 1rem;
 
-                        input[type="checkbox"] {
-                            width: initial;
-                        }
-
-                        &:hover {
-                            background: #cccccc;
-                            transition: .3s;
-                        }
-
-                        .signature-list-option {
-                            display: flex;
-                            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-                            align-items: center;
+                        h2 {
+                            font-size: 1.2rem;
                         }
                     }
 
+                    .signature-active-body {
 
+                        .signature-active-body-price,
+                        .signature-active-body-date {
+                            border-bottom: 1px solid $border-color;
+                            padding: 1rem;
+                            color: $description-color;
+                        }
+                    }
+
+                    .signature-active-footer {
+                        padding: 1rem;
+
+                        .btn {
+                            background-color: #f5f7fa;
+                            color: $text-color;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            &:hover {
+                                background-color: #dfdfe0;
+                            }
+                        }
+                    }
+                }
+
+
+                .form-container {
+                    width: 40%;
+                    border: 1px solid $border-color;
+                    padding: 1rem;
+                    border-radius: 0;
+
+                    .signature-list-header {
+                        display: grid;
+                        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                        align-items: center;
+                        border: 1px solid $border-color;
+                        border-radius: $radius;
+                        padding: .5rem;
+
+                        .signature-list-header-item {
+                            font-size: .875rem;
+                            text-align: center;
+                        }
+                    }
+
+                    .signature-list-content {
+                        border: 1px solid $border-color;
+                        border-radius: $radius;
+
+                        .signature-list-options-content {
+                            display: grid;
+                            grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                            align-items: center;
+                            transition: .3s;
+                            padding: 1rem;
+
+                            .signature-list-option-item {
+                                text-align: center;
+                            }
+
+                            border-bottom: 1px solid $border-color;
+
+                            &:last-child {
+                                border-bottom: none;
+                            }
+
+                            input[type="checkbox"] {
+                                width: initial;
+                            }
+
+                            &:hover {
+                                background: #f0f0f0;
+                                transition: .3s;
+                            }
+
+                            .signature-list-option {
+                                display: flex;
+                                grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+                                align-items: center;
+                            }
+                        }
+                    }
                 }
 
                 .form-content {
+                    padding: 0;
+
                     .form {
                         .form-buttons {
                             justify-content: end;
+                            justify-content: end;
+                            padding: 1rem 0;
+                            width: 40%;
                         }
                     }
                 }

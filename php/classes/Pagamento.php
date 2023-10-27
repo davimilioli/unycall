@@ -3,6 +3,7 @@
 class Pagamento
 {
     private int $id;
+    private string $id_transacao;
     private string $nome;
     private string $cpf;
     private string $servico_assinado;
@@ -20,6 +21,16 @@ class Pagamento
         return $this->id;
     }
 
+    public function setarPgtoIdTransacao(string $id_transacao)
+    {
+        $this->id_transacao = trim($id_transacao);
+    }
+
+    public function pegarPgtoIdTransacao(): string
+    {
+        return $this->id_transacao;
+    }
+
     public function setarPgtoNome(string $nome)
     {
         $this->nome = ucwords(trim($nome));
@@ -32,7 +43,6 @@ class Pagamento
 
     public function setarPgtoCpf(int $cpf)
     {
-        $cpf = preg_replace('/[^0-9]/', '', $cpf);
         $this->cpf = $cpf;
     }
 
@@ -51,12 +61,12 @@ class Pagamento
         return $this->servico_assinado;
     }
 
-    public function setarPrecoServico(string $preco_servico)
+    public function setarServicoPreco(string $preco_servico)
     {
         $this->preco_servico = $preco_servico;
     }
 
-    public function pegarPrecoServico(): string
+    public function pegarServicoPreco(): string
     {
         return $this->preco_servico;
     }

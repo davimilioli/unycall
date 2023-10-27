@@ -37,20 +37,20 @@ $lista = $sistema->consultarDadosUsuario();
                 <div class="page-cliente-main-body">
                     <div class="tab">
                         <div class="tab-header">
-                            <h3>Gerencie seus planos</h3>
+                            <h3>Gerencie sua Assinatura</h3>
                         </div>
                         <div class="tab-content">
                             <div class="tab-content-description">
                                 <img src="/assets/img/icons/dynamic-form.svg">
                                 <div>
-                                    <h4>Plano Premium</h4>
-                                    <p>Expira em 2024/02/10</p>
+                                    <h4>----</h4>
+                                    <p>Expira em ---</p>
                                 </div>
                             </div>
-                            <a href="#" class="btn">Gerenciar</a>
+                            <a href="./assinatura/gerenciar.php?id=<?= $_GET['id'] ?>" class="btn">Gerenciar</a>
                         </div>
                     </div>
-                    <div class="tab">
+                    <!--                     <div class="tab">
                         <div class="tab-header">
                             <h3>Faturas</h3>
                         </div>
@@ -64,7 +64,7 @@ $lista = $sistema->consultarDadosUsuario();
                             </div>
                             <a href="#" class="btn">Gerenciar</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
             </div>

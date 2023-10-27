@@ -4,7 +4,7 @@ class Assinatura
 {
     private int $id;
     private int $id_usuario;
-    private int $id_pagamento;
+    private string $id_transacao;
     private int $id_servico;
 
     public function setarIdAss(int $id)
@@ -27,14 +27,14 @@ class Assinatura
         return $this->id_usuario;
     }
 
-    public function setarIdAssPgto(int $id_pagamento)
+    public function setarIdAssTransacao(string $id_transacao)
     {
-        $this->id_pagamento = trim($id_pagamento);
+        $this->id_transacao = trim($id_transacao);
     }
 
-    public function pegarIdAssPgto(): int
+    public function pegarIdAssTransacao(): string
     {
-        return $this->id_pagamento;
+        return $this->id_transacao;
     }
 
     public function setaridAssServico(int $id_servico)
