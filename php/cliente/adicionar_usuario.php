@@ -42,7 +42,8 @@ session_start();
                         <p class="loading-message">aaaa</p>
                     </div>
                 </div>
-                <form method="POST" action="../cadastro/cadastro_action.php" class="form">
+                <form method="POST" action="../cadastro/cadastro_action.php?id=<?= $_GET['id'] ?>" class="form">
+                    <input type="hidden" name="adm" value="<?= $_GET['id'] ?>">
                     <div class="form-container">
                         <div class="form-category">
                             <h2>Dados pessoais</h2>
@@ -183,7 +184,7 @@ session_start();
                             <?php if (isset($_GET['erro'])) :  ?>
                                 <div class="message_error">
                                     <p>
-                                        <img src="/assets/img/icons/danger.svg">E-mail já cadastrado
+                                        <img src="/assets/img/icons/danger.svg">Cpf já cadastrado
                                     </p>
                                 </div>
                             <?php endif ?>

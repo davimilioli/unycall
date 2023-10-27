@@ -22,10 +22,10 @@
                 <div class="aside-nav">
                     <ul class="aside-list">
                         <li class="aside-list-item">
-                            <a href="./lista_usuarios.php?id=<?= $_GET['id'] ?>">Lista de Usuarios</a>
+                            <a href="/php/cliente/lista_usuarios.php?id=<?= $_GET['id'] ?>">Lista de Usuarios</a>
                         </li>
                         <li class="aside-list-item">
-                            <a href="./adicionar_usuario.php?id=<?= $_GET['id'] ?>">Adicionar Usuario</a>
+                            <a href="/php/cliente/adicionar_usuario.php?id=<?= $_GET['id'] ?>">Adicionar Usuario</a>
                         </li>
                     </ul>
                 </div>
@@ -41,7 +41,8 @@
                 <div class="aside-nav">
                     <ul class="aside-list">
                         <li class="aside-list-item">
-                            <a href="./banco/modelo.php?id=<?= $_GET['id'] ?>">Modelo</a>
+                            <a href="/php/cliente/banco/modelo.php?id=<?= $_GET['id'] ?>">Modelo</a>
+
                         </li>
                     </ul>
                 </div>
@@ -58,7 +59,7 @@
             <div class="aside-nav">
                 <ul class="aside-list">
                     <li class="aside-list-item">
-                        <a href="./assinatura/gerenciar.php?id=<?= $_GET['id'] ?>">Gerenciar</a>
+                        <a href="/php/cliente/assinatura/gerenciar.php?id=<?= $_GET['id'] ?>">Gerenciar</a>
                     </li>
                 </ul>
             </div>
