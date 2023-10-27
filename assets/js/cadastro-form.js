@@ -141,11 +141,11 @@ email.addEventListener('input', function () {
 
 /* VALIDAÇÃO CELULAR */
 
-const celular = document.querySelector('#celular');
+/* const celular = document.querySelector('#celular');
 let validaCelular = false;
 
 celular.addEventListener('input', function () {
-    let celularValue = celular.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+    let celularValue = celular.value.replace(/\D/g, '');
     let formattedCelular = '';
 
     for (let i = 0; i < celularValue.length; i++) {
@@ -168,15 +168,15 @@ celular.addEventListener('input', function () {
     } else {
         validaCelular = false;
     }
-});
+}); */
 
 
 /* VALIDAÇÃO FIXO */
-const telefone = document.querySelector('#telefone');
+/* const telefone = document.querySelector('#telefone');
 let validaTelefone = false;
 
 telefone.addEventListener('input', function () {
-    let telefoneValue = telefone.value.replace(/\D/g, ''); // Remove todos os caracteres não numéricos
+    let telefoneValue = telefone.value.replace(/\D/g, ''); 
     let formattedTelefone = '';
 
     for (let i = 0; i < telefoneValue.length; i++) {
@@ -199,7 +199,7 @@ telefone.addEventListener('input', function () {
     } else {
         validaTelefone = false;
     }
-});
+}); */
 
 /* VALIDAÇÃO CEP */
 let validaCep = false;
