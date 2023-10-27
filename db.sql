@@ -23,16 +23,16 @@ USE `db_site`;
 CREATE TABLE IF NOT EXISTS `assinaturas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `id_usuario` int(11) NOT NULL,
-  `id_pagamento` int(11) NOT NULL,
+  `id_transacao` varchar(255) NOT NULL,
   `id_servico` int(11) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE,
   KEY `id_usuario` (`id_usuario`),
-  KEY `id_pagamento` (`id_pagamento`),
   KEY `id_servico` (`id_servico`),
+  KEY `id_pagamento` (`id_transacao`) USING BTREE,
   CONSTRAINT `assinaturas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
-  CONSTRAINT `assinaturas_ibfk_2` FOREIGN KEY (`id_pagamento`) REFERENCES `pagamentos` (`id`),
+  CONSTRAINT `assinaturas_ibfk_2` FOREIGN KEY (`id_transacao`) REFERENCES `pagamentos` (`id_transacao`),
   CONSTRAINT `assinaturas_ibfk_3` FOREIGN KEY (`id_servico`) REFERENCES `servicos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportação de dados foi desmarcado.
 
@@ -57,14 +57,16 @@ CREATE TABLE IF NOT EXISTS `endereco` (
 -- Copiando estrutura para tabela db_site.pagamentos
 CREATE TABLE IF NOT EXISTS `pagamentos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_transacao` varchar(255) NOT NULL,
   `nome` varchar(255) NOT NULL,
-  `cpf` int(14) NOT NULL,
+  `cpf` varchar(50) NOT NULL DEFAULT '',
   `servico_assinado` varchar(255) NOT NULL,
   `preco_servico` varchar(255) NOT NULL,
   `total` float NOT NULL,
   `data_pagamento` date NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE KEY `UNIQUE` (`id_transacao`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportação de dados foi desmarcado.
 
@@ -77,6 +79,9 @@ CREATE TABLE IF NOT EXISTS `servicos` (
   `custo` float DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+INSERT IGNORE INTO `servicos` (`id`, `tipo`, `nome`, `disp_regiao`, `custo`) VALUES
+	(1, 'internet', '200MB', 'Rio de Janeiro', 119.99);
 
 -- Exportação de dados foi desmarcado.
 
