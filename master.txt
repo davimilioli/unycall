@@ -1,0 +1,10 @@
+login: admin
+senha: admin
+
+COMANDOS SQL PARA CRIAR O USUARIO ADMIN
+
+INSERT INTO usuarios ( nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha, permissao) VALUES ( 'admin','1982-11-28' , '21977880448', 'admin', 'admin@gmail.com', 'Masculino', '9378699813', '338018469', 'admin', '$2y$10$AVkZ2NAZ7QoEtnu3nt4Tzu4f/p8avfYFvS8IUyqy0f5BM4lY6igw2', 'administrador');
+
+
+INSERT INTO endereco (id_usuario, cep, logradouro, numero, bairro, cidade, estado, complemento) VALUES (119, '21765370', 'Rua Antônio Galvão', '40', 'Realengo', 'Rio De Janeiro', 'casa', 'casa');
+
