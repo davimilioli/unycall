@@ -1,7 +1,7 @@
 <?php
-require_once('../../config/config_db.php');
 require_once('../../autoload.php');
-$sistema = new Sistema($pdo);
+$banco = new BancoDados();
+$sistema = new Sistema($banco->pegarPdo());
 
 $verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
 if ($verificarPerm['usuario']['permissao'] == 'administrador') {
@@ -11,7 +11,7 @@ if ($verificarPerm['usuario']['permissao'] == 'administrador') {
 }
 
 session_start();
-$tabelas = $pdo->query("SHOW TABLES");
+$tabelas = $banco->pegarPdo()->query("SHOW TABLES");
 
 function tipoDado($tipo)
 {
@@ -86,7 +86,7 @@ function tamanhoDado($dado)
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($pdo->query("SHOW COLUMNS FROM $tabelaNome") as $coluna) : ?>
+                                <?php foreach ($banco->pegarPdo()->query("SHOW COLUMNS FROM $tabelaNome") as $coluna) : ?>
                                     <tr>
                                         <td><?= $coluna['Field'] ?></td>
                                         <td><?= tipoDado($coluna['Type']) ?></td>

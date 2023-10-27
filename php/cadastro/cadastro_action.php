@@ -1,8 +1,10 @@
 <?php
-require_once('../config/config_db.php');
 require_once('../autoload.php');
+$banco = new BancoDados();
+$sistema = new Sistema($banco->pegarPdo());
+$usuarioSql = new UsuarioMySql($banco->pegarPdo());
+$enderecoSql = new EnderecoMySql($banco->pegarPdo());
 
-$sistema = new Sistema($pdo);
 /* $verificarPerm = $sistema->procurarIdUsuario($idAdm);
 if ($verificarPerm['usuario']['permissao'] == 'administrador') {
     session_name('administrador');
@@ -10,10 +12,8 @@ if ($verificarPerm['usuario']['permissao'] == 'administrador') {
     session_name('usuario');
 } */
 
-$idAdm = filter_input(INPUT_POST, 'adm');
-$usuarioSql = new UsuarioMySql($pdo);
-$enderecoSql = new EnderecoMySql($pdo);
 $referente = '';
+$idAdm = filter_input(INPUT_POST, 'adm');
 $nome = filter_input(INPUT_POST, 'nome');
 $nascimento = filter_input(INPUT_POST, 'nascimento');
 $cpf = filter_input(INPUT_POST, 'cpf');

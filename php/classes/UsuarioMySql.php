@@ -1,5 +1,4 @@
 <?php
-require_once(__DIR__ . '../../config/config_db.php');
 require_once('Usuario.php');
 
 class UsuarioMySql implements UsuarioSqlInterface

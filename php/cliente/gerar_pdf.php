@@ -1,12 +1,10 @@
 <?php
-require_once('../config/config_db.php');
 require_once('../autoload.php');
+require_once('./modulos/modulos.php');
+require_once('../lib/tcpdf/tcpdf.php');
 
-require_once(__DIR__ . '../../lib/tcpdf/tcpdf.php');
-
-require_once(__DIR__ . '../modulos/modulos.php');
-
-$sistema = new Sistema($pdo);
+$banco = new BancoDados();
+$sistema = new Sistema($banco->pegarPdo());
 $lista = $sistema->consultarDadosUsuario();
 
 $pdf = new TCPDF();
@@ -48,7 +46,7 @@ $html .= '</table>';
 $pdf->writeHTML($html, true, false, true, false, '');
 
 // Defina o cabeçalho Content-Disposition para indicar que o arquivo é um anexo para download
-header('Content-Disposition: attachment; filename="lista_usuarios.pdf"');
+header('Content-Disposition: attachment; filename="lista.pdf.pdf"');
 
 // Saída do PDF para o navegador
-$pdf->Output('lista_usuarios.pdf', 'I');
+$pdf->Output('lista.pdf', 'I');

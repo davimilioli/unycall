@@ -1,7 +1,7 @@
 <?php
-require_once('../config/config_db.php');
 require_once('../autoload.php');
-$sistema = new Sistema($pdo);
+$banco = new BancoDados();
+$sistema = new Sistema($banco->pegarPdo());
 
 $usuario = filter_input(INPUT_POST, 'usuario');
 $email = filter_input(INPUT_POST, 'email');

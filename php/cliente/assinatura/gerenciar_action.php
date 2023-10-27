@@ -1,8 +1,7 @@
 <?php
-
-require_once('../../config/config_db.php');
 require_once('../../autoload.php');
-$sistema = new Sistema($pdo);
+$banco = new BancoDados();
+$sistema = new Sistema($banco->pegarPdo());
 $verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
 if ($verificarPerm['usuario']['permissao'] == 'administrador') {
     session_name('administrador');
@@ -11,7 +10,7 @@ if ($verificarPerm['usuario']['permissao'] == 'administrador') {
 }
 session_start();
 
-$gerenciador = new Gerenciador($pdo);
+$gerenciador = new Gerenciador($banco->pegarPdo());
 
 $idUsuario = filter_input(INPUT_POST, 'idUsuario');
 $idServico = filter_input(INPUT_POST, 'idServico');

@@ -1,10 +1,10 @@
 <?php
+require_once('../autoload.php');
+$banco = new BancoDados();
+$sistema = new Sistema($banco->pegarPdo());
+$usuarioSql = new UsuarioMySql($banco->pegarPdo());
 
 session_start();
-
-require_once('../config/config_db.php');
-require_once('../autoload.php');
-$usuarioSql = new UsuarioMySql($pdo);
 
 $tipoLogin = filter_input(INPUT_POST, 'tipoLogin');
 $login = filter_input(INPUT_POST, 'login');

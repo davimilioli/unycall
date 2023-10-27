@@ -1,7 +1,8 @@
 <?php
-require_once('../config/config_db.php');
+/* require_once('../config/config_db.php'); */
 require_once('../autoload.php');
-$sistema = new Sistema($pdo);
+$banco = new BancoDados();
+$sistema = new Sistema($banco->pegarPdo());
 
 $verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
 if ($verificarPerm['usuario']['permissao'] == 'administrador') {
@@ -13,6 +14,7 @@ if ($verificarPerm['usuario']['permissao'] == 'administrador') {
 session_start();
 
 $lista = $sistema->consultarDadosUsuario();
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">

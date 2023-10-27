@@ -1,8 +1,8 @@
 <?php
-require_once('../config/config_db.php');
 require_once('../autoload.php');
+$banco = new BancoDados();
+$sistema = new Sistema($banco->pegarPdo());
 require_once(__DIR__ . '../modulos/modulos.php');
-$sistema = new Sistema($pdo);
 
 $verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
 if ($verificarPerm['usuario']['permissao'] == 'administrador') {
