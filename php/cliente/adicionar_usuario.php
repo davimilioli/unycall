@@ -65,7 +65,7 @@ session_start();
                             </div>
                             <div class="form-group">
                                 <label for="email">Email <span>*</span></label>
-                                <input type="text" name="email" id="email" required>
+                                <input type="email" name="email" id="email" required>
                             </div>
                             <div class="form-group">
                                 <label for="">Sexo <span>*</span></label>
