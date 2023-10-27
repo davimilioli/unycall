@@ -32,7 +32,7 @@ $dados = $sistema->procurarIdUsuario($_GET['id']);
                 </ul>
             </div>
             <div class="menu-profile-footer">
-                <a class="btn" href="../cliente/sair.php">Sair</a>
+                <a class="btn" href="/php/cliente/sair.php">Sair</a>
             </div>
         </div>
     </div>
