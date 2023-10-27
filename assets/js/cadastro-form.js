@@ -9,10 +9,8 @@ let nomeRegex = /^[A-Za-z\s]+$/;
 nome.addEventListener('keyup', () => {
     if (nome.value.length < 15 || /\s\s/.test(nome.value) || nome.value.length > 65) {
         nomeValido = false;
-        nome.setAttribute('style', 'border-color: red');
     } else {
         nomeValido = true;
-        nome.setAttribute('style', 'border-color: green');
         console.log('NOME: ' + nomeValido);
     }
 })
@@ -58,11 +56,9 @@ function validationDateBirth() {
 
         if (age < 18) {
             validaData = false;
-            dataNascimento.setAttribute('style', 'border-color: red')
         } else {
             validaData = true;
             console.log('Data: ' + validaData)
-            dataNascimento.setAttribute('style', 'border-color: green');
         }
     });
 }
@@ -91,10 +87,8 @@ cpf.addEventListener("input", function () {
     if (validarCPF(formattedCPF)) {
         validaCpf = true;
         console.log('CPF: ' + validaCpf)
-        cpf.setAttribute('style', 'border-color: green');
     } else {
         validaCpf = false;
-        cpf.setAttribute('style', 'border-color: red')
     }
 });
 
@@ -140,10 +134,8 @@ email.addEventListener('input', function () {
     if (emailPattern.test(emailValue)) {
         validaEmail = true;
         console.log('email: ' + validaEmail);
-        email.setAttribute('style', 'border-color: green')
     } else {
         validaEmail = false;
-        email.setAttribute('style', 'border-color: red');
     }
 });
 
@@ -173,10 +165,8 @@ celular.addEventListener('input', function () {
     if (celularValue.length === 14) {
         validaCelular = true;
         console.log('Celular: ' + validaCelular);
-        celular.setAttribute('style', 'border-color: green')
     } else {
         validaCelular = false;
-        celular.setAttribute('style', 'border-color: red');
     }
 });
 
@@ -206,10 +196,8 @@ telefone.addEventListener('input', function () {
     if (telefoneValue.length === 13) {
         validaTelefone = true;
         console.log('Telefone: ' + validaTelefone)
-        telefone.setAttribute('style', 'border-color: green')
     } else {
         validaTelefone = false;
-        telefone.setAttribute('style', 'border-color: red');
     }
 });
 
@@ -281,8 +269,6 @@ async function getAddress(cep) {
     if (data.erro) {
         validaCep = false;
 
-        cepInput.setAttribute('style', 'border-color: red');
-
         inputsAddress.forEach(function (input) {
             input.value = '';
         });
@@ -299,8 +285,6 @@ async function getAddress(cep) {
     } else {
         validaCep = true;
         console.log('CEP: ' + validaCep)
-
-        cepInput.setAttribute('style', 'border-color: green');
 
         // Chamada para validar os campos de endereço, bairro, cidade e estado
         /* validateAddressFields(); */
@@ -345,35 +329,6 @@ function validateAddressFields() {
     cidadeValid = cidade.value.trim() !== '';
     estadoValid = estado.value.trim() !== '';
 
-    // Define as bordas e cores dos campos de acordo com a validação
-    if (enderecoValid) {
-        endereco.setAttribute('style', 'border-color: green');
-    } else {
-        endereco.setAttribute('style', 'border-color: red');
-
-    }
-
-    if (bairroValid) {
-        bairro.setAttribute('style', 'border-color: green');
-    } else {
-        bairro.setAttribute('style', 'border-color: red');
-    }
-
-    if (cidadeValid) {
-        cidade.setAttribute('style', 'border-color: green');
-
-    } else {
-        cidade.setAttribute('style', 'border-color: red');
-
-    }
-
-    if (estadoValid) {
-        estado.setAttribute('style', 'border-color: green');
-
-    } else {
-        estado.setAttribute('style', 'border-color: red');
-    }
-
     // Verifique se todos os campos são válidos e desative-os se forem
     if (enderecoValid && bairroValid && cidadeValid && estadoValid) {
         endereco.disabled = true;
@@ -390,11 +345,9 @@ let validaLogin = false;
 login.addEventListener('keyup', () => {
     if (login.value.length < 6) {
         validaLogin = false;
-        login.setAttribute('style', 'border-color: red');
     } else {
         validaLogin = true;
         console.log('Login: ' + validaLogin);
-        login.setAttribute('style', 'border-color: green');
     }
 })
 
@@ -410,10 +363,8 @@ senha.addEventListener('keyup', () => {
     if (quantidadeAlfabeticos >= 8) {
         validaSenha = true;
         console.log('Senha: ' + validaSenha)
-        senha.setAttribute('style', 'border-color: green');
     } else {
         validaSenha = false;
-        senha.setAttribute('style', 'border-color: red');
 
     }
 })
@@ -429,11 +380,9 @@ const confirmaSenha = document.querySelector('#confirmar-senha');
 confirmaSenha.addEventListener('keyup', () => {
     if (confirmaSenha.value != senha.value) {
         validaConfirma = false;
-        confirmaSenha.setAttribute('style', 'border-color: red');
     } else {
         validaConfirma = true;
         console.log('confirmar senha: ' + validaConfirma)
-        confirmaSenha.setAttribute('style', 'border-color: green');
     }
 })
 
