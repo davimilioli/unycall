@@ -48,6 +48,16 @@
                     }
                 }
             }
+
+            .form-title {
+                .form-title-actions {
+                    padding-top: 1rem;
+                    display: flex;
+                    gap: 20px;
+                    align-items: center;
+                    justify-content: center;
+                }
+            }
         }
 
         .cadastro-description {
