@@ -19,20 +19,22 @@
 CREATE DATABASE IF NOT EXISTS `db_site` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */;
 USE `db_site`;
 
--- Copiando estrutura para tabela db_site.assinaturas
-CREATE TABLE IF NOT EXISTS `assinaturas` (
+-- Copiando estrutura para tabela db_site.usuarios
+CREATE TABLE IF NOT EXISTS `usuarios` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `id_usuario` int(11) NOT NULL,
-  `id_transacao` varchar(255) NOT NULL,
-  `id_servico` int(11) NOT NULL,
-  PRIMARY KEY (`id`) USING BTREE,
-  KEY `id_usuario` (`id_usuario`),
-  KEY `id_servico` (`id_servico`),
-  KEY `id_pagamento` (`id_transacao`) USING BTREE,
-  CONSTRAINT `assinaturas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
-  CONSTRAINT `assinaturas_ibfk_2` FOREIGN KEY (`id_transacao`) REFERENCES `pagamentos` (`id_transacao`),
-  CONSTRAINT `assinaturas_ibfk_3` FOREIGN KEY (`id_servico`) REFERENCES `servicos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `nome` varchar(255) NOT NULL,
+  `nascimento` date NOT NULL,
+  `cpf` varchar(14) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `nomematerno` varchar(255) NOT NULL,
+  `sexo` char(10) NOT NULL,
+  `celular` varchar(15) NOT NULL,
+  `telefone` varchar(15) NOT NULL,
+  `login` varchar(50) NOT NULL,
+  `senha` varchar(255) NOT NULL,
+  `permissao` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportação de dados foi desmarcado.
 
@@ -85,22 +87,20 @@ INSERT IGNORE INTO `servicos` (`id`, `tipo`, `nome`, `disp_regiao`, `custo`) VAL
 
 -- Exportação de dados foi desmarcado.
 
--- Copiando estrutura para tabela db_site.usuarios
-CREATE TABLE IF NOT EXISTS `usuarios` (
+-- Copiando estrutura para tabela db_site.assinaturas
+CREATE TABLE IF NOT EXISTS `assinaturas` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `nome` varchar(255) NOT NULL,
-  `nascimento` date NOT NULL,
-  `cpf` varchar(14) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `nomematerno` varchar(255) NOT NULL,
-  `sexo` char(10) NOT NULL,
-  `celular` varchar(15) NOT NULL,
-  `telefone` varchar(15) NOT NULL,
-  `login` varchar(50) NOT NULL,
-  `senha` varchar(255) NOT NULL,
-  `permissao` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+  `id_usuario` int(11) NOT NULL,
+  `id_transacao` varchar(255) NOT NULL,
+  `id_servico` int(11) NOT NULL,
+  PRIMARY KEY (`id`) USING BTREE,
+  KEY `id_usuario` (`id_usuario`),
+  KEY `id_servico` (`id_servico`),
+  KEY `id_pagamento` (`id_transacao`) USING BTREE,
+  CONSTRAINT `assinaturas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
+  CONSTRAINT `assinaturas_ibfk_2` FOREIGN KEY (`id_transacao`) REFERENCES `pagamentos` (`id_transacao`),
+  CONSTRAINT `assinaturas_ibfk_3` FOREIGN KEY (`id_servico`) REFERENCES `servicos` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Exportação de dados foi desmarcado.
 
