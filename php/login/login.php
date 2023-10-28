@@ -1,3 +1,9 @@
+<?php
+require '../autoload.php';
+$banco = new BancoDados();
+$banco->verificarTabelas();
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 
