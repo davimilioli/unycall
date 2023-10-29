@@ -38,7 +38,7 @@ $banco->verificarTabelas();
         </button>
     </header>
     <section class="page-form">
-        <div class="cadastro-content">
+        <div class="form-panel">
             <div class="form-content">
                 <div class="loading hide">
                     <div class="loading-content">
@@ -50,12 +50,10 @@ $banco->verificarTabelas();
                 </div>
                 <div class="form-title">
                     <h1>Login</h1>
-                    <p>Preencha os campos abaixo para ter acesso ao nosso sistema</p>
                 </div>
                 <form method="POST" class="form">
                     <input type="hidden" name="tipoLogin" value="normal">
                     <div class="form-category">
-                        <h2>Fazer login como?</h2>
                         <div class="type-login">
                             <button type="button" class="btn secondary button-type">Usuario comum</button>
                             <button type="button" class="btn secondary button-type">Administrador</button>
@@ -74,47 +72,34 @@ $banco->verificarTabelas();
                             <input type="submit" value="Entrar" class="btn" class="enviarForm" id="entrar">
                             <input type="reset" value="Limpar" id="limpar" class="btn secondary">
                         </div>
-                        <?php if (isset($_GET['erroLogin'])) :  ?>
-                            <div class="message_error">
-                                <p>
-                                    <img src="/assets/img/icons/danger.svg">Usuario ou senha incorretos
-                                </p>
-                            </div>
-                        <?php elseif (isset($_GET['erroSistema'])) :  ?>
-                            <div class="message_error">
-                                <p>
-                                    <img src="/assets/img/icons/danger.svg">É necessário logar
-                                </p>
-                            </div>
-                        <?php elseif (isset($_GET['erroPermissao'])) :  ?>
-                            <div class="message_error">
-                                <p>
-                                    <img src="/assets/img/icons/danger.svg">Você não tem permissão
-                                </p>
-                            </div>
-                        <?php elseif (isset($_GET['avisoAdm'])) :  ?>
-                            <div class="message_error">
-                                <p>
-                                    <img src="/assets/img/icons/danger.svg">Você precisa entrar como administrador
-                                </p>
-                            </div>
-                        <?php endif ?>
-                    </div>
-                    <div class="form-title">
-
-                        <div class="form-title-actions">
-                            <p> <a href="../cadastro/cadastro.php" class="form-link">Não possui cadastro?</a> </p>
-                            <p>ou</p>
-                            <p> <a href="./esqueceu_senha.php" class="form-link">Esqueceu sua senha?</a></p>
-                        </div>
                     </div>
                 </form>
-            </div>
-            <div class="cadastro-description">
-                <div class="cadastro-description-content">
-                    <h1>Lorem ipsum dolor, sit amet consectetur adipisicx! Ipsa a ratione mollitia.</h1>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicx! Ipsa a ratione mollitia.</p>
-                </div>
+                <a href="./esqueceu_senha.php" class="text-password">Esqueci minha senha</a></p>
+                <?php if (isset($_GET['erroLogin'])) :  ?>
+                    <div class="message_error">
+                        <p>
+                            <img src="/assets/img/icons/danger.svg">Usuario ou senha incorretos
+                        </p>
+                    </div>
+                <?php elseif (isset($_GET['erroSistema'])) :  ?>
+                    <div class="message_error">
+                        <p>
+                            <img src="/assets/img/icons/danger.svg">É necessário logar
+                        </p>
+                    </div>
+                <?php elseif (isset($_GET['erroPermissao'])) :  ?>
+                    <div class="message_error">
+                        <p>
+                            <img src="/assets/img/icons/danger.svg">Você não tem permissão
+                        </p>
+                    </div>
+                <?php elseif (isset($_GET['avisoAdm'])) :  ?>
+                    <div class="message_error">
+                        <p>
+                            <img src="/assets/img/icons/danger.svg">Você precisa entrar como administrador
+                        </p>
+                    </div>
+                <?php endif ?>
             </div>
         </div>
         </div>

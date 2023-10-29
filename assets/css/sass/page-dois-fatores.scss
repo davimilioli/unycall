@@ -4,11 +4,12 @@
     align-items: center;
     margin: auto;
     justify-content: center;
+    height: 80vh;
 
-    height: 100vh;
-
-    .cadastro-content {
-        width: 36rem;
+    .form-panel {
+        width: 25rem;
+        border: 1px solid $border-color;
+        border-radius: $radius;
 
         .form {
             text-align: center;
@@ -16,6 +17,12 @@
             .form-actions,
             .btn {
                 width: 100%;
+            }
+
+            .form-group {
+                label {
+                    text-align: start;
+                }
             }
 
             .message_error {

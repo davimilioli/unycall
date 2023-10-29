@@ -12,13 +12,6 @@ $banco->verificarTabelas();
     <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
     <title>Unycall - Cadastro</title>
     <link rel="stylesheet" href="/assets/css/css/style.css">
-    <style>
-        @media (min-width: 1020px) {
-            body {
-                overflow: hidden;
-            }
-        }
-    </style>
 </head>
 
 <body>
@@ -43,8 +36,8 @@ $banco->verificarTabelas();
             <span></span>
         </button>
     </header>
-    <section class="page-form">
-        <div class="cadastro-content">
+    <section class="page-form cadastro">
+        <div class="form-panel">
             <div class="form-content">
                 <div class="loading hide">
                     <div class="loading-content">
@@ -183,28 +176,20 @@ $banco->verificarTabelas();
                             </div>
                         </div>
                     </div>
-                    <div class="form-buttons">
-                        <div class="form-actions">
-                            <input type="submit" value="Cadastrar" class="btn" id="cadastrar">
-                            <input type="reset" value="Limpar" id="limpar" class="btn secondary">
-                        </div>
-                        <?php if (isset($_GET['msgSistema'])) :  ?>
-                            <div class="message_error">
-                                <p>
-                                    <img src="/assets/img/icons/danger.svg">CPF já cadastrado
-                                </p>
-                            </div>
-                        <?php endif ?>
-                    </div>
-
                 </form>
-            </div>
-            <div class="cadastro-description">
-                <div class="cadastro-description-content">
-                    <h1>Lorem ipsum dolor, sit amet consectetur adipisicx! Ipsa a ratione mollitia.</h1>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicx! Ipsa a ratione mollitia.</p>
+                <div class="form-buttons">
+                    <div class="form-actions">
+                        <input type="reset" value="Limpar" id="limpar" class="btn secondary">
+                        <input type="submit" value="Cadastrar" class="btn" id="cadastrar">
+                    </div>
+                    <?php if (isset($_GET['msgSistema'])) :  ?>
+                        <div class="message_error">
+                            <p>
+                                <img src="/assets/img/icons/danger.svg">CPF já cadastrado
+                            </p>
+                        </div>
+                    <?php endif ?>
                 </div>
-
             </div>
         </div>
     </section>

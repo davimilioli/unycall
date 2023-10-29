@@ -28,8 +28,29 @@ $pegarPergunta = $sistema->pegarPergunta();
 </head>
 
 <body style="overflow: hidden;">
+    <header class="header">
+        <div class="logo">
+            <a href="/index.html"><img src="/assets/img/logo.png" alt="Logo UnyCall"></a>
+        </div>
+        <nav class="menu">
+            <ul class="menu-list">
+                <!-- <li class="menu-list-item"><a href="#">Sobre</a></li> -->
+                <li class="menu-list-item"><a href="../../servicos.html">Serviços</a></li>
+                <li class="menu-list-item"><a href="../../contato.html">Contato</a></li>
+            </ul>
+            <div class="header-actions">
+                <a class="btn secondary" href="/php/cadastro/cadastro.php">Cadastrar-se</a>
+                <a class="btn" href="/php/login/login.php">Login</a>
+            </div>
+        </nav>
+        <button type="button" class="menu-mobile">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </header>
     <main class="page-dois-fatores">
-        <div class="cadastro-content">
+        <div class="form-panel">
             <div class="form-content">
                 <div class="loading hide">
                     <div class="loading-content">
@@ -41,7 +62,7 @@ $pegarPergunta = $sistema->pegarPergunta();
                 </div>
                 <form method="POST" action="./esqueceu_senha_action.php" class="form" style="display: <?= $urlPergunta == true || $senhaAprovada == true  || $urlSenhasIguais == true ? 'none' : 'block' ?>">
                     <input type="hidden" name="tipo" value="dados">
-                    <h2>Preencha os campos abaixo</h2>
+                    <h3>Preencha os campos abaixo</h3>
                     <div class="form-group">
                         <label for="usuario">Login <span>*</span></label>
                         <input type="text" name="usuario" required>
@@ -60,7 +81,7 @@ $pegarPergunta = $sistema->pegarPergunta();
                     <?php if ($urlDados) :  ?>
                         <div class="message_error">
                             <p>
-                                <img src="/assets/img/icons/danger.svg">Usuário ou Email inválidos
+                                <img src="/assets/img/icons/danger.svg">Login ou Email inválidos
                             </p>
                         </div>
                     <?php endif ?>
@@ -69,7 +90,7 @@ $pegarPergunta = $sistema->pegarPergunta();
                     <input type="hidden" name="id" value="<?= $usuarioId ?>">
                     <input type="hidden" name="tipo" value="resposta">
                     <input type="hidden" name="slug" value="<?= $pegarPergunta['slug'] ?>">
-                    <h2><?= $pegarPergunta['pergunta'] ?></h2>
+                    <h3><?= $pegarPergunta['pergunta'] ?></h3>
                     <div class="form-group">
                         <input type="text" name="resposta" required>
                     </div>
@@ -91,7 +112,7 @@ $pegarPergunta = $sistema->pegarPergunta();
                 <form method="POST" action="./esqueceu_senha_action.php" class="form" style="display: <?= $urlSucesso == false && $senhaAprovada == true || $urlSenhasIguais == true ?  'block' : 'none' ?>">
                     <input type="hidden" name="id" value="<?= $usuarioId ?>">
                     <input type="hidden" name="tipo" value="dados">
-                    <h2>Preencha os campos abaixo</h2>
+                    <h3>Alterar senha</h3>
                     <div class="form-group">
                         <label for="senha">Senha <span>*</span></label>
                         <input type="text" name="senha" required>

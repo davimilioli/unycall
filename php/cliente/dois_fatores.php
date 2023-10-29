@@ -26,7 +26,7 @@ $pegarPergunta = $sistema->pegarPergunta();
 <body style="overflow: hidden;">
     <main class="page-dois-fatores">
 
-        <div class="cadastro-content">
+        <div class="form-panel">
             <div class="form-content">
                 <div class="loading hide">
                     <div class="loading-content">
@@ -39,11 +39,10 @@ $pegarPergunta = $sistema->pegarPergunta();
                 <form method="POST" action="./actions/dois_fatores_action.php?id=<?= $_GET['id'] ?>" class="form">
                     <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
                     <input type="hidden" name="slug" value="<?= $pegarPergunta['slug'] ?>">
-                    <h2><?= $pegarPergunta['pergunta'] ?></h2>
+                    <h3><?= $pegarPergunta['pergunta'] ?></h3>
                     <div class="form-group">
                         <input type="text" name="resposta" required>
                     </div>
-
                     <div class="form-buttons">
                         <div class="form-actions">
                             <input type="submit" value="Enviar" class="btn" id="cadastrar">

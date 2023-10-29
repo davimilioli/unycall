@@ -6,7 +6,7 @@
     padding: 6px 24px;
     box-shadow: $bx-shadow;
     border-bottom: 1px solid $border-color;
-    position: fixed;
+    position: sticky;
     top: 0;
     z-index: 20;
     background-color: #FFF;
