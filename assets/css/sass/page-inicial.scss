@@ -1,10 +1,4 @@
 .page-home {
-    margin-top: 5rem;
-
-    @media(max-width: 630px) {
-        margin-top: 3rem;
-    }
-
     @import './components/anuncio.scss';
     @import './components/planos.scss';
     @import './components/world.scss';
