@@ -1,19 +1,18 @@
 <?php
+session_start();
 require_once('../../autoload.php');
 $banco = new BancoDados();
 $sistema = new Sistema($banco->pegarPdo());
-$verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
-if ($verificarPerm['usuario']['permissao'] == 'administrador') {
-    session_name('administrador');
-} else {
-    session_name('usuario');
-}
-session_start();
+
+$id = $_SESSION['id'];
+$permissao = $_SESSION['permissao'];
+$dados = $sistema->procurarIdUsuario($id);
+
 
 $gerenciador = new Gerenciador($banco->pegarPdo());
 $servicosDisponiveis = $gerenciador->servicosDisponiveis();
-$nomeUsuario = $verificarPerm['usuario']['nome'];
-$cpfUsuario = $verificarPerm['usuario']['cpf'];
+$nomeUsuario = $dados['usuario']['nome'];
+$cpfUsuario = $dados['usuario']['cpf'];
 
 ?>
 
@@ -45,7 +44,7 @@ $cpfUsuario = $verificarPerm['usuario']['cpf'];
                 {
 
                     foreach ($consultarAssinatura as $assinatura) {
-                        if ($assinatura->pegarIdAssUsuario() == $_GET['id']) {
+                        if ($assinatura->pegarIdAssUsuario() == $_SESSION['id']) {
                             foreach ($consultarPagamentos as $pagamento) {
                                 if ($assinatura->pegarIdAssTransacao() == $pagamento->pegarPgtoIdTransacao()) {;
 
@@ -93,8 +92,8 @@ $cpfUsuario = $verificarPerm['usuario']['cpf'];
                     </div>
                 <?php else : ?>
                     <div class="form-content">
-                        <form method="POST" action="gerenciar_action.php?id=<?= $_GET['id'] ?>" class="form">
-                            <input type="hidden" name="idUsuario" value="<?= $_GET['id'] ?>">
+                        <form method="POST" action="gerenciar_action.php?id=<?= $id ?>" class="form">
+                            <input type="hidden" name="idUsuario" value="<?= $id ?>">
                             <input type="hidden" name="nomeUsuario" value="<?= $nomeUsuario ?>">
                             <input type="hidden" name="cpfUsuario" value="<?= $cpfUsuario ?>">
                             <input type="hidden" name="dataHoje" value="<?= date('d/m/Y') ?>">

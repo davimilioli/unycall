@@ -1,17 +1,17 @@
 <?php
+session_start();
 require_once('../autoload.php');
 $banco = new BancoDados();
 $sistema = new Sistema($banco->pegarPdo());
 
-$verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
-if ($verificarPerm['usuario']['permissao'] == 'administrador') {
-    session_name('administrador');
-} else {
-    header('location: cliente.php?' . $_GET['id'] . 'erroPermissao=true');
+$id = $_SESSION['id'];
+$permissao = $_SESSION['permissao'];
+
+if ($permissao != 'administrador') {
+    header('location: /php/cliente/cliente.php?erroPermissao=true');
     exit;
 }
 
-session_start();
 ?>
 
 <!DOCTYPE html>
@@ -42,8 +42,8 @@ session_start();
                         <p class="loading-message">aaaa</p>
                     </div>
                 </div>
-                <form method="POST" action="../cadastro/cadastro_action.php?id=<?= $_GET['id'] ?>" class="form">
-                    <input type="hidden" name="adm" value="<?= $_GET['id'] ?>">
+                <form method="POST" action="../cadastro/cadastro_action.php" class="form">
+                    <input type="hidden" name="adm" value="<?= $id ?>">
                     <div class="form-container">
                         <div class="form-category">
                             <h2>Dados pessoais</h2>

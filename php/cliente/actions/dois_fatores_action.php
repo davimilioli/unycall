@@ -1,10 +1,8 @@
 <?php
+session_start();
 require_once('../../autoload.php');
 $banco = new BancoDados();
 $sistema = new Sistema($banco->pegarPdo());
-
-session_name('usuario');
-session_start();
 
 $id = filter_input(INPUT_POST, 'id');
 $slug = filter_input(INPUT_POST, 'slug');
@@ -19,10 +17,10 @@ if ($id && $slug && $resposta) {
     $sistema->consultarResposta($id, $slug, $respost);
 
     if ($sistema->consultarResposta($id, $slug, $resposta)) {
-        header('location: ../cliente.php?id=' . $id);
+        header('location: /php/cliente/cliente.php');
         exit;
     } else {
-        header('location: ../dois_fatores.php?id=' . $id . '&erro=true');
+        header('location: ../dois_fatores.php?erro=true');
         exit;
     }
 }

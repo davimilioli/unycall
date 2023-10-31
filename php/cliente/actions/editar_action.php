@@ -1,17 +1,16 @@
 <?php
+session_start();
 require_once('../../autoload.php');
 $banco = new BancoDados();
 $sistema = new Sistema($banco->pegarPdo());
 
-$verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
-if ($verificarPerm['usuario']['permissao'] == 'administrador') {
-    session_name('administrador');
-} else {
-    header('location: cliente.php?' . $_GET['id'] . 'erroPermissao=true');
+$idAdm = $_SESSION['id'];
+$permissao = $_SESSION['permissao'];
+
+if ($permissao != 'administrador') {
+    header('location: /php/cliente/cliente.php?erroPermissao=true');
     exit;
 }
-
-session_start();
 
 
 $id = filter_input(INPUT_POST, 'id');
@@ -154,7 +153,7 @@ if ($id && $nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $c
         );
         $sistema->atualizarDadosEndereco($dadosEndereco, $usuarioSql);
     }
-    header('location: ../lista_usuarios.php?id=' . $_GET['id']);
+    header('location: ../lista_usuarios.php');
     exit;
 } /* else {
     header('location: ../editar_usuario.php?id=' . $_GET['id'] . '&edit=' . $id);

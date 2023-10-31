@@ -1,19 +1,15 @@
 <?php
+session_start();
 require_once('../autoload.php');
 $banco = new BancoDados();
 $sistema = new Sistema($banco->pegarPdo());
 require_once(__DIR__ . '../modulos/modulos.php');
 
-$verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
-if ($verificarPerm['usuario']['permissao'] == 'administrador') {
-    session_name('administrador');
-} else {
-    session_name('usuario');
-}
+$id = $_SESSION['id'];
+$permissao = $_SESSION['permissao'];
+$verificarPerm = $sistema->procurarIdUsuario($id);
 
-session_start();
-
-$dados = $sistema->procurarIdUsuario($_GET['id']);
+$dados = $sistema->procurarIdUsuario($id);
 $usuario = $dados['usuario'];
 
 ?>

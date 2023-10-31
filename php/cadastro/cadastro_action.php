@@ -5,13 +5,6 @@ $sistema = new Sistema($banco->pegarPdo());
 $usuarioSql = new UsuarioMySql($banco->pegarPdo());
 $enderecoSql = new EnderecoMySql($banco->pegarPdo());
 
-/* $verificarPerm = $sistema->procurarIdUsuario($idAdm);
-if ($verificarPerm['usuario']['permissao'] == 'administrador') {
-    session_name('administrador');
-} else {
-    session_name('usuario');
-} */
-
 $referente = '';
 $idAdm = filter_input(INPUT_POST, 'adm');
 $nome = filter_input(INPUT_POST, 'nome');
@@ -107,10 +100,10 @@ if ($nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $celular 
             $nomeArquivo = $caminho['filename'];
 
             if ($nomeArquivo == 'adicionar_usuario') {
-                header('location: ../cliente/lista_usuarios.php?id=' . $idAdm);
+                header('location: /php/cliente/lista_usuarios.php');
                 exit;
             } elseif ($nomeArquivo == 'cadastro') {
-                header('location: ../login/login.php');
+                header('location: /php/login/login.php');
                 exit;
             }
         }
@@ -121,7 +114,7 @@ if ($nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $celular 
             $nomeArquivo = $caminho['filename'];
 
             if ($nomeArquivo == 'adicionar_usuario') {
-                header('location: ../cliente/adicionar_usuario.php?id=' . $idAdm . 'erro=cpf');
+                header('location: /php/cliente/adicionar_usuario.php?erro=cpf');
                 exit;
             } else {
                 header('location: cadastro.php?msgSistema=cpf');
@@ -136,7 +129,7 @@ if ($nome && $nascimento && $cpf && $nomeMaterno && $email && $sexo && $celular 
         $nomeArquivo = $caminho['filename'];
 
         if ($nomeArquivo == 'adicionar_usuario') {
-            header('location: ../cliente/adicionar_usuario.php?id=' . $idAdm . 'msgSistema=campos');
+            header('location: /php/cliente/adicionar_usuario.php?msgSistema=campos');
             exit;
         } else {
             header('location: cadastro.php?msgSistema=campos');

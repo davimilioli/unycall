@@ -1,17 +1,16 @@
 <?php
+session_start();
 require_once('../autoload.php');
 $banco = new BancoDados();
 $sistema = new Sistema($banco->pegarPdo());
 
-$verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
-if ($verificarPerm['usuario']['permissao'] == 'administrador') {
-    session_name('administrador');
-} else {
-    header('location: cliente.php?' . $_GET['id'] . 'erroPermissao=true');
+$id = $_SESSION['id'];
+$permissao = $_SESSION['permissao'];
+
+if ($permissao != 'administrador') {
+    header('location: /php/cliente/cliente.php?erroPermissao=true');
     exit;
 }
-
-session_start();
 
 $lista = $sistema->consultarDadosUsuario();
 
@@ -56,7 +55,7 @@ require_once(__DIR__ . '../modulos/modulos.php');
                                 <img src="/assets/img/icons/list.svg">
                                 Importar Lista
                             </a>
-                            <a href="adicionar_usuario.php?id=<?= $_GET['id'] ?>" class="btn">
+                            <a href="adicionar_usuario.php" class="btn">
                                 <img src="/assets/img/icons/plus.svg">
                                 Adicionar Usuario
                             </a>
@@ -89,10 +88,10 @@ require_once(__DIR__ . '../modulos/modulos.php');
                                             <p><?= $item->pegarPermissao() == null ? 'Não Possui' : ucfirst($item->pegarPermissao()) ?></p>
                                         </td>
                                         <td class="table-buttons">
-                                            <a class="btn" title="editar <?= $item->pegarNome() ?>" href="editar_usuario.php?id=<?= $_GET['id'] ?>&edit=<?= $item->pegarId() ?>">
+                                            <a class="btn" title="editar <?= $item->pegarNome() ?>" href="/php/cliente/editar_usuario.php?edit=<?= $item->pegarId() ?>">
                                                 <img src="/assets/img/icons/edit.svg">
                                             </a>
-                                            <a class="btn secondary" title="excluir <?= $item->pegarNome() ?>" id="excluirUsuario" data-id-adm="<?= $_GET['id'] ?>" data-permissao="<?= $verificarPerm['usuario']['permissao'] ?>" data-id="<?= $item->pegarId() ?>">
+                                            <a class="btn secondary" title="excluir <?= $item->pegarNome() ?>" id="excluirUsuario" data-id-adm="<?= $id ?>" data-permissao="<?= $permissao ?>" data-id="<?= $item->pegarId() ?>">
                                                 <img src="/assets/img/icons/trash.svg">
                                             </a>
                                         </td>

@@ -1,13 +1,10 @@
 <?php
+session_start();
 require_once('../autoload.php');
 $banco = new BancoDados();
 $sistema = new Sistema($banco->pegarPdo());
 
-if (isset($_GET['type']) && $_GET['type'] == 'usuario') {
-    session_name('usuario');
-}
-
-session_start();
+$id = $_SESSION['id'];
 
 $pegarPergunta = $sistema->pegarPergunta();
 
@@ -36,8 +33,8 @@ $pegarPergunta = $sistema->pegarPergunta();
                         <p class="loading-message"></p>
                     </div>
                 </div>
-                <form method="POST" action="./actions/dois_fatores_action.php?id=<?= $_GET['id'] ?>" class="form">
-                    <input type="hidden" name="id" value="<?= $_GET['id'] ?>">
+                <form method="POST" action="./actions/dois_fatores_action.php?>" class="form">
+                    <input type="hidden" name="id" value="<?= $id ?>">
                     <input type="hidden" name="slug" value="<?= $pegarPergunta['slug'] ?>">
                     <h3><?= $pegarPergunta['pergunta'] ?></h3>
                     <div class="form-group">

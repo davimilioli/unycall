@@ -1,5 +1,5 @@
 <?php
-$dados = $sistema->procurarIdUsuario($_GET['id']);
+$dados = $sistema->procurarIdUsuario($id);
 ?>
 
 <header class="header cliente">
@@ -7,7 +7,7 @@ $dados = $sistema->procurarIdUsuario($_GET['id']);
         <img src="/assets/img/icons/menu-open.svg">
     </button>
     <div class="logo">
-        <a href="/php/cliente/cliente.php?id=<?= $_GET['id'] ?>">
+        <a href="/php/cliente/cliente.php">
             <img src=" /assets/img/logo.png" alt="Logo UnyCall">
         </a>
     </div>
@@ -25,7 +25,7 @@ $dados = $sistema->procurarIdUsuario($_GET['id']);
             </div>
             <div class="menu-profile-body">
                 <ul class="menu-profile-body-list">
-                    <li class="menu-profile-body-title"><a href="/php/cliente//informacoes-conta.php?id=<?= $_GET['id'] ?>">Informações da conta</a></li>
+                    <li class="menu-profile-body-title"><a href="/php/cliente/informacoes_conta.php">Informações da conta</a></li>
                     <li class="menu-profile-body-title">Segurança</li>
                     <li class="menu-profile-body-title">Atividades de Conta</li>
                     <li class="menu-profile-body-title">Suporte</li>

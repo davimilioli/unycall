@@ -1,19 +1,12 @@
 <?php
-/* require_once('../config/config_db.php'); */
+session_start();
 require_once('../autoload.php');
 $banco = new BancoDados();
 $sistema = new Sistema($banco->pegarPdo());
 
-$verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
-if ($verificarPerm['usuario']['permissao'] == 'administrador') {
-    session_name('administrador');
-} else {
-    session_name('usuario');
-}
-
-session_start();
-
-$lista = $sistema->consultarDadosUsuario();
+$permissao = $_SESSION['permissao'];
+$id = $_SESSION['id'];
+$dados = $sistema->procurarIdUsuario($id);
 
 ?>
 <!DOCTYPE html>
@@ -23,7 +16,7 @@ $lista = $sistema->consultarDadosUsuario();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
-    <title>Unycall - Painel <?= $verificarPerm['usuario']['permissao'] == 'administrador' ? 'Administrativo' : 'do Cliente' ?></title>
+    <title>Unycall - Painel <?= $permissao == 'administrador' ? 'Administrativo' : 'do Cliente' ?></title>
     <link rel="stylesheet" href="/assets/css/css/style.css">
 </head>
 
@@ -34,7 +27,7 @@ $lista = $sistema->consultarDadosUsuario();
         <main class="page-cliente-main">
             <div class="page-cliente-main-content">
                 <div class="page-cliente-main-header">
-                    <h2>Olá, Davi Jacuru Milioli</h2>
+                    <h2>Olá, <?= $dados['usuario']['nome'] ?></h2>
                 </div>
                 <div class="page-cliente-main-body">
                     <div class="tab">
@@ -49,7 +42,7 @@ $lista = $sistema->consultarDadosUsuario();
                                     <p>Expira em ---</p>
                                 </div>
                             </div>
-                            <a href="./assinatura/gerenciar.php?id=<?= $_GET['id'] ?>" class="btn">Gerenciar</a>
+                            <a href="./assinatura/gerenciar.php?id=<?= $id ?>" class="btn">Gerenciar</a>
                         </div>
                     </div>
                     <!--                     <div class="tab">

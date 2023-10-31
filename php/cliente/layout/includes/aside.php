@@ -5,12 +5,12 @@
                 <div class="aside-category-title">
                     <span class="aside-category-titles">
                         <img src="/assets/img/icons/dashboard.svg">
-                        <a href="/php/cliente/cliente.php?id=<?= $_GET['id'] ?>">Dashboard</a>
+                        <a href="/php/cliente/cliente.php">Dashboard</a>
                     </span>
                 </div>
             </div>
         </div>
-        <?php if ($verificarPerm['usuario']['permissao'] == 'administrador') : ?>
+        <?php if ($permissao == 'administrador') : ?>
             <div class="aside-category">
                 <div class="aside-category-title">
                     <span class="aside-category-titles">
@@ -22,10 +22,10 @@
                 <div class="aside-nav">
                     <ul class="aside-list">
                         <li class="aside-list-item">
-                            <a href="/php/cliente/lista_usuarios.php?id=<?= $_GET['id'] ?>">Lista de Usuarios</a>
+                            <a href="/php/cliente/lista_usuarios.php">Lista de Usuarios</a>
                         </li>
                         <li class="aside-list-item">
-                            <a href="/php/cliente/adicionar_usuario.php?id=<?= $_GET['id'] ?>">Adicionar Usuario</a>
+                            <a href="/php/cliente/adicionar_usuario.php">Adicionar Usuario</a>
                         </li>
                     </ul>
                 </div>
@@ -41,7 +41,7 @@
                 <div class="aside-nav">
                     <ul class="aside-list">
                         <li class="aside-list-item">
-                            <a href="/php/cliente/banco/modelo.php?id=<?= $_GET['id'] ?>">Modelo</a>
+                            <a href="/php/cliente/banco/modelo.php">Modelo</a>
 
                         </li>
                     </ul>
@@ -59,7 +59,7 @@
             <div class="aside-nav">
                 <ul class="aside-list">
                     <li class="aside-list-item">
-                        <a href="/php/cliente/assinatura/gerenciar.php?id=<?= $_GET['id'] ?>">Gerenciar</a>
+                        <a href="/php/cliente/assinatura/gerenciar.php">Gerenciar</a>
                     </li>
                 </ul>
             </div>

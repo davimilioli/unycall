@@ -21,7 +21,7 @@ function excluirUsuario() {
                         <button type="button" class="closeModal">X</button>
                     </div>
                     <div class="buttons-modal">
-                        <a href="./actions/excluir_action.php?id=${btnAttrAdm}&exclude=${btnAttrId}" class="btn">Sim</a>
+                        <a href="./actions/excluir_action.php?&exclude=${btnAttrId}" class="btn">Sim</a>
                         <button class="btn secondary closeModal">Não</button>
                     </div>
                 </div>

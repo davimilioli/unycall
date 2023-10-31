@@ -1,17 +1,17 @@
 <?php
+session_start();
 require_once('../autoload.php');
 $banco = new BancoDados();
 $sistema = new Sistema($banco->pegarPdo());
 
-$verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
-if ($verificarPerm['usuario']['permissao'] == 'administrador') {
-    session_name('administrador');
-} else {
-    header('location: cliente.php?' . $_GET['id'] . 'erroPermissao=true');
+$idAdm = $_SESSION['id'];
+$permissao = $_SESSION['permissao'];
+
+if ($permissao != 'administrador') {
+    header('location: /php/cliente/cliente.php?erroPermissao=true');
     exit;
 }
 
-session_start();
 
 $id = filter_input(INPUT_GET, 'edit');
 
@@ -52,7 +52,7 @@ if ($id) {
                         <p class="loading-message">aaaa</p>
                     </div>
                 </div>
-                <form method="POST" action="./actions/editar_action.php?id=<?= $_GET['id'] ?>" class="form">
+                <form method="POST" action="./actions/editar_action.php" class="form">
                     <input type="hidden" name="id" value="<?= $usuario['id'] ?>">
                     <input type="hidden" name="nome" value="<?= $usuario['nome'] ?>">
                     <input type="hidden" name="nascimento" value="<?= $usuario['nascimento'] ?>">
@@ -152,7 +152,7 @@ if ($id) {
                     </div>
                     <div class="form-buttons">
                         <input type="submit" value="Atualizar" class="btn" class="atualizarDados">
-                        <a class="btn secondary" id="excluirUsuario" data-id-adm="<?= $_GET['id'] ?>" data-id="<?= $usuario['id'] ?>">Excluir</a>
+                        <a class="btn secondary" id="excluirUsuario" data-id-adm="<?= $idAdm ?>" data-id="<?= $usuario['id'] ?>">Excluir</a>
                     </div>
                 </form>
                 <div class="modal-exclude"></div>

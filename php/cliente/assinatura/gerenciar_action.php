@@ -1,15 +1,8 @@
 <?php
+session_start();
 require_once('../../autoload.php');
 $banco = new BancoDados();
 $sistema = new Sistema($banco->pegarPdo());
-$verificarPerm = $sistema->procurarIdUsuario($_GET['id']);
-if ($verificarPerm['usuario']['permissao'] == 'administrador') {
-    session_name('administrador');
-} else {
-    session_name('usuario');
-}
-session_start();
-
 $gerenciador = new Gerenciador($banco->pegarPdo());
 
 $idUsuario = filter_input(INPUT_POST, 'idUsuario');
@@ -47,9 +40,9 @@ if ($servicoEscolhido && $numCartao && $cvv && $validade && $titular && $cpfTitu
     $gerenciador->enviarDadosPagamento($arrayPagamento);
     $gerenciador->enviarDadosAssinatura($arrayAssinatura);
 
-    header('location: gerenciar.php?id=' . $idUsuario);
+    header('location: gerenciar.php');
     exit;
 } else {
-    header('location: gerenciar.php?id=' . $idUsuario . '&erroCompra');
+    header('location: gerenciar.php?&erroCompra');
     exit;
 }
