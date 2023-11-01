@@ -1,6 +1,7 @@
 <?php
 require_once('../autoload.php');
 $banco = new BancoDeDados();
+$banco->criarTabelas();
 $sistema = new Sistema($banco->pegarPdo());
 $usuarioSql = new UsuarioMySql($banco->pegarPdo());
 $enderecoSql = new EnderecoMySql($banco->pegarPdo());

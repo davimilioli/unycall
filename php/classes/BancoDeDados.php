@@ -39,7 +39,7 @@ class BancoDeDados
         return $sql->rowCount() > 0;
     }
 
-    public function verificarTabelas()
+    public function criarTabelas()
     {
 
         if ($this->VerificarTabelaExiste('usuarios') != true) {
@@ -60,6 +60,13 @@ class BancoDeDados
             ) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci";
 
             $this->pdo->exec($comandoSql);
+
+            $senha = password_hash('admin', PASSWORD_DEFAULT);
+            $criarUsuarioMaster = "INSERT INTO usuarios (nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha, permissao) VALUES ('admin','2002-11-28', '21977880448', 'admin', 'admin@gmail.com', 'Masculino', '9378699813', '338018469', 'admin', :senha, 'administrador')";
+
+            $sql = $this->pdo->prepare($criarUsuarioMaster);
+            $sql->bindParam(':senha', $senha);
+            $sql->execute();
         }
 
         if ($this->VerificarTabelaExiste('endereco') != true) {
@@ -79,6 +86,15 @@ class BancoDeDados
               ) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
 
             $this->pdo->exec($comandoSql);
+
+            $sql = $this->pdo->prepare("SELECT id FROM usuarios WHERE nome = 'admin'");
+            $sql->execute();
+            $usuarioAdmin = $sql->fetch(PDO::FETCH_ASSOC);
+
+            $criarEndMaster = "INSERT INTO endereco (id_usuario, cep, logradouro, numero, bairro, cidade, estado, complemento) VALUES (:idUsuario, '21765370', 'Rua Alfredo Lima', '42', 'Capixaba', 'Rio De Janeiro', 'casa', 'casa')";
+            $sql = $this->pdo->prepare($criarEndMaster);
+            $sql->bindValue(':idUsuario', $usuarioAdmin['id']);
+            $sql->execute();
         }
 
         if ($this->VerificarTabelaExiste('pagamentos') != true) {
