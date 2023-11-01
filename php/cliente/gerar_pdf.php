@@ -3,7 +3,7 @@ require_once('../autoload.php');
 require_once('./modulos/modulos.php');
 require_once('../lib/tcpdf/tcpdf.php');
 
-$banco = new BancoDados();
+$banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
 $lista = $sistema->consultarDadosUsuario();
 

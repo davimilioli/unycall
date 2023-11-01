@@ -1,9 +1,8 @@
 <?php
 session_start();
 require_once('../autoload.php');
-$banco = new BancoDados();
+$banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
-
 $permissao = $_SESSION['permissao'];
 $id = $_SESSION['id'];
 $dados = $sistema->procurarIdUsuario($id);
@@ -42,7 +41,7 @@ $dados = $sistema->procurarIdUsuario($id);
                                     <p>Expira em ---</p>
                                 </div>
                             </div>
-                            <a href="./assinatura/gerenciar.php?id=<?= $id ?>" class="btn">Gerenciar</a>
+                            <a href="./assinatura/gerenciar.php" class="btn">Gerenciar</a>
                         </div>
                     </div>
                     <!--                     <div class="tab">

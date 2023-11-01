@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('../autoload.php');
-$banco = new BancoDados();
+$banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
 require_once(__DIR__ . '../modulos/modulos.php');
 

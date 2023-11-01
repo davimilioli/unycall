@@ -1,7 +1,8 @@
 <?php
 require '../autoload.php';
-$banco = new BancoDados();
+$banco = new BancoDeDados();
 $banco->verificarTabelas();
+
 ?>
 
 <!DOCTYPE html>

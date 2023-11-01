@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once('../autoload.php');
-$banco = new BancoDados();
+$banco = new BancoDeDados();
 $usuarioSql = new UsuarioMySql($banco->pegarPdo());
 
 $tipoLogin = filter_input(INPUT_POST, 'tipoLogin');
