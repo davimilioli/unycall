@@ -73,17 +73,18 @@ CREATE TABLE IF NOT EXISTS `pagamentos` (
 -- Exportação de dados foi desmarcado.
 
 -- Copiando estrutura para tabela db_site.servicos
-CREATE TABLE IF NOT EXISTS `servicos` (
+CREATE TABLE `servicos` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tipo` varchar(255) NOT NULL,
   `nome` varchar(255) NOT NULL,
   `disp_regiao` varchar(255) NOT NULL,
   `custo` float DEFAULT NULL,
+  `status` TINYINT(1) DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
 
-INSERT IGNORE INTO `servicos` (`id`, `tipo`, `nome`, `disp_regiao`, `custo`) VALUES
-	(1, 'internet', '200MB', 'Rio de Janeiro', 119.99);
+INSERT INTO `servicos` (`tipo`, `nome`, `disp_regiao`, `custo`, `status`) VALUES
+            ('Internet', '200MB', 'Rio de Janeiro', 119.99, 1)
 
 -- Exportação de dados foi desmarcado.
 
