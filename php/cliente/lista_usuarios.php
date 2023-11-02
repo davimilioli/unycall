@@ -15,6 +15,16 @@ if ($permissao != 'administrador') {
 $lista = $sistema->consultarDadosUsuario();
 
 require_once(__DIR__ . '../modulos/modulos.php');
+
+if (isset($_POST['exclude'])) {
+    $idExclude = $_POST['exclude'];
+    $sistema->deletarDados($idExclude);
+    header('location: /php/cliente/lista_usuarios.php');
+    exit;
+}
+
+$qtdUsuarios = 10;
+$totalPaginas = ceil(count($lista) / $qtdUsuarios);
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -38,7 +48,7 @@ require_once(__DIR__ . '../modulos/modulos.php');
             <section class="list-users">
                 <div class="list-users-content">
                     <div class="list-users-title">
-                        <h2 class="list-users-count">Total de registros (<?= count($lista) ?>)</h2>
+                        <h2 class="list-users-count">Total de registros (<?= count($lista) + 1 ?>)</h2>
                         <div class="list-users-actions">
                             <div class="form-content">
                                 <form action="" class="form">
@@ -75,7 +85,7 @@ require_once(__DIR__ . '../modulos/modulos.php');
                                     <th>Ações</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody data-qtd-usuarios="<?= $qtdUsuarios ?>">
                                 <?php foreach ($lista as $item) : ?>
                                     <tr>
                                         <td class="table-id" title="<?= $item->pegarId() ?>"><?= $item->pegarId() ?></td>
@@ -100,6 +110,19 @@ require_once(__DIR__ . '../modulos/modulos.php');
                             </tbody>
                         </table>
                     </div>
+                    <?php if (count($lista) > $qtdUsuarios) : ?>
+                        <div class="list-users-pagination">
+                            <ul>
+                                <?php for ($i = 1; $i <= $totalPaginas; $i++) : ?>
+                                    <li>
+                                        <button type="button" class="page-link <?= $i == 1 ? 'active' : '' ?>">
+                                            <?= $i ?>
+                                        </button>
+                                    </li>
+                                <?php endfor ?>
+                            </ul>
+                        </div>
+                    <?php endif ?>
                     <div class="modal-exclude"></div>
                 </div>
             </section>
@@ -114,3 +137,54 @@ require_once(__DIR__ . '../modulos/modulos.php');
 <style>
 
 </style>
+
+<?php
+function gerarUsuarios()
+{
+    $banco = new BancoDeDados();
+    $usuarioSql = new UsuarioMySql($banco->pegarPdo());
+    $enderecoSql = new EnderecoMySql($banco->pegarPdo());
+    function gerarNumeroAleatorio()
+    {
+        $numerosAleatorios = [];
+        for ($i = 0; $i < 11; $i++) {
+            $gerarNumero = rand(10000000000, 99999999999);
+            $numerosAleatorios[] = $gerarNumero;
+        }
+
+        $numero = array_rand($numerosAleatorios);
+        return $numerosAleatorios[$numero];
+    }
+
+    for ($i = 0; $i < 2; $i++) {
+        $dados = new Usuario();
+        $endereco = new Endereco();
+
+        $dados->setarNome("Nome" . $i);
+        $dados->setarNascimento("1990-01-01");
+        $dados->setarEmail("email" . $i . "@exemplo.com");
+
+        $dados->setarCpf(gerarNumeroAleatorio() . $i);
+        $dados->setarNomeMaterno("Mãe" . $i);
+        $dados->setarSexo("Masculino");
+        $dados->setarCelular("123456789" . $i);
+        $dados->setarTelefone("555987654321" . $i);
+        $dados->setarLogin("usuario" . $i);
+        $dados->setarSenha("senha" . $i);
+
+        $endereco->setarCepEndereco("11111-370" . $i);
+        $endereco->setarLogradouroEndereco("Rua Exemplo " . $i);
+        $endereco->setarNumeroEndereco("123");
+        $endereco->setarBairroEndereco("Bairro " . $i);
+        $endereco->setarCidadeEndereco("Cidade " . $i);
+        $endereco->setarEstadoEndereco("UF");
+        $endereco->setarComplementoEndereco("Complemento " . $i);
+
+        $usuarioSql->criarUsuario($dados);
+        $enderecoSql->criarEndereco($endereco);
+    }
+}
+
+/* gerarUsuarios(); */
+
+?>
