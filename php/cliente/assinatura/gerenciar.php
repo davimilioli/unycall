@@ -8,13 +8,14 @@ $id = $_SESSION['id'];
 $permissao = $_SESSION['permissao'];
 $dados = $sistema->procurarIdUsuario($id);
 
-
 $gerenciador = new Gerenciador($banco->pegarPdo());
 $servicosDisponiveis = $gerenciador->servicosDisponiveis();
+$assinaturaAtivo = $gerenciador->assinaturaAtiva($id);
 $nomeUsuario = $dados['usuario']['nome'];
 $cpfUsuario = $dados['usuario']['cpf'];
 
 
+/* Fomulário */
 if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['validade'], $_POST['titular'], $_POST['cpfTitular'])) {
     $idUsuario = $_POST['idUsuario'];
     $idServico = $_POST['idServico'];
@@ -78,39 +79,16 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
             <div class="signature-content">
                 <?php
 
-                $consultarAssinatura = $gerenciador->assinaturas();
-                $consultarPagamentos = $gerenciador->pagamentos();
-                function verificarAssinaturaAtiva($consultarAssinatura, $consultarPagamentos)
-                {
+                if (isset($assinaturaAtivo['ativo'])) {
 
-                    foreach ($consultarAssinatura as $assinatura) {
-                        if ($assinatura->pegarIdAssUsuario() == $_SESSION['id']) {
-                            foreach ($consultarPagamentos as $pagamento) {
-                                if ($assinatura->pegarIdAssTransacao() == $pagamento->pegarPgtoIdTransacao()) {;
-
-                                    return array(
-                                        'ativo' => true,
-                                        'servico_assinado' => $pagamento->pegarServicoAssinado(),
-                                        'preco_servico' => $pagamento->pegarServicoPreco(),
-                                        'data' => $pagamento->pegarDataPagamento()
-                                    );
-                                }
-                            }
-                        }
-                    }
-                }
-
-                $assinaturaAtiva = verificarAssinaturaAtiva($consultarAssinatura, $consultarPagamentos);
-                if (isset($assinaturaAtiva['ativo'])) {
-
-                    $servicoAssinado = verificarAssinaturaAtiva($consultarAssinatura, $consultarPagamentos)['servico_assinado'];
-                    $precoServico = verificarAssinaturaAtiva($consultarAssinatura, $consultarPagamentos)['preco_servico'];
-                    $data = verificarAssinaturaAtiva($consultarAssinatura, $consultarPagamentos)['data'];
+                    $servicoAssinado =  $assinaturaAtivo['servico_assinado'];
+                    $precoServico =  $assinaturaAtivo['preco_servico'];
+                    $data =    $assinaturaAtivo['data'];
                     $dataFormatada = date("d/m/Y", strtotime($data));
                 }
                 ?>
 
-                <?php if (isset($assinaturaAtiva['ativo'])) : ?>
+                <?php if (isset($assinaturaAtivo['ativo'])) : ?>
                     <div class="card-signature-active">
                         <div class="signature-active-header">
                             <h2><?= $servicoAssinado ?></h2>
@@ -131,7 +109,7 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
                         </div>
                     </div>
                 <?php else : ?>
-                    <div class="form-content">
+                    <div class="form-content" id="formSignature">
                         <form method="POST" class="form">
                             <input type="hidden" name="idUsuario" value="<?= $id ?>">
                             <input type="hidden" name="nomeUsuario" value="<?= $nomeUsuario ?>">
@@ -160,25 +138,26 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
                                         </div>
                                         <div class="signature-list-content">
                                             <?php foreach ($servicosDisponiveis as $item) : ?>
+                                                <?php if ($item->pegarServicoStatus() != 0) : ?>
+                                                    <label class="signature-list-options-content" for="<?= $item->pegarServicoNome() ?>">
+                                                        <input type="radio" name="servico" id="<?= $item->pegarServicoNome() ?>" value="<?= $item->pegarServicoNome() ?>" required <?= count($servicosDisponiveis) == 1 ? 'checked' : '' ?>>
+                                                        <input type="hidden" name="preco" value="<?= $item->pegarServicoCusto(); ?>">
+                                                        <input type="hidden" name="idServico" value="<?= $item->pegarServicoId(); ?>">
+                                                        <div class="signature-list-option-item">
+                                                            <?= $item->pegarServicoTipo(); ?>
+                                                        </div>
+                                                        <div class="signature-list-option-item">
+                                                            <?= $item->pegarServicoNome(); ?>
+                                                        </div>
+                                                        <div class="signature-list-option-item">
+                                                            <?= $item->pegarDispRegiao(); ?>
+                                                        </div>
+                                                        <div class="signature-list-option-item">
+                                                            <?= str_replace('.', ',', $item->pegarServicoCusto()) ?>
+                                                        </div>
 
-                                                <label class="signature-list-options-content" for="<?= $item->pegarServicoNome() ?>">
-                                                    <input type="radio" name="servico" id="<?= $item->pegarServicoNome() ?>" value="<?= $item->pegarServicoNome() ?>" required <?= count($servicosDisponiveis) == 1 ? 'checked' : '' ?>>
-                                                    <input type="hidden" name="preco" value="<?= $item->pegarServicoCusto(); ?>">
-                                                    <input type="hidden" name="idServico" value="<?= $item->pegarServicoId(); ?>">
-                                                    <div class="signature-list-option-item">
-                                                        <?= $item->pegarServicoTipo(); ?>
-                                                    </div>
-                                                    <div class="signature-list-option-item">
-                                                        <?= $item->pegarServicoNome(); ?>
-                                                    </div>
-                                                    <div class="signature-list-option-item">
-                                                        <?= $item->pegarDispRegiao(); ?>
-                                                    </div>
-                                                    <div class="signature-list-option-item">
-                                                        <?= str_replace('.', ',', $item->pegarServicoCusto()) ?>
-                                                    </div>
-
-                                                </label>
+                                                    </label>
+                                                <?php endif ?>
                                             <?php endforeach ?>
                                         </div>
                                     </div>
@@ -223,12 +202,16 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
                         </form>
                         <div class="modal-exclude"></div>
                     </div>
+                    <div class="signature-screen-hidden">
+                        <p class="signature-screen-hidden-description">Você não possui nenhuma assinatura</p>
+                        <button type="button" class="btn" id="buttonSignature">Assinar</button>
+                    </div>
                 <?php endif ?>
             </div>
         </main>
     </div>
     <script src="/assets/js/cliente.js"></script>
-    <script src="/assets/js/cadastro-form.js"></script>
+    <script src="/assets/js/assinatura.js"></script>
 </body>
 
 </html>

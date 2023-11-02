@@ -7,6 +7,10 @@ $permissao = $_SESSION['permissao'];
 $id = $_SESSION['id'];
 $dados = $sistema->procurarIdUsuario($id);
 
+$gerenciador = new Gerenciador($banco->pegarPdo());
+$assinaturaAtivo = $gerenciador->assinaturaAtiva($id);
+
+
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -30,19 +34,43 @@ $dados = $sistema->procurarIdUsuario($id);
                 </div>
                 <div class="page-cliente-main-body">
                     <div class="tab">
-                        <div class="tab-header">
-                            <h3>Gerencie sua Assinatura</h3>
-                        </div>
-                        <div class="tab-content">
-                            <div class="tab-content-description">
-                                <img src="/assets/img/icons/dynamic-form.svg">
-                                <div>
-                                    <h4>----</h4>
-                                    <p>Expira em ---</p>
-                                </div>
+                        <?php if (isset($assinaturaAtivo['ativo']) && $assinaturaAtivo['ativo']) : ?>
+                            <div class="tab-header">
+                                <h3>
+                                    Gerencie sua Assinatura
+                                </h3>
                             </div>
-                            <a href="./assinatura/gerenciar.php" class="btn">Gerenciar</a>
-                        </div>
+                            <div class="tab-content">
+                                <div class="tab-content-description">
+                                    <img src="/assets/img/icons/dynamic-form.svg">
+                                    <div>
+                                        <h4><?= $assinaturaAtivo['servico_assinado'] ?></h4>
+                                        <p>--- </p>
+                                    </div>
+                                </div>
+                                <a href="./assinatura/gerenciar.php" class="btn">
+                                    Gerenciar
+                                </a>
+                            </div>
+                        <?php else : ?>
+                            <div class="tab-header">
+                                <h3>
+                                    Você não possui nenhuma assinatura
+                                </h3>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-content-description">
+                                    <img src="/assets/img/icons/dynamic-form.svg">
+                                    <div>
+                                        <h4> --- </h4>
+                                        <p> --- </p>
+                                    </div>
+                                </div>
+                                <a href="./assinatura/gerenciar.php" class="btn">
+                                    Assinar
+                                </a>
+                            </div>
+                        <?php endif ?>
                     </div>
                     <!--                     <div class="tab">
                         <div class="tab-header">

@@ -26,6 +26,7 @@ class GerenciadorMySql
                 $servico->setarServicoNome($item['nome']);
                 $servico->setarDispRegiao($item['disp_regiao']);
                 $servico->setarServicoCusto($item['custo']);
+                $servico->setarServicoStatus($item['status']);
                 $array[] = $servico;
             }
         }

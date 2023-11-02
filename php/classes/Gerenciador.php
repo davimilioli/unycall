@@ -54,4 +54,27 @@ class Gerenciador
     {
         return $this->GerenciadorMySql->consultarAssinaturas();
     }
+
+    public function assinaturaAtiva($id)
+    {
+        $servicosDisponiveis = $this->servicosDisponiveis();
+        $consultarAssinatura = $this->assinaturas();
+        $consultarPagamentos = $this->pagamentos();
+
+        foreach ($consultarAssinatura as $assinatura) {
+            if ($assinatura->pegarIdAssUsuario() == $id) {
+                foreach ($consultarPagamentos as $pagamento) {
+                    if ($assinatura->pegarIdAssTransacao() == $pagamento->pegarPgtoIdTransacao()) {;
+
+                        return array(
+                            'ativo' => true,
+                            'servico_assinado' => $pagamento->pegarServicoAssinado(),
+                            'preco_servico' => $pagamento->pegarServicoPreco(),
+                            'data' => $pagamento->pegarDataPagamento()
+                        );
+                    }
+                }
+            }
+        }
+    }
 }

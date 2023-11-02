@@ -7,6 +7,7 @@ class Servico
     private string $nome;
     private string $disp_regiao;
     private float $custo;
+    private int $status;
 
     public function setarServicoId(int $id)
     {
@@ -55,5 +56,15 @@ class Servico
     public function pegarServicoCusto(): float
     {
         return $this->custo;
+    }
+
+    public function setarServicoStatus(int $status)
+    {
+        $this->status = $status;
+    }
+
+    public function pegarServicoStatus(): int
+    {
+        return $this->status;
     }
 }
