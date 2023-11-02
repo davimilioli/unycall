@@ -14,6 +14,46 @@ $servicosDisponiveis = $gerenciador->servicosDisponiveis();
 $nomeUsuario = $dados['usuario']['nome'];
 $cpfUsuario = $dados['usuario']['cpf'];
 
+
+if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['validade'], $_POST['titular'], $_POST['cpfTitular'])) {
+    $idUsuario = $_POST['idUsuario'];
+    $idServico = $_POST['idServico'];
+    $servicoEscolhido = $_POST['servico'];
+    $nomeUsuario = $_POST['nomeUsuario'];
+    $cpfUsuario = $_POST['cpfUsuario'];
+    $numCartao = $_POST['numCartao'];
+    $cvv = $_POST['cvv'];
+    $validade = $_POST['validade'];
+    $titular = $_POST['titular'];
+    $cpfTitular = $_POST['cpfTitular'];
+    $dataHoje = $_POST['dataHoje'];
+    $preco = $_POST['preco'];
+
+    $entrada = $nomeUsuario . $dataHoje . rand(1, 50);
+    $idTransacao = md5($entrada);
+
+    $arrayPagamento = array(
+        'id_transacao' => $idTransacao,
+        'nome' => $nomeUsuario,
+        'cpf' => $cpfUsuario,
+        'servico_assinado' => $servicoEscolhido,
+        'preco' => $preco,
+        'data' => $dataHoje,
+    );
+
+    $arrayAssinatura = array(
+        'id_usuario' => $idUsuario,
+        'id_servico' => $idServico,
+        'id_transacao' => $idTransacao,
+    );
+
+    $gerenciador->enviarDadosPagamento($arrayPagamento);
+    $gerenciador->enviarDadosAssinatura($arrayAssinatura);
+
+    header('location: gerenciar.php');
+    exit;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -92,7 +132,7 @@ $cpfUsuario = $dados['usuario']['cpf'];
                     </div>
                 <?php else : ?>
                     <div class="form-content">
-                        <form method="POST" action="gerenciar_action.php?id=<?= $id ?>" class="form">
+                        <form method="POST" class="form">
                             <input type="hidden" name="idUsuario" value="<?= $id ?>">
                             <input type="hidden" name="nomeUsuario" value="<?= $nomeUsuario ?>">
                             <input type="hidden" name="cpfUsuario" value="<?= $cpfUsuario ?>">

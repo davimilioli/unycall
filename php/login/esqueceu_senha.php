@@ -1,19 +1,53 @@
 <?php
+session_start();
 require_once('../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
-
-session_name('usuario');
-session_start();
-
-$urlDados = !empty($_GET['dados']);
-$urlSucesso = !empty($_GET['success']);
-$senhaAprovada = !empty($_GET['password']);
-$usuarioId = isset($_GET['id']) ? $_GET['id'] : '';
-$urlPergunta = !empty($_GET['question']);
-$urlResposta = !empty($_GET['response']);
-$urlSenhasIguais = !empty($_GET['samePasswords']);
 $pegarPergunta = $sistema->pegarPergunta();
+$erro = '';
+
+$dadosUsuario = false;
+if (isset($_POST['login'], $_POST['email'])) {
+    $usuario = $_POST['login'];
+    $email = $_POST['email'];
+    $consulta = $sistema->esqueceuSenha($usuario, $email);
+    if ($consulta) {
+        $_SESSION['id'] = $consulta;
+        $dadosUsuario = true;
+    } else {
+        $erro = 'Login ou Email inválidos';
+    }
+}
+
+$respostaPergunta = false;
+if (isset($_POST['slug'], $_POST['resposta'])) {
+    $id = $_SESSION['id'];
+    $slug = $_POST['slug'];
+    $resposta =  $_POST['resposta'];
+    $consultarResposta = $sistema->consultarResposta($id, $slug, $resposta);
+    if ($consultarResposta) {
+        $dadosUsuario = false;
+        $respostaPergunta = true;
+    } else {
+        $dadosUsuario = true;
+        $erro = 'Resposta errada, tente novamente';
+    }
+}
+
+$respostaSenha = false;
+if (isset($_POST['senha'], $_POST['confirmarSenha'])) {
+    $confirmarSenha = $_POST['confirmarSenha'];
+    $senha = $_POST['senha'];
+    if ($senha == $confirmarSenha) {
+        $id = $_SESSION['id'];
+        $sistema->receberSenha($id, $senha);
+        header('location: /php/login/login.php');
+        exit;
+    } else {
+        $respostaPergunta = true;
+        $erro = 'senha não iguais';
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -60,12 +94,12 @@ $pegarPergunta = $sistema->pegarPergunta();
                         <p class="loading-message"></p>
                     </div>
                 </div>
-                <form method="POST" action="./esqueceu_senha_action.php" class="form" style="display: <?= $urlPergunta == true || $senhaAprovada == true  || $urlSenhasIguais == true ? 'none' : 'block' ?>">
+                <form method="POST" class="form" style=" display: <?= $dadosUsuario == true || $respostaPergunta == true ? 'none' : 'block' ?>">
                     <input type="hidden" name="tipo" value="dados">
                     <h3>Preencha os campos abaixo</h3>
                     <div class="form-group">
-                        <label for="usuario">Login <span>*</span></label>
-                        <input type="text" name="usuario" required>
+                        <label for="login">Login <span>*</span></label>
+                        <input type="text" name="login" required>
                     </div>
                     <div class="form-group">
                         <label for="email">Email <span>*</span></label>
@@ -78,64 +112,67 @@ $pegarPergunta = $sistema->pegarPergunta();
                             <input type="reset" value="Limpar" id="limpar" class="btn secondary">
                         </div>
                     </div>
-                    <?php if ($urlDados) :  ?>
+                    <?php if (isset($erro) && $erro) :  ?>
                         <div class="message_error">
                             <p>
-                                <img src="/assets/img/icons/danger.svg">Login ou Email inválidos
+                                <img src="/assets/img/icons/danger.svg"><?= $erro ?>
                             </p>
                         </div>
                     <?php endif ?>
                 </form>
-                <form method="POST" action="./esqueceu_senha_action.php?id=<?= $usuarioId ?>" class="form" style="display: <?= $urlPergunta == true ? 'block' : 'none' ?>">
-                    <input type="hidden" name="id" value="<?= $usuarioId ?>">
-                    <input type="hidden" name="tipo" value="resposta">
-                    <input type="hidden" name="slug" value="<?= $pegarPergunta['slug'] ?>">
-                    <h3><?= $pegarPergunta['pergunta'] ?></h3>
-                    <div class="form-group">
-                        <input type="text" name="resposta" required>
-                    </div>
 
-                    <div class="form-buttons">
-                        <div class="form-actions">
-                            <input type="submit" value="Enviar" class="btn" id="cadastrar">
-                            <input type="reset" value="Limpar" id="limpar" class="btn secondary">
+                <?php if ($dadosUsuario) : ?>
+                    <form method="POST" class="form">
+                        <input type="hidden" name="tipo" value="resposta">
+                        <input type="hidden" name="slug" value="<?= $pegarPergunta['slug'] ?>">
+                        <h3><?= $pegarPergunta['pergunta'] ?></h3>
+                        <div class="form-group">
+                            <input type="text" name="resposta" required>
                         </div>
-                    </div>
-                    <?php if ($urlResposta) :  ?>
-                        <div class="message_error">
-                            <p>
-                                <img src="/assets/img/icons/danger.svg">Resposta errada, tente novamente
-                            </p>
+                        <div class="form-buttons">
+                            <div class="form-actions">
+                                <input type="submit" value="Enviar" class="btn" id="cadastrar">
+                                <input type="reset" value="Limpar" id="limpar" class="btn secondary">
+                            </div>
                         </div>
-                    <?php endif ?>
-                </form>
-                <form method="POST" action="./esqueceu_senha_action.php" class="form" style="display: <?= $urlSucesso == false && $senhaAprovada == true || $urlSenhasIguais == true ?  'block' : 'none' ?>">
-                    <input type="hidden" name="id" value="<?= $usuarioId ?>">
-                    <input type="hidden" name="tipo" value="dados">
-                    <h3>Alterar senha</h3>
-                    <div class="form-group">
-                        <label for="senha">Senha <span>*</span></label>
-                        <input type="text" name="senha" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="confirmarSenha">Confimar senha <span>*</span></label>
-                        <input type="text" name="confirmarSenha" required>
-                    </div>
+                        <?php if (isset($erro) && $erro) :  ?>
+                            <div class="message_error">
+                                <p>
+                                    <img src="/assets/img/icons/danger.svg"><?= $erro ?>
+                                </p>
+                            </div>
+                        <?php endif ?>
+                    </form>
+                <?php endif ?>
 
-                    <div class="form-buttons">
-                        <div class="form-actions">
-                            <input type="submit" value="Enviar" class="btn" id="cadastrar">
-                            <input type="reset" value="Limpar" id="limpar" class="btn secondary">
+                <?php if ($respostaPergunta) : ?>
+                    <form method="POST" class="form">
+                        <input type="hidden" name="tipo" value="dados">
+                        <h3>Alterar senha</h3>
+                        <div class="form-group">
+                            <label for="senha">Senha <span>*</span></label>
+                            <input type="text" name="senha" required>
                         </div>
-                    </div>
-                    <?php if ($urlSenhasIguais) :  ?>
-                        <div class="message_error">
-                            <p>
-                                <img src="/assets/img/icons/danger.svg">Senhas não iguais
-                            </p>
+                        <div class="form-group">
+                            <label for="confirmarSenha">Confimar senha <span>*</span></label>
+                            <input type="text" name="confirmarSenha" required>
                         </div>
-                    <?php endif ?>
-                </form>
+
+                        <div class="form-buttons">
+                            <div class="form-actions">
+                                <input type="submit" value="Enviar" class="btn" id="cadastrar">
+                                <input type="reset" value="Limpar" id="limpar" class="btn secondary">
+                            </div>
+                        </div>
+                        <?php if (isset($erro) && $erro) :  ?>
+                            <div class="message_error">
+                                <p>
+                                    <img src="/assets/img/icons/danger.svg"><?= $erro ?>
+                                </p>
+                            </div>
+                        <?php endif ?>
+                    </form>
+                <?php endif ?>
             </div>
         </div>
     </main>
