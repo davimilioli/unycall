@@ -29,126 +29,125 @@ class BancoDeDados
         return $this->pdo;
     }
 
-    public function VerificarTabelaExiste($tabela)
+    public function verificarUsuarioExiste()
     {
-        $comandoSql = "SHOW TABLES LIKE :tabela";
-        $sql = $this->pdo->prepare($comandoSql);
-        $sql->bindValue(':tabela', $tabela);
-        $sql->execute();
+        $criarTabelas = true;
 
-        return $sql->rowCount() > 0;
+        if ($criarTabelas) {
+            $sql = $this->pdo->query("SHOW TABLES LIKE 'usuarios'");
+            if ($sql->rowCount() == 0) {
+                $this->criarTabelas();
+            }
+        }
+
+        return $criarTabelas;
     }
 
     public function criarTabelas()
     {
+        /* USUARIOS */
+        $tabelaUsuarios = "CREATE TABLE `usuarios` (
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `nome` varchar(255) NOT NULL,
+            `nascimento` date NOT NULL,
+            `cpf` varchar(14) NOT NULL,
+            `email` varchar(255) NOT NULL,
+            `nomematerno` varchar(255) NOT NULL,
+            `sexo` char(10) NOT NULL,
+            `celular` varchar(15) NOT NULL,
+            `telefone` varchar(15) NOT NULL,
+            `login` varchar(50) NOT NULL,
+            `senha` varchar(255) NOT NULL,
+            `permissao` varchar(255) DEFAULT NULL,
+            PRIMARY KEY (`id`)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci";
 
-        if ($this->VerificarTabelaExiste('usuarios') != true) {
-            $comandoSql = "CREATE TABLE `usuarios` (
-                `id` int(11) NOT NULL AUTO_INCREMENT,
-                `nome` varchar(255) NOT NULL,
-                `nascimento` date NOT NULL,
-                `cpf` varchar(14) NOT NULL,
-                `email` varchar(255) NOT NULL,
-                `nomematerno` varchar(255) NOT NULL,
-                `sexo` char(10) NOT NULL,
-                `celular` varchar(15) NOT NULL,
-                `telefone` varchar(15) NOT NULL,
-                `login` varchar(50) NOT NULL,
-                `senha` varchar(255) NOT NULL,
-                `permissao` varchar(255) DEFAULT NULL,
-                PRIMARY KEY (`id`)
-            ) ENGINE=InnoDB AUTO_INCREMENT=111 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci";
+        $this->pdo->exec($tabelaUsuarios);
 
-            $this->pdo->exec($comandoSql);
+        /* ENDEREÇO */
+        $tabelaEndereco = "CREATE TABLE `endereco` (
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `id_usuario` int(11) NOT NULL,
+            `cep` varchar(9) NOT NULL,
+            `logradouro` varchar(255) NOT NULL,
+            `numero` varchar(10) NOT NULL,
+            `bairro` varchar(100) NOT NULL,
+            `cidade` varchar(100) NOT NULL,
+            `estado` char(2) NOT NULL,
+            `complemento` varchar(255) DEFAULT NULL,
+            PRIMARY KEY (`id`),
+            KEY `id_usuario` (`id_usuario`),
+            CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
 
-            $senha = password_hash('admin', PASSWORD_DEFAULT);
-            $criarUsuarioMaster = "INSERT INTO usuarios (nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha, permissao) VALUES ('admin','2002-11-28', '21977880448', 'admin', 'admin@gmail.com', 'Masculino', '9378699813', '338018469', 'admin', :senha, 'administrador')";
+        $this->pdo->exec($tabelaEndereco);
 
-            $sql = $this->pdo->prepare($criarUsuarioMaster);
-            $sql->bindParam(':senha', $senha);
-            $sql->execute();
-        }
+        /* PAGAMENTOS */
+        $tabelaPagamentos = "CREATE TABLE `pagamentos` (
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `id_transacao` varchar(255) NOT NULL,
+            `nome` varchar(255) NOT NULL,
+            `cpf` varchar(50) NOT NULL DEFAULT '',
+            `servico_assinado` varchar(255) NOT NULL,
+            `preco_servico` varchar(255) NOT NULL,
+            `total` float NOT NULL,
+            `data_pagamento` date NOT NULL,
+            PRIMARY KEY (`id`) USING BTREE,
+            UNIQUE KEY `UNIQUE` (`id_transacao`) USING BTREE
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
 
-        if ($this->VerificarTabelaExiste('endereco') != true) {
-            $comandoSql = "CREATE TABLE `endereco` (
-                `id` int(11) NOT NULL AUTO_INCREMENT,
-                `id_usuario` int(11) NOT NULL,
-                `cep` varchar(9) NOT NULL,
-                `logradouro` varchar(255) NOT NULL,
-                `numero` varchar(10) NOT NULL,
-                `bairro` varchar(100) NOT NULL,
-                `cidade` varchar(100) NOT NULL,
-                `estado` char(2) NOT NULL,
-                `complemento` varchar(255) DEFAULT NULL,
-                PRIMARY KEY (`id`),
-                KEY `id_usuario` (`id_usuario`),
-                CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`)
-              ) ENGINE=InnoDB AUTO_INCREMENT=102 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+        $this->pdo->exec($tabelaPagamentos);
 
-            $this->pdo->exec($comandoSql);
+        /* SERVIÇOS */
+        $tabelaServicos = "CREATE TABLE `servicos` (
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `tipo` varchar(255) NOT NULL,
+            `nome` varchar(255) NOT NULL,
+            `disp_regiao` varchar(255) NOT NULL,
+            `custo` float DEFAULT NULL,
+            `status` INT(1) DEFAULT 0,
+            PRIMARY KEY (`id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
 
-            $sql = $this->pdo->prepare("SELECT id FROM usuarios WHERE nome = 'admin'");
-            $sql->execute();
-            $usuarioAdmin = $sql->fetch(PDO::FETCH_ASSOC);
+        $this->pdo->exec($tabelaServicos);
 
-            $criarEndMaster = "INSERT INTO endereco (id_usuario, cep, logradouro, numero, bairro, cidade, estado, complemento) VALUES (:idUsuario, '21765370', 'Rua Alfredo Lima', '42', 'Capixaba', 'Rio De Janeiro', 'casa', 'casa')";
-            $sql = $this->pdo->prepare($criarEndMaster);
-            $sql->bindValue(':idUsuario', $usuarioAdmin['id']);
-            $sql->execute();
-        }
+        /* ASSINATURAS */
+        $tabelaAssinaturas = "CREATE TABLE `assinaturas` (
+            `id` int(11) NOT NULL AUTO_INCREMENT,
+            `id_usuario` int(11) NOT NULL,
+            `id_transacao` varchar(255) NOT NULL,
+            `id_servico` int(11) NOT NULL,
+            PRIMARY KEY (`id`) USING BTREE,
+            KEY `id_usuario` (`id_usuario`),
+            KEY `id_servico` (`id_servico`),
+            KEY `id_pagamento` (`id_transacao`) USING BTREE,
+            CONSTRAINT `assinaturas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
+            CONSTRAINT `assinaturas_ibfk_2` FOREIGN KEY (`id_transacao`) REFERENCES `pagamentos` (`id_transacao`),
+            CONSTRAINT `assinaturas_ibfk_3` FOREIGN KEY (`id_servico`) REFERENCES `servicos` (`id`)
+            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
 
-        if ($this->VerificarTabelaExiste('pagamentos') != true) {
-            $comandoSql = "CREATE TABLE `pagamentos` (
-                `id` int(11) NOT NULL AUTO_INCREMENT,
-                `id_transacao` varchar(255) NOT NULL,
-                `nome` varchar(255) NOT NULL,
-                `cpf` varchar(50) NOT NULL DEFAULT '',
-                `servico_assinado` varchar(255) NOT NULL,
-                `preco_servico` varchar(255) NOT NULL,
-                `total` float NOT NULL,
-                `data_pagamento` date NOT NULL,
-                PRIMARY KEY (`id`) USING BTREE,
-                UNIQUE KEY `UNIQUE` (`id_transacao`) USING BTREE
-              ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+        $this->pdo->exec($tabelaAssinaturas);
 
-            $this->pdo->exec($comandoSql);
-        }
+        /* CRIAÇÃO DO USUARIO MASTER */
+        $senha = password_hash('admin', PASSWORD_DEFAULT);
+        $criarUsuarioMaster = "INSERT INTO usuarios (nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha, permissao) VALUES ('admin','2002-11-28', '21977880448', 'admin', 'admin@gmail.com', 'Masculino', '9378699813', '338018469', 'admin', :senha, 'administrador')";
+        $sql = $this->pdo->prepare($criarUsuarioMaster);
+        $sql->bindParam(':senha', $senha);
+        $sql->execute();
 
-        if ($this->VerificarTabelaExiste('servicos') != true) {
-            $comandoSql = "CREATE TABLE `servicos` (
-                `id` int(11) NOT NULL AUTO_INCREMENT,
-                `tipo` varchar(255) NOT NULL,
-                `nome` varchar(255) NOT NULL,
-                `disp_regiao` varchar(255) NOT NULL,
-                `custo` float DEFAULT NULL,
-                `status` TINYINT(1) DEFAULT 0,
-                PRIMARY KEY (`id`)
-              ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
+        $sql = $this->pdo->prepare("SELECT id FROM usuarios WHERE nome = 'admin'");
+        $sql->execute();
+        $usuarioAdmin = $sql->fetch(PDO::FETCH_ASSOC);
 
-            $this->pdo->exec($comandoSql);
+        $criarEndMaster = "INSERT INTO endereco (id_usuario, cep, logradouro, numero, bairro, cidade, estado, complemento) VALUES (:idUsuario, '97601740', 'Rua Alfredo Lima', '42', 'Capixaba', 'Rio De Janeiro', 'casa', 'casa')";
+        $sql = $this->pdo->prepare($criarEndMaster);
+        $sql->bindValue(':idUsuario', $usuarioAdmin['id']);
+        $sql->execute();
 
-            $criarServicoPadrao = "INSERT INTO `servicos` (`tipo`, `nome`, `disp_regiao`, `custo`, `status`) VALUES
-            ('Internet', '200MB', 'Rio de Janeiro', 119.99, 1);";
+        /* CRIAÇÃO DE SERVIÇO PADRÃO */
+        $criarServicoPadrao = "INSERT INTO `servicos` (`tipo`, `nome`, `disp_regiao`, `custo`, `status`) VALUES
+        ('Internet', '200MB', 'Rio de Janeiro', 119.99, 1);";
 
-            $this->pdo->exec($criarServicoPadrao);
-        }
-
-        if ($this->VerificarTabelaExiste('assinaturas') != true) {
-            $comandoSql = "CREATE TABLE `assinaturas` (
-                `id` int(11) NOT NULL AUTO_INCREMENT,
-                `id_usuario` int(11) NOT NULL,
-                `id_transacao` varchar(255) NOT NULL,
-                `id_servico` int(11) NOT NULL,
-                PRIMARY KEY (`id`) USING BTREE,
-                KEY `id_usuario` (`id_usuario`),
-                KEY `id_servico` (`id_servico`),
-                KEY `id_pagamento` (`id_transacao`) USING BTREE,
-                CONSTRAINT `assinaturas_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`),
-                CONSTRAINT `assinaturas_ibfk_2` FOREIGN KEY (`id_transacao`) REFERENCES `pagamentos` (`id_transacao`),
-                CONSTRAINT `assinaturas_ibfk_3` FOREIGN KEY (`id_servico`) REFERENCES `servicos` (`id`)
-              ) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
-
-            $this->pdo->exec($comandoSql);
-        }
+        $this->pdo->exec($criarServicoPadrao);
     }
 }
