@@ -12,6 +12,60 @@ if ($permissao != 'administrador') {
     exit;
 }
 
+if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMaterno'], $_POST['email'], $_POST['sexo'], $_POST['celular'], $_POST['telefone'], $_POST['loginCadastro'], $_POST['senhaCadastro'], $_POST['cep'], $_POST['endereco'], $_POST['numend'], $_POST['bairro'], $_POST['cidade'], $_POST['estado'])) {
+    $usuarioSql = new UsuarioMySql($banco->pegarPdo());
+    $enderecoSql = new EnderecoMySql($banco->pegarPdo());
+
+    $nome = $_POST['nome'];
+    $nascimento = $_POST['nascimento'];
+    $cpf = $_POST['cpf'];
+    $nomeMaterno = $_POST['nomeMaterno'];
+    $email = $_POST['email'];
+    $sexo = $_POST['sexo'];
+    $celular = $_POST['celular'];
+    $telefone = $_POST['telefone'];
+    $login = $_POST['loginCadastro'];
+    $senha = $_POST['senhaCadastro'];
+    $cep = $_POST['cep'];
+    $logradouro = $_POST['endereco'];
+    $numero = $_POST['numend'];
+    $bairro = $_POST['bairro'];
+    $cidade = $_POST['cidade'];
+    $estado = $_POST['estado'];
+    $permissao = $_POST['permissao'];
+
+    if ($usuarioSql->consultarCpf($cpf) === false) {
+        $dados = new Usuario();
+        $dados->setarNome($nome);
+        $dados->setarNascimento($nascimento);
+        $dados->setarEmail($email);
+        $dados->setarCpf($cpf);
+        $dados->setarNomeMaterno($nomeMaterno);
+        $dados->setarSexo($sexo);
+        $dados->setarCelular($celular);
+        $dados->setarTelefone($telefone);
+        $dados->setarLogin($login);
+        $dados->setarSenha($senha);
+        $dados->setarPermissao($permissao ?? null);
+        $usuarioSql->criarUsuario($dados);
+
+        $endereco = new Endereco();
+        $endereco->setarCepEndereco($cep);
+        $endereco->setarLogradouroEndereco($logradouro);
+        $endereco->setarNumeroEndereco($numero);
+        $endereco->setarBairroEndereco($bairro);
+        $endereco->setarCidadeEndereco($cidade);
+        $endereco->setarEstadoEndereco($estado);
+        $endereco->setarComplementoEndereco($complemento ?? null);
+        $enderecoSql->criarEndereco($endereco);
+
+        header('location: /php/cliente/lista_usuarios.php');
+        exit;
+    } else {
+        $erro = 'CPF já existe!';
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -42,7 +96,7 @@ if ($permissao != 'administrador') {
                         <p class="loading-message">aaaa</p>
                     </div>
                 </div>
-                <form method="POST" action="../cadastro/cadastro_action.php" class="form">
+                <form method="POST" class="form">
                     <input type="hidden" name="adm" value="<?= $id ?>">
                     <div class="form-container">
                         <div class="form-category">

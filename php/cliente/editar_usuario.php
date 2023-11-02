@@ -12,7 +12,6 @@ if ($permissao != 'administrador') {
     exit;
 }
 
-
 $id = filter_input(INPUT_GET, 'edit');
 
 if ($id) {
@@ -20,6 +19,61 @@ if ($id) {
     $usuario = $dados['usuario'];
     $endereco = $dados['endereco'];
     require_once(__DIR__ . '../modulos/modulos.php');
+}
+
+if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMaterno'], $_POST['email'], $_POST['sexo'], $_POST['celular'], $_POST['telefone'], $_POST['login'])) {
+    $nome = $_POST['nome'];
+    $nascimento = $_POST['nascimento'];
+    $cpf = $_POST['cpf'];
+    $nomeMaterno = $_POST['nomeMaterno'];
+    $email = $_POST['email'];
+    $sexo = $_POST['sexo'];
+    $celular = $_POST['celular'];
+    $telefone = $_POST['telefone'];
+    $login = $_POST['login'];
+    $permissao = $_POST['permissao'];
+
+    $dadosUsuario = array(
+        'id' => $id,
+        'nome' => $nome,
+        'nascimento' => $nascimento,
+        'cpf' => $cpf,
+        'nomematerno' => $nomeMaterno,
+        'email' => $email,
+        'sexo' => $sexo,
+        'celular' => $celular,
+        'telefone' => $telefone,
+        'login' => $login,
+        'permissao' => $permissao ?? null
+    );
+
+    $sistema->atualizarDadosUsuario($dadosUsuario, $usuarioSql = null);
+
+    if (isset($_POST['cep'], $_POST['endereco'], $_POST['numend'], $_POST['bairro'], $_POST['cidade'], $_POST['estado'])) {
+
+        $cep = $_POST['cep'];
+        $logradouro = $_POST['endereco'];
+        $numero = $_POST['numend'];
+        $bairro = $_POST['bairro'];
+        $cidade = $_POST['cidade'];
+        $estado = $_POST['estado'];
+        $complemento = $_POST['complemento'];
+
+        $dadosEndereco = array(
+            'id_usuario' => $id,
+            'cep' => str_replace('-', '', $cep),
+            'logradouro' => $logradouro,
+            'numero' => $numero,
+            'bairro' => $bairro,
+            'cidade' => $cidade,
+            'estado' => $estado,
+            'complemento' => $complemento ?? null
+        );
+        $sistema->atualizarDadosEndereco($dadosEndereco, $usuarioSql);
+    }
+
+    header('location: /php/cliente/lista_usuarios.php');
+    exit;
 }
 ?>
 
@@ -52,7 +106,7 @@ if ($id) {
                         <p class="loading-message">aaaa</p>
                     </div>
                 </div>
-                <form method="POST" action="./actions/editar_action.php" class="form">
+                <form method="POST" class="form">
                     <input type="hidden" name="id" value="<?= $usuario['id'] ?>">
                     <input type="hidden" name="nome" value="<?= $usuario['nome'] ?>">
                     <input type="hidden" name="nascimento" value="<?= $usuario['nascimento'] ?>">
@@ -135,7 +189,7 @@ if ($id) {
                         <div class="form-category">
                             <h2>Login</h2>
                             <div class="form-group">
-                                <label for="login">Usuario </label>
+                                <label for="login">Login </label>
                                 <input type="text" name="login" id="login" value="<?= $usuario['login'] ?>">
                             </div>
                         </div>

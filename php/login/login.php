@@ -1,9 +1,42 @@
 <?php
+session_start();
 require_once('../autoload.php');
 $banco = new BancoDeDados();
 $verificar = $banco->verificarUsuarioExiste();
 if ($verificar == false) {
     unset($verificar);
+}
+
+$erro = '';
+if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
+
+    $tipoLogin = $_POST['tipoLogin'];
+    $login = $_POST['login'];
+    $senha = $_POST['senha'];
+
+    $usuarioSql = new UsuarioMySql($banco->pegarPdo());
+    $consultarDados = $usuarioSql->consultarDadosLogin($login, $senha, $tipoLogin);
+
+    if ($consultarDados && $consultarDados['resposta']) {
+        $_SESSION['id'] = $consultarDados['id'];
+        $_SESSION['permissao'] = $consultarDados['permissao'];
+
+        $permissao = $consultarDados['permissao'];
+
+        if ($tipoLogin == 'administrador' && $permissao == 'administrador') {
+            header('Location: /php/cliente/cliente.php');
+            exit;
+        } elseif ($tipoLogin == 'administrador' && $permissao != 'administrador') {
+            $erro = 'Você não tem permissão';
+        } elseif ($tipoLogin == 'normal' && is_null($permissao)) {
+            header('Location: /php/cliente/dois_fatores.php');
+            exit;
+        } elseif ($tipoLogin == 'normal' && !is_null($permissao)) {
+            $erro = 'Você precisa entrar como administrador';
+        }
+    } else {
+        $erro = 'Usuario ou senha incorretos';
+    }
 }
 ?>
 <!DOCTYPE html>
@@ -62,7 +95,7 @@ if ($verificar == false) {
                         </div>
                         <div class="form-group">
                             <label for="login">Login <span>*</span></label>
-                            <input type="text" name="login" id="login" minlength="6" maxlength="6" required>
+                            <input type="text" name="login" id="login" minlength="2" maxlength="6" required>
                         </div>
                         <div class="form-group">
                             <label for="senha">Senha <span>*</span></label>
@@ -77,28 +110,17 @@ if ($verificar == false) {
                     </div>
                 </form>
                 <a href="./esqueceu_senha.php" class="text-password">Esqueci minha senha</a></p>
-                <?php if (isset($_GET['erroLogin'])) :  ?>
+                <?php if (isset($erro) && $erro != null) :  ?>
                     <div class="message_error">
                         <p>
-                            <img src="/assets/img/icons/danger.svg">Usuario ou senha incorretos
+                            <img src="/assets/img/icons/danger.svg"> <?= $erro ?>
                         </p>
                     </div>
-                <?php elseif (isset($_GET['erroSistema'])) :  ?>
+                <?php endif ?>
+                <?php if (isset($_GET['erroSistema'])) :  ?>
                     <div class="message_error">
                         <p>
                             <img src="/assets/img/icons/danger.svg">É necessário logar
-                        </p>
-                    </div>
-                <?php elseif (isset($_GET['erroPermissao'])) :  ?>
-                    <div class="message_error">
-                        <p>
-                            <img src="/assets/img/icons/danger.svg">Você não tem permissão
-                        </p>
-                    </div>
-                <?php elseif (isset($_GET['avisoAdm'])) :  ?>
-                    <div class="message_error">
-                        <p>
-                            <img src="/assets/img/icons/danger.svg">Você precisa entrar como administrador
                         </p>
                     </div>
                 <?php endif ?>

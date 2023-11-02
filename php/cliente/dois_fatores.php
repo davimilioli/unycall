@@ -7,6 +7,23 @@ $sistema = new Sistema($banco->pegarPdo());
 $id = $_SESSION['id'];
 
 $pegarPergunta = $sistema->pegarPergunta();
+$erro = '';
+if (isset($_POST['id'], $_POST['slug'], $_POST['resposta'])) {
+    $id = $_POST['id'];
+    $slug = $_POST['slug'];
+    $resposta = $_POST['resposta'];
+
+    $sistema = new Sistema($banco->pegarPdo());
+
+    $sistema->consultarResposta($id, $slug, $resposta);
+
+    if ($sistema->consultarResposta($id, $slug, $resposta)) {
+        header('location: /php/cliente/cliente.php');
+        exit;
+    } else {
+        $erro = 'Resposta incorreta, tente novamente!';
+    }
+}
 
 ?>
 <!DOCTYPE html>
@@ -33,7 +50,7 @@ $pegarPergunta = $sistema->pegarPergunta();
                         <p class="loading-message"></p>
                     </div>
                 </div>
-                <form method="POST" action="./actions/dois_fatores_action.php?>" class="form">
+                <form method="POST" class="form">
                     <input type="hidden" name="id" value="<?= $id ?>">
                     <input type="hidden" name="slug" value="<?= $pegarPergunta['slug'] ?>">
                     <h3><?= $pegarPergunta['pergunta'] ?></h3>
@@ -46,10 +63,10 @@ $pegarPergunta = $sistema->pegarPergunta();
                             <input type="reset" value="Limpar" id="limpar" class="btn secondary">
                         </div>
                     </div>
-                    <?php if (isset($_GET['erro'])) :  ?>
+                    <?php if (isset($erro) && $erro != null) :  ?>
                         <div class="message_error">
                             <p>
-                                <img src="/assets/img/icons/danger.svg">Resposta errada, tente novamente!
+                                <img src="/assets/img/icons/danger.svg"><?= $erro ?>
                             </p>
                         </div>
                     <?php endif ?>

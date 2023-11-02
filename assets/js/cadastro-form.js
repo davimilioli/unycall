@@ -394,7 +394,6 @@ btnCadastrar.addEventListener('click', (e) => {
     e.preventDefault()
 
     if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && login.value !== '' && senha.value !== '') {
-        form.setAttribute('action', '/php/cadastro/cadastro_action.php');
         loading('validando cadastro')
 
         setTimeout(() => {

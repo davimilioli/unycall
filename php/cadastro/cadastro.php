@@ -5,6 +5,61 @@ $verificar = $banco->verificarUsuarioExiste();
 if ($verificar == false) {
     unset($verificar);
 }
+
+$erro = '';
+
+if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMaterno'], $_POST['email'], $_POST['sexo'], $_POST['celular'], $_POST['telefone'], $_POST['loginCadastro'], $_POST['senhaCadastro'], $_POST['cep'], $_POST['endereco'], $_POST['numend'], $_POST['bairro'], $_POST['cidade'], $_POST['estado'])) {
+    $usuarioSql = new UsuarioMySql($banco->pegarPdo());
+    $enderecoSql = new EnderecoMySql($banco->pegarPdo());
+
+    $nome = $_POST['nome'];
+    $nascimento = $_POST['nascimento'];
+    $cpf = $_POST['cpf'];
+    $nomeMaterno = $_POST['nomeMaterno'];
+    $email = $_POST['email'];
+    $sexo = $_POST['sexo'];
+    $celular = $_POST['celular'];
+    $telefone = $_POST['telefone'];
+    $login = $_POST['loginCadastro'];
+    $senha = $_POST['senhaCadastro'];
+    $cep = $_POST['cep'];
+    $logradouro = $_POST['endereco'];
+    $numero = $_POST['numend'];
+    $bairro = $_POST['bairro'];
+    $cidade = $_POST['cidade'];
+    $estado = $_POST['estado'];
+
+    if ($usuarioSql->consultarCpf($cpf) === false) {
+        $dados = new Usuario();
+        $dados->setarNome($nome);
+        $dados->setarNascimento($nascimento);
+        $dados->setarEmail($email);
+        $dados->setarCpf($cpf);
+        $dados->setarNomeMaterno($nomeMaterno);
+        $dados->setarSexo($sexo);
+        $dados->setarCelular($celular);
+        $dados->setarTelefone($telefone);
+        $dados->setarLogin($login);
+        $dados->setarSenha($senha);
+        $dados->setarPermissao($permissao ?? null);
+        $usuarioSql->criarUsuario($dados);
+
+        $endereco = new Endereco();
+        $endereco->setarCepEndereco($cep);
+        $endereco->setarLogradouroEndereco($logradouro);
+        $endereco->setarNumeroEndereco($numero);
+        $endereco->setarBairroEndereco($bairro);
+        $endereco->setarCidadeEndereco($cidade);
+        $endereco->setarEstadoEndereco($estado);
+        $endereco->setarComplementoEndereco($complemento ?? null);
+        $enderecoSql->criarEndereco($endereco);
+
+        header('location: /php/login/login.php');
+        exit;
+    } else {
+        $erro = 'CPF já existe!';
+    }
+}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -185,10 +240,10 @@ if ($verificar == false) {
                         <input type="reset" value="Limpar" id="limpar" class="btn secondary">
                         <input type="submit" value="Cadastrar" class="btn" id="cadastrar">
                     </div>
-                    <?php if (isset($_GET['msgSistema'])) :  ?>
+                    <?php if (isset($erro) && $erro != null) :  ?>
                         <div class="message_error">
                             <p>
-                                <img src="/assets/img/icons/danger.svg">CPF já cadastrado
+                                <img src="/assets/img/icons/danger.svg"> <?= $erro ?>
                             </p>
                         </div>
                     <?php endif ?>
