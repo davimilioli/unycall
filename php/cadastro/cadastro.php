@@ -8,8 +8,8 @@ if ($verificar == false) {
 
 $erro = '';
 
+$usuarioSql = new UsuarioMySql($banco->pegarPdo());
 if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMaterno'], $_POST['email'], $_POST['sexo'], $_POST['celular'], $_POST['telefone'], $_POST['loginCadastro'], $_POST['senhaCadastro'], $_POST['cep'], $_POST['endereco'], $_POST['numend'], $_POST['bairro'], $_POST['cidade'], $_POST['estado'])) {
-    $usuarioSql = new UsuarioMySql($banco->pegarPdo());
     $enderecoSql = new EnderecoMySql($banco->pegarPdo());
 
     $nome = $_POST['nome'];
@@ -114,7 +114,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                     <div class="form-category">
                         <h2>Dados pessoais</h2>
                         <div class="form-group">
-                            <label for="nome">Nome <span>*</span></label>
+                            <label for="nome">Nome Completo <span>*</span></label>
                             <input type="text" name="nome" id="nome" minlength="15" maxlength="80" required>
                         </div>
                         <div class="form-group">
@@ -132,7 +132,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                         </div>
                         <div class="form-group">
                             <label for="cpf">CPF <span>*</span></label>
-                            <input type="text" name="cpf" id="cpf" required>
+                            <input type="text" name="cpf" id="cpf" maxlength="14" required>
                         </div>
                         <div class="form-group">
                             <label for="nomeMaterno">Nome Materno <span>*</span></label>
@@ -145,11 +145,11 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                         <div class="inputs-group">
                             <div class="form-group">
                                 <label for="celular">Celular <span>*</span></label>
-                                <input type="text" name="celular" id="celular" placeholder="(+55) XX-XXXXXXX" required maxlength="17">
+                                <input type="text" name="celular" id="celular" placeholder="(+55) XX-XXXXXXXXX" required>
                             </div>
                             <div class="form-group">
                                 <label for="telefone">Telefone <span>*</span></label>
-                                <input type="text" name="telefone" id="telefone" placeholder="(+55) XX-XXXXXXX" required maxlength="16">
+                                <input type="text" name="telefone" id="telefone" placeholder="(+55) XX-XXXXXXXX" required>
                             </div>
                         </div>
                     </div>
