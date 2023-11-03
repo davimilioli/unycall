@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 nascimentoValue = nascimentoValue.slice(0, 2) + '/' + nascimentoValue.slice(2, 4) + '/' + nascimentoValue.slice(4, 8);
             }
 
-            if (nascimentoValue.length === 8) {
+            if (nascimentoValue.length === 10) {
                 validaData = true;
                 setarBorda('#data-nascimento', true);
             } else {
@@ -58,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             dataNascimento.value = nascimentoValue;
+
 
         });
 
@@ -173,10 +174,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function validarCelular() {
         const celular = document.querySelector('#celular');
+        console.log(celular)
 
         celular.addEventListener('input', () => {
             const numero = celular.value.replace(/\D/g, '');
-            let telefoneFormatado = '';
+            let celularFormatado = '';
 
             if (numero.length > 0) {
                 telefoneFormatado = `(+${numero.slice(0, 2)})`;
@@ -188,6 +190,12 @@ document.addEventListener('DOMContentLoaded', () => {
                         telefoneFormatado += numero.slice(4, 13);
                     }
                 }
+            }
+
+            if (numero.length == 13) {
+                setarBorda('#celular', true);
+            } else {
+                setarBorda('#celular', false);
             }
 
             celular.value = telefoneFormatado;
