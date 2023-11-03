@@ -1,4 +1,55 @@
 document.addEventListener("DOMContentLoaded", () => {
+
+    function buscaUsuario() {
+        const buscarNomeInput = document.querySelector("#buscarNome");
+
+        if (buscarNomeInput) {
+
+            buscarNomeInput.addEventListener('input', () => {
+                const termoBusca = buscarNomeInput.value.toLowerCase();
+
+                const listaUsuarios = listaUsuariosBd;
+
+                const tabela = document.querySelector("tbody");
+                let usuarioEncontrado = false;
+                tabela.innerHTML = "";
+
+                listaUsuarios.forEach(function (usuario) {
+                    const nomeUsuario = usuario.nome.toLowerCase();
+                    if (nomeUsuario.includes(termoBusca)) {
+                        const novaLinha = document.createElement("tr");
+                        novaLinha.innerHTML = `
+                        <td class="table-id" title="${usuario.id}">${usuario.id}</td>
+                        <td title="${usuario.nome}">${usuario.nome}</td>
+                        <td title="${usuario.cpf}">${usuario.cpf}</td>
+                        <td title="${usuario.email}">${usuario.email}</td>
+                        <td title="${usuario.celular}">${usuario.celular}</td>
+                        <td title="${usuario.telefone}">${usuario.telefone}</td>
+                        <td class="table-permissao" title="${usuario.permissao}" id="${usuario.permissao}">
+                            <p>${usuario.permissao}</p>
+                        </td>
+                        <td class="table-buttons">
+                            <a class="btn" title="editar ${usuario.nome}" href="/php/cliente/editar_usuario.php?edit=${usuario.id}">
+                                <img src="/assets/img/icons/edit.svg">
+                            </a>
+                            <a class="btn secondary" title="excluir ${usuario.nome}" id="excluirUsuario" data-id="${usuario.id}">
+                                <img src="/assets/img/icons/trash.svg">
+                            </a>
+                            
+                        </td>
+                    `;
+                        tabela.appendChild(novaLinha);
+                        usuarioEncontrado = true;
+                    }
+
+                });
+            });
+        }
+    }
+
+    buscaUsuario();
+
+
     function excluirUsuario() {
         const btnExcluir = document.querySelectorAll('[data-id]');
         const modalExclude = document.querySelector('.modal-exclude');
@@ -41,96 +92,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     excluirUsuario();
-
-    function busca() {
-        const buscarNome = document.querySelector('#buscarNome');
-        const resultadoBusca = document.querySelector('.resultado-busca');
-        const exibirBusca = resultadoBusca.querySelector('.resultado-busca-content');
-        resultadoBusca.style.display = 'none';
-        let tempo;
-
-        buscarNome.addEventListener('keyup', (e) => {
-            clearTimeout(tempo);
-            const buscarValue = e.target.value;
-
-            if (buscarValue.length >= 3) {
-                tempo = setTimeout(() => {
-                    buscarUsuario(buscarValue);
-                }, 500);
-            }
-
-        });
-
-        buscarNome.addEventListener('keyup', () => {
-
-            if (buscarNome.value == '') {
-                exibirBusca.innerHTML = '';
-                resultadoBusca.style.display = 'none';
-            }
-        })
-
-        let usuarioNaoEncontrado = false;
-
-        async function buscarUsuario(nome) {
-            try {
-                const url = 'busca_usuario.php';
-
-                const formData = new FormData();
-                formData.append('buscarNome', nome);
-
-                const response = await fetch(url, {
-                    method: 'POST',
-                    body: formData,
-                });
-
-                const data = await response.json();
-
-                if (data.resposta === 'Nenhum usuário encontrado') {
-                    resultadoBusca.style.display = 'block';
-                    const template = `
-                        <li class="resultado-busca-lista">
-                            <a href="#">${data.resposta}</a>
-                        </li>
-                    `;
-
-                    exibirBusca.innerHTML = template;
-                } else {
-                    resultadoBusca.style.display = 'block';
-                    exibirBusca.innerHTML = '';
-
-                    const idUrl = window.location.search;
-                    const params = new URLSearchParams(idUrl);
-                    const idAdm = params.get('id');
-
-                    if (Array.isArray(data)) {
-                        data.forEach((item) => {
-                            const template = `
-                                <li class="resultado-busca-lista">
-                                    <a href="editar_usuario.php?id=${idAdm}&edit=${item.id}">${item.nome}</a>
-                                </li>
-                            `;
-
-                            exibirBusca.innerHTML += template;
-                        });
-                    }
-
-
-                }
-            } catch (error) {
-                resultadoBusca.style.display = 'block';
-                const template = `
-                    <li class="resultado-busca-lista">
-                        <a href="#">Erro ao busca usuário</a>
-                    </li>
-                `;
-
-                exibirBusca.innerHTML = template;
-                console.log('erro: ' + error);
-            }
-        }
-    }
-
-    busca();
 
     function paginacaoUsuarios() {
         const listaUsuarios = document.querySelectorAll('.list-users-table tbody tr');

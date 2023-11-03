@@ -23,6 +23,30 @@ if (isset($_POST['exclude'])) {
     exit;
 }
 
+/* function listaBusca()
+{
+    $banco = new BancoDeDados();
+    $sistema = new Sistema($banco->pegarPdo());
+    $lista = $sistema->consultarDadosUsuario();
+    $dados = array();
+    foreach ($lista as $item) {
+        $dados[] =  array(
+            'id' => $item->pegarId(),
+            'nome' => $item->pegarNome(),
+            'email' => $item->pegarEmail(),
+            'cpf' => $item->pegarCpf(),
+            'celular' => $item->pegarCelular(),
+            'telefone' => $item->pegarTelefone(),
+            'permissao' => $item->pegarPermissao()
+
+        );
+    }
+
+    return $dados;
+}
+
+$listaBusca = json_encode(listaBusca()); */
+
 $qtdUsuarios = 10;
 $totalPaginas = ceil(count($lista) / $qtdUsuarios);
 ?>
@@ -48,7 +72,7 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
             <section class="list-users">
                 <div class="list-users-content">
                     <div class="list-users-title">
-                        <h2 class="list-users-count">Total de registros (<?= count($lista) + 1 ?>)</h2>
+                        <h2 class="list-users-count">Total de registros (<?= count($lista) ?>)</h2>
                         <div class="list-users-actions">
                             <div class="form-content">
                                 <form action="" class="form">
@@ -56,10 +80,6 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
                                         <input type="text" name="buscarNome" id="buscarNome" placeholder="Digite o nome de usuário">
                                     </div>
                                 </form>
-                                <div class="resultado-busca">
-                                    <ul class="resultado-busca-content">
-                                    </ul>
-                                </div>
                             </div>
                             <a href="gerar_pdf.php" target="_blank" class="btn pdf">
                                 <img src="/assets/img/icons/list.svg">
@@ -101,7 +121,7 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
                                             <a class="btn" title="editar <?= $item->pegarNome() ?>" href="/php/cliente/editar_usuario.php?edit=<?= $item->pegarId() ?>">
                                                 <img src="/assets/img/icons/edit.svg">
                                             </a>
-                                            <a class="btn secondary" title="excluir <?= $item->pegarNome() ?>" id="excluirUsuario" data-id-adm="<?= $id ?>" data-permissao="<?= $permissao ?>" data-id="<?= $item->pegarId() ?>">
+                                            <a class="btn secondary" title="excluir <?= $item->pegarNome() ?>" id="excluirUsuario" data-id="<?= $item->pegarId() ?>">
                                                 <img src="/assets/img/icons/trash.svg">
                                             </a>
                                         </td>
@@ -129,6 +149,10 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
         </main>
     </div>
     <script src="/assets/js/cliente.js"></script>
+    <script>
+        // variavel sendo manipulada no arquivo lista-usuarios.js
+        /* const listaUsuariosBd = <?= $listaBusca ?> */
+    </script>
     <script src="/assets/js/lista-usuarios.js"></script>
 </body>
 
