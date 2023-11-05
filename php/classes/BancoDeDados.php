@@ -58,7 +58,7 @@ class BancoDeDados
             `telefone` varchar(15) NOT NULL,
             `login` varchar(50) NOT NULL,
             `senha` varchar(255) NOT NULL,
-            `permissao` varchar(255) DEFAULT NULL,
+            `permissao` varchar(255),
             PRIMARY KEY (`id`)
         ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci";
 
@@ -74,7 +74,7 @@ class BancoDeDados
             `bairro` varchar(100) NOT NULL,
             `cidade` varchar(100) NOT NULL,
             `estado` char(2) NOT NULL,
-            `complemento` varchar(255) DEFAULT NULL,
+            `complemento` varchar(255),
             PRIMARY KEY (`id`),
             KEY `id_usuario` (`id_usuario`),
             CONSTRAINT `endereco_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`)
@@ -104,7 +104,7 @@ class BancoDeDados
             `tipo` varchar(255) NOT NULL,
             `nome` varchar(255) NOT NULL,
             `disp_regiao` varchar(255) NOT NULL,
-            `custo` float DEFAULT NULL,
+            `custo` float,
             `status` INT(1) DEFAULT 0,
             PRIMARY KEY (`id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
