@@ -23,30 +23,6 @@ if (isset($_POST['exclude'])) {
     exit;
 }
 
-/* function listaBusca()
-{
-    $banco = new BancoDeDados();
-    $sistema = new Sistema($banco->pegarPdo());
-    $lista = $sistema->consultarDadosUsuario();
-    $dados = array();
-    foreach ($lista as $item) {
-        $dados[] =  array(
-            'id' => $item->pegarId(),
-            'nome' => $item->pegarNome(),
-            'email' => $item->pegarEmail(),
-            'cpf' => $item->pegarCpf(),
-            'celular' => $item->pegarCelular(),
-            'telefone' => $item->pegarTelefone(),
-            'permissao' => $item->pegarPermissao()
-
-        );
-    }
-
-    return $dados;
-}
-
-$listaBusca = json_encode(listaBusca()); */
-
 $qtdUsuarios = 10;
 $totalPaginas = ceil(count($lista) / $qtdUsuarios);
 ?>
@@ -108,13 +84,13 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
                             <tbody data-qtd-usuarios="<?= $qtdUsuarios ?>">
                                 <?php foreach ($lista as $item) : ?>
                                     <tr>
-                                        <td class="table-id" title="<?= $item->pegarId() ?>"><?= $item->pegarId() ?></td>
-                                        <td title="<?= $item->pegarNome() ?>"><?= $item->pegarNome() ?></td>
-                                        <td title="<?= formatarCpf($item->pegarCpf()) ?>"><?= formatarCpf($item->pegarCpf()) ?></td>
-                                        <td title="<?= $item->pegarEmail() ?>"><?= $item->pegarEmail() ?></td>
-                                        <td title="<?= formatarNumero($item->pegarCelular()) ?>"><?= formatarNumero($item->pegarCelular()) ?></td>
-                                        <td title="<?= formatarNumero($item->pegarTelefone()) ?>"><?= formatarNumero($item->pegarTelefone()) ?></td>
-                                        <td class="table-permissao" title="<?= $item->pegarPermissao() == null ? 'Não Possui' : ucfirst($item->pegarPermissao()) ?>" id="<?= $item->pegarPermissao() == null ? 'comum' : $item->pegarPermissao() ?>">
+                                        <td class="table-id"><?= $item->pegarId() ?></td>
+                                        <td><?= $item->pegarNome() ?></td>
+                                        <td><?= formatarCpf($item->pegarCpf()) ?></td>
+                                        <td><?= $item->pegarEmail() ?></td>
+                                        <td><?= formatarNumero($item->pegarCelular()) ?></td>
+                                        <td><?= formatarNumero($item->pegarTelefone()) ?></td>
+                                        <td class="table-permissao" id="<?= $item->pegarPermissao() == '' ? 'comum' : $item->pegarPermissao() ?>">
                                             <p><?= $item->pegarPermissao() == null ? 'Não Possui' : ucfirst($item->pegarPermissao()) ?></p>
                                         </td>
                                         <td class="table-buttons">
@@ -129,6 +105,9 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
                                 <?php endforeach ?>
                             </tbody>
                         </table>
+                    </div>
+                    <div class="result-null">
+                        Nenhum usuário encontrado
                     </div>
                     <?php if (count($lista) > $qtdUsuarios) : ?>
                         <div class="list-users-pagination">
@@ -149,10 +128,7 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
         </main>
     </div>
     <script src="/assets/js/cliente.js"></script>
-    <script>
-        // variavel sendo manipulada no arquivo lista-usuarios.js
-        /* const listaUsuariosBd = <?= $listaBusca ?> */
-    </script>
+    <script src="/assets/js/busca-usuario-db.js"></script>
     <script src="/assets/js/lista-usuarios.js"></script>
 </body>
 
@@ -180,7 +156,7 @@ function gerarUsuarios()
         return $numerosAleatorios[$numero];
     }
 
-    for ($i = 0; $i < 2; $i++) {
+    for ($i = 0; $i < 20; $i++) {
         $dados = new Usuario();
         $endereco = new Endereco();
 

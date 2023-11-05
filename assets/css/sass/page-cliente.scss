@@ -340,7 +340,7 @@
                                 tr {
 
                                     th {
-                                        font-size: 14px;
+                                        font-size: 0.875rem;
                                         font-weight: 500;
                                         padding: 8px;
                                         color: $text-color;
@@ -365,7 +365,7 @@
 
                                     td {
                                         width: 15%;
-                                        font-size: 13px;
+                                        font-size: 0.813rem;
                                         color: $text-color;
                                         padding: .25rem;
                                         text-align: left;
@@ -451,6 +451,19 @@
                                     }
                                 }
                             }
+                        }
+                    }
+
+                    .result-null {
+                        display: none;
+
+                        &.active {
+                            display: block;
+                            padding: 1rem;
+                            font-size: 0.875rem;
+                            justify-content: center;
+                            display: flex;
+                            color: $description-color;
                         }
                     }
 

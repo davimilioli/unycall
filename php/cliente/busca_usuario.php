@@ -3,34 +3,29 @@ require_once('../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
 
-$nome = isset($_POST['buscarNome']) ? ucwords($_POST['buscarNome']) : null;
-$usuariosEncontrados = array();
-$nenhumUsuarioEncontrado = true;
+function listaBusca($sistema)
+{
+    $lista = $sistema->consultarDadosUsuario();
+    $dados = array();
+    foreach ($lista as $item) {
+        $dados[] =  array(
+            'id' => $item->pegarId(),
+            'nome' => $item->pegarNome(),
+            'email' => $item->pegarEmail(),
+            'cpf' => $item->pegarCpf(),
+            'celular' => $item->pegarCelular(),
+            'telefone' => $item->pegarTelefone(),
+            'permissao' => $item->pegarPermissao()
 
-$consulta = $sistema->consultarDadosUsuario();
-foreach ($consulta as $dados) {
-    if ($nome == $dados->pegarNome()) {
-
-        $return = array(
-            'id' => $dados->pegarId(),
-            'nome' => $dados->pegarNome(),
-            'nascimento' => $dados->pegarNascimento(),
-            'cpf' => $dados->pegarCpf(),
-            'email' => $dados->pegarEmail(),
-            'sexo' => $dados->pegarSexo(),
-            'nomematerno' => $dados->pegarNomeMaterno(),
-            'celular' => $dados->pegarCelular(),
-            'telefone' => $dados->pegarTelefone(),
-            'login' => $dados->pegarLogin(),
-            'permissao' => $dados->pegarPermissao()
         );
-        $usuariosEncontrados[] = $return;
-        $nenhumUsuarioEncontrado = false;
     }
+
+    return $dados;
 }
 
-if ($nenhumUsuarioEncontrado) {
-    echo json_encode(['resposta' => 'Nenhum usuário encontrado']);
+$dados = listaBusca($sistema);
+if ($dados) {
+    echo json_encode($dados);
 } else {
-    echo json_encode($usuariosEncontrados);
+    echo $dados = [];
 }

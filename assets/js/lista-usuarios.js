@@ -1,14 +1,28 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    function inicializacao() {
+        buscaUsuario();
+        excluirUsuario();
+        paginacaoUsuarios();
+        console.log('[+] lista-usuarios.js iniciado');
+    }
+
+    inicializacao();
+
     function buscaUsuario() {
         const buscarNomeInput = document.querySelector("#buscarNome");
 
         if (buscarNomeInput) {
 
+            let ativarConsulta = '';
+            buscarNomeInput.addEventListener('click', async () => {
+                return ativarConsulta = await consultarUsuarioBD()
+            })
+
             buscarNomeInput.addEventListener('input', () => {
                 const termoBusca = buscarNomeInput.value.toLowerCase();
 
-                const listaUsuarios = listaUsuariosBd;
+                const listaUsuarios = ativarConsulta;
 
                 const tabela = document.querySelector("tbody");
                 let usuarioEncontrado = false;
@@ -16,39 +30,44 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 listaUsuarios.forEach(function (usuario) {
                     const nomeUsuario = usuario.nome.toLowerCase();
-                    if (nomeUsuario.includes(termoBusca)) {
+
+                    if (termoBusca === '' || nomeUsuario.includes(termoBusca)) {
                         const novaLinha = document.createElement("tr");
                         novaLinha.innerHTML = `
-                        <td class="table-id" title="${usuario.id}">${usuario.id}</td>
-                        <td title="${usuario.nome}">${usuario.nome}</td>
-                        <td title="${usuario.cpf}">${usuario.cpf}</td>
-                        <td title="${usuario.email}">${usuario.email}</td>
-                        <td title="${usuario.celular}">${usuario.celular}</td>
-                        <td title="${usuario.telefone}">${usuario.telefone}</td>
-                        <td class="table-permissao" title="${usuario.permissao}" id="${usuario.permissao}">
-                            <p>${usuario.permissao}</p>
-                        </td>
-                        <td class="table-buttons">
-                            <a class="btn" title="editar ${usuario.nome}" href="/php/cliente/editar_usuario.php?edit=${usuario.id}">
-                                <img src="/assets/img/icons/edit.svg">
-                            </a>
-                            <a class="btn secondary" title="excluir ${usuario.nome}" id="excluirUsuario" data-id="${usuario.id}">
-                                <img src="/assets/img/icons/trash.svg">
-                            </a>
-                            
-                        </td>
-                    `;
+                            <td class="table-id">${usuario.id}</td>
+                            <td>${usuario.nome}</td>
+                            <td>${usuario.cpf}</td>
+                            <td>${usuario.email}</td>
+                            <td>${usuario.celular}</td>
+                            <td>${usuario.telefone}</td>
+                            <td class="table-permissao" id="${usuario.permissao == '' ? 'comum' : usuario.permissao.toLowerCase()}">
+                                <p>${usuario.permissao == '' ? 'Não possui' : usuario.permissao}</p>
+                            </td>
+                            <td class="table-buttons">
+                                <a class="btn" title="editar ${usuario.nome}" href="/php/cliente/editar_usuario.php?edit=${usuario.id}">
+                                    <img src="/assets/img/icons/edit.svg">
+                                </a>
+                                <a class="btn secondary" title="excluir ${usuario.nome}" id="excluirUsuario" data-id="${usuario.id}">
+                                    <img src="/assets/img/icons/trash.svg">
+                                </a>
+                                
+                            </td>
+                        `;
                         tabela.appendChild(novaLinha);
                         usuarioEncontrado = true;
                     }
-
                 });
+
+                const resultadoVazio = document.querySelector('.result-null');
+                if (usuarioEncontrado == false) {
+                    resultadoVazio.classList.add('active')
+                } else {
+                    resultadoVazio.classList.remove('active')
+                }
+
             });
         }
     }
-
-    buscaUsuario();
-
 
     function excluirUsuario() {
         const btnExcluir = document.querySelectorAll('[data-id]');
@@ -91,8 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    excluirUsuario();
-
     function paginacaoUsuarios() {
         const listaUsuarios = document.querySelectorAll('.list-users-table tbody tr');
         const paginacoes = document.querySelectorAll('.page-link');
@@ -127,6 +144,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
         mostrarPagina(1);
     }
-
-    paginacaoUsuarios();
 });
