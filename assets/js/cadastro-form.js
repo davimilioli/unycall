@@ -1,4 +1,23 @@
 document.addEventListener('DOMContentLoaded', () => {
+
+    function inicializacao() {
+        validarNome();
+        validarDataNascimento();
+        validarCpf();
+        validarNomeMaterno();
+        validarEmail();
+        validarCelular();
+        validarTelefone();
+        validarCep()
+        validarLogin();
+        validarSenha();
+        validarFormulário();
+
+        console.log('[+] cadastro-form.js iniciado');
+    }
+
+    inicializacao();
+
     async function consultarUsuarioBD() {
         try {
             const response = await fetch('../cliente/busca_usuario.php');
@@ -46,10 +65,6 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-    validarNome();
-
-    /* VALIDAÇÃO NASCIMENTO */
-
     function validarDataNascimento() {
         const dataNascimento = document.querySelector('#data-nascimento');
         let validaData = false;
@@ -80,8 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return validaData;
     }
 
-    validarDataNascimento();
-
     function validarCpf() {
         const cpf = document.querySelector('#cpf');
         const mensagemAviso = document.querySelector('.message_notice.cpf')
@@ -94,32 +107,18 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let i = 0; i < formatarCpf.length; i++) {
                 if (i === 3 || i === 6) {
                     validarFormatacao += '.';
-                    setarBorda('#cpf', false);
                 } else if (i === 9) {
                     validarFormatacao += '-';
-                    setarBorda('#cpf', false);
                 } else if (i === 11) {
                     setarBorda('#cpf', true);
                 }
                 validarFormatacao += formatarCpf[i];
             }
 
-            if (cpf.value === '') {
-                cpf.style.borderColor = '#d5dfff';
-            }
-
             cpf.value = validarFormatacao;
 
             validarCPF(formatarCpf);
-
-            setTimeout(() => {
-                cpfExiste();
-            }, 500);
-
-            if (cpf.value < 11) {
-                cpfEncontrado = false;
-                mensagemAviso.style.display = 'none';
-            }
+            cpfExiste();
         });
 
         async function cpfExiste() {
@@ -130,11 +129,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 if (valorCpf.length == 11 && valorCpf == item.cpf) {
                     cpfEncontrado = true;
+                    setarBorda('#cpf', false);
                 }
             })
 
             if (cpfEncontrado) {
                 mensagemAviso.style.display = 'flex';
+            }
+
+            if (valorCpf.length < 11) {
+                cpfEncontrado = false;
+                mensagemAviso.style.display = 'none';
+                cpf.style.borderColor = '#d5dfff';
+            }
+
+            if (cpf.value === '') {
+                cpf.style.borderColor = '#d5dfff';
             }
         }
 
@@ -166,8 +176,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    validarCpf();
-
     function validarNomeMaterno() {
 
         const nomeMaterno = document.querySelector('#nomeMaterno');
@@ -184,8 +192,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
     }
-
-    validarNomeMaterno();
 
     function validarEmail() {
 
@@ -206,8 +212,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
-
-    validarEmail();
 
     function validarCelular() {
         const celular = document.querySelector('#celular');
@@ -236,10 +240,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             celular.value = telefoneFormatado;
         });
-
     }
-
-    validarCelular();
 
     function validarTelefone() {
         const telefone = document.querySelector('#telefone');
@@ -270,8 +271,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     }
-
-    validarTelefone();
 
     function validarCep() {
 
@@ -388,9 +387,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     }
 
-    validarCep()
-
-
     function validarLogin() {
 
         const login = document.querySelector('#login');
@@ -407,8 +403,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
     }
-
-    validarLogin();
 
     function validarSenha() {
 
@@ -449,8 +443,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    validarSenha();
-
     function validarFormulário() {
 
         const btnCadastrar = document.querySelector('#cadastrar');
@@ -489,13 +481,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-    validarFormulário();
-
     function loading(msg) {
         const loading = document.querySelector('.loading');
         const message = document.querySelector('.loading-message')
         loading.classList.toggle('hide');
         message.innerHTML = msg;
     }
-
 });
