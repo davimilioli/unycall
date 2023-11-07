@@ -133,6 +133,10 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                         <div class="form-group">
                             <label for="cpf">CPF <span>*</span></label>
                             <input type="text" name="cpf" id="cpf" maxlength="14" required>
+                            <span class="message_notice cpf" style="display: none;">
+                                <img src="/assets/img/icons/danger-notice.svg" alt="">
+                                Cpf já existente
+                            </span>
                         </div>
                         <div class="form-group">
                             <label for="nomeMaterno">Nome Materno <span>*</span></label>

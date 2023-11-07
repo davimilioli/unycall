@@ -1,4 +1,19 @@
 document.addEventListener('DOMContentLoaded', () => {
+    async function consultarUsuarioBD() {
+        try {
+            const response = await fetch('../cliente/busca_usuario.php');
+            if (!response.ok) {
+                throw new Error('Erro ao pegar dados');
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Erro:', error);
+            return [];
+        }
+    }
+
     const sexo = document.querySelector('#sexo');
 
     function setarBorda(seletor, color) {
@@ -69,6 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function validarCpf() {
         const cpf = document.querySelector('#cpf');
+        const mensagemAviso = document.querySelector('.message_notice.cpf')
         let validaCpf = false;
 
         cpf.addEventListener("input", function () {
@@ -78,31 +94,52 @@ document.addEventListener('DOMContentLoaded', () => {
             for (let i = 0; i < formatarCpf.length; i++) {
                 if (i === 3 || i === 6) {
                     validarFormatacao += '.';
+                    setarBorda('#cpf', false);
                 } else if (i === 9) {
                     validarFormatacao += '-';
+                    setarBorda('#cpf', false);
+                } else if (i === 11) {
+                    setarBorda('#cpf', true);
                 }
                 validarFormatacao += formatarCpf[i];
             }
 
+            if (cpf.value === '') {
+                cpf.style.borderColor = '#d5dfff';
+            }
+
             cpf.value = validarFormatacao;
 
-            if (validarCPF(formatarCpf)) {
-                validaCpf = true;
+            validarCPF(formatarCpf);
 
-                console.log('CPF: ' + validaCpf)
-            } else {
-                validaCpf = false;
+            setTimeout(() => {
+                cpfExiste();
+            }, 500);
+
+            if (cpf.value < 11) {
+                cpfEncontrado = false;
+                mensagemAviso.style.display = 'none';
             }
         });
 
+        async function cpfExiste() {
+            const consultaCpf = await consultarUsuarioBD()
+            let cpfEncontrado = false
+            const valorCpf = cpf.value.replace(/[.-]/g, '');
+            consultaCpf.forEach((item) => {
+
+                if (valorCpf.length == 11 && valorCpf == item.cpf) {
+                    cpfEncontrado = true;
+                }
+            })
+
+            if (cpfEncontrado) {
+                mensagemAviso.style.display = 'flex';
+            }
+        }
+
         function validarCPF(cpf) {
             cpf = cpf.replace(/[^\d]+/g, '');
-            if (cpf.length < 11) {
-                setarBorda('#cpf', false);
-            } else if (cpf.length > 11) {
-                setarBorda('#cpf', false);
-                return false;
-            }
 
             let soma = 0;
             for (let i = 0; i < 9; i++) {
@@ -174,7 +211,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function validarCelular() {
         const celular = document.querySelector('#celular');
-        console.log(celular)
 
         celular.addEventListener('input', () => {
             const numero = celular.value.replace(/\D/g, '');
