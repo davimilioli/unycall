@@ -33,6 +33,23 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    async function verificarDadoExiste(termo, valor) {
+        const consulta = await consultarUsuarioBD();
+        const termoConsulta = termo;
+        const valorConsulta = valor.replace(/[-.]/g, '');
+        console.log('a');
+
+        let encontrado = false;
+
+        consulta.forEach((item) => {
+            if (item[termoConsulta] === valorConsulta) {
+                encontrado = true;
+            }
+        });
+
+        return encontrado;
+    }
+
     const sexo = document.querySelector('#sexo');
 
     function setarBorda(seletor, color) {
@@ -88,8 +105,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             dataNascimento.value = nascimentoValue;
-
-
         });
 
         return validaData;
@@ -97,10 +112,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     function validarCpf() {
         const cpf = document.querySelector('#cpf');
-        const mensagemAviso = document.querySelector('.message_notice.cpf')
+        const mensagemAviso = document.querySelector('.message_notice.cpf');
         let validaCpf = false;
 
-        cpf.addEventListener("input", function () {
+        cpf.addEventListener("input", async () => {
             let formatarCpf = cpf.value.replace(/\D/g, '');
             let validarFormatacao = '';
 
@@ -116,37 +131,26 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             cpf.value = validarFormatacao;
-
             validarCPF(formatarCpf);
-            cpfExiste();
-        });
-
-        async function cpfExiste() {
-            const consultaCpf = await consultarUsuarioBD()
-            let cpfEncontrado = false
-            const valorCpf = cpf.value.replace(/[.-]/g, '');
-            consultaCpf.forEach((item) => {
-
-                if (valorCpf.length == 11 && valorCpf == item.cpf) {
-                    cpfEncontrado = true;
-                    setarBorda('#cpf', false);
-                }
-            })
-
-            if (cpfEncontrado) {
-                mensagemAviso.style.display = 'flex';
-            }
-
-            if (valorCpf.length < 11) {
-                cpfEncontrado = false;
-                mensagemAviso.style.display = 'none';
-                cpf.style.borderColor = '#d5dfff';
-            }
 
             if (cpf.value === '') {
                 cpf.style.borderColor = '#d5dfff';
+
+            } else if (cpf.value.length < 11) {
+                mensagemAviso.style.display = 'none';
+                cpf.style.borderColor = '#d5dfff';
+
+            } else if (cpf.value.length == 14) {
+                const verificarCpfExiste = await verificarDadoExiste('cpf', formatarCpf);
+                if (verificarCpfExiste) {
+                    mensagemAviso.style.display = 'flex';
+                    setarBorda('#cpf', false);
+                } else {
+                    mensagemAviso.style.display = 'none';
+                    setarBorda('#cpf', true);
+                }
             }
-        }
+        });
 
         function validarCPF(cpf) {
             cpf = cpf.replace(/[^\d]+/g, '');
@@ -390,10 +394,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function validarLogin() {
 
         const login = document.querySelector('#login');
+        const mensagemAvisoLogin = document.querySelector('.message_notice.login')
         let validaLogin = false;
 
-        login.addEventListener('keyup', () => {
-            if (login.value.length < 6) {
+        login.addEventListener('input', async () => {
+            const valorLogin = login.value;
+            if (valorLogin.length < 6) {
                 validaLogin = false;
                 setarBorda('#login', false);
             } else {
@@ -401,15 +407,35 @@ document.addEventListener('DOMContentLoaded', () => {
                 validaLogin = true;
                 console.log('Login: ' + validaLogin);
             }
+
+            if (valorLogin === '') {
+                login.style.borderColor = '#d5dfff';
+
+            } else if (valorLogin.length < 6) {
+                mensagemAvisoLogin.style.display = 'none';
+                login.style.borderColor = '#d5dfff';
+
+            } else if (valorLogin.length == 6) {
+                const verificarLoginExiste = await verificarDadoExiste('login', valorLogin);
+                if (verificarLoginExiste) {
+                    mensagemAvisoLogin.style.display = 'flex';
+                    setarBorda('#login', false);
+                } else {
+                    mensagemAvisoLogin.style.display = 'none';
+                    setarBorda('#login', true);
+                }
+            }
         })
     }
 
     function validarSenha() {
 
         const senha = document.querySelector('#senha');
+        const confirmaSenha = document.querySelector('#confirmar-senha');
+        const mensagemAvisoSenha = document.querySelector('.message_notice.senha')
         let validaSenha = false
 
-        senha.addEventListener('keyup', () => {
+        senha.addEventListener('input', () => {
 
             const senhaValue = senha.value;
             const quantidadeAlfabeticos = contarCaracteresAlfabeticos(senhaValue);
@@ -424,15 +450,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         })
 
-        const confirmaSenha = document.querySelector('#confirmar-senha');
-        confirmaSenha.addEventListener('keyup', () => {
-            if (confirmaSenha.value != senha.value) {
-                validaConfirma = false;
-                setarBorda('#confirmar-senha', false);
-            } else {
+        confirmaSenha.addEventListener('input', () => {
+            if (confirmaSenha.value == senha.value) {
                 validaConfirma = true;
                 setarBorda('#confirmar-senha', true);
-                console.log('confirmar senha: ' + validaConfirma)
+                console.log('confirmar senha: ' + validaConfirma);
+                mensagemAvisoSenha.style.display = 'none';
+            } else {
+                validaConfirma = false;
+                setarBorda('#confirmar-senha', false);
+                mensagemAvisoSenha.style.display = 'flex';
+
             }
         })
 

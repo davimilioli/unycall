@@ -15,6 +15,7 @@ function listaBusca($sistema)
             'cpf' => $item->pegarCpf(),
             'celular' => $item->pegarCelular(),
             'telefone' => $item->pegarTelefone(),
+            'login' => $item->pegarLogin(),
             'permissao' => $item->pegarPermissao()
 
         );
