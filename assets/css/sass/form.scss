@@ -60,15 +60,6 @@
 
                 }
             }
-
-            .message_notice {
-                color: $danger;
-                font-size: 0.875rem;
-                display: flex;
-                align-items: center;
-                gap: 5px;
-
-            }
         }
 
         .form-category {
@@ -110,5 +101,14 @@
                 }
             }
         }
+
     }
+}
+
+.message_notice {
+    color: $danger;
+    font-size: 0.813rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
