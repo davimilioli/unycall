@@ -41,7 +41,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
         $dados->setarTelefone($telefone);
         $dados->setarLogin($login);
         $dados->setarSenha($senha);
-        $dados->setarPermissao($permissao ?? null);
+        $dados->setarPermissao($permissao ?? '');
         $usuarioSql->criarUsuario($dados);
 
         $endereco = new Endereco();
@@ -51,7 +51,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
         $endereco->setarBairroEndereco($bairro);
         $endereco->setarCidadeEndereco($cidade);
         $endereco->setarEstadoEndereco($estado);
-        $endereco->setarComplementoEndereco($complemento ?? null);
+        $endereco->setarComplementoEndereco($complemento ?? '');
         $enderecoSql->criarEndereco($endereco);
 
         header('location: /php/login/login.php');

@@ -28,10 +28,10 @@ if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
             exit;
         } elseif ($tipoLogin == 'administrador' && $permissao != 'administrador') {
             $erro = 'Você não tem permissão';
-        } elseif ($tipoLogin == 'normal' && is_null($permissao)) {
+        } elseif ($tipoLogin == 'normal' && $permissao == '') {
             header('Location: /php/cliente/dois_fatores.php');
             exit;
-        } elseif ($tipoLogin == 'normal' && !is_null($permissao)) {
+        } elseif ($tipoLogin == 'normal' && $permissao == '') {
             $erro = 'Você precisa entrar como administrador';
         }
     } else {
