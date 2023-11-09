@@ -109,7 +109,7 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
                         </div>
                     </div>
                 <?php else : ?>
-                    <div class="form-content" id="formSignature">
+                    <div class="form-content active" id="formSignature">
                         <form method="POST" class="form">
                             <input type="hidden" name="idUsuario" value="<?= $id ?>">
                             <input type="hidden" name="nomeUsuario" value="<?= $nomeUsuario ?>">
@@ -166,23 +166,23 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
                                     <h2>Pagamento</h2>
                                     <div class="form-group">
                                         <label for="numCartao">Número do Cartão <span>*</span></label>
-                                        <input type="text" name="numCartao" id="numCartao" minlength="16" maxlength="16" required>
+                                        <input type="text" name="numCartao" id="numCartao" minlength="16">
                                     </div>
                                     <div class="form-group">
                                         <label for="cvv">CVV <span>*</span></label>
-                                        <input type="text" name="cvv" id="cvv" maxlength="3" required>
+                                        <input type="text" name="cvv" id="cvv">
                                     </div>
                                     <div class="form-group">
                                         <label for="validade">Validade <span>*</span></label>
-                                        <input type="text" name="validade" id="validade" maxlength="5" required>
+                                        <input type="text" name="validade" id="validade" maxlength="5">
                                     </div>
                                     <div class="form-group">
                                         <label for="titular">Titular <span>*</span></label>
-                                        <input type="text" name="titular" id="titular" minlength="8" required>
+                                        <input type="text" name="titular" id="titular" minlength="8">
                                     </div>
                                     <div class="form-group">
                                         <label for="cpfTitular">Cpf do titular <span>*</span></label>
-                                        <input type="text" name="cpfTitular" id="cpfTitular" minlength="11" maxlength="14" required>
+                                        <input type="text" name="cpfTitular" id="cpfTitular" minlength="11" maxlength="14">
                                     </div>
                                 </div>
                             </div>
@@ -196,16 +196,16 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
                                         </div>
                                     <?php endif ?>
                                     <input type="reset" value="Limpar" id="limpar" class="btn secondary">
-                                    <input type="submit" value="Assinar" class="btn" id="cadastrar">
+                                    <input type="submit" value="Assinar" class="btn" id="assinar">
                                 </div>
                             </div>
                         </form>
                         <div class="modal-exclude"></div>
                     </div>
-                    <div class="signature-screen-hidden">
+<!--                     <div class="signature-screen-hidden">
                         <p class="signature-screen-hidden-description">Você não possui nenhuma assinatura</p>
                         <button type="button" class="btn" id="buttonSignature">Assinar</button>
-                    </div>
+                    </div> -->
                 <?php endif ?>
             </div>
         </main>
