@@ -240,7 +240,7 @@ class Sistema
             } elseif ($tipoLogin == 'normal' && $permissao == '') {
                 header('Location: /php/cliente/dois_fatores.php');
                 exit;
-            } elseif ($tipoLogin == 'normal' && $permissao == '') {
+            } elseif ($tipoLogin == 'normal' && $permissao == 'administrador') {
                 $erro = 'Você precisa entrar como administrador';
             }
         } else {
