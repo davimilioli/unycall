@@ -57,10 +57,12 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
                                     </div>
                                 </form>
                             </div>
-                            <a href="gerar_pdf.php" target="_blank" class="btn pdf">
-                                <img src="/assets/img/icons/list.svg">
-                                Importar Lista
-                            </a>
+                            <?php if(count($lista) > 2) : ?>
+                                <a href="gerar_pdf.php" target="_blank" class="btn pdf">
+                                    <img src="/assets/img/icons/list.svg">
+                                    Importar Lista
+                                </a>
+                            <?php endif ?>
                             <a href="adicionar_usuario.php" class="btn">
                                 <img src="/assets/img/icons/plus.svg">
                                 Adicionar Usuario
