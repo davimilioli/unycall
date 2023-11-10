@@ -745,15 +745,14 @@
 
                 .table-db {
                     background: #FFF;
-                    width: 49%;
+                    width: 100%;
                     box-shadow: $bx-shadow;
                     border-radius: $radius;
-                    padding: 0 1.6rem;
+                    padding: 1rem;
 
                     .table-db-title {
                         width: 100%;
-                        padding: 1rem 0;
-                        border-bottom: 2px solid $border-color;
+                        margin-bottom: 1rem;
 
                         h2 {
                             text-align: center;
@@ -767,6 +766,7 @@
                         width: 100%;
 
                         thead {
+                            border-top: 2px solid $border-color;
                             border-bottom: 2px solid $border-color;
 
                             tr {
@@ -830,6 +830,10 @@
                                 }
                             }
                         }
+                    }
+
+                    @media(max-width: $sm) {
+                        overflow-x: scroll;
                     }
                 }
             }
