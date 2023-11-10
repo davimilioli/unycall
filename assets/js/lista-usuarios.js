@@ -11,10 +11,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function buscaUsuario() {
         const buscarNomeInput = document.querySelector("#buscarNome");
+        const tabela = document.querySelector("tbody");
+        const resultadoVazio = document.querySelector('.result-null');
+        let ativarConsulta = '';
+        let listaUsuariosOriginal = [];
 
         if (buscarNomeInput) {
 
-            let ativarConsulta = '';
             buscarNomeInput.addEventListener('click', async () => {
                 return ativarConsulta = await consultarUsuarioBD()
             })
@@ -23,15 +26,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 const termoBusca = buscarNomeInput.value.toLowerCase();
 
                 const listaUsuarios = ativarConsulta;
+                listaUsuariosOriginal = listaUsuarios;
 
-                const tabela = document.querySelector("tbody");
                 let usuarioEncontrado = false;
-                tabela.innerHTML = "";
+                tabela.innerHTML = '';
 
                 listaUsuarios.forEach(function (usuario) {
                     const nomeUsuario = usuario.nome.toLowerCase();
+                    const cpfUsuario = usuario.cpf.toLowerCase();
+                    const emailUsuario = usuario.email.toLowerCase();
 
-                    if (termoBusca === '' || nomeUsuario.includes(termoBusca)) {
+                    if (termoBusca === '' || nomeUsuario.includes(termoBusca) || cpfUsuario.includes(termoBusca) || emailUsuario.includes(termoBusca)) {
                         const novaLinha = document.createElement("tr");
                         novaLinha.innerHTML = `
                             <td class="table-id">${usuario.id}</td>
@@ -58,13 +63,13 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
 
-                const resultadoVazio = document.querySelector('.result-null');
                 if (usuarioEncontrado == false) {
                     resultadoVazio.classList.add('active')
                 } else {
                     resultadoVazio.classList.remove('active')
                 }
 
+                paginacaoUsuarios();
             });
         }
     }
@@ -105,7 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         modalExclude.classList.remove('active');
                     })
                 })
-
             });
         });
     }
