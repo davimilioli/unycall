@@ -185,4 +185,68 @@ class Sistema
 
         return true;
     }
+
+    public function validarCadastro($nome, $nascimento, $cpf, $nomeMaterno, $email, $sexo, $celular, $telefone, $login, $senha,
+    $cep, $logradouro, $numero, $bairro, $cidade, $estado, $complemento){
+
+        $erro = '';
+        if ($this->usuarioSql->consultarCpf($cpf) === false) {
+            $dados = new Usuario();
+            $dados->setarNome($nome);
+            $dados->setarNascimento($nascimento);
+            $dados->setarEmail($email);
+            $dados->setarCpf($cpf);
+            $dados->setarNomeMaterno($nomeMaterno);
+            $dados->setarSexo($sexo);
+            $dados->setarCelular($celular);
+            $dados->setarTelefone($telefone);
+            $dados->setarLogin($login);
+            $dados->setarSenha($senha);
+            $dados->setarPermissao($permissao ?? '');
+            $this->usuarioSql->criarUsuario($dados);
+    
+            $endereco = new Endereco();
+            $endereco->setarCepEndereco($cep);
+            $endereco->setarLogradouroEndereco($logradouro);
+            $endereco->setarNumeroEndereco($numero);
+            $endereco->setarBairroEndereco($bairro);
+            $endereco->setarCidadeEndereco($cidade);
+            $endereco->setarEstadoEndereco($estado);
+            $endereco->setarComplementoEndereco($complemento ?? '');
+            $this->enderecoSql->criarEndereco($endereco);
+    
+            return true;
+        } else {
+            $erro = 'CPF já existe!';
+        }
+
+        return $erro;
+    }
+
+    public function validarLogin($login, $senha, $tipoLogin){
+        $consultarDados = $this->usuarioSql->consultarDadosLogin($login, $senha, $tipoLogin);
+        $erro = '';
+        if ($consultarDados && $consultarDados['resposta']) {
+            $_SESSION['id'] = $consultarDados['id'];
+            $_SESSION['permissao'] = $consultarDados['permissao'];
+    
+            $permissao = $consultarDados['permissao'];
+    
+            if ($tipoLogin == 'administrador' && $permissao == 'administrador') {
+                header('Location: /php/cliente/cliente.php');
+                exit;
+            } elseif ($tipoLogin == 'administrador' && $permissao != 'administrador') {
+                $erro = 'Você não tem permissão';
+            } elseif ($tipoLogin == 'normal' && $permissao == '') {
+                header('Location: /php/cliente/dois_fatores.php');
+                exit;
+            } elseif ($tipoLogin == 'normal' && $permissao == '') {
+                $erro = 'Você precisa entrar como administrador';
+            }
+        } else {
+            $erro = 'Usuario ou senha incorretos';
+        }
+
+        return $erro;
+    }
 }

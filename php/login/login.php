@@ -7,6 +7,7 @@ if ($verificar == false) {
     unset($verificar);
 }
 
+$sistema = new Sistema($banco->pegarPdo());
 $erro = '';
 if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
 
@@ -14,28 +15,9 @@ if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
     $login = $_POST['login'];
     $senha = $_POST['senha'];
 
-    $usuarioSql = new UsuarioMySql($banco->pegarPdo());
-    $consultarDados = $usuarioSql->consultarDadosLogin($login, $senha, $tipoLogin);
-
-    if ($consultarDados && $consultarDados['resposta']) {
-        $_SESSION['id'] = $consultarDados['id'];
-        $_SESSION['permissao'] = $consultarDados['permissao'];
-
-        $permissao = $consultarDados['permissao'];
-
-        if ($tipoLogin == 'administrador' && $permissao == 'administrador') {
-            header('Location: /php/cliente/cliente.php');
-            exit;
-        } elseif ($tipoLogin == 'administrador' && $permissao != 'administrador') {
-            $erro = 'Você não tem permissão';
-        } elseif ($tipoLogin == 'normal' && $permissao == '') {
-            header('Location: /php/cliente/dois_fatores.php');
-            exit;
-        } elseif ($tipoLogin == 'normal' && $permissao == '') {
-            $erro = 'Você precisa entrar como administrador';
-        }
-    } else {
-        $erro = 'Usuario ou senha incorretos';
+    $validarLogin = $sistema->validarLogin($login, $senha, $tipoLogin);
+    if(!empty($validarLogin)){
+        $erro = $validarLogin;
     }
 }
 ?>
