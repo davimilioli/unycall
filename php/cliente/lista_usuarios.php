@@ -3,6 +3,7 @@ session_start();
 require_once('../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
+$gerenciador = new Gerenciador($banco->pegarPdo());
 
 $id = $_SESSION['id'];
 $permissao = $_SESSION['permissao'];
@@ -18,7 +19,9 @@ require_once(__DIR__ . '../modulos/modulos.php');
 
 if (isset($_POST['exclude'])) {
     $idExclude = $_POST['exclude'];
+    $gerenciador->enviarExclusao($idExclude);
     $sistema->deletarDados($idExclude);
+    
     header('location: /php/cliente/lista_usuarios.php');
     exit;
 }

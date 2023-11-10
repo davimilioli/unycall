@@ -33,6 +33,8 @@ class Gerenciador
         $pagamento->setarDataPagamento($dataFormatada);
 
         $this->GerenciadorMySql->cadastrarPagamento($pagamento);
+
+        return true;
     }
 
     public function enviarDadosAssinatura(array $arrayAssinatura)
@@ -43,6 +45,8 @@ class Gerenciador
         $assinatura->setarIdAssTransacao($arrayAssinatura['id_transacao']);
 
         $this->GerenciadorMySql->cadastrarAssinatura($assinatura);
+
+        return true;
     }
 
     public function pagamentos()
@@ -76,5 +80,9 @@ class Gerenciador
                 }
             }
         }
+    }
+
+    public function enviarExclusao($id){
+        $this->GerenciadorMySql->excluirAssinatura($id);
     }
 }

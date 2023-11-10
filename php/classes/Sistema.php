@@ -107,7 +107,6 @@ class Sistema
 
     public function deletarDados($id)
     {
-        $this->enderecoSql->deletarEndereco($id);
         if ($this->enderecoSql->deletarEndereco($id)) {
             $this->usuarioSql->deletarUsuario($id);
         }

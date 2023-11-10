@@ -48,11 +48,13 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
         'id_transacao' => $idTransacao,
     );
 
-    $gerenciador->enviarDadosPagamento($arrayPagamento);
-    $gerenciador->enviarDadosAssinatura($arrayAssinatura);
+    $dadosPagamento = $gerenciador->enviarDadosPagamento($arrayPagamento);
+    $dadosAssinatura = $gerenciador->enviarDadosAssinatura($arrayAssinatura);
 
-    header('location: gerenciar.php');
-    exit;
+    if($dadosPagamento === true && $dadosAssinatura === true){
+        header('location: gerenciar.php');
+        exit; 
+    } 
 }
 
 ?>
@@ -109,7 +111,7 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
                         </div>
                     </div>
                 <?php else : ?>
-                    <div class="form-content active" id="formSignature">
+                    <div class="form-content" id="formSignature">
                         <form method="POST" class="form">
                             <input type="hidden" name="idUsuario" value="<?= $id ?>">
                             <input type="hidden" name="nomeUsuario" value="<?= $nomeUsuario ?>">
@@ -202,10 +204,10 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
                         </form>
                         <div class="modal-exclude"></div>
                     </div>
-<!--                     <div class="signature-screen-hidden">
+                   <div class="signature-screen-hidden">
                         <p class="signature-screen-hidden-description">Você não possui nenhuma assinatura</p>
                         <button type="button" class="btn" id="buttonSignature">Assinar</button>
-                    </div> -->
+                    </div>
                 <?php endif ?>
             </div>
         </main>
