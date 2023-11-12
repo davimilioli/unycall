@@ -10,10 +10,10 @@ $dados = $sistema->procurarIdUsuario($id);
 
 $gerenciador = new Gerenciador($banco->pegarPdo());
 $servicosDisponiveis = $gerenciador->servicosDisponiveis();
-$assinaturaAtivo = $gerenciador->assinaturaAtiva($id);
+$assinaturaAtivo = $gerenciador->assinaturaAtiva($id)['servico'];
+$comprovante = $gerenciador->assinaturaAtiva($id)['comprovante'];
 $nomeUsuario = $dados['usuario']['nome'];
 $cpfUsuario = $dados['usuario']['cpf'];
-
 
 
 /* Fomulário */
@@ -92,8 +92,7 @@ if (isset($_POST['excluirAssinatura'])) {
 
                     $servicoAssinado =  $assinaturaAtivo['servico_assinado'];
                     $precoServico =  $assinaturaAtivo['preco_servico'];
-                    $data =    $assinaturaAtivo['data'];
-                    $dataFormatada = date("d/m/Y", strtotime($data));
+                    $data = $assinaturaAtivo['data'];
                 }
                 ?>
 
@@ -107,7 +106,7 @@ if (isset($_POST['excluirAssinatura'])) {
                                 Preço: <?= str_replace('.', ',', $precoServico) ?>
                             </div>
                             <div class="signature-active-body-date">
-                                Assinado em: <?= $dataFormatada  ?>
+                                Assinado em: <?= $data  ?>
                             </div>
                         </div>
                         <div class="signature-active-footer">
@@ -116,7 +115,7 @@ if (isset($_POST['excluirAssinatura'])) {
                             </button>
                         </div>
                     </div>
-                    <div class="view-signature-modal">
+                    <div class="view-signature-modal active">
                         <div class="view-signature-modal-content">
                             <div class="signature-modal-header">
                                 <h2>Assinatura</h2>
@@ -130,15 +129,17 @@ if (isset($_POST['excluirAssinatura'])) {
                                         </div>
                                         <div class="content-card-block">
                                             <h3>Serviço assinado</h3>
-                                            <span>200 MB</span>
+                                            <span><?= $servicoAssinado ?></span>
                                         </div>
                                         <div class="content-card-block">
                                             <h3>Preço</h3>
-                                            <span>119,99</span>
+                                            <span><?= $precoServico ?></span>
                                         </div>
                                         <div class="content-card-block">
                                             <h3>Assinado em </h3>
-                                            <span>10/11/2023</span>
+                                            <span>
+                                                <?= $data ?>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="body-content-card">
@@ -147,27 +148,27 @@ if (isset($_POST['excluirAssinatura'])) {
                                         </div>
                                         <div class="content-card-block">
                                             <h3>ID de Transação</h3>
-                                            <span>db2152843d27054348574e6d346420f0</span>
+                                            <span><?= $comprovante['id_transacao'] ?></span>
                                         </div>
                                         <div class="content-card-block">
                                             <h3>Nome</h3>
-                                            <span>Davi Jacuru Milioli</span>
+                                            <span><?= $comprovante['nome'] ?></span>
                                         </div>
                                         <div class="content-card-block">
                                             <h3>CPF</h3>
-                                            <span>111.111.111-54</span>
+                                            <span><?= $comprovante['cpf'] ?></span>
                                         </div>
                                         <div class="content-card-block">
                                             <h3>Preço do Serviço:</h3>
-                                            <span>R$ 199,99</span>
+                                            <span><?= $comprovante['preco_servico'] ?></span>
                                         </div>
                                         <div class="content-card-block">
-                                            <h3>Preço do Serviço:</h3>
-                                            <span>Total</span>
+                                            <h3>Total:</h3>
+                                            <span><?= $comprovante['total'] ?></span>
                                         </div>
                                         <div class="content-card-block">
                                             <h3>Data de Pagamento</h3>
-                                            <span>21/08/2002</span>
+                                            <span><?= $comprovante['data'] ?></span>
                                         </div>
                                     </div>
                                 </div>

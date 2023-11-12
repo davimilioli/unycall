@@ -68,13 +68,27 @@ class Gerenciador
         foreach ($consultarAssinatura as $assinatura) {
             if ($assinatura->pegarIdAssUsuario() == $id) {
                 foreach ($consultarPagamentos as $pagamento) {
-                    if ($assinatura->pegarIdAssTransacao() == $pagamento->pegarPgtoIdTransacao()) {;
+                    if ($assinatura->pegarIdAssTransacao() == $pagamento->pegarPgtoIdTransacao()) {
+                        $comprovantePgto = array(
+                            'id_transacao' => $pagamento->pegarPgtoIdTransacao(),
+                            'nome' => $pagamento->pegarPgtoNome(),
+                            'cpf' => $pagamento->pegarPgtoCpf(),
+                            'servico_assinado' => $pagamento->pegarServicoAssinado(),
+                            'preco_servico' => $pagamento->pegarServicoPreco(),
+                            'total' => $pagamento->pegarTotal(),
+                            'data' => date("d/m/Y", strtotime($pagamento->pegarDataPagamento()))
+                        );
 
-                        return array(
+                        $servico = array(
                             'ativo' => true,
                             'servico_assinado' => $pagamento->pegarServicoAssinado(),
                             'preco_servico' => $pagamento->pegarServicoPreco(),
-                            'data' => $pagamento->pegarDataPagamento()
+                            'data' => date("d/m/Y", strtotime($pagamento->pegarDataPagamento()))
+
+                        );
+                        return array(
+                            'comprovante' => $comprovantePgto,
+                            'servico' => $servico,
                         );
                     }
                 }
@@ -82,7 +96,8 @@ class Gerenciador
         }
     }
 
-    public function enviarExclusao($id){
+    public function enviarExclusao($id)
+    {
         $this->GerenciadorMySql->excluirAssinatura($id);
     }
 }
