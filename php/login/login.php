@@ -16,7 +16,7 @@ if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
     $senha = $_POST['senha'];
 
     $validarLogin = $sistema->validarLogin($login, $senha, $tipoLogin);
-    if(!empty($validarLogin)){
+    if (!empty($validarLogin)) {
         $erro = $validarLogin;
     }
 }
@@ -57,14 +57,6 @@ if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
     <section class="page-form">
         <div class="form-panel">
             <div class="form-content">
-                <div class="loading hide">
-                    <div class="loading-content">
-                        <div class="spinner-one">
-                            <div class="spinner-two"></div>
-                        </div>
-                        <p class="loading-message">Validando Usuario</p>
-                    </div>
-                </div>
                 <div class="form-title">
                     <h1>Login</h1>
                 </div>
@@ -86,7 +78,9 @@ if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
                     </div>
                     <div class="form-buttons">
                         <div class="form-actions">
-                            <input type="submit" value="Entrar" class="btn" class="enviarForm" id="entrar">
+                            <button type="submit" class="btn" class="enviarForm" id="entrar">
+                                Entrar
+                            </button>
                             <input type="reset" value="Limpar" id="limpar" class="btn secondary">
                         </div>
                     </div>

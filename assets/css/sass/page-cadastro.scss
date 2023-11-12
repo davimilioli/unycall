@@ -173,6 +173,13 @@
                     @media (max-width: $sm) {
                         padding: 0 1rem;
                     }
+
+                    .btn {
+                        position: relative;
+                        padding-left: 3rem;
+                        padding-right: 3rem;
+                        position: relative;
+                    }
                 }
 
                 .message_error {

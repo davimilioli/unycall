@@ -7,20 +7,20 @@ document.addEventListener('DOMContentLoaded', () => {
     bntEntrar.addEventListener('click', (e) => {
         e.preventDefault()
 
-        loading('validando usuario')
+        bntEntrar.style.opacity = '0.5';
+        bntEntrar.innerHTML = `
+        <div class="loading">
+            <div class="loading-content">
+                <div class="spinner-one"></div>
+            </div>
+        </div> ` + 'Validando...';
 
         setTimeout(() => {
             form.submit();
-            loading('validando usuario')
+            bntEntrar.innerHTML = 'Entrar';
         }, 2000)
-    })
 
-    function loading(msg) {
-        const loading = document.querySelector('.loading');
-        const message = document.querySelector('.loading-message')
-        loading.classList.toggle('hide');
-        message.innerHTML = msg;
-    }
+    })
 
     const btnType = document.querySelectorAll('.button-type');
     const inputType = document.querySelector('[name=tipoLogin]');

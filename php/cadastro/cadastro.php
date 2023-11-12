@@ -30,8 +30,23 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
     $complemento = $_POST['complemento'];
 
     $validarCadastro = $sistema->validarCadastro(
-        $nome, $nascimento, $cpf, $nomeMaterno, $email, $sexo, $celular, $telefone, $login, $senha,
-        $cep, $logradouro, $numero, $bairro, $cidade, $estado, $complemento
+        $nome,
+        $nascimento,
+        $cpf,
+        $nomeMaterno,
+        $email,
+        $sexo,
+        $celular,
+        $telefone,
+        $login,
+        $senha,
+        $cep,
+        $logradouro,
+        $numero,
+        $bairro,
+        $cidade,
+        $estado,
+        $complemento
     );
 
     if ($validarCadastro === true) {
@@ -40,7 +55,6 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
     } else {
         $erro = $validarCadastro;
     }
-
 }
 ?>
 <!DOCTYPE html>
@@ -80,12 +94,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
         <div class="form-panel">
             <div class="form-content">
                 <div class="loading hide">
-                    <div class="loading-content">
-                        <div class="spinner-one">
-                            <div class="spinner-two"></div>
-                        </div>
-                        <p class="loading-message"></p>
-                    </div>
+                    <div class="loading-content"></div>
                 </div>
                 <div class="form-title">
                     <h1>Cadastro</h1>
@@ -232,7 +241,9 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                 <div class="form-buttons">
                     <div class="form-actions">
                         <input type="reset" value="Limpar" id="limpar" class="btn secondary">
-                        <input type="submit" value="Cadastrar" class="btn" id="cadastrar">
+                        <button type="submit" class="btn" id="cadastrar">
+                            Cadastrar
+                        </button>
                     </div>
                     <?php if (isset($erro) && $erro != null) :  ?>
                         <div class="message_error">

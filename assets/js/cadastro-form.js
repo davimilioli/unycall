@@ -345,7 +345,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         async function getAddress(cep) {
-            loading('buscando cep');
 
             const url = `https://viacep.com.br/ws/${cep}/json/`;
 
@@ -360,12 +359,9 @@ document.addEventListener('DOMContentLoaded', () => {
                     input.value = '';
                 });
 
-                loading();
                 return;
             } else {
                 validaCep = true;
-
-                loading();
             }
 
             address.value = data.logradouro !== undefined ? data.logradouro : '';
@@ -497,11 +493,17 @@ document.addEventListener('DOMContentLoaded', () => {
                     const dataNascimento = document.querySelector('#data-nascimento');
 
                     if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && nomeMaterno.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && cep.value !== '' && login.value !== '' && senha.value !== '' && confirmaSenha.value !== '') {
-                        loading('validando cadastro')
 
+                        btnCadastrar.style.opacity = '0.5';
+                        btnCadastrar.innerHTML = `
+                            <div class="loading">
+                                <div class="loading-content">
+                                    <div class="spinner-one"></div>
+                                </div>
+                            </div> ` + 'Validando...';
                         setTimeout(() => {
                             form.submit();
-                            loading('validando cadastro')
+                            btnCadastrar.innerHTML = 'Cadastrar';
                         }, 2000)
                     }
                 }
@@ -509,10 +511,4 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 
-    function loading(msg) {
-        const loading = document.querySelector('.loading');
-        const message = document.querySelector('.loading-message')
-        loading.classList.toggle('hide');
-        message.innerHTML = msg;
-    }
 });
