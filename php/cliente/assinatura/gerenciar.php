@@ -15,6 +15,7 @@ $nomeUsuario = $dados['usuario']['nome'];
 $cpfUsuario = $dados['usuario']['cpf'];
 
 
+
 /* Fomulário */
 if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['validade'], $_POST['titular'], $_POST['cpfTitular'])) {
     $idUsuario = $_POST['idUsuario'];
@@ -51,12 +52,18 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
     $dadosPagamento = $gerenciador->enviarDadosPagamento($arrayPagamento);
     $dadosAssinatura = $gerenciador->enviarDadosAssinatura($arrayAssinatura);
 
-    if($dadosPagamento === true && $dadosAssinatura === true){
+    if ($dadosPagamento === true && $dadosAssinatura === true) {
         header('location: gerenciar.php');
-        exit; 
-    } 
+        exit;
+    } else {
+        echo 'erro ao fazer pagamento, tente novamente mais tarde';
+    }
 }
 
+if (isset($_POST['excluirAssinatura'])) {
+    $id = $_POST['excluirAssinatura'];
+    $gerenciador->enviarExclusao($id);
+}
 ?>
 
 <!DOCTYPE html>
@@ -104,11 +111,74 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
                             </div>
                         </div>
                         <div class="signature-active-footer">
-                            <a href="#" class="btn secondary">
-                                <img src="/assets/img/icons/trash.svg">
-                                Excluir
-                            </a>
+                            <button class="btn" id="view-signature">
+                                Ver assinatura
+                            </button>
                         </div>
+                    </div>
+                    <div class="view-signature-modal">
+                        <div class="view-signature-modal-content">
+                            <div class="signature-modal-header">
+                                <h2>Assinatura</h2>
+                                <button id="closeModalSignature">X</button>
+                            </div>
+                            <div class="signature-modal-body">
+                                <div class="modal-body-content">
+                                    <div class="body-content-card">
+                                        <div class="content-card-title">
+                                            <h2>Serviço</h2>
+                                        </div>
+                                        <div class="content-card-block">
+                                            <h3>Serviço assinado</h3>
+                                            <span>200 MB</span>
+                                        </div>
+                                        <div class="content-card-block">
+                                            <h3>Preço</h3>
+                                            <span>119,99</span>
+                                        </div>
+                                        <div class="content-card-block">
+                                            <h3>Assinado em </h3>
+                                            <span>10/11/2023</span>
+                                        </div>
+                                    </div>
+                                    <div class="body-content-card">
+                                        <div class="content-card-title">
+                                            <h2>Comprovante de Pagamento</h2>
+                                        </div>
+                                        <div class="content-card-block">
+                                            <h3>ID de Transação</h3>
+                                            <span>db2152843d27054348574e6d346420f0</span>
+                                        </div>
+                                        <div class="content-card-block">
+                                            <h3>Nome</h3>
+                                            <span>Davi Jacuru Milioli</span>
+                                        </div>
+                                        <div class="content-card-block">
+                                            <h3>CPF</h3>
+                                            <span>111.111.111-54</span>
+                                        </div>
+                                        <div class="content-card-block">
+                                            <h3>Preço do Serviço:</h3>
+                                            <span>R$ 199,99</span>
+                                        </div>
+                                        <div class="content-card-block">
+                                            <h3>Preço do Serviço:</h3>
+                                            <span>Total</span>
+                                        </div>
+                                        <div class="content-card-block">
+                                            <h3>Data de Pagamento</h3>
+                                            <span>21/08/2002</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="signature-modal-footer">
+                                <button class="btn">Importar Comprovante</button>
+                                <button class="btn secondary" type="button" data-id="<?= $id ?>">Cancelar Assinatura</button>
+                            </div>
+                            <div class="modal-exclude"></div>
+                        </div>
+
                     </div>
                 <?php else : ?>
                     <div class="form-content" id="formSignature">
@@ -204,7 +274,7 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
                         </form>
                         <div class="modal-exclude"></div>
                     </div>
-                   <div class="signature-screen-hidden">
+                    <div class="signature-screen-hidden">
                         <p class="signature-screen-hidden-description">Você não possui nenhuma assinatura</p>
                         <button type="button" class="btn" id="buttonSignature">Assinar</button>
                     </div>

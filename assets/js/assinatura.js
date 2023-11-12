@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
         validarTitular();
         validarCpf();
         validacaoForm();
+        verAssinaturaModal();
 
         console.log('[+] assinatura.js iniciado');
     }
@@ -216,4 +217,69 @@ document.addEventListener("DOMContentLoaded", () => {
             })
         }
     }
+
+    function verAssinaturaModal() {
+        const openModal = document.querySelector('#view-signature');
+        if (openModal) {
+            const modal = document.querySelector('.view-signature-modal');
+            const closeModal = document.querySelector('#closeModalSignature')
+            openModal.addEventListener('click', () => {
+                modal.classList.add('active');
+            })
+
+            closeModal.addEventListener('click', () => {
+                modal.classList.remove('active');
+            })
+        }
+    }
+
+    function excluirAssinatura() {
+        const btnExcluir = document.querySelectorAll('[data-id]');
+        const modalExclude = document.querySelector('.modal-exclude');
+
+        btnExcluir.forEach((btn) => {
+            const btnAttrId = btn.getAttribute('data-id');
+
+            btn.addEventListener('click', () => {
+
+                modalExclude.classList.add('active');
+                modalExclude.setAttribute('id', btnAttrId);
+
+                const modalContent = `
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2>Tem certeza que deseja cancelar?</h2>
+                            <button type="button" class="closeModal">X</button>
+                        </div>
+                        <form id="formExclude" method="POST">
+                            <input type="hidden" name="excluirAssinatura" value="${btnAttrId}">
+                            <div class="buttons-modal">
+                                <button class="btn" type="button" id="excluirAssinatura">Sim</a>
+                                <button class="btn secondary closeModal" type="button">Não</button>
+                            </div>
+                        </form>
+                    </div>
+                `;
+
+                modalExclude.innerHTML = modalContent;
+
+                const closeModal = document.querySelectorAll('.closeModal');
+                closeModal.forEach((item) => {
+                    item.addEventListener('click', () => {
+                        modalExclude.classList.remove('active');
+                    })
+                })
+
+                const formExclude = document.querySelector('#formExclude')
+                const excluirAssinatura = document.querySelector('#excluirAssinatura');
+                excluirAssinatura.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    window.location.href = '/php/cliente/cliente.php';
+                    formExclude.submit();
+                })
+            });
+        });
+    }
+
+    excluirAssinatura();
 });
