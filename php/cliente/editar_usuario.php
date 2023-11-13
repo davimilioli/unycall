@@ -3,6 +3,7 @@ session_start();
 require_once('../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
+$modulos = new Modulos();
 
 $idAdm = $_SESSION['id'];
 $permissao = $_SESSION['permissao'];
@@ -18,7 +19,6 @@ if ($id) {
     $dados = $sistema->procurarIdUsuario($id);
     $usuario = $dados['usuario'];
     $endereco = $dados['endereco'];
-    require_once(__DIR__ . '../modulos/modulos.php');
 }
 
 if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMaterno'], $_POST['email'], $_POST['sexo'], $_POST['celular'], $_POST['telefone'], $_POST['login'])) {
@@ -112,25 +112,26 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
                     <input type="hidden" name="nascimento" value="<?= $usuario['nascimento'] ?>">
                     <input type="hidden" name="cpf" value="<?= $usuario['cpf'] ?>">
                     <input type="hidden" name="sexo" value="<?= $usuario['sexo'] ?>">
+                    <input type="hidden" name="nomeMaterno" value="<?= $usuario['nomematerno'] ?>">
 
                     <div class="form-container">
                         <div class="form-category">
                             <h2>Dados pessoais</h2>
                             <div class="form-group">
                                 <label for="nome">Nome </label>
-                                <input type="text" id="nome" value="<?= $usuario['nome'] ?>" readonly>
+                                <input type="text" id="nome" value="<?= $usuario['nome'] ?>" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="data-nascimento">Data de Nascimento </label>
-                                <input type="text" id="data-nascimento" value="<?= formatarNascimento($usuario['nascimento']) ?>" readonly>
+                                <input type="text" id="data-nascimento" value="<?= $modulos->formatarNascimento($usuario['nascimento']) ?>" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="cpf">CPF </label>
-                                <input type="text" id="cpf" value="<?= formatarCpf($usuario['cpf']) ?>" readonly>
+                                <input type="text" id="cpf" value="<?= $modulos->formatarCpf($usuario['cpf']) ?>" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="nomeMaterno">Nome Materno </label>
-                                <input type="text" name="nomeMaterno" id="nomeMaterno" value="<?= $usuario['nomematerno'] ?>" readonly>
+                                <input type="text" id="nomeMaterno" value="<?= $usuario['nomematerno'] ?>" disabled>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
@@ -138,16 +139,16 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
                             </div>
                             <div class="form-group">
                                 <label for="sexo">Sexo </label>
-                                <input type="text" value="<?= $usuario['sexo'] ?>" readonly>
+                                <input type="text" value="<?= $usuario['sexo'] ?>" disabled>
                             </div>
                             <div class="inputs-group">
                                 <div class="form-group">
                                     <label for="celular">Celular </label>
-                                    <input type="text" name="celular" id="celular" value="<?= formatarNumero($usuario['celular']) ?>">
+                                    <input type="text" name="celular" id="celular" value="<?= $modulos->formatarNumero($usuario['celular']) ?>">
                                 </div>
                                 <div class="form-group">
                                     <label for="telefone">Telefone </label>
-                                    <input type="text" name="telefone" id="telefone" value="<?= formatarNumero($usuario['telefone']) ?>">
+                                    <input type="text" name="telefone" id="telefone" value="<?= $modulos->formatarNumero($usuario['telefone']) ?>">
                                 </div>
                             </div>
                         </div>
@@ -155,7 +156,7 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
                             <h2>Endereço</h2>
                             <div class="form-group">
                                 <label for="cep">Cep </label>
-                                <input type="text" name="cep" id="cep" value="<?= formatarCep($endereco['cep']) ?>">
+                                <input type="text" name="cep" id="cep" value="<?= $endereco['cep'] ?>">
                             </div>
                             <div class="inputs-group endereco">
                                 <div class="form-group">

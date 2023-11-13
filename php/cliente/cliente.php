@@ -3,7 +3,7 @@ session_start();
 require_once('../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
-$permissao = $_SESSION['permissao'];
+$sistema->verificarPermissao();
 $id = $_SESSION['id'];
 $dados = $sistema->procurarIdUsuario($id);
 

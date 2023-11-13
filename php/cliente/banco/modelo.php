@@ -3,9 +3,8 @@ session_start();
 require_once('../../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
-
+$sistema->verificarPermissao();
 $id = $_SESSION['id'];
-$permissao = $_SESSION['permissao'];
 
 $tabelas = $banco->pegarPdo()->query("SHOW TABLES");
 

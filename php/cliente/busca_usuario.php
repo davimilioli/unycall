@@ -7,16 +7,16 @@ function listaBusca($sistema)
 {
     $lista = $sistema->consultarDadosUsuario();
     $dados = array();
-    foreach ($lista as $item) {
+    foreach ($lista as $usuario) {
         $dados[] =  array(
-            'id' => $item->pegarId(),
-            'nome' => $item->pegarNome(),
-            'email' => $item->pegarEmail(),
-            'cpf' => $item->pegarCpf(),
-            'celular' => $item->pegarCelular(),
-            'telefone' => $item->pegarTelefone(),
-            'login' => $item->pegarLogin(),
-            'permissao' => $item->pegarPermissao()
+            'id' => $usuario['id'],
+            'nome' => $usuario['nome'],
+            'email' => $usuario['email'],
+            'cpf' => $usuario['cpf'],
+            'celular' => $usuario['celular'],
+            'telefone' => $usuario['telefone'],
+            'login' => $usuario['login'],
+            'permissao' => $usuario['permissao']
 
         );
     }

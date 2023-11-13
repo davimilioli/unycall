@@ -1,3 +1,4 @@
+<?php $verificarPermissao = $sistema->verificarPermissao(); ?>
 <aside class="page-cliente-aside">
     <nav class="page-cliente-aside-content">
         <div class="page-cliente-aside-header">
@@ -10,7 +11,7 @@
                 </div>
             </div>
         </div>
-        <?php if ($permissao == 'administrador') : ?>
+        <?php if ($verificarPermissao  === true) : ?>
             <div class="aside-category">
                 <div class="aside-category-title">
                     <span class="aside-category-titles">

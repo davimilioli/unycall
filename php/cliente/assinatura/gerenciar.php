@@ -115,7 +115,7 @@ if (isset($_POST['excluirAssinatura'])) {
                             </button>
                         </div>
                     </div>
-                    <div class="view-signature-modal active">
+                    <div class="view-signature-modal">
                         <div class="view-signature-modal-content">
                             <div class="signature-modal-header">
                                 <h2>Assinatura</h2>

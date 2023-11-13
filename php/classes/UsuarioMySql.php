@@ -74,7 +74,7 @@ class UsuarioMySql implements UsuarioSqlInterface
                 $usuario = new Usuario();
                 $usuario->setarId($data['id']);
                 $usuario->setarPermissao($data['permissao']);
-                /* var_dump($usuario->setarPermissao($data['permissao'])); */
+
                 return array(
                     'resposta' => true,
                     'id' => $usuario->pegarId(),

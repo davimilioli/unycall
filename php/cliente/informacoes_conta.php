@@ -3,11 +3,8 @@ session_start();
 require_once('../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
-require_once(__DIR__ . '../modulos/modulos.php');
-
+$sistema->verificarPermissao();
 $id = $_SESSION['id'];
-$permissao = $_SESSION['permissao'];
-$verificarPerm = $sistema->procurarIdUsuario($id);
 
 $dados = $sistema->procurarIdUsuario($id);
 $usuario = $dados['usuario'];
@@ -48,7 +45,7 @@ $usuario = $dados['usuario'];
                         </div>
                         <div class="info-block">
                             <p>Cpf</p>
-                            <div><?= formatarCpf($usuario['cpf']) ?></div>
+                            <div><?= $usuario['cpf'] ?></div>
                         </div>
                         <div class="info-block">
                             <p>Email</p>
@@ -56,7 +53,7 @@ $usuario = $dados['usuario'];
                         </div>
                         <div class="info-block">
                             <p>Telefone para contato</p>
-                            <div><?= formatarNumero($usuario['celular']) ?></div>
+                            <div><?= $usuario['celular'] ?></div>
                         </div>
                         <div class="info-block action">
                             <a href="#" class="btn">Editar</a>

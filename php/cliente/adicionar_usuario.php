@@ -3,16 +3,8 @@ session_start();
 require_once('../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
-
 $id = $_SESSION['id'];
-$permissao = $_SESSION['permissao'];
-
-if ($permissao != 'administrador') {
-    header('location: /php/cliente/cliente.php?erroPermissao=true');
-    exit;
-}
-
-$sistema = new Sistema($banco->pegarPdo());
+$sistema->verificarPermissao();
 $erro = '';
 
 if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMaterno'], $_POST['email'], $_POST['sexo'], $_POST['celular'], $_POST['telefone'], $_POST['loginCadastro'], $_POST['senhaCadastro'], $_POST['cep'], $_POST['endereco'], $_POST['numend'], $_POST['bairro'], $_POST['cidade'], $_POST['estado'])) {
@@ -39,8 +31,24 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
     $permissao = $_POST['permissao'] ?? '';
 
     $validarCadastro = $sistema->validarCadastro(
-        $nome, $nascimento, $cpf, $nomeMaterno, $email, $sexo, $celular, $telefone, $login, $senha,
-        $cep, $logradouro, $numero, $bairro, $cidade, $estado, $complemento, $permissao
+        $nome,
+        $nascimento,
+        $cpf,
+        $nomeMaterno,
+        $email,
+        $sexo,
+        $celular,
+        $telefone,
+        $login,
+        $senha,
+        $cep,
+        $logradouro,
+        $numero,
+        $bairro,
+        $cidade,
+        $estado,
+        $complemento,
+        $permissao
     );
 
     if ($validarCadastro === true) {
@@ -49,8 +57,6 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
     } else {
         $erro = $validarCadastro;
     }
-    
-
 }
 
 ?>

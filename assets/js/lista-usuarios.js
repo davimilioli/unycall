@@ -9,6 +9,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
     inicializacao();
 
+    async function consultarUsuarioBD() {
+        try {
+            const response = await fetch('busca_usuario.php');
+            if (!response.ok) {
+                throw new Error('Erro ao pegar dados');
+            }
+
+            const data = await response.json();
+            return data;
+        } catch (error) {
+            console.error('Erro:', error);
+            return [];
+        }
+    }
+
+
+
     function buscaUsuario() {
         const buscarNomeInput = document.querySelector("#buscarNome");
         const tabela = document.querySelector("tbody");
@@ -32,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 tabela.innerHTML = '';
 
                 listaUsuarios.forEach(function (usuario) {
+
                     const nomeUsuario = usuario.nome.toLowerCase();
                     const cpfUsuario = usuario.cpf.toLowerCase();
                     const emailUsuario = usuario.email.toLowerCase();

@@ -3,25 +3,17 @@ session_start();
 require_once('../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
+$sistema->verificarPermissao();
 $gerenciador = new Gerenciador($banco->pegarPdo());
-
 $id = $_SESSION['id'];
-$permissao = $_SESSION['permissao'];
-
-if ($permissao != 'administrador') {
-    header('location: /php/cliente/cliente.php?erroPermissao=true');
-    exit;
-}
 
 $lista = $sistema->consultarDadosUsuario();
-
-require_once(__DIR__ . '../modulos/modulos.php');
 
 if (isset($_POST['exclude'])) {
     $idExclude = $_POST['exclude'];
     $gerenciador->enviarExclusao($idExclude);
     $sistema->deletarDados($idExclude);
-    
+
     header('location: /php/cliente/lista_usuarios.php');
     exit;
 }
@@ -56,11 +48,11 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
                             <div class="form-content">
                                 <form action="" class="form">
                                     <div class="form-group">
-                                        <input type="text" name="buscarNome" id="buscarNome" placeholder="Digite o nome de usuário">
+                                        <input type="text" name="buscarNome" id="buscarNome" placeholder="Digite nome, cpf ou email">
                                     </div>
                                 </form>
                             </div>
-                            <?php if(count($lista) > 2) : ?>
+                            <?php if (count($lista) > 2) : ?>
                                 <a href="gerar_pdf.php" target="_blank" class="btn pdf">
                                     <img src="/assets/img/icons/list.svg">
                                     Importar Lista
@@ -87,22 +79,22 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
                                 </tr>
                             </thead>
                             <tbody data-qtd-usuarios="<?= $qtdUsuarios ?>">
-                                <?php foreach ($lista as $item) : ?>
+                                <?php foreach ($lista as $usuario) : ?>
                                     <tr>
-                                        <td class="table-id"><?= $item->pegarId() ?></td>
-                                        <td><?= $item->pegarNome() ?></td>
-                                        <td><?= formatarCpf($item->pegarCpf()) ?></td>
-                                        <td><?= $item->pegarEmail() ?></td>
-                                        <td><?= formatarNumero($item->pegarCelular()) ?></td>
-                                        <td><?= formatarNumero($item->pegarTelefone()) ?></td>
-                                        <td class="table-permissao" id="<?= $item->pegarPermissao() == '' ? 'comum' : $item->pegarPermissao() ?>">
-                                            <p><?= $item->pegarPermissao() == null ? 'Não Possui' : ucfirst($item->pegarPermissao()) ?></p>
+                                        <td class="table-id"><?= $usuario['id'] ?></td>
+                                        <td><?= $usuario['nome'] ?></td>
+                                        <td><?= $usuario['cpf'] ?></td>
+                                        <td><?= $usuario['email'] ?></td>
+                                        <td><?= $usuario['celular'] ?></td>
+                                        <td><?= $usuario['telefone'] ?></td>
+                                        <td class="table-permissao" id="<?= $usuario['permissao'] == 'Administrador' ? strtolower($usuario['permissao']) : 'comum' ?>">
+                                            <p><?= $usuario['permissao'] ?></p>
                                         </td>
                                         <td class="table-buttons">
-                                            <a class="btn" title="editar <?= $item->pegarNome() ?>" href="/php/cliente/editar_usuario.php?edit=<?= $item->pegarId() ?>">
+                                            <a class="btn" href="/php/cliente/editar_usuario.php?edit=<?= $usuario['id'] ?>">
                                                 <img src="/assets/img/icons/edit.svg">
                                             </a>
-                                            <a class="btn secondary" title="excluir <?= $item->pegarNome() ?>" id="excluirUsuario" data-id="<?= $item->pegarId() ?>">
+                                            <a class="btn secondary" id="excluirUsuario" data-id="<?= $usuario['id'] ?>">
                                                 <img src="/assets/img/icons/trash.svg">
                                             </a>
                                         </td>
@@ -133,7 +125,6 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
         </main>
     </div>
     <script src="/assets/js/cliente.js"></script>
-    <script src="/assets/js/busca-usuario-db.js"></script>
     <script src="/assets/js/lista-usuarios.js"></script>
 </body>
 

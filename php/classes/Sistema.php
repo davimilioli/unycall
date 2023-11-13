@@ -3,6 +3,7 @@ require_once('UsuarioMySql.php');
 require_once('EnderecoMySql.php');
 require_once('Usuario.php');
 require_once('Endereco.php');
+require_once('Modulos.php');
 
 class Sistema
 {
@@ -15,13 +16,45 @@ class Sistema
         $this->enderecoSql = new EnderecoMySql($pdo);
     }
 
+    public function verificarPermissao()
+    {
+        $permissao = $_SESSION['permissao'];
+        if ($permissao != 'administrador') {
+            header('location: /php/cliente/cliente.php?erroPermissao=true');
+            exit;
+
+            return false;
+        }
+
+        return true;
+    }
+
     public function consultarDadosUsuario()
     {
-        return $this->usuarioSql->consultaUsuario();
+        $dados = [];
+        $modulos = new Modulos();
+
+        $consultaUsuarios = $this->usuarioSql->consultaUsuario();
+        foreach ($consultaUsuarios as $usuarios) {
+
+            $dados[] = array(
+                'id' => $usuarios->pegarId(),
+                'nome' => $usuarios->pegarNome(),
+                'cpf' => $modulos->formatarCpf($usuarios->pegarCpf()),
+                'email' => $usuarios->pegarEmail(),
+                'celular' => $modulos->formatarNumero($usuarios->pegarCelular()),
+                'telefone' => $modulos->formatarNumero($usuarios->pegarTelefone()),
+                'permissao' => $usuarios->pegarPermissao() == 'administrador' ? 'Administrador' : 'Não Possui',
+                'login' => $usuarios->pegarLogin()
+            );
+        }
+
+        return $dados;
     }
 
     public function procurarIdUsuario($id)
     {
+        $modulos = new Modulos();
         $consultaId = $this->usuarioSql->consultarId($id);
         $consultaIdUsuarioEndereco = $this->enderecoSql->consultarIdUsuarioEndereco($id);
 
@@ -56,7 +89,7 @@ class Sistema
                 if ($id == $item->pegarIdUsuarioEndereco()) {
                     $dadosEndereco  = array(
                         'id_usuario' => $item->pegarIdUsuarioEndereco(),
-                        'cep' => $item->pegarCepEndereco(),
+                        'cep' => $modulos->formatarCep($item->pegarCepEndereco()),
                         'logradouro' => $item->pegarLogradouroEndereco(),
                         'numero' => $item->pegarNumeroEndereco(),
                         'bairro' => $item->pegarBairroEndereco(),
@@ -76,16 +109,17 @@ class Sistema
 
     public function atualizarDadosUsuario($dadosUsuario)
     {
+        var_dump($dadosUsuario);
         $usuario = new Usuario();
         $usuario->setarId($dadosUsuario['id']);
         $usuario->setarNome($dadosUsuario['nome']);
         $usuario->setarNascimento($dadosUsuario['nascimento']);
         $usuario->setarEmail($dadosUsuario['email']);
-        $usuario->setarCpf(formatarCpf($dadosUsuario['cpf']));
+        $usuario->setarCpf($dadosUsuario['cpf']);
         $usuario->setarNomeMaterno($dadosUsuario['nomematerno']);
         $usuario->setarSexo($dadosUsuario['sexo']);
-        $usuario->setarCelular(formatarNumero($dadosUsuario['celular']));
-        $usuario->setarTelefone(formatarNumero($dadosUsuario['telefone']));
+        $usuario->setarCelular($dadosUsuario['celular']);
+        $usuario->setarTelefone($dadosUsuario['telefone']);
         $usuario->setarLogin($dadosUsuario['login']);
         $usuario->setarPermissao($dadosUsuario['permissao']);
         $this->usuarioSql->atualizarUsuario($usuario);
@@ -185,8 +219,25 @@ class Sistema
         return true;
     }
 
-    public function validarCadastro($nome, $nascimento, $cpf, $nomeMaterno, $email, $sexo, $celular, $telefone, $login, $senha,
-    $cep, $logradouro, $numero, $bairro, $cidade, $estado, $complemento){
+    public function validarCadastro(
+        $nome,
+        $nascimento,
+        $cpf,
+        $nomeMaterno,
+        $email,
+        $sexo,
+        $celular,
+        $telefone,
+        $login,
+        $senha,
+        $cep,
+        $logradouro,
+        $numero,
+        $bairro,
+        $cidade,
+        $estado,
+        $complemento
+    ) {
 
         $erro = '';
         if ($this->usuarioSql->consultarCpf($cpf) === false) {
@@ -203,7 +254,7 @@ class Sistema
             $dados->setarSenha($senha);
             $dados->setarPermissao($permissao ?? '');
             $this->usuarioSql->criarUsuario($dados);
-    
+
             $endereco = new Endereco();
             $endereco->setarCepEndereco($cep);
             $endereco->setarLogradouroEndereco($logradouro);
@@ -213,7 +264,7 @@ class Sistema
             $endereco->setarEstadoEndereco($estado);
             $endereco->setarComplementoEndereco($complemento ?? '');
             $this->enderecoSql->criarEndereco($endereco);
-    
+
             return true;
         } else {
             $erro = 'CPF já existe!';
@@ -222,15 +273,16 @@ class Sistema
         return $erro;
     }
 
-    public function validarLogin($login, $senha, $tipoLogin){
+    public function validarLogin($login, $senha, $tipoLogin)
+    {
         $consultarDados = $this->usuarioSql->consultarDadosLogin($login, $senha, $tipoLogin);
         $erro = '';
         if ($consultarDados && $consultarDados['resposta']) {
             $_SESSION['id'] = $consultarDados['id'];
             $_SESSION['permissao'] = $consultarDados['permissao'];
-    
+
             $permissao = $consultarDados['permissao'];
-    
+
             if ($tipoLogin == 'administrador' && $permissao == 'administrador') {
                 header('Location: /php/cliente/cliente.php');
                 exit;
