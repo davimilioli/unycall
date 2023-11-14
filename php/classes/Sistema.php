@@ -19,14 +19,11 @@ class Sistema
     public function verificarPermissao()
     {
         $permissao = $_SESSION['permissao'];
-        if ($permissao != 'administrador') {
-            header('location: /php/cliente/cliente.php?erroPermissao=true');
-            exit;
-
-            return false;
+        if ($permissao == 'administrador') {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
     public function consultarDadosUsuario()
@@ -166,7 +163,6 @@ class Sistema
     {
 
         $procurarDados = $this->procurarIdUsuario($id);
-
         if ($slug == 'qual-o-nome-da-sua-mae') {
             $nomeMaterno = $procurarDados['usuario']['nomematerno'];
             echo $nomeMaterno;

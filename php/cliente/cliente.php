@@ -3,10 +3,8 @@ session_start();
 require_once('../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
-$sistema->verificarPermissao();
 $id = $_SESSION['id'];
 $dados = $sistema->procurarIdUsuario($id);
-
 $gerenciador = new Gerenciador($banco->pegarPdo());
 $assinaturaAtivo = $gerenciador->assinaturaAtiva($id);
 

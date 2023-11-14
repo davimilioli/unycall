@@ -16,7 +16,6 @@ if (isset($_POST['id'], $_POST['slug'], $_POST['resposta'])) {
     $sistema = new Sistema($banco->pegarPdo());
 
     $sistema->consultarResposta($id, $slug, $resposta);
-
     if ($sistema->consultarResposta($id, $slug, $resposta)) {
         header('location: /php/cliente/cliente.php');
         exit;

@@ -3,7 +3,6 @@ session_start();
 require_once('../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
-$sistema->verificarPermissao();
 $id = $_SESSION['id'];
 $modulos = new Modulos();
 
@@ -32,6 +31,7 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
         'sexo' => $sexo,
         'celular' => $celular,
         'telefone' => $telefone,
+        'login' => $usuario['login'],
         'permissao' => $permissao
     );
 
