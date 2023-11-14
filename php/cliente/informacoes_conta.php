@@ -2,9 +2,10 @@
 session_start();
 require_once('../autoload.php');
 $banco = new BancoDeDados();
+$gerenciador = new Gerenciador($banco->pegarPdo());
 $sistema = new Sistema($banco->pegarPdo());
-$id = $_SESSION['id'];
 $modulos = new Modulos();
+$id = $_SESSION['id'];
 
 $dados = $sistema->procurarIdUsuario($id);
 $usuario = $dados['usuario'];
@@ -86,6 +87,15 @@ if (isset($_POST['login'])) {
             $erro = 'Senha incorreta';
         }
     }
+}
+
+if (isset($_POST['exclude'])) {
+    $idExclude = $_POST['exclude'];
+    $gerenciador->enviarExclusao($idExclude);
+    $sistema->deletarDados($idExclude);
+
+    header('location: /php/login/login.php');
+    exit;
 }
 
 ?>
@@ -319,10 +329,11 @@ if (isset($_POST['login'])) {
                     </div>
                     <div class="info-block-content">
                         <div class="info-block action">
-                            <a href="#" class="btn">Excluir</a>
+                            <button href="#" class="btn" data-id="<?= $usuario['id'] ?>">Excluir</button>
                         </div>
                     </div>
                 </div>
+                <div class="modal-exclude"></div>
             </div>
         </main>
     </div>

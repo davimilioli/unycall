@@ -117,7 +117,8 @@ class GerenciadorMySql
         return $array;
     }
 
-    public function excluirAssinatura($id){
+    public function excluirAssinatura($id)
+    {
         $sql = $this->pdo->prepare("DELETE FROM assinaturas WHERE id_usuario = :id_usuario");
         $sql->bindValue(':id_usuario', $id);
         $sql->execute();
