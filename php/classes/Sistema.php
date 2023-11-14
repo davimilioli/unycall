@@ -161,11 +161,9 @@ class Sistema
 
     public function consultarResposta($id, $slug, $resposta)
     {
-
         $procurarDados = $this->procurarIdUsuario($id);
         if ($slug == 'qual-o-nome-da-sua-mae') {
             $nomeMaterno = $procurarDados['usuario']['nomematerno'];
-            echo $nomeMaterno;
             if ($nomeMaterno == $resposta) {
                 return true;
             } else {
@@ -181,8 +179,7 @@ class Sistema
             }
         } elseif ($slug == 'qual-o-cep-do-seu-endereco') {
             $cep = $procurarDados['endereco']['cep'];
-            $cepFormatado = str_replace("-", "", $resposta);
-            if ($cep == $cepFormatado) {
+            if ($cep == $resposta) {
                 return true;
             } else {
                 return false;
