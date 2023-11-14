@@ -145,9 +145,17 @@ class BancoDeDados
         $sql->execute();
 
         /* CRIAÇÃO DE SERVIÇO PADRÃO */
-        $criarServicoPadrao = "INSERT INTO `servicos` (`tipo`, `nome`, `disp_regiao`, `custo`, `status`) VALUES
-        ('Internet', '200MB', 'Rio de Janeiro', 119.99, 1);";
+        $criarServicoPremium = "INSERT INTO `servicos` (`tipo`, `nome`, `disp_regiao`, `custo`, `status`) VALUES
+        ('Internet', 'Premium', 'Rio de Janeiro', 155.88, 1)";
 
-        $this->pdo->exec($criarServicoPadrao);
+        $criarServicoBusiness = "INSERT INTO `servicos` (`tipo`, `nome`, `disp_regiao`, `custo`, `status`) VALUES
+        ('Internet', 'Business', 'Rio de Janeiro', 215.88, 1)";
+
+        $criarServicoOpStartup = "INSERT INTO `servicos` (`tipo`, `nome`, `disp_regiao`, `custo`, `status`) VALUES
+        ('Internet', 'Optimization Startup', 'Rio de Janeiro', 599.88, 1)";
+
+        $this->pdo->exec($criarServicoPremium);
+        $this->pdo->exec($criarServicoBusiness);
+        $this->pdo->exec($criarServicoOpStartup);
     }
 }
