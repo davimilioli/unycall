@@ -10,11 +10,17 @@ $dados = $sistema->procurarIdUsuario($id);
 
 $gerenciador = new Gerenciador($banco->pegarPdo());
 $servicosDisponiveis = $gerenciador->servicosDisponiveis();
-$assinaturaAtivo = $gerenciador->assinaturaAtiva($id)['servico'];
-$comprovante = $gerenciador->assinaturaAtiva($id)['comprovante'];
+$assinaturaAtivaInfo = $gerenciador->assinaturaAtiva($id);
 $nomeUsuario = $dados['usuario']['nome'];
 $cpfUsuario = $dados['usuario']['cpf'];
 
+if ($assinaturaAtivaInfo && is_array($assinaturaAtivaInfo)) {
+    $assinaturaAtivo = isset($assinaturaAtivaInfo['servico']) ? $assinaturaAtivaInfo['servico'] : null;
+    $comprovante = isset($assinaturaAtivaInfo['comprovante']) ? $assinaturaAtivaInfo['comprovante'] : null;
+} else {
+    $assinaturaAtivo = null;
+    $comprovante = null;
+}
 
 /* Fomulário */
 if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['validade'], $_POST['titular'], $_POST['cpfTitular'])) {
@@ -90,9 +96,11 @@ if (isset($_POST['excluirAssinatura'])) {
 
                 if (isset($assinaturaAtivo['ativo'])) {
 
-                    $servicoAssinado =  $assinaturaAtivo['servico_assinado'];
-                    $precoServico =  $assinaturaAtivo['preco_servico'];
-                    $data = $assinaturaAtivo['data'];
+                    if (isset($assinaturaAtivo['ativo'])) {
+                        $servicoAssinado = isset($assinaturaAtivo['servico_assinado']) ? $assinaturaAtivo['servico_assinado'] : null;
+                        $precoServico = isset($assinaturaAtivo['preco_servico']) ? $assinaturaAtivo['preco_servico'] : null;
+                        $data = isset($assinaturaAtivo['data']) ? $assinaturaAtivo['data'] : null;
+                    }
                 }
                 ?>
 
