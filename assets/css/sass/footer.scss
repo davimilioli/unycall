@@ -1,35 +1,94 @@
 .footer {
     background-color: #f4f7fe;
-    padding: 2rem 0;
 
     .footer-content {
-        max-width: 1280px;
-        display: flex;
-        flex-wrap: wrap;
-        color: #fff;
-        padding: 20px;
-        justify-content: space-between;
 
-        .footer-item {
-            color: $text-color;
-            max-width: 360px;
+        margin: auto;
 
+        h4 {
+            font-size: 1.2rem;
+            margin-bottom: .5rem;
+        }
 
-            &:last-child {
-                margin-right: 0;
+        .footer-item-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            padding: 1rem 0;
+            border-bottom: 1px solid $border-color;
+
+            .logo img {
+                width: 100px;
             }
+        }
+
+        .footer-itens-description {
+            display: flex;
+            flex-wrap: wrap;
+            color: #fff;
+            padding: 1rem 0;
+            justify-content: space-between;
+
 
             @media screen and (max-width: $sm) {
+                gap: 20px;
+            }
 
-                width: 100%;
-                max-width: 100%;
-                margin-right: 0;
+            .footer-item {
+                color: $text-color;
+                max-width: 360px;
 
+                &:last-child {
+                    margin-right: 0;
+                }
+
+                @media screen and (max-width: $sm) {
+                    width: 100%;
+                    max-width: 100%;
+                    margin-right: 0;
+                }
             }
         }
 
-        @media screen and (max-width: $sm) {
-            gap: 20px;
+        .footer-contact {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            max-width: 1000px;
+            margin: 2rem auto auto auto;
+            flex-wrap: wrap;
+
+            @media screen and (max-width: $sm) {
+                gap: 20px;
+            }
+
+            .footer-tel {
+                ul {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                    list-style: none;
+
+                    li {
+                        a {
+                            color: $description-color;
+                            text-decoration: none;
+                            align-items: center;
+                            display: flex;
+                            transition: .3s;
+
+                            &:hover {
+                                color: $primary-color;
+                                transition: .3s;
+                            }
+                        }
+                    }
+                }
+            }
         }
+
+
+
     }
 }
