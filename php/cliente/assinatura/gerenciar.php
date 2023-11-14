@@ -79,7 +79,7 @@ if (isset($_POST['excluirAssinatura'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
-    <title>Unycall - Adicionar Usuário</title>
+    <title>Unycall - Gerenciar Assinatura</title>
     <link rel="stylesheet" href="/assets/css/css/style.css">
 </head>
 
@@ -234,7 +234,7 @@ if (isset($_POST['excluirAssinatura'])) {
                                                             <?= $item->pegarDispRegiao(); ?>
                                                         </div>
                                                         <div class="signature-list-option-item">
-                                                            <?= str_replace('.', ',', $item->pegarServicoCusto()) ?>
+                                                            R$ <?= str_replace('.', ',', $item->pegarServicoCusto()) ?>
                                                         </div>
 
                                                     </label>
