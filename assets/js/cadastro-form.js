@@ -36,9 +36,8 @@ document.addEventListener('DOMContentLoaded', () => {
     async function verificarDadoExiste(termo, valor) {
         const consulta = await consultarUsuarioBD();
         const termoConsulta = termo;
-        const valorConsulta = valor.replace(/[-.]/g, '');
-        console.log('a');
-
+        const valorConsulta = valor;
+        console.log('consultando: ' + valorConsulta)
         let encontrado = false;
 
         consulta.forEach((item) => {
@@ -132,7 +131,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
             cpf.value = validarFormatacao;
             validarCPF(formatarCpf);
-
             if (cpf.value === '') {
                 cpf.style.borderColor = '#d5dfff';
 
@@ -141,8 +139,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 cpf.style.borderColor = '#d5dfff';
 
             } else if (cpf.value.length == 14) {
-                const verificarCpfExiste = await verificarDadoExiste('cpf', formatarCpf);
+
+                const verificarCpfExiste = await verificarDadoExiste('cpf', cpf.value);
                 if (verificarCpfExiste) {
+
                     mensagemAviso.style.display = 'flex';
                     setarBorda('#cpf', false);
                 } else {
