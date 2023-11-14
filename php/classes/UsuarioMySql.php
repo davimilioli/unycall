@@ -183,9 +183,31 @@ class UsuarioMySql implements UsuarioSqlInterface
         $sql->bindValue(':id', $id);
 
         if ($sql->execute()) {
-            echo 'Senha atualizada com sucesso.';
+            return true;
+        }
+    }
+
+    public function alterarLogin($login, $id)
+    {
+        $sql = $this->pdo->prepare("UPDATE usuarios set login = :login WHERE id = :id ");
+        $sql->bindValue(':login', $login);
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+
+        return true;
+    }
+
+    public function verificarSenha($senha, $id)
+    {
+        $sql = $this->pdo->prepare("SELECT * FROM usuarios WHERE id = :id");
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+        $data = $sql->fetch(PDO::FETCH_ASSOC);
+
+        if (password_verify($senha, $data['senha'])) {
+            return true;
         } else {
-            echo 'Ocorreu um erro ao atualizar a senha.';
+            return false;
         }
     }
 }

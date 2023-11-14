@@ -246,9 +246,9 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                         </button>
                     </div>
                     <?php if (isset($erro) && $erro != null) :  ?>
-                        <div class="message_error">
+                        <div class="message error">
                             <p>
-                                <img src="/assets/img/icons/danger.svg"> <?= $erro ?>
+                                <img src="/assets/img/icons/danger.svg"><?= $erro ?>
                             </p>
                         </div>
                     <?php endif ?>

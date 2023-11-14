@@ -208,6 +208,24 @@ class Sistema
         }
     }
 
+    public function verificarSenhaConta(array $senha)
+    {
+        if ($this->usuarioSql->verificarSenha($senha['senhaAtual'], $senha['id'])) {
+            $usuario = new Usuario();
+            $usuario->setarSenha($senha['senhaNova']);
+            $usuario->setarId($senha['id']);
+            $this->usuarioSql->alterarSenha($usuario);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function enviarAlteracaoLogin($login, $id)
+    {
+        $this->usuarioSql->alterarLogin($login, $id);
+    }
+
     public function receberSenha($id, $senha)
     {
         $usuario = new Usuario();
@@ -215,7 +233,6 @@ class Sistema
         $usuario->setarSenha($senha);
 
         $this->usuarioSql->alterarSenha($usuario);
-
         return true;
     }
 

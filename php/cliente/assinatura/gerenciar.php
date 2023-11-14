@@ -262,9 +262,9 @@ if (isset($_POST['excluirAssinatura'])) {
                             <div class="form-buttons">
                                 <div class="form-actions">
                                     <?php if (isset($_GET['erro'])) :  ?>
-                                        <div class="message_error">
+                                        <div class="message error">
                                             <p>
-                                                <img src="/assets/img/icons/danger.svg">E-mail já cadastrado
+                                                <img src="/assets/img/icons/danger.svg"><?= $erro ?>
                                             </p>
                                         </div>
                                     <?php endif ?>

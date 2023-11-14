@@ -191,11 +191,31 @@
     }
 }
 
-.message_error {
+.message {
     width: 100%;
-    background: $danger;
     padding: 1rem;
     border-radius: $radius;
+    margin-top: 1rem;
+
+    &.error {
+        background: $danger;
+    }
+
+    &.good {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+
+        &.active {
+            display: block;
+            background: #198754;
+            position: fixed;
+            top: 102px;
+            right: 50px;
+            width: 260px;
+            opacity: 1;
+        }
+    }
 
     p {
         color: #FFF;

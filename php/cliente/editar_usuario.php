@@ -217,6 +217,7 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
     <script src="/assets/js/header.js"></script>
     <script src="/assets/js/cliente.js"></script>
     <script src="/assets/js/lista-usuarios.js"></script>
+    <script src="/assets/js/cadastro-form.js"></script>
 </body>
 
 </html>

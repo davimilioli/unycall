@@ -113,7 +113,7 @@ if (isset($_POST['senha'], $_POST['confirmarSenha'])) {
                         </div>
                     </div>
                     <?php if (isset($erro) && $erro) :  ?>
-                        <div class="message_error">
+                        <div class="message error">
                             <p>
                                 <img src="/assets/img/icons/danger.svg"><?= $erro ?>
                             </p>
@@ -136,7 +136,7 @@ if (isset($_POST['senha'], $_POST['confirmarSenha'])) {
                             </div>
                         </div>
                         <?php if (isset($erro) && $erro) :  ?>
-                            <div class="message_error">
+                            <div class="message error">
                                 <p>
                                     <img src="/assets/img/icons/danger.svg"><?= $erro ?>
                                 </p>
@@ -151,11 +151,11 @@ if (isset($_POST['senha'], $_POST['confirmarSenha'])) {
                         <h3>Alterar senha</h3>
                         <div class="form-group">
                             <label for="senha">Senha <span>*</span></label>
-                            <input type="text" name="senha" required>
+                            <input type="password" name="senha" required>
                         </div>
                         <div class="form-group">
                             <label for="confirmarSenha">Confimar senha <span>*</span></label>
-                            <input type="text" name="confirmarSenha" required>
+                            <input type="password" name="confirmarSenha" required>
                         </div>
 
                         <div class="form-buttons">
@@ -165,7 +165,7 @@ if (isset($_POST['senha'], $_POST['confirmarSenha'])) {
                             </div>
                         </div>
                         <?php if (isset($erro) && $erro) :  ?>
-                            <div class="message_error">
+                            <div class="message error">
                                 <p>
                                     <img src="/assets/img/icons/danger.svg"><?= $erro ?>
                                 </p>

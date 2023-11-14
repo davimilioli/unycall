@@ -87,16 +87,16 @@ if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
                 </form>
                 <a href="./esqueceu_senha.php" class="text-password">Esqueci minha senha</a></p>
                 <?php if (isset($erro) && $erro != null) :  ?>
-                    <div class="message_error">
+                    <div class="message error">
                         <p>
                             <img src="/assets/img/icons/danger.svg"> <?= $erro ?>
                         </p>
                     </div>
                 <?php endif ?>
                 <?php if (isset($_GET['erroSistema'])) :  ?>
-                    <div class="message_error">
+                    <div class="message error">
                         <p>
-                            <img src="/assets/img/icons/danger.svg">É necessário logar
+                            <img src="/assets/img/icons/danger.svg"><?= $erro ?>
                         </p>
                     </div>
                 <?php endif ?>

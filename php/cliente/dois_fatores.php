@@ -64,7 +64,7 @@ if (isset($_POST['id'], $_POST['slug'], $_POST['resposta'])) {
                         </div>
                     </div>
                     <?php if (isset($erro) && $erro != null) :  ?>
-                        <div class="message_error">
+                        <div class="message error">
                             <p>
                                 <img src="/assets/img/icons/danger.svg"><?= $erro ?>
                             </p>
