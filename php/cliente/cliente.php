@@ -6,8 +6,13 @@ $sistema = new Sistema($banco->pegarPdo());
 $id = $_SESSION['id'];
 $dados = $sistema->procurarIdUsuario($id);
 $gerenciador = new Gerenciador($banco->pegarPdo());
-$assinaturaAtivo = $gerenciador->assinaturaAtiva($id);
+$assinaturaAtivaInfo = $gerenciador->assinaturaAtiva($id);
 
+if ($assinaturaAtivaInfo && is_array($assinaturaAtivaInfo)) {
+    $assinaturaAtivo = isset($assinaturaAtivaInfo['servico']) ? $assinaturaAtivaInfo['servico'] : null;
+} else {
+    $assinaturaAtivo = null;
+}
 
 ?>
 <!DOCTYPE html>
