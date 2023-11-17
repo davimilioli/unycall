@@ -104,7 +104,7 @@ if (isset($_POST['excluirAssinatura'])) {
                         </div>
                         <div class="signature-active-body">
                             <div class="signature-active-body-price">
-                                Preço: <?= str_replace('.', ',', $precoServico) ?>
+                                Preço: R$ <?= str_replace('.', ',', $precoServico) ?>
                             </div>
                             <div class="signature-active-body-date">
                                 Assinado em: <?= $data  ?>
@@ -134,7 +134,7 @@ if (isset($_POST['excluirAssinatura'])) {
                                         </div>
                                         <div class="content-card-block">
                                             <h3>Preço</h3>
-                                            <span><?= $precoServico ?></span>
+                                            <span>R$ <?= $precoServico ?></span>
                                         </div>
                                         <div class="content-card-block">
                                             <h3>Assinado em </h3>
@@ -161,11 +161,11 @@ if (isset($_POST['excluirAssinatura'])) {
                                         </div>
                                         <div class="content-card-block">
                                             <h3>Preço do Serviço:</h3>
-                                            <span><?= $comprovante['preco_servico'] ?></span>
+                                            <span> R$ <?= $comprovante['preco_servico'] ?></span>
                                         </div>
                                         <div class="content-card-block">
                                             <h3>Total:</h3>
-                                            <span><?= $comprovante['total'] ?></span>
+                                            <span> R$ <?= $comprovante['total'] ?></span>
                                         </div>
                                         <div class="content-card-block">
                                             <h3>Data de Pagamento</h3>
