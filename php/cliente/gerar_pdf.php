@@ -12,31 +12,65 @@ $pdf->AddPage();
 
 $pdf->Image(__DIR__ . '/assets/img/logo.png', 10, 10, 50, 50);
 
-$html = '<h1 style="text-align: center;">Lista de Usuários</h1>';
-$html .= '<table style="width: 100%; border-collapse: collapse;">';
-$html .= '<thead>
-            <tr style="background-color: #f2f2f2;">
-                <th style="border: 1px solid #ddd; font-size: 10px; text-align: center; width: 30px">#</th>
-                <th style="border: 1px solid #ddd; font-size: 10px; text-align: center; width: 80px;">Nome</th>
-                <th style="border: 1px solid #ddd; font-size: 10px; text-align: center; width: 80px;">CPF</th>
-                <th style="border: 1px solid #ddd; font-size: 10px; text-align: center; width: 80px;">Email</th>
-                <th style="border: 1px solid #ddd; font-size: 10px; text-align: center; width: 90px;">Celular</th>
-                <th style="border: 1px solid #ddd; font-size: 10px; text-align: center; width: 90px;">Telefone</th>
-                <th style="border: 1px solid #ddd; font-size: 10px; text-align: center; width: 80px;">Permissao</th>
+$html = '
+    <style>
+        h1{
+            text-align: center;
+        }
 
+        table{
+            width: 100%;
+            border-collapse: collapse;
+        }
+        tr{
+            background-color: #f2f2f2;
+        }
+
+        th,td{
+            border: 1px solid #ddd;
+        }
+
+        tr, th, td{
+            border: 1px solid #ddd;
+            text-align: center;
+            font-size: 10px;
+            width: 76px;
+        }  
+
+        img{
+            width: 50px;
+        }
+    </style>
+
+    <div style="text-align: center;">
+        <img src="/assets/img/logo.png">
+    </div>
+
+<h1>Lista de Usuários</h1>';
+
+$html .= '<table>';
+$html .= '<thead>
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>CPF</th>
+                <th>Email</th>
+                <th>Celular</th>
+                <th>Telefone</th>
+                <th>Permissao</th>
             </tr>
         </thead>';
 
 $html .= '<tbody>';
 foreach ($lista as $usuario) {
     $html .= '<tr>
-                <td style="border: 1px solid #ddd; font-size: 10px; text-align: center; width: 30px;">' . $usuario['id'] . '</td>
-                <td style="border: 1px solid #ddd; font-size: 10px; text-align: center; width: 80px;">' . $usuario['nome'] . '</td>
-                <td style="border: 1px solid #ddd; font-size: 10px; text-align: center; width: 80px;">' . $usuario['cpf'] . '</td>
-                <td style="border: 1px solid #ddd; font-size: 10px; text-align: center; width: 80px;">' . $usuario['email'] . '</td>
-                <td style="border: 1px solid #ddd; font-size: 10px; text-align: center; width: 90px;">' . $usuario['celular'] . '</td>
-                <td style="border: 1px solid #ddd; font-size: 10px; text-align: center; width: 90px;">' . $usuario['telefone'] . '</td>
-                <td style="border: 1px solid #ddd; font-size: 10px; text-align: center; width: 80px; ">' . $usuario['permissao'] . '</td>
+                <td>' . $usuario['id'] . '</td>
+                <td>' . $usuario['nome'] . '</td>
+                <td>' . $usuario['cpf'] . '</td>
+                <td>' . $usuario['email'] . '</td>
+                <td>' . $usuario['celular'] . '</td>
+                <td>' . $usuario['telefone'] . '</td>
+                <td>' . $usuario['permissao'] . '</td>
                 
             </tr>';
 }

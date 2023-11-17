@@ -92,19 +92,12 @@ if (isset($_POST['excluirAssinatura'])) {
                 <h4>Gerenciar Assinatura</h4>
             </div>
             <div class="signature-content">
-                <?php
-
-                if (isset($assinaturaAtivo['ativo'])) {
-
-                    if (isset($assinaturaAtivo['ativo'])) {
-                        $servicoAssinado = isset($assinaturaAtivo['servico_assinado']) ? $assinaturaAtivo['servico_assinado'] : null;
-                        $precoServico = isset($assinaturaAtivo['preco_servico']) ? $assinaturaAtivo['preco_servico'] : null;
-                        $data = isset($assinaturaAtivo['data']) ? $assinaturaAtivo['data'] : null;
-                    }
-                }
-                ?>
-
                 <?php if (isset($assinaturaAtivo['ativo'])) : ?>
+                    <?php
+                    $servicoAssinado = $assinaturaAtivo['servico_assinado'];
+                    $precoServico =  $assinaturaAtivo['preco_servico'];
+                    $data = $assinaturaAtivo['data'];
+                    ?>
                     <div class="card-signature-active">
                         <div class="signature-active-header">
                             <h2><?= $servicoAssinado ?></h2>
@@ -182,12 +175,11 @@ if (isset($_POST['excluirAssinatura'])) {
                                 </div>
                             </div>
                             <div class="signature-modal-footer">
-                                <button class="btn">Importar Comprovante</button>
+                                <a class="btn" href="comprovante_pdf.php?id=<?= $id ?>" target="_blank">Importar Comprovante</a>
                                 <button class="btn secondary" type="button" data-id="<?= $id ?>">Cancelar Assinatura</button>
                             </div>
                             <div class="modal-exclude"></div>
                         </div>
-
                     </div>
                 <?php else : ?>
                     <div class="form-content" id="formSignature">
