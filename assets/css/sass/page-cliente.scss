@@ -173,6 +173,7 @@
                                 display: flex;
                                 align-items: center;
                                 gap: 10px;
+                                width: 100%;
 
                                 p {
                                     color: $description-color;
@@ -582,6 +583,7 @@
             .form-content {
                 padding: 0;
                 background-color: #FFF;
+                box-shadow: $bx-shadow;
 
                 .header-modal {
                     display: flex;
@@ -656,10 +658,11 @@
 
         .page-cliente-info {
             padding: 1rem;
-            width: 50%;
-            margin: 0 auto;
+            width: 100%;
+            margin-left: 16rem;
 
             @media(max-width: $md) {
+                margin: 0;
                 width: 100%;
             }
 
@@ -682,56 +685,137 @@
                     }
                 }
 
-                .page-cliente-info-block {
-                    background-color: #FFF;
-                    border-radius: $radius;
-                    box-shadow: $bx-shadow;
-                    border: 1px solid $border-color;
-                    margin-top: 1rem;
+                .page-cliente-info-helpers {
+                    display: flex;
+                    justify-content: space-between;
+                    width: 100%;
+                    flex-wrap: wrap;
 
-                    .info-block-header {
-                        border-bottom: 1px solid $border-color;
+                    @media(max-width: $md) {
+                        gap: 10px;
+                    }
+
+                    .page-cliente-info-image {
+                        background-color: #FFF;
+                        border-radius: $radius;
+                        box-shadow: $bx-shadow;
+                        border: 1px solid $border-color;
+                        width: 45%;
+                        height: 50vh;
                         padding: 1rem;
 
-                        h3 {
-                            font-size: 1rem;
+                        @media(max-width: $md) {
+                            width: 100%;
+                        }
+
+                        .info-image-block {
+                            height: 100%;
+
+                            label {
+                                border: 2px dotted #000;
+                                border-radius: $radius;
+                                height: 100%;
+                                padding: 1rem;
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                flex-direction: column;
+                                cursor: pointer;
+                                transition: .3s;
+
+                                img {
+                                    max-width: 100%;
+                                }
+
+                                input {
+                                    width: 0;
+                                }
+
+                                .info-image-description {
+                                    color: $description-color;
+                                    transition: .3s;
+                                }
+
+                                .info-imagem-typeFiles {
+                                    color: $description-color;
+                                    font-size: 14px;
+                                    text-align: center;
+                                    transition: .3s;
+                                }
+
+                                &:hover {
+                                    border-color: $primary-color;
+                                    transition: .3s;
+
+                                    .info-image-description,
+                                    .info-imagem-typeFiles {
+                                        color: $primary-color;
+                                    }
+                                }
+                            }
                         }
                     }
 
-                    .info-block-sub-header {
-                        border-bottom: 1px solid $border-color;
-                        padding: 1rem;
-
-                        p {
-                            color: $description-color;
-                        }
-                    }
-
-                    .info-block {
-                        border-bottom: 1px solid $border-color;
-                        padding: 1rem;
+                    .page-cliente-info-blocks {
+                        width: 54%;
                         display: flex;
-                        justify-content: space-between;
+                        flex-direction: column;
+                        gap: 10px;
 
-                        p {
-                            width: 50%;
-                            color: $description-color;
-                            font-size: 0.875rem;
+                        @media(max-width: $md) {
+                            width: 100%;
                         }
 
-                        div {
-                            width: 50%;
-                            color: $text-color;
-                            width: 50%;
-                        }
+                        .page-cliente-info-block {
+                            background-color: #FFF;
+                            border-radius: $radius;
+                            box-shadow: $bx-shadow;
+                            border: 1px solid $border-color;
 
-                        &.action {
-                            justify-content: end;
-                        }
-                    }
+                            .info-block-header {
+                                border-bottom: 1px solid $border-color;
+                                padding: 1rem;
 
-                    .info-block:last-child {
-                        border-bottom: none;
+                                h3 {
+                                    font-size: 1rem;
+                                }
+                            }
+
+                            .info-block-sub-header {
+                                border-bottom: 1px solid $border-color;
+                                padding: 1rem;
+
+                                p {
+                                    color: $description-color;
+                                }
+                            }
+
+                            .info-block {
+                                border-bottom: 1px solid $border-color;
+                                padding: 1rem;
+                                display: flex;
+                                justify-content: space-between;
+
+                                p {
+                                    width: 50%;
+                                    color: $description-color;
+                                    font-size: 0.875rem;
+                                }
+
+                                div {
+                                    width: 50%;
+                                    color: $text-color;
+                                }
+
+                                &.action {
+                                    justify-content: end;
+                                }
+                            }
+
+                            .info-block:last-child {
+                                border-bottom: none;
+                            }
+                        }
                     }
                 }
 
@@ -1070,6 +1154,10 @@
                     border: 1px solid $border-color;
                     border-radius: $radius;
                     box-shadow: $bx-shadow;
+
+                    @media(max-width: $sm) {
+                        width: 100%;
+                    }
 
                     .signature-active-header {
                         border-bottom: 1px solid $border-color;
