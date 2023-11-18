@@ -223,4 +223,12 @@ class UsuarioMySql implements UsuarioSqlInterface
 
         return true;
     }
+
+    public function excluirImagem($id)
+    {
+        $sql = $this->pdo->prepare("UPDATE usuarios SET imagem = '' WHERE id = :id");
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+        return true;
+    }
 }

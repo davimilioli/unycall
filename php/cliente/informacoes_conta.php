@@ -102,6 +102,11 @@ if (isset($_POST['enviarImagem'])) {
     $sistema->fazerUpload($id, $imagem);
 }
 
+if (isset($_POST['imageProfile'])) {
+    $imagem = $_POST['imageProfile'];
+    $sistema->enviarExclusaoImagem($id, $imagem);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -129,9 +134,13 @@ if (isset($_POST['enviarImagem'])) {
                         <div class="info-image-block">
                             <form method="POST" class="form" enctype="multipart/form-data">
                                 <?php if ($usuario['imagem']) : ?>
+                                    <input type="hidden" name="imageProfile" value="<?= $usuario['imagem'] ?>">
                                     <img src="/assets/img/perfil/<?= $usuario['imagem'] ?>" id="image-profile">
+                                    <div class="info-image-footer">
+                                        <button type="submit" class="btn" name="excluirImagem">Excluir</button>
+                                    </div>
                                 <?php else : ?>
-                                    <label for="image">
+                                    <label for="imagem">
                                         <input type="file" name="imagem" id="imagem">
                                         <span class="info-imagem-typeFiles">
                                             Tipos de arquivos permitidos: .png, .jpg ou .jpeg

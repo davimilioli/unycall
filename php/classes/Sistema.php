@@ -323,6 +323,17 @@ class Sistema
             $usuario->setarImagem($nomeImagem);
             $this->usuarioSql->salvarImagem($usuario);
             move_uploaded_file($imagem['tmp_name'], '../../assets/img/perfil/' . $nomeImagem);
+
+            header('location: /php/cliente/informacoes_conta.php');
+            exit;
         }
+    }
+
+    public function enviarExclusaoImagem($id, $imagem)
+    {
+        $this->usuarioSql->excluirImagem($id);
+        unlink('../../assets/img/perfil/' . $imagem);
+        header('location: /php/cliente/informacoes_conta.php');
+        exit;
     }
 }
