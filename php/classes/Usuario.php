@@ -15,6 +15,7 @@ class Usuario
     private $login;
     private $senha;
     private $permissao;
+    private $imagem;
 
     public function setarId($id)
     {
@@ -141,6 +142,16 @@ class Usuario
     public function pegarPermissao()
     {
         return $this->permissao;
+    }
+
+    public function setarImagem($imagem)
+    {
+        $this->imagem = $imagem;
+    }
+
+    public function pegarImagem()
+    {
+        return $this->imagem;
     }
 }
 

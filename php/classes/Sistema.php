@@ -75,7 +75,8 @@ class Sistema
                         'celular' => $item->pegarCelular(),
                         'telefone' => $item->pegarTelefone(),
                         'login' => $item->pegarLogin(),
-                        'permissao' => $item->pegarPermissao()
+                        'permissao' => $item->pegarPermissao(),
+                        'imagem' => $item->pegarImagem()
                     );
                 }
             }
@@ -309,5 +310,19 @@ class Sistema
         }
 
         return $erro;
+    }
+
+    public function fazerUpload($id, $imagem)
+    {
+        $tiposPermitidos = ['image/jpg', 'image/jpeg', 'image/png'];
+        $verificarTipo = array_search($imagem['type'], $tiposPermitidos, true);
+        $usuario = new Usuario();
+        if ($verificarTipo) {
+            $nomeImagem = md5(time() . rand(0, 100)) . '.' . str_replace('image/', '', $imagem['type']);
+            $usuario->setarId($id);
+            $usuario->setarImagem($nomeImagem);
+            $this->usuarioSql->salvarImagem($usuario);
+            move_uploaded_file($imagem['tmp_name'], '../../assets/img/perfil/' . $nomeImagem);
+        }
     }
 }

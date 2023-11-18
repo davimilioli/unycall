@@ -10,7 +10,6 @@ $id = $_SESSION['id'];
 $dados = $sistema->procurarIdUsuario($id);
 $usuario = $dados['usuario'];
 $endereco = $dados['endereco'];
-
 if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMaterno'], $_POST['email'], $_POST['sexo'], $_POST['celular'], $_POST['telefone'])) {
     $nome = $_POST['nome'];
     $nascimento = $_POST['nascimento'];
@@ -98,6 +97,11 @@ if (isset($_POST['exclude'])) {
     exit;
 }
 
+if (isset($_POST['enviarImagem'])) {
+    $imagem = $_FILES['imagem'];
+    $sistema->fazerUpload($id, $imagem);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -123,16 +127,22 @@ if (isset($_POST['exclude'])) {
                 <div class="page-cliente-info-helpers">
                     <div class="page-cliente-info-image">
                         <div class="info-image-block">
-                            <label for="image">
-                                <img src="/assets/img/icons/image.svg" id="preview-image">
-                                <input type="file" name="image" id="image">
-                                <p class="info-image-description">Clique aqui para anexar o arquivo</p>
-                                <span class="info-imagem-typeFiles">
-                                    Tipos de arquivos permitidos: .png, .jpg ou .jpeg
-                                    Tamanho máximo permitido: 5MB
-                                </span>
-                                <p class="info-imagem-name"></p>
-                            </label>
+                            <form method="POST" class="form" enctype="multipart/form-data">
+                                <?php if ($usuario['imagem']) : ?>
+                                    <img src="/assets/img/perfil/<?= $usuario['imagem'] ?>" id="image-profile">
+                                <?php else : ?>
+                                    <label for="image">
+                                        <input type="file" name="imagem" id="imagem">
+                                        <span class="info-imagem-typeFiles">
+                                            Tipos de arquivos permitidos: .png, .jpg ou .jpeg
+                                            Tamanho máximo permitido: 2MB
+                                        </span>
+                                    </label>
+                                    <div class="info-image-footer">
+                                        <button type="submit" class="btn" name="enviarImagem">Enviar</button>
+                                    </div>
+                                <?php endif ?>
+                            </form>
                         </div>
                     </div>
                     <div class="page-cliente-info-blocks">

@@ -137,6 +137,7 @@ class UsuarioMySql implements UsuarioSqlInterface
                 $usuario->setarTelefone($item['telefone']);
                 $usuario->setarLogin($item['login']);
                 $usuario->setarPermissao($item['permissao']);
+                $usuario->setarImagem($item['imagem']);
                 $array[] = $usuario;
             }
         }
@@ -209,5 +210,17 @@ class UsuarioMySql implements UsuarioSqlInterface
         } else {
             return false;
         }
+    }
+
+    public function salvarImagem(Usuario $usuario)
+    {
+        $sql = $this->pdo->prepare(
+            "UPDATE usuarios SET imagem = :imagem WHERE id = :id"
+        );
+        $sql->bindValue(':imagem', $usuario->pegarImagem());
+        $sql->bindValue(':id', $usuario->pegarId());
+        $sql->execute();
+
+        return true;
     }
 }
