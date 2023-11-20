@@ -180,14 +180,14 @@ if (isset($_POST['imageProfile'])) {
                                     <div><?= $modulos->formatarNumero($usuario['celular']) ?></div>
                                 </div>
                                 <div class="info-block action">
-                                    <button href="#" class="btn" id="abrirModalPessoal">Editar</button>
+                                    <button href="#" class="btn" id="openModalPessoal">Editar</button>
                                 </div>
                             </div>
                             <div class="view-modal-personal">
                                 <div class="view-modal-personal-content">
                                     <div class="personal-modal-header">
                                         <h2>Editar informações pessoais</h2>
-                                        <button id="fecharModalPessoal">X</button>
+                                        <button id="closeModalPessoal">X</button>
                                     </div>
                                     <div class="personal-modal-body">
                                         <div class="modal-body-content">
@@ -307,7 +307,7 @@ if (isset($_POST['imageProfile'])) {
                                 <div class=" view-modal-login-content">
                                     <div class="login-modal-header">
                                         <h2>Editar Configurações da conta</h2>
-                                        <button id="fecharModalLogin">X</button>
+                                        <button id="closeModalLogin">X</button>
                                     </div>
                                     <div class="login-modal-body">
                                         <div class="modal-body-content">

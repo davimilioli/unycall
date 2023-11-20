@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   function inicializacao() {
-    abrirModalPessoal();
+    openModalPessoal();
     validarCep();
     abrirModalLogin();
     avisoGood();
@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   inicializacao();
 
-  function abrirModalPessoal() {
+  function openModalPessoal() {
     const modalPessoal = document.querySelector(".view-modal-personal");
-    const botaoAbrirPessoal = document.querySelector("#abrirModalPessoal");
-    const botaoFecharPessoal = document.querySelector("#fecharModalPessoal");
+    const botaoAbrirPessoal = document.querySelector("#openModalPessoal");
+    const botaoFecharPessoal = document.querySelector("#closeModalPessoal");
 
     botaoAbrirPessoal.addEventListener("click", () => {
       modalPessoal.classList.add("active");
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function abrirModalLogin() {
     const modalLogin = document.querySelector(".view-modal-login");
     const botaoAbrirLogin = document.querySelector("#abrirModalLogin");
-    const botaoFecharLogin = document.querySelector("#fecharModalLogin");
+    const botaoFecharLogin = document.querySelector("#closeModalLogin");
 
     botaoAbrirLogin.addEventListener("click", () => {
       modalLogin.classList.add("active");

@@ -173,7 +173,6 @@
                             padding: 1rem;
                             justify-content: space-between;
 
-
                             .tab-content-description {
                                 display: flex;
                                 align-items: center;
@@ -184,7 +183,6 @@
                                     color: $description-color;
                                 }
                             }
-
                         }
                     }
 
@@ -877,7 +875,7 @@
                                 font-size: 2rem;
                             }
 
-                            #fecharModalPessoal {
+                            #closeModalPessoal {
                                 font-size: 1.2rem;
                                 padding: .5rem;
                                 background: none;
@@ -902,7 +900,6 @@
 
                         .personal-modal-body {
 
-
                             .modal-body-content {
                                 width: 100%;
 
@@ -918,7 +915,6 @@
                                             margin-top: 1rem;
                                         }
                                     }
-
                                 }
 
                                 @media(max-width: $md) {
@@ -992,7 +988,7 @@
                                 font-size: 2rem;
                             }
 
-                            #fecharModalLogin {
+                            #closeModalLogin {
                                 font-size: 1.2rem;
                                 padding: .5rem;
                                 background: none;
