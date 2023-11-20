@@ -6,7 +6,6 @@ require_once('GerenciadorMySql.php');
 
 class Gerenciador
 {
-
     private $GerenciadorMySql;
 
     public function __construct($pdo)
@@ -61,7 +60,6 @@ class Gerenciador
 
     public function assinaturaAtiva($id)
     {
-        $servicosDisponiveis = $this->servicosDisponiveis();
         $consultarAssinatura = $this->assinaturas();
         $consultarPagamentos = $this->pagamentos();
 

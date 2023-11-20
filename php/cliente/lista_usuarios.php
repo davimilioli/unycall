@@ -33,9 +33,9 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
 </head>
 
 <body class="system">
-    <?php require_once(__DIR__ . '/layout/includes/header.php'); ?>
+    <?php require_once(__DIR__ . '/layout/header.php'); ?>
     <div class="page-cliente">
-        <?php require_once(__DIR__ . '/layout/includes/aside.php'); ?>
+        <?php require_once(__DIR__ . '/layout/aside.php'); ?>
         <main class="page-cliente-usuarios">
             <div class="category-title">
                 <h4>Lista Usuarios</h4>

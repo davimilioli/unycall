@@ -114,6 +114,3 @@ interface EnderedoSqlInterface
 {
     public function criarEndereco(Endereco $endereco);
 }
-/* $endereco = new Endereco();
-$endereco->setarCepEndereco('21765-370');
-echo $endereco->pegarCepEndereco(); */

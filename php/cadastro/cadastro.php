@@ -29,25 +29,27 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
     $estado = $_POST['estado'];
     $complemento = $_POST['complemento'];
 
-    $validarCadastro = $sistema->validarCadastro(
-        $nome,
-        $nascimento,
-        $cpf,
-        $nomeMaterno,
-        $email,
-        $sexo,
-        $celular,
-        $telefone,
-        $login,
-        $senha,
-        $cep,
-        $logradouro,
-        $numero,
-        $bairro,
-        $cidade,
-        $estado,
-        $complemento
+    $cadastro = array(
+        'nome' => $nome,
+        'nascimento' => $nascimento,
+        'cpf' => $cpf,
+        'nomematerno' => $nomeMaterno,
+        'email' => $email,
+        'sexo' => $sexo,
+        'celular' => $celular,
+        'telefone' => $telefone,
+        'login' => $senha,
+        'cep' => $cep,
+        'logradouro' => $logradouro,
+        'numero' => $numero,
+        'bairro' => $bairro,
+        'cidade' => $cidade,
+        'estado' => $estado,
+        'complemento' => $complemento,
+        'permissao' => '',
     );
+
+    $validarCadastro = $sistema->validarCadastro($cadastro);
 
     if ($validarCadastro === true) {
         header('location: /php/login/login.php');

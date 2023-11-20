@@ -36,7 +36,6 @@ class GerenciadorMySql
 
     public function cadastrarPagamento(Pagamento $pagamento)
     {
-        var_dump($pagamento->pegarPgtoCpf());
         $sql = $this->pdo->prepare("INSERT INTO pagamentos (id_transacao, nome, cpf, servico_assinado, preco_servico, total, data_pagamento) VALUES (:id_transacao, :nome, :cpf, :servico_assinado, :preco_servico, :total, :data_pagamento)");
         $sql->bindValue(':id_transacao', $pagamento->pegarPgtoIdTransacao());
         $sql->bindValue(':nome', $pagamento->pegarPgtoNome());
@@ -53,7 +52,6 @@ class GerenciadorMySql
 
     public function cadastrarAssinatura(Assinatura $assinatura)
     {
-        echo 'SQL: ' . $assinatura->pegarIdAssTransacao() . '<br>';
         $sql = $this->pdo->prepare(
             "INSERT INTO assinaturas (id_usuario, id_transacao, id_servico) VALUES (:id_usuario, :id_transacao, :id_servico)"
         );

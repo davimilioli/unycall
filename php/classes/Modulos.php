@@ -21,7 +21,6 @@ class Modulos
         return $numeroFormatado;
     }
 
-
     public function formatarCep($cep)
     {
         $cepFormatado = substr($cep, 0, 5) . '-' . substr($cep, 5);

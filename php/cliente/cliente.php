@@ -27,9 +27,9 @@ if ($assinaturaAtivaInfo && is_array($assinaturaAtivaInfo)) {
 </head>
 
 <body class="system">
-    <?php require_once(__DIR__ . '/layout/includes/header.php'); ?>
+    <?php require_once(__DIR__ . '/layout/header.php'); ?>
     <div class="page-cliente">
-        <?php require_once(__DIR__ . '/layout/includes/aside.php'); ?>
+        <?php require_once(__DIR__ . '/layout/aside.php'); ?>
         <main class="page-cliente-main">
             <div class="page-cliente-main-content">
                 <div class="page-cliente-main-header">

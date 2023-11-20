@@ -38,17 +38,8 @@ if (isset($_POST['id'], $_POST['slug'], $_POST['resposta'])) {
 
 <body style="overflow: hidden;">
     <main class="page-dois-fatores">
-
         <div class="form-panel">
             <div class="form-content">
-                <div class="loading hide">
-                    <div class="loading-content">
-                        <div class="spinner-one">
-                            <div class="spinner-two"></div>
-                        </div>
-                        <p class="loading-message"></p>
-                    </div>
-                </div>
                 <form method="POST" class="form">
                     <input type="hidden" name="id" value="<?= $id ?>">
                     <input type="hidden" name="slug" value="<?= $pegarPergunta['slug'] ?>">

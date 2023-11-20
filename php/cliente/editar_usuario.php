@@ -89,23 +89,15 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
 </head>
 
 <body class="system">
-    <?php require_once(__DIR__ . '/layout/includes/header.php'); ?>
+    <?php require_once(__DIR__ . '/layout/header.php'); ?>
     <div class="page-cliente">
-        <?php require_once(__DIR__ . '/layout/includes/aside.php'); ?>
+        <?php require_once(__DIR__ . '/layout/aside.php'); ?>
         <main class="page-cliente-editar">
             <div class="category-title">
                 <h4>Editar Usuario</h4>
                 <p>ID: <?= $usuario['id'] ?></p>
             </div>
             <div class="form-content">
-                <div class="loading hide">
-                    <div class="loading-content">
-                        <div class="spinner-one">
-                            <div class="spinner-two"></div>
-                        </div>
-                        <p class="loading-message">aaaa</p>
-                    </div>
-                </div>
                 <form method="POST" class="form">
                     <input type="hidden" name="id" value="<?= $usuario['id'] ?>">
                     <input type="hidden" name="nome" value="<?= $usuario['nome'] ?>">

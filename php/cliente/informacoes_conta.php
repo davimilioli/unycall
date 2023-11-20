@@ -70,16 +70,16 @@ if (isset($_POST['login'])) {
 
     $sistema->enviarAlteracaoLogin($login, $id);
 
-    if (isset($_POST['senhaAtual'], $_POST['senhaNova'], /* $_POST['senhaConfirmar'] */)) {
+    if (isset($_POST['senhaAtual'], $_POST['senhaNova'])) {
         $senhaAtual = $_POST['senhaAtual'];
         $senhaNova = $_POST['senhaNova'];
-        /*         $senhaConfirmar = $_POST['senhaConfirmar']; */
+
         $senha = array(
             'id' => $id,
             'senhaAtual' => $senhaAtual,
             'senhaNova' => $senhaNova,
-            /* 'senhaConfirmar' => $senhaConfirmar */
         );
+
         if ($sistema->verificarSenhaConta($senha)) {
             $good = 'Senha atualizada';
         } else {
@@ -121,9 +121,9 @@ if (isset($_POST['imageProfile'])) {
 </head>
 
 <body class="system">
-    <?php require_once(__DIR__ . '/layout/includes/header.php'); ?>
+    <?php require_once(__DIR__ . '/layout/header.php'); ?>
     <div class="page-cliente">
-        <?php require_once(__DIR__ . '/layout/includes/aside.php'); ?>
+        <?php require_once(__DIR__ . '/layout/aside.php'); ?>
         <main class="page-cliente-info">
             <div class="page-cliente-info-content">
                 <div class="content-title">

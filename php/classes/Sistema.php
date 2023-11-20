@@ -107,7 +107,6 @@ class Sistema
 
     public function atualizarDadosUsuario($dadosUsuario)
     {
-        var_dump($dadosUsuario);
         $usuario = new Usuario();
         $usuario->setarId($dadosUsuario['id']);
         $usuario->setarNome($dadosUsuario['nome']);
@@ -230,50 +229,32 @@ class Sistema
         return true;
     }
 
-    public function validarCadastro(
-        $nome,
-        $nascimento,
-        $cpf,
-        $nomeMaterno,
-        $email,
-        $sexo,
-        $celular,
-        $telefone,
-        $login,
-        $senha,
-        $cep,
-        $logradouro,
-        $numero,
-        $bairro,
-        $cidade,
-        $estado,
-        $complemento
-    ) {
-
+    public function validarCadastro(array $cadastro)
+    {
         $erro = '';
-        if ($this->usuarioSql->consultarCpf($cpf) === false) {
+        if ($this->usuarioSql->consultarCpf($cadastro['cpf']) === false) {
             $dados = new Usuario();
-            $dados->setarNome($nome);
-            $dados->setarNascimento($nascimento);
-            $dados->setarEmail($email);
-            $dados->setarCpf($cpf);
-            $dados->setarNomeMaterno($nomeMaterno);
-            $dados->setarSexo($sexo);
-            $dados->setarCelular($celular);
-            $dados->setarTelefone($telefone);
-            $dados->setarLogin($login);
-            $dados->setarSenha($senha);
-            $dados->setarPermissao($permissao ?? '');
+            $dados->setarNome($cadastro['nome']);
+            $dados->setarNascimento($cadastro['nascimento']);
+            $dados->setarEmail($cadastro['email']);
+            $dados->setarCpf($cadastro['cpf']);
+            $dados->setarNomeMaterno($cadastro['nomematerno']);
+            $dados->setarSexo($cadastro['sexo']);
+            $dados->setarCelular($cadastro['celular']);
+            $dados->setarTelefone($cadastro['telefone']);
+            $dados->setarLogin($cadastro['login']);
+            $dados->setarSenha($cadastro['senha']);
+            $dados->setarPermissao($cadastro['permissao'] ?? '');
             $this->usuarioSql->criarUsuario($dados);
 
             $endereco = new Endereco();
-            $endereco->setarCepEndereco($cep);
-            $endereco->setarLogradouroEndereco($logradouro);
-            $endereco->setarNumeroEndereco($numero);
-            $endereco->setarBairroEndereco($bairro);
-            $endereco->setarCidadeEndereco($cidade);
-            $endereco->setarEstadoEndereco($estado);
-            $endereco->setarComplementoEndereco($complemento ?? '');
+            $endereco->setarCepEndereco($cadastro['cep']);
+            $endereco->setarLogradouroEndereco($cadastro['logradouro']);
+            $endereco->setarNumeroEndereco($cadastro['numero']);
+            $endereco->setarBairroEndereco($cadastro['bairro']);
+            $endereco->setarCidadeEndereco($cadastro['cidade']);
+            $endereco->setarEstadoEndereco($cadastro['estado']);
+            $endereco->setarComplementoEndereco($cadastro['complemento'] ?? '');
             $this->enderecoSql->criarEndereco($endereco);
 
             return true;

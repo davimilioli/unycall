@@ -76,7 +76,6 @@ class EnderecoMySql implements EnderedoSqlInterface
                 $endereco->setarEstadoEndereco($item['estado']);
                 $endereco->setarComplementoEndereco($item['complemento'] ?? null);
 
-
                 $array[] = $endereco;
             }
         }
@@ -92,7 +91,6 @@ class EnderecoMySql implements EnderedoSqlInterface
         $sql->execute();
         return true;
     }
-
 
     public function consultaUnicaUsuario($coluna, $valor)
     {

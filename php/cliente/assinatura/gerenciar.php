@@ -84,9 +84,9 @@ if (isset($_POST['excluirAssinatura'])) {
 </head>
 
 <body class="system">
-    <?php require_once('../layout/includes/header.php'); ?>
+    <?php require_once('../layout/header.php'); ?>
     <div class="page-cliente">
-        <?php require_once('../layout/includes/aside.php'); ?>
+        <?php require_once('../layout/aside.php'); ?>
         <main class="page-cliente-signature">
             <div class="category-title">
                 <h4>Gerenciar Assinatura</h4>

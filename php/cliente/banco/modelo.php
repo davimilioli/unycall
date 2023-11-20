@@ -54,9 +54,9 @@ function tamanhoDado($dado)
 </head>
 
 <body class="system">
-    <?php require_once('../layout/includes/header.php'); ?>
+    <?php require_once('../layout/header.php'); ?>
     <div class="page-cliente">
-        <?php require_once('../layout/includes/aside.php'); ?>
+        <?php require_once('../layout/aside.php'); ?>
         <main class="page-cliente-model-db">
             <div class="category-title">
                 <h4>Banco de Dados</h4>
