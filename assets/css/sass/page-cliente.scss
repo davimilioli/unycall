@@ -44,10 +44,13 @@
                     margin-bottom: 1rem;
 
                     .aside-category-title {
+                        width: 100%;
+
                         a {
                             text-decoration: none;
                             color: $description-color;
                             font-size: 1rem;
+                            width: 100%;
                         }
                     }
                 }
@@ -69,6 +72,7 @@
                             gap: 16px;
                             align-items: center;
                             font-size: 0.9rem;
+                            width: 100%;
                         }
 
                         &:hover {
@@ -105,6 +109,7 @@
                                     text-decoration: none;
                                     color: $description-color;
                                     padding-left: 2rem;
+                                    width: 100%;
                                 }
 
                                 &:hover {
