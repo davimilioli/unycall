@@ -711,6 +711,7 @@
 
                         @media(max-width: $md) {
                             width: 100%;
+                            padding: 0;
                         }
 
                         .info-image-block {
@@ -851,11 +852,19 @@
                         top: 0;
                         left: 0;
                         padding: 1rem;
+
+                        @media (max-width: $sm) {
+                            padding: 0;
+                        }
                     }
 
                     .view-modal-personal-content {
                         background-color: #fff;
                         width: 50rem;
+
+                        @media (max-width: $sm) {
+                            height: 100%;
+                        }
 
                         .personal-modal-header {
                             display: flex;
@@ -903,6 +912,8 @@
                                     overflow: auto;
 
                                     @media(max-width: $sm) {
+                                        height: 80vh;
+
                                         .form-category {
                                             margin-top: 1rem;
                                         }
@@ -930,6 +941,10 @@
 
                             @media(max-width: $md) {
                                 padding: 1rem;
+
+                                .btn {
+                                    width: 100%;
+                                }
                             }
                         }
                     }
@@ -952,11 +967,19 @@
                         top: 0;
                         left: 0;
                         padding: 1rem;
+
+                        @media (max-width: $sm) {
+                            padding: 0;
+                        }
                     }
 
                     .view-modal-login-content {
                         background-color: #fff;
                         width: 50rem;
+
+                        @media (max-width: $sm) {
+                            height: 100%;
+                        }
 
                         .login-modal-header {
                             display: flex;
@@ -994,7 +1017,6 @@
 
                         .login-modal-body {
 
-
                             .modal-body-content {
                                 width: 100%;
 
@@ -1002,8 +1024,11 @@
                                     padding: 1rem;
                                     height: 70vh;
                                     overflow: auto;
-                                }
 
+                                    @media (max-width: $sm) {
+                                        height: 80vh;
+                                    }
+                                }
 
                                 @media(max-width: $md) {
 
@@ -1024,6 +1049,10 @@
 
                             @media(max-width: $md) {
                                 padding: 1rem;
+
+                                .btn {
+                                    width: 100%;
+                                }
                             }
                         }
                     }
@@ -1222,11 +1251,19 @@
                         top: 0;
                         left: 0;
                         padding: 1rem;
+
+                        @media(max-width: $sm) {
+                            padding: 0;
+                        }
                     }
 
                     .view-signature-modal-content {
                         background-color: #fff;
                         width: 50rem;
+
+                        @media(max-width: $sm) {
+                            height: 100%;
+                        }
 
                         .signature-modal-header {
                             display: flex;
@@ -1261,16 +1298,25 @@
                             height: 70vh;
                             overflow: auto;
 
+                            @media (max-width: $sm) {
+                                height: 75vh;
+                            }
+
                             .modal-body-content {
                                 display: flex;
                                 justify-content: space-between;
                                 gap: 20px;
+                                flex-wrap: wrap;
 
                                 .body-content-card {
 
                                     border: 1px solid $border-color;
                                     border-radius: $radius;
                                     width: 50%;
+
+                                    @media(max-width: $sm) {
+                                        width: 100%;
+                                    }
 
                                     .content-card-title {
                                         border-bottom: 1px solid $border-color;
@@ -1311,6 +1357,15 @@
                             align-items: center;
                             gap: 5px;
                             justify-content: end;
+                            flex-wrap: wrap;
+
+                            @media (max-width: $sm) {
+                                padding: 1rem;
+
+                                .btn {
+                                    width: 100%;
+                                }
+                            }
                         }
                     }
                 }
