@@ -117,93 +117,97 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
                             </div>
                         </div>
                         <div class="form-container">
-                            <div class="form-category">
-                                <h2>Dados pessoais</h2>
-                                <div class="form-group">
-                                    <label for="nome">Nome </label>
-                                    <input type="text" id="nome" value="<?= $usuario['nome'] ?>" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="data-nascimento">Data de Nascimento </label>
-                                    <input type="text" id="data-nascimento" value="<?= $modulos->formatarNascimento($usuario['nascimento']) ?>" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="cpf">CPF </label>
-                                    <input type="text" id="cpf" value="<?= $modulos->formatarCpf($usuario['cpf']) ?>" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="nomeMaterno">Nome Materno </label>
-                                    <input type="text" id="nomeMaterno" value="<?= $usuario['nomematerno'] ?>" disabled>
-                                </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="text" name="email" id="email" value="<?= $usuario['email'] ?>">
-                                </div>
-                                <div class="form-group">
-                                    <label for="sexo">Sexo </label>
-                                    <input type="text" value="<?= $usuario['sexo'] ?>" disabled>
-                                </div>
-                                <div class="inputs-group">
+                            <div class="form-container-block">
+                                <div class="form-category">
+                                    <h2>Dados pessoais</h2>
                                     <div class="form-group">
-                                        <label for="celular">Celular </label>
-                                        <input type="text" name="celular" id="celular" value="<?= $modulos->formatarNumero($usuario['celular']) ?>">
+                                        <label for="nome">Nome </label>
+                                        <input type="text" id="nome" value="<?= $usuario['nome'] ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="telefone">Telefone </label>
-                                        <input type="text" name="telefone" id="telefone" value="<?= $modulos->formatarNumero($usuario['telefone']) ?>">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-category endereco">
-                                <h2>Endereço</h2>
-                                <div class="form-group">
-                                    <label for="cep">Cep </label>
-                                    <input type="text" name="cep" id="cep" value="<?= $endereco['cep'] ?>">
-                                </div>
-                                <div class="inputs-group endereco">
-                                    <div class="form-group">
-                                        <label for="endereco">Endereço </label>
-                                        <input type="text" name="endereco" id="endereco" value="<?= $endereco['logradouro'] ?>">
-                                    </div>
-                                    <div class="form-group numero">
-                                        <label for="numend">N° </label>
-                                        <input type="text" name="numend" id="numend" value="<?= $endereco['numero'] ?>">
-                                    </div>
-                                </div>
-                                <div class="inputs-group">
-                                    <div class="form-group">
-                                        <label for="bairro">Bairro </label>
-                                        <input type="text" name="bairro" id="bairro" value="<?= $endereco['bairro'] ?>">
+                                        <label for="data-nascimento">Data de Nascimento </label>
+                                        <input type="text" id="data-nascimento" value="<?= $modulos->formatarNascimento($usuario['nascimento']) ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="cidade">Cidade </label>
-                                        <input type="text" name="cidade" id="cidade" value="<?= $endereco['cidade'] ?>">
+                                        <label for="cpf">CPF </label>
+                                        <input type="text" id="cpf" value="<?= $modulos->formatarCpf($usuario['cpf']) ?>" disabled>
                                     </div>
                                     <div class="form-group">
-                                        <label for="estado">Estado </label>
-                                        <input type="text" id="estado" name="estado" value="<?= $endereco['estado'] ?>">
+                                        <label for="nomeMaterno">Nome Materno </label>
+                                        <input type="text" id="nomeMaterno" value="<?= $usuario['nomematerno'] ?>" disabled>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="text" name="email" id="email" value="<?= $usuario['email'] ?>">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="sexo">Sexo </label>
+                                        <input type="text" value="<?= $usuario['sexo'] ?>" disabled>
+                                    </div>
+                                    <div class="inputs-group">
+                                        <div class="form-group">
+                                            <label for="celular">Celular </label>
+                                            <input type="text" name="celular" id="celular" value="<?= $modulos->formatarNumero($usuario['celular']) ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefone">Telefone </label>
+                                            <input type="text" name="telefone" id="telefone" value="<?= $modulos->formatarNumero($usuario['telefone']) ?>">
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="complemento">Complemento</label>
-                                    <input type="text" name="complemento" id="complemento" value="<?= $endereco['complemento'] ?>">
-                                </div>
-                            </div>
-                            <div class="form-category">
-                                <h2>Login</h2>
-                                <div class="form-group">
-                                    <label for="login">Login </label>
-                                    <input type="text" name="login" id="login" value="<?= $usuario['login'] ?>">
-                                </div>
-                            </div>
-                            <div class="form-category">
-                                <h2>Permissão</h2>
-                                <div class="form-group">
-                                    <label for="permissao">Permissão </label>
-                                    <select name="permissao" id="permissao">
-                                        <option value="" <?= $usuario['permissao'] == 'null' ? 'selected' : '' ?>>Nenhuma</option>
-                                        <option value="administrador" <?= $usuario['permissao'] == 'administrador' ? 'selected' : '' ?>>Administrador</option>
-                                    </select>
+                                <div class="form-category endereco">
+                                    <h2>Endereço</h2>
+                                    <div class="form-group">
+                                        <label for="cep">Cep </label>
+                                        <input type="text" name="cep" id="cep" value="<?= $endereco['cep'] ?>">
+                                    </div>
+                                    <div class="inputs-group endereco">
+                                        <div class="form-group">
+                                            <label for="endereco">Endereço </label>
+                                            <input type="text" name="endereco" id="endereco" value="<?= $endereco['logradouro'] ?>">
+                                        </div>
+                                        <div class="form-group numero">
+                                            <label for="numend">N° </label>
+                                            <input type="text" name="numend" id="numend" value="<?= $endereco['numero'] ?>">
+                                        </div>
+                                    </div>
+                                    <div class="inputs-group">
+                                        <div class="form-group">
+                                            <label for="bairro">Bairro </label>
+                                            <input type="text" name="bairro" id="bairro" value="<?= $endereco['bairro'] ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="cidade">Cidade </label>
+                                            <input type="text" name="cidade" id="cidade" value="<?= $endereco['cidade'] ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="estado">Estado </label>
+                                            <input type="text" id="estado" name="estado" value="<?= $endereco['estado'] ?>">
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="complemento">Complemento</label>
+                                        <input type="text" name="complemento" id="complemento" value="<?= $endereco['complemento'] ?>">
+                                    </div>
+                                    <div class="inputs-group login-permissao">
+                                        <div class="form-category">
+                                            <h2>Login</h2>
+                                            <div class="form-group">
+                                                <label for="login">Login </label>
+                                                <input type="text" name="login" id="login" value="<?= $usuario['login'] ?>">
+                                            </div>
+                                        </div>
+                                        <div class="form-category">
+                                            <h2>Permissão</h2>
+                                            <div class="form-group">
+                                                <label for="permissao">Permissão </label>
+                                                <select name="permissao" id="permissao">
+                                                    <option value="" <?= $usuario['permissao'] == 'null' ? 'selected' : '' ?>>Nenhuma</option>
+                                                    <option value="administrador" <?= $usuario['permissao'] == 'administrador' ? 'selected' : '' ?>>Administrador</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
