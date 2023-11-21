@@ -1350,7 +1350,10 @@
                                 display: flex;
                                 justify-content: space-between;
                                 gap: 20px;
-                                flex-wrap: wrap;
+
+                                @media(max-width: $md) {
+                                    flex-wrap: wrap;
+                                }
 
                                 .body-content-card {
 
