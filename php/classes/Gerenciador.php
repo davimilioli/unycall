@@ -97,7 +97,6 @@ class Gerenciador
     public function enviarExclusao($id)
     {
         $this->GerenciadorMySql->excluirAssinatura($id);
-        header('location: /php/cliente/assinatura/gerenciar.php');
-        exit;
+        return true;
     }
 }

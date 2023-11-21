@@ -69,6 +69,8 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
 if (isset($_POST['excluirAssinatura'])) {
     $id = $_POST['excluirAssinatura'];
     $gerenciador->enviarExclusao($id);
+    header('location: /php/cliente/assinatura/gerenciar.php');
+    exit;
 }
 ?>
 
