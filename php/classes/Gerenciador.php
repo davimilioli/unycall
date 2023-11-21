@@ -15,7 +15,23 @@ class Gerenciador
 
     public function servicosDisponiveis()
     {
-        return $this->GerenciadorMySql->consultarServicos();
+        $servicosDisponiveis = [];
+        $servicos = $this->GerenciadorMySql->consultarServicos();
+
+        foreach ($servicos as $item) {
+            if ($item->pegarServicoStatus() != 0) {
+
+                $servicosDisponiveis[] = array(
+                    'id' => $item->pegarServicoId(),
+                    'nome' => $item->pegarServicoNome(),
+                    'custo' => str_replace('.', ',', $item->pegarServicoCusto()),
+                    'tipo' => $item->pegarServicoTipo(),
+                    'disp_regiao' => $item->pegarDispRegiao()
+                );
+            }
+        }
+
+        return $servicosDisponiveis;
     }
 
     public function enviarDadosPagamento(array $arrayPagamento)
@@ -72,7 +88,7 @@ class Gerenciador
                             'nome' => $pagamento->pegarPgtoNome(),
                             'cpf' => $pagamento->pegarPgtoCpf(),
                             'servico_assinado' => $pagamento->pegarServicoAssinado(),
-                            'preco_servico' => $pagamento->pegarServicoPreco(),
+                            'preco_servico' => str_replace('.', ',', $pagamento->pegarServicoPreco()),
                             'total' => $pagamento->pegarTotal(),
                             'data' => date("d/m/Y", strtotime($pagamento->pegarDataPagamento()))
                         );

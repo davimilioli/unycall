@@ -106,7 +106,7 @@ if (isset($_POST['excluirAssinatura'])) {
                         </div>
                         <div class="signature-active-body">
                             <div class="signature-active-body-price">
-                                Preço: R$ <?= str_replace('.', ',', $precoServico) ?>
+                                Preço: R$ <?= $precoServico ?>
                             </div>
                             <div class="signature-active-body-date">
                                 Assinado em: <?= $data  ?>
@@ -212,27 +212,24 @@ if (isset($_POST['excluirAssinatura'])) {
                                             </div>
                                         </div>
                                         <div class="signature-list-content">
-                                            <?php foreach ($servicosDisponiveis as $item) : ?>
-                                                <?php if ($item->pegarServicoStatus() != 0) : ?>
-                                                    <label class="signature-list-options-content" for="<?= $item->pegarServicoNome() ?>">
-                                                        <input type="radio" name="servico" id="<?= $item->pegarServicoNome() ?>" value="<?= $item->pegarServicoNome() ?>" required <?= count($servicosDisponiveis) == 1 ? 'checked' : '' ?>>
-                                                        <input type="hidden" name="preco" value="<?= $item->pegarServicoCusto(); ?>">
-                                                        <input type="hidden" name="idServico" value="<?= $item->pegarServicoId(); ?>">
-                                                        <div class="signature-list-option-item">
-                                                            <?= $item->pegarServicoTipo(); ?>
-                                                        </div>
-                                                        <div class="signature-list-option-item">
-                                                            <?= $item->pegarServicoNome(); ?>
-                                                        </div>
-                                                        <div class="signature-list-option-item">
-                                                            <?= $item->pegarDispRegiao(); ?>
-                                                        </div>
-                                                        <div class="signature-list-option-item">
-                                                            R$ <?= str_replace('.', ',', $item->pegarServicoCusto()) ?>
-                                                        </div>
-
-                                                    </label>
-                                                <?php endif ?>
+                                            <?php foreach ($servicosDisponiveis as $key => $item) : ?>
+                                                <label class="signature-list-options-content" for="<?= $item['nome'] ?>">
+                                                    <input type="radio" name="servico" id="<?= $item['nome'] ?>" value="<?= $item['nome'] ?>" required <?= $key == 0 ? 'checked' : '' ?>>
+                                                    <input type="hidden" name="preco" value="<?= $item['custo'] ?>">
+                                                    <input type="hidden" name="idServico" value="<?= $item['id'] ?>">
+                                                    <div class="signature-list-option-item">
+                                                        <?= $item['tipo']; ?>
+                                                    </div>
+                                                    <div class="signature-list-option-item">
+                                                        <?= $item['nome'] ?>
+                                                    </div>
+                                                    <div class="signature-list-option-item">
+                                                        <?= $item['disp_regiao'] ?>
+                                                    </div>
+                                                    <div class="signature-list-option-item">
+                                                        R$ <?= $item['custo'] ?>
+                                                    </div>
+                                                </label>
                                             <?php endforeach ?>
                                         </div>
                                     </div>
