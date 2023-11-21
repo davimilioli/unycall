@@ -93,7 +93,7 @@ class Sistema
                         'bairro' => $item->pegarBairroEndereco(),
                         'cidade' => $item->pegarCidadeEndereco(),
                         'estado' => $item->pegarEstadoEndereco(),
-                        'complemento' => $item->pegarComplementoEndereco() ?? null
+                        'complemento' => $item->pegarComplementoEndereco() ?? ''
                     );
                 }
             }
@@ -118,7 +118,7 @@ class Sistema
         $usuario->setarCelular($dadosUsuario['celular']);
         $usuario->setarTelefone($dadosUsuario['telefone']);
         $usuario->setarLogin($dadosUsuario['login']);
-        $usuario->setarPermissao($dadosUsuario['permissao']);
+        $usuario->setarPermissao($dadosUsuario['permissao'] ?? '');
         $this->usuarioSql->atualizarUsuario($usuario);
     }
 
@@ -132,7 +132,7 @@ class Sistema
         $endereco->setarBairroEndereco($dadosEndereco['bairro']);
         $endereco->setarCidadeEndereco($dadosEndereco['cidade']);
         $endereco->setarEstadoEndereco($dadosEndereco['estado']);
-        $endereco->setarComplementoEndereco($dadosEndereco['complemento']);
+        $endereco->setarComplementoEndereco($dadosEndereco['complemento'] ?? '');
         $this->enderecoSql->atualizarEndereco($endereco);
     }
 

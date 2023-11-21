@@ -55,7 +55,7 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
             'bairro' => $bairro,
             'cidade' => $cidade,
             'estado' => $estado,
-            'complemento' => $complemento ?? null
+            'complemento' => $complemento
         );
         $sistema->atualizarDadosEndereco($dadosEndereco, $usuarioSql);
     }

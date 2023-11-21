@@ -611,18 +611,35 @@
                 .form {
                     padding: 1rem;
 
-                    .form-container {
-                        display: grid;
-                        grid-template-columns: 1fr 1fr 1fr 1fr;
-                        align-items: start;
-                        gap: 1rem;
+                    .form-content-block {
+                        display: flex;
+                        gap: 10px;
+                        justify-content: space-between;
+                        flex-wrap: wrap;
 
-                        @media (max-width: 1366px) and (max-height: 768px) {
-                            grid-template-columns: 1fr 1fr;
+                        .form-image {
+                            .form-image-content {
+                                position: sticky;
+                                top: calc(1em + 100px);
+
+                                img {
+                                    width: 290px;
+                                    max-width: 100%;
+                                    border-radius: 50%;
+                                    height: 200px;
+                                }
+                            }
                         }
+                    }
 
-                        @media(max-width: 629px) {
-                            grid-template-columns: 1fr;
+                    .form-container {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                        width: 68%;
+
+                        @media(max-width: $sm) {
+                            width: 100%;
 
                             .form-category {
                                 margin-bottom: 1rem;
