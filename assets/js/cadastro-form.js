@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
         validarLogin();
         validarSenha();
         validarFormulário();
+        validacaoEdicaoUsuario();
 
         console.log('[+] cadastro-form.js iniciado');
     }
@@ -374,16 +375,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const clearInputs = document.querySelector('#limpar');
         const formGroupContainer = document.querySelectorAll('.formGroup-container');
 
-        clearInputs.addEventListener('click', function () {
-            formGroupContainer.forEach(function (container) {
-                container.querySelectorAll('[data-input-address]').forEach(function (input) {
-                    input.value = '';
+        if (clearInputs) {
+            clearInputs.addEventListener('click', function () {
+                formGroupContainer.forEach(function (container) {
+                    container.querySelectorAll('[data-input-address]').forEach(function (input) {
+                        input.value = '';
+                    });
                 });
-            });
 
-            numEndereco.value = '';
-            complemento.value = '';
-        });
+                numEndereco.value = '';
+                complemento.value = '';
+            });
+        }
 
     }
 
@@ -429,42 +432,45 @@ document.addEventListener('DOMContentLoaded', () => {
         const senha = document.querySelector('#senha');
         const confirmaSenha = document.querySelector('#confirmar-senha');
         const mensagemAvisoSenha = document.querySelector('.message_notice.senha')
-        let validaSenha = false
+        let validaSenha = false;
 
-        senha.addEventListener('input', () => {
+        if (senha) {
+            senha.addEventListener('input', () => {
 
-            const senhaValue = senha.value;
-            const quantidadeAlfabeticos = contarCaracteresAlfabeticos(senhaValue);
+                const senhaValue = senha.value;
+                const quantidadeAlfabeticos = contarCaracteresAlfabeticos(senhaValue);
 
-            if (quantidadeAlfabeticos >= 8) {
-                validaSenha = true;
-                console.log('Senha: ' + validaSenha)
-                setarBorda('#senha', true);
-            } else {
-                setarBorda('#senha', false);
-                validaSenha = false;
+                if (quantidadeAlfabeticos >= 8) {
+                    validaSenha = true;
+                    console.log('Senha: ' + validaSenha)
+                    setarBorda('#senha', true);
+                } else {
+                    setarBorda('#senha', false);
+                    validaSenha = false;
+                }
+            })
+
+            confirmaSenha.addEventListener('input', () => {
+                if (confirmaSenha.value == senha.value) {
+                    validaConfirma = true;
+                    setarBorda('#confirmar-senha', true);
+                    console.log('confirmar senha: ' + validaConfirma);
+                    mensagemAvisoSenha.style.display = 'none';
+                } else {
+                    validaConfirma = false;
+                    setarBorda('#confirmar-senha', false);
+                    mensagemAvisoSenha.style.display = 'flex';
+
+                }
+            })
+
+            function contarCaracteresAlfabeticos(senha) {
+                const padrao = /[a-zA-Z]/g;
+                const caracteresAlfabeticos = senha.match(padrao);
+                return caracteresAlfabeticos ? caracteresAlfabeticos.length : 0;
             }
-        })
-
-        confirmaSenha.addEventListener('input', () => {
-            if (confirmaSenha.value == senha.value) {
-                validaConfirma = true;
-                setarBorda('#confirmar-senha', true);
-                console.log('confirmar senha: ' + validaConfirma);
-                mensagemAvisoSenha.style.display = 'none';
-            } else {
-                validaConfirma = false;
-                setarBorda('#confirmar-senha', false);
-                mensagemAvisoSenha.style.display = 'flex';
-
-            }
-        })
-
-        function contarCaracteresAlfabeticos(senha) {
-            const padrao = /[a-zA-Z]/g;
-            const caracteresAlfabeticos = senha.match(padrao);
-            return caracteresAlfabeticos ? caracteresAlfabeticos.length : 0;
         }
+
     }
 
     function validarFormulário() {
@@ -472,43 +478,70 @@ document.addEventListener('DOMContentLoaded', () => {
         const btnCadastrar = document.querySelector('#cadastrar');
         const form = document.querySelector('.form');
 
-        btnCadastrar.addEventListener('click', (e) => {
-            e.preventDefault()
+        if (btnCadastrar) {
 
-            const inputsVazios = form.querySelectorAll('input');
-            inputsVazios.forEach((item) => {
-                if (item.value == '') {
-                    item.style.borderColor = 'red';
-                } else {
-                    const nome = document.querySelector('#nome');
-                    const confirmaSenha = document.querySelector('#confirmar-senha');
-                    const senha = document.querySelector('#senha');
-                    const login = document.querySelector('#login');
-                    const cep = document.querySelector('#cep');
-                    const telefone = document.querySelector('#telefone');
-                    const celular = document.querySelector('#celular');
-                    const email = document.querySelector('#email');
-                    const nomeMaterno = document.querySelector('#nomeMaterno');
-                    const cpf = document.querySelector('#cpf');
-                    const dataNascimento = document.querySelector('#data-nascimento');
+            btnCadastrar.addEventListener('click', (e) => {
+                e.preventDefault()
 
-                    if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && nomeMaterno.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && cep.value !== '' && login.value !== '' && senha.value !== '' && confirmaSenha.value !== '') {
+                const inputsVazios = form.querySelectorAll('input');
+                inputsVazios.forEach((item) => {
+                    if (item.value == '') {
+                        item.style.borderColor = 'red';
+                    } else {
+                        const nome = document.querySelector('#nome');
+                        const confirmaSenha = document.querySelector('#confirmar-senha');
+                        const senha = document.querySelector('#senha') ? document.querySelector('#senha').value !== '' : '';
+                        const login = document.querySelector('#login');
+                        const cep = document.querySelector('#cep');
+                        const telefone = document.querySelector('#telefone');
+                        const celular = document.querySelector('#celular');
+                        const email = document.querySelector('#email');
+                        const nomeMaterno = document.querySelector('#nomeMaterno');
+                        const cpf = document.querySelector('#cpf');
+                        const dataNascimento = document.querySelector('#data-nascimento');
 
-                        btnCadastrar.style.opacity = '0.5';
-                        btnCadastrar.innerHTML = `
-                            <div class="loading">
-                                <div class="loading-content">
-                                    <div class="spinner-one"></div>
-                                </div>
-                            </div> ` + 'Validando...';
-                        setTimeout(() => {
-                            form.submit();
-                            btnCadastrar.innerHTML = 'Cadastrar';
-                        }, 2000)
+                        if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && nomeMaterno.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && cep.value !== '' && login.value !== '' && senha && confirmaSenha.value !== '') {
+
+                            btnCadastrar.style.opacity = '0.5';
+                            btnCadastrar.innerHTML = `
+                                <div class="loading">
+                                    <div class="loading-content">
+                                        <div class="spinner-one"></div>
+                                    </div>
+                                </div> ` + 'Validando...';
+                            setTimeout(() => {
+                                form.submit();
+                                btnCadastrar.innerHTML = 'Cadastrar';
+                            }, 2000)
+                        }
                     }
-                }
+                })
             })
-        })
+        }
+
+    }
+
+    function validacaoEdicaoUsuario() {
+        const atualizarUsuario = document.querySelector('#updateUser');
+        const form = document.querySelector('.form')
+        console.log(atualizarUsuario)
+        if (atualizarUsuario) {
+            atualizarUsuario.addEventListener('click', (e) => {
+                e.preventDefault();
+
+                atualizarUsuario.style.opacity = '0.5';
+                atualizarUsuario.innerHTML = `
+                    <div class="loading">
+                        <div class="loading-content">
+                            <div class="spinner-one"></div>
+                        </div>
+                    </div> ` + 'Validando...';
+                setTimeout(() => {
+                    form.submit();
+                    atualizarUsuario.innerHTML = 'Atualizar';
+                }, 2000)
+            })
+        }
     }
 
 });

@@ -684,6 +684,10 @@
                         gap: 10px;
                         justify-content: end;
 
+                        @media(max-width: $sm) {
+                            margin-top: 1rem;
+                        }
+
                         .form-actions {
                             width: 100%;
                             gap: 10px;
@@ -691,10 +695,16 @@
                             justify-content: end;
                         }
 
-                        @media(max-width: $sm) {
-                            margin-top: 1rem;
+                        .btn {
+                            padding-left: 3rem;
+                            padding-right: 3rem;
+                            position: relative;
 
-                            .btn {
+                            .loading {
+                                left: -68px;
+                            }
+
+                            @media(max-width: $sm) {
                                 display: flex;
                                 justify-content: center;
                                 width: 100%;
@@ -702,6 +712,7 @@
                                 font-size: .8rem;
                             }
                         }
+
                     }
                 }
             }
@@ -982,6 +993,15 @@
                             gap: 5px;
                             justify-content: end;
 
+                            .btn {
+                                padding-left: 3rem;
+                                padding-right: 3rem;
+                                position: relative;
+
+                                .loading {
+                                    left: -79px;
+                                }
+                            }
 
                             @media(max-width: $md) {
                                 padding: 1rem;
@@ -1090,6 +1110,16 @@
                             align-items: center;
                             gap: 5px;
                             justify-content: end;
+
+                            .btn {
+                                padding-left: 3rem;
+                                padding-right: 3rem;
+                                position: relative;
+
+                                .loading {
+                                    left: -79px;
+                                }
+                            }
 
                             @media(max-width: $md) {
                                 padding: 1rem;

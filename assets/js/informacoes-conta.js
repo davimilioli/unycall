@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   function inicializacao() {
-    openModalPessoal();
+    modalPessoal();
     validarCep();
-    abrirModalLogin();
+    modalLogin();
     avisoGood();
     excluirUsuario();
     console.log("informacoes-conta.js iniciado");
@@ -10,10 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
   inicializacao();
 
-  function openModalPessoal() {
+  function modalPessoal() {
     const modalPessoal = document.querySelector(".view-modal-personal");
     const botaoAbrirPessoal = document.querySelector("#openModalPessoal");
     const botaoFecharPessoal = document.querySelector("#closeModalPessoal");
+    const atualizarDados = document.querySelector('#updateData');
+    const form = document.querySelector('.form');
 
     botaoAbrirPessoal.addEventListener("click", () => {
       modalPessoal.classList.add("active");
@@ -22,6 +24,24 @@ document.addEventListener("DOMContentLoaded", () => {
     botaoFecharPessoal.addEventListener("click", () => {
       modalPessoal.classList.remove("active");
     });
+
+    atualizarDados.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      atualizarDados.style.opacity = '0.5';
+      atualizarDados.innerHTML = `
+        <div class="loading">
+            <div class="loading-content">
+                <div class="spinner-one"></div>
+            </div>
+        </div> ` + 'Atualizando...';
+
+      setTimeout(() => {
+        form.submit();
+        atualizarDados.innerHTML = 'Atualizar dados';
+      }, 2000)
+
+    })
   }
 
   function validarCep() {
@@ -137,10 +157,12 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  function abrirModalLogin() {
+  function modalLogin() {
     const modalLogin = document.querySelector(".view-modal-login");
     const botaoAbrirLogin = document.querySelector("#abrirModalLogin");
     const botaoFecharLogin = document.querySelector("#closeModalLogin");
+    const atualizarLogin = document.querySelector('#updateLogin');
+    const form = document.querySelector('.form');
 
     botaoAbrirLogin.addEventListener("click", () => {
       modalLogin.classList.add("active");
@@ -149,6 +171,23 @@ document.addEventListener("DOMContentLoaded", () => {
     botaoFecharLogin.addEventListener("click", () => {
       modalLogin.classList.remove("active");
     });
+
+    atualizarLogin.addEventListener('click', (e) => {
+      e.preventDefault();
+
+      atualizarLogin.style.opacity = '0.5';
+      atualizarLogin.innerHTML = `
+        <div class="loading">
+            <div class="loading-content">
+                <div class="spinner-one"></div>
+            </div>
+        </div> ` + 'Atualizando...';
+
+      setTimeout(() => {
+        form.submit();
+        atualizarLogin.innerHTML = 'Atualizar login';
+      }, 2000)
+    })
   }
 
   function avisoGood() {

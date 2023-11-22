@@ -184,7 +184,7 @@ if (isset($_POST['excluirAssinatura'])) {
                         </div>
                     </div>
                 <?php else : ?>
-                    <div class="form-content" id="formSignature">
+                    <div class="form-content active" id="formSignature">
                         <form method="POST" class="form">
                             <input type="hidden" name="idUsuario" value="<?= $id ?>">
                             <input type="hidden" name="nomeUsuario" value="<?= $nomeUsuario ?>">
@@ -250,7 +250,7 @@ if (isset($_POST['excluirAssinatura'])) {
                                     </div>
                                     <div class="form-group">
                                         <label for="titular">Titular <span>*</span></label>
-                                        <input type="text" name="titular" id="titular" minlength="8">
+                                        <input type="text" name="titular" id="titular">
                                     </div>
                                     <div class="form-group">
                                         <label for="cpfTitular">Cpf do titular <span>*</span></label>
@@ -268,7 +268,7 @@ if (isset($_POST['excluirAssinatura'])) {
                                         </div>
                                     <?php endif ?>
                                     <input type="reset" value="Limpar" id="limpar" class="btn secondary">
-                                    <input type="submit" value="Assinar" class="btn" id="assinar">
+                                    <button class="btn" id="assinar">Assinar<button>
                                 </div>
                             </div>
                         </form>

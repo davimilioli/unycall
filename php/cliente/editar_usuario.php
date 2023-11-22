@@ -213,7 +213,7 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
                         </div>
                     </div>
                     <div class="form-buttons">
-                        <input type="submit" value="Atualizar" class="btn" class="atualizarDados">
+                        <button class="btn" class="atualizarDados" id="updateUser">Atualizar</button>
                         <a class="btn secondary" id="excluirUsuario" data-id-adm="<?= $idAdm ?>" data-id="<?= $usuario['id'] ?>">Excluir</a>
                     </div>
                 </form>

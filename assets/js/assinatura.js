@@ -208,8 +208,17 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (numeroCartao.value != '' && cvv.value.length != '' && validade.value.length != '' && titular.value.length !== '' && cpf.value.length != '') {
                             console.log('formulário validado');
 
+                            botaoAssinar.style.opacity = '0.5';
+                            botaoAssinar.innerHTML = `
+                            <div class="loading">
+                                <div class="loading-content">
+                                    <div class="spinner-one"></div>
+                                </div>
+                            </div> ` + 'Validando...';
+
                             setTimeout(() => {
                                 form.submit();
+                                botaoAssinar.innerHTML = 'Assinar';
                             }, 2000)
                         }
                     }

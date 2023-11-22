@@ -85,6 +85,9 @@ if (isset($_POST['login'])) {
         } else {
             $erro = 'Senha incorreta';
         }
+
+        header('location: /php/cliente/informacoes_conta.php');
+        exit;
     }
 }
 
@@ -274,7 +277,7 @@ if (isset($_POST['imageProfile'])) {
                                                         </div>
                                                     </div>
                                                     <div class="personal-modal-footer">
-                                                        <button class="btn">Atualizar dados</button>
+                                                        <button class="btn" id="updateData">Atualizar dados</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -342,7 +345,7 @@ if (isset($_POST['imageProfile'])) {
                                                         <?php endif ?>
                                                     </div>
                                                     <div class="login-modal-footer">
-                                                        <button class="btn">Atualizar login</button>
+                                                        <button class="btn" id="updateLogin">Atualizar login</button>
                                                     </div>
                                                 </form>
                                             </div>
