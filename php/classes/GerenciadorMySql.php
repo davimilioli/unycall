@@ -53,11 +53,14 @@ class GerenciadorMySql
     public function cadastrarAssinatura(Assinatura $assinatura)
     {
         $sql = $this->pdo->prepare(
-            "INSERT INTO assinaturas (id_usuario, id_transacao, id_servico) VALUES (:id_usuario, :id_transacao, :id_servico)"
+            "INSERT INTO assinaturas (id_usuario, id_transacao, id_servico ,data_inicio ,data_expiracao) VALUES (:id_usuario, :id_transacao, :id_servico, :data_inicio, :data_expiracao)"
         );
         $sql->bindValue(':id_usuario', $assinatura->pegarIdAssUsuario());
         $sql->bindValue(':id_transacao', $assinatura->pegarIdAssTransacao());
         $sql->bindValue(':id_servico', $assinatura->pegaridAssServico());
+        $sql->bindValue(':data_inicio', $assinatura->pegarAssDataInicio());
+        $sql->bindValue(':data_expiracao', $assinatura->pegarAssDataExpiracao());
+
         $sql->execute();
 
         $assinatura->setarIdAss($this->pdo->lastInsertId());
@@ -107,6 +110,8 @@ class GerenciadorMySql
                 $assinatura->setarIdAssUsuario($item['id_usuario']);
                 $assinatura->setarIdAssTransacao($item['id_transacao']);
                 $assinatura->setaridAssServico($item['id_servico']);
+                $assinatura->setarAssDataInicio($item['data_inicio']);
+                $assinatura->setarAssDataExpiracao($item['data_expiracao']);
 
                 $array[] = $assinatura;
             }

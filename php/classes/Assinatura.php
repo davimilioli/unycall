@@ -6,6 +6,8 @@ class Assinatura
     private int $id_usuario;
     private string $id_transacao;
     private int $id_servico;
+    private string $data_inicio;
+    private string $data_expiracao;
 
     public function setarIdAss(int $id)
     {
@@ -45,5 +47,25 @@ class Assinatura
     public function pegaridAssServico(): int
     {
         return $this->id_servico;
+    }
+
+    public function setarAssDataInicio(string $data_inicio)
+    {
+        $this->data_inicio = $data_inicio;
+    }
+
+    public function pegarAssDataInicio(): string
+    {
+        return $this->data_inicio;
+    }
+
+    public function setarAssDataExpiracao(string $data_expiracao)
+    {
+        $this->data_expiracao = $data_expiracao;
+    }
+
+    public function pegarAssDataExpiracao(): string
+    {
+        return $this->data_expiracao;
     }
 }

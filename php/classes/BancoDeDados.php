@@ -118,6 +118,8 @@ class BancoDeDados
             `id_usuario` int(11) NOT NULL,
             `id_transacao` varchar(255) NOT NULL,
             `id_servico` int(11) NOT NULL,
+            `data_inicio` date NOT NULL,
+            `data_expiracao` date NOT NULL,
             PRIMARY KEY (`id`) USING BTREE,
             KEY `id_usuario` (`id_usuario`),
             KEY `id_servico` (`id_servico`),

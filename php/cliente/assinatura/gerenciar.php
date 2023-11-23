@@ -34,10 +34,9 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
     $validade = $_POST['validade'];
     $titular = $_POST['titular'];
     $cpfTitular = $_POST['cpfTitular'];
-    $dataHoje = $_POST['dataHoje'];
     $preco = $_POST['preco'];
 
-    $entrada = $nomeUsuario . $dataHoje . rand(1, 50);
+    $entrada = $nomeUsuario . date('d/m/Y') . rand(1, 50);
     $idTransacao = md5($entrada);
 
     $arrayPagamento = array(
@@ -45,14 +44,13 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
         'nome' => $nomeUsuario,
         'cpf' => $cpfUsuario,
         'servico_assinado' => $servicoEscolhido,
-        'preco' => $preco,
-        'data' => $dataHoje,
+        'preco' => $preco
     );
 
     $arrayAssinatura = array(
         'id_usuario' => $idUsuario,
         'id_servico' => $idServico,
-        'id_transacao' => $idTransacao,
+        'id_transacao' => $idTransacao
     );
 
     $dadosPagamento = $gerenciador->enviarDadosPagamento($arrayPagamento);
@@ -95,21 +93,19 @@ if (isset($_POST['excluirAssinatura'])) {
             </div>
             <div class="signature-content">
                 <?php if (isset($assinaturaAtivo['ativo'])) : ?>
-                    <?php
-                    $servicoAssinado = $assinaturaAtivo['servico_assinado'];
-                    $precoServico =  $assinaturaAtivo['preco_servico'];
-                    $data = $assinaturaAtivo['data'];
-                    ?>
                     <div class="card-signature-active">
                         <div class="signature-active-header">
-                            <h2><?= $servicoAssinado ?></h2>
+                            <h2><?= $assinaturaAtivo['servico_assinado'] ?></h2>
                         </div>
                         <div class="signature-active-body">
                             <div class="signature-active-body-price">
-                                Preço: R$ <?= $precoServico ?>
+                                Preço: R$ <?= $assinaturaAtivo['preco_servico'] ?>
                             </div>
                             <div class="signature-active-body-date">
-                                Assinado em: <?= $data  ?>
+                                Assinado em: <?= $assinaturaAtivo['data_inicio'] ?>
+                            </div>
+                            <div class="signature-active-body-date">
+                                Expira em: <?= $assinaturaAtivo['data_expiracao'] ?>
                             </div>
                         </div>
                         <div class="signature-active-footer">
@@ -132,16 +128,22 @@ if (isset($_POST['excluirAssinatura'])) {
                                         </div>
                                         <div class="content-card-block">
                                             <h3>Serviço assinado</h3>
-                                            <span><?= $servicoAssinado ?></span>
+                                            <span><?= $assinaturaAtivo['servico_assinado'] ?></span>
                                         </div>
                                         <div class="content-card-block">
                                             <h3>Preço</h3>
-                                            <span>R$ <?= $precoServico ?></span>
+                                            <span>R$ <?= $assinaturaAtivo['preco_servico'] ?></span>
                                         </div>
                                         <div class="content-card-block">
-                                            <h3>Assinado em </h3>
+                                            <h3>Assinado em: </h3>
                                             <span>
-                                                <?= $data ?>
+                                                <?= $assinaturaAtivo['data_inicio'] ?>
+                                            </span>
+                                        </div>
+                                        <div class="content-card-block">
+                                            <h3>Expira em: </h3>
+                                            <span>
+                                                Expira em <?= $assinaturaAtivo['data_expiracao'] ?>
                                             </span>
                                         </div>
                                     </div>
@@ -170,7 +172,7 @@ if (isset($_POST['excluirAssinatura'])) {
                                             <span> R$ <?= $comprovante['total'] ?></span>
                                         </div>
                                         <div class="content-card-block">
-                                            <h3>Data de Pagamento</h3>
+                                            <h3>Assinado em: </h3>
                                             <span><?= $comprovante['data'] ?></span>
                                         </div>
                                     </div>
@@ -214,8 +216,8 @@ if (isset($_POST['excluirAssinatura'])) {
                                         <div class="signature-list-content">
                                             <?php foreach ($servicosDisponiveis as $key => $item) : ?>
                                                 <label class="signature-list-options-content" for="<?= $item['nome'] ?>">
-                                                    <input type="radio" name="servico" id="<?= $item['nome'] ?>" value="<?= $item['nome'] ?>" required <?= $key == 0 ? 'checked' : '' ?>>
                                                     <input type="hidden" name="preco" value="<?= $item['custo'] ?>">
+                                                    <input type="radio" name="servico" id="<?= $item['nome'] ?>" value="<?= $item['nome'] ?>" required <?= $key == 0 ? 'checked' : '' ?>>
                                                     <input type="hidden" name="idServico" value="<?= $item['id'] ?>">
                                                     <div class="signature-list-option-item">
                                                         <?= $item['tipo']; ?>
