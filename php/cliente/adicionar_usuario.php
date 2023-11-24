@@ -92,7 +92,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                 </div>
                 <form method="POST" class="form">
                     <input type="hidden" name="adm" value="<?= $id ?>">
-                    <div class="form-container">
+                    <div class="form-container register-user">
                         <div class="form-category">
                             <h2>Dados pessoais</h2>
                             <div class="form-group">
@@ -227,8 +227,6 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                                 <img src="/assets/img/icons/danger-notice.svg" alt="">
                                 Senhas não iguais
                             </span>
-                        </div>
-                        <div class="form-category">
                             <h2>Permissão</h2>
                             <div class="form-group">
                                 <label for="permissao">Permissão </label>
