@@ -37,17 +37,18 @@ class Gerenciador
 
     public function enviarDadosPagamento(array $arrayPagamento)
     {
+
         $cpfFormatado = str_replace(['.', '-'], '', $arrayPagamento['cpf']);
         $pagamento = new Pagamento();
         $pagamento->setarPgtoIdTransacao($arrayPagamento['id_transacao']);
         $pagamento->setarPgtoNome($arrayPagamento['nome']);
         $pagamento->setarPgtoCpf($cpfFormatado);
         $pagamento->setarServicoAssinado($arrayPagamento['servico_assinado']);
-        $pagamento->setarServicoPreco($arrayPagamento['preco']);
+        $pagamento->setarServicoPreco($this->precoServico($arrayPagamento['servico_assinado']));
         $pagamento->setarDataPagamento(date("Y-m-d"));
 
-        $this->GerenciadorMySql->cadastrarPagamento($pagamento);
 
+        $this->GerenciadorMySql->cadastrarPagamento($pagamento);
         return true;
     }
 
@@ -68,42 +69,82 @@ class Gerenciador
         return true;
     }
 
+    private function precoServico($servico_assinado)
+    {
+        $resultado = '';
+        $servicos = $this->servicosDisponiveis();
+
+        foreach ($servicos as $item) {
+            if ($item['nome'] == $servico_assinado) {
+                $resultado = $item['custo'];
+            }
+        }
+
+        return $resultado;
+    }
+
     public function pagamentos()
     {
-        return $this->GerenciadorMySql->consultarPagamentos();
+        $pagamentos = [];
+        $consultarPagamentos = $this->GerenciadorMySql->consultarPagamentos();
+        $modulos = new Modulos();
+        foreach ($consultarPagamentos as $pagamento) {
+            $pagamentos[] = array(
+                'id_transacao' => $pagamento->pegarPgtoIdTransacao(),
+                'nome' => $pagamento->pegarPgtoNome(),
+                'cpf' => $modulos->formatarCpf($pagamento->pegarPgtoCpf()),
+                'servico_assinado' => $pagamento->pegarServicoAssinado(),
+                'preco_servico' => str_replace('.', ',', $pagamento->pegarServicoPreco()),
+                'total' => $pagamento->pegarTotal(),
+                'data' => date("d/m/Y", strtotime($pagamento->pegarDataPagamento()))
+            );
+        }
+
+        return $pagamentos ?? [];
     }
 
     public function assinaturas()
     {
-        return $this->GerenciadorMySql->consultarAssinaturas();
+        $assinaturasAtivas = [];
+        $consultarAssinaturas = $this->GerenciadorMySql->consultarAssinaturas();
+        foreach ($consultarAssinaturas as $assinatura) {
+            $assinaturasAtivas[] = array(
+                'id_usuario' => $assinatura->pegarIdAssUsuario(),
+                'id_transacao' => $assinatura->pegarIdAssTransacao(),
+                'id_servico' => $assinatura->pegaridAssServico(),
+                'data_inicio' => $assinatura->pegarAssDataInicio(),
+                'data_expiracao' => $assinatura->pegarAssDataExpiracao()
+            );
+        }
+
+        return $assinaturasAtivas ?? [];
     }
 
     public function assinaturaAtiva($id)
     {
+
         $consultarAssinatura = $this->assinaturas();
         $consultarPagamentos = $this->pagamentos();
-        $modulos = new Modulos();
-
         foreach ($consultarAssinatura as $assinatura) {
-            if ($assinatura->pegarIdAssUsuario() == $id) {
+            if ($assinatura['id_usuario'] == $id) {
                 foreach ($consultarPagamentos as $pagamento) {
-                    if ($assinatura->pegarIdAssTransacao() == $pagamento->pegarPgtoIdTransacao()) {
+                    if ($assinatura['id_transacao'] == $pagamento['id_transacao']) {
                         $comprovantePgto = array(
-                            'id_transacao' => $pagamento->pegarPgtoIdTransacao(),
-                            'nome' => $pagamento->pegarPgtoNome(),
-                            'cpf' => $modulos->formatarCpf($pagamento->pegarPgtoCpf()),
-                            'servico_assinado' => $pagamento->pegarServicoAssinado(),
-                            'preco_servico' => str_replace('.', ',', $pagamento->pegarServicoPreco()),
-                            'total' => $pagamento->pegarTotal(),
-                            'data' => date("d/m/Y", strtotime($pagamento->pegarDataPagamento()))
+                            'id_transacao' => $pagamento['id_transacao'],
+                            'nome' => $pagamento['nome'],
+                            'cpf' => $pagamento['cpf'],
+                            'servico_assinado' => $pagamento['servico_assinado'],
+                            'preco_servico' => $pagamento['preco_servico'],
+                            'total' => $pagamento['total'],
+                            'data' => $pagamento['total']
                         );
 
                         $servico = array(
                             'ativo' => true,
-                            'servico_assinado' => $pagamento->pegarServicoAssinado(),
-                            'preco_servico' => $pagamento->pegarServicoPreco(),
-                            'data_inicio' => date("d/m/Y", strtotime($assinatura->pegarAssDataInicio())),
-                            'data_expiracao' => date("d/m/Y", strtotime($assinatura->pegarAssDataExpiracao()))
+                            'servico_assinado' => $pagamento['servico_assinado'],
+                            'preco_servico' => $pagamento['preco_servico'],
+                            'data_inicio' => date("d/m/Y", strtotime($assinatura['data_inicio'])),
+                            'data_expiracao' => date("d/m/Y", strtotime($assinatura['data_expiracao'])),
                         );
 
                         return array(

@@ -3,16 +3,14 @@ session_start();
 require_once('../../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
-
 $id = $_SESSION['id'];
-$permissao = $_SESSION['permissao'];
+
 $dados = $sistema->procurarIdUsuario($id);
 
 $gerenciador = new Gerenciador($banco->pegarPdo());
 $servicosDisponiveis = $gerenciador->servicosDisponiveis();
 $assinaturaAtivaInfo = $gerenciador->assinaturaAtiva($id);
-$nomeUsuario = $dados['usuario']['nome'];
-$cpfUsuario = $dados['usuario']['cpf'];
+
 
 if ($assinaturaAtivaInfo && is_array($assinaturaAtivaInfo)) {
     $assinaturaAtivo = isset($assinaturaAtivaInfo['servico']) ? $assinaturaAtivaInfo['servico'] : null;
@@ -24,31 +22,21 @@ if ($assinaturaAtivaInfo && is_array($assinaturaAtivaInfo)) {
 
 /* Fomulário */
 if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['validade'], $_POST['titular'], $_POST['cpfTitular'])) {
-    $idUsuario = $_POST['idUsuario'];
     $idServico = $_POST['idServico'];
     $servicoEscolhido = $_POST['servico'];
-    $nomeUsuario = $_POST['nomeUsuario'];
-    $cpfUsuario = $_POST['cpfUsuario'];
-    $numCartao = $_POST['numCartao'];
-    $cvv = $_POST['cvv'];
-    $validade = $_POST['validade'];
-    $titular = $_POST['titular'];
-    $cpfTitular = $_POST['cpfTitular'];
-    $preco = $_POST['preco'];
 
-    $entrada = $nomeUsuario . date('d/m/Y') . rand(1, 50);
+    $entrada = $dados['usuario']['nome'] . date('d/m/Y') . rand(1, 50);
     $idTransacao = md5($entrada);
 
     $arrayPagamento = array(
         'id_transacao' => $idTransacao,
-        'nome' => $nomeUsuario,
-        'cpf' => $cpfUsuario,
-        'servico_assinado' => $servicoEscolhido,
-        'preco' => $preco
+        'nome' => $dados['usuario']['nome'],
+        'cpf' => $dados['usuario']['cpf'],
+        'servico_assinado' => $servicoEscolhido
     );
 
     $arrayAssinatura = array(
-        'id_usuario' => $idUsuario,
+        'id_usuario' => $id,
         'id_servico' => $idServico,
         'id_transacao' => $idTransacao
     );
@@ -188,10 +176,6 @@ if (isset($_POST['excluirAssinatura'])) {
                 <?php else : ?>
                     <div class="form-content active" id="formSignature">
                         <form method="POST" class="form">
-                            <input type="hidden" name="idUsuario" value="<?= $id ?>">
-                            <input type="hidden" name="nomeUsuario" value="<?= $nomeUsuario ?>">
-                            <input type="hidden" name="cpfUsuario" value="<?= $cpfUsuario ?>">
-                            <input type="hidden" name="dataHoje" value="<?= date('d/m/Y') ?>">
                             <div class="form-container">
                                 <div class="form-category">
                                     <h2>Serviços disponíveis</h2>
