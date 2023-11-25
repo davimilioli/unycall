@@ -90,10 +90,10 @@ if (isset($_POST['excluirAssinatura'])) {
                                 Preço: R$ <?= $assinaturaAtivo['preco_servico'] ?>
                             </div>
                             <div class="signature-active-body-date">
-                                Assinado em: <?= $assinaturaAtivo['data_inicio'] ?>
+                                Assinado em <?= $assinaturaAtivo['data_inicio'] ?>
                             </div>
                             <div class="signature-active-body-date">
-                                Expira em: <?= $assinaturaAtivo['data_expiracao'] ?>
+                                Expira em <?= $assinaturaAtivo['data_expiracao'] ?>
                             </div>
                         </div>
                         <div class="signature-active-footer">
@@ -123,13 +123,13 @@ if (isset($_POST['excluirAssinatura'])) {
                                             <span>R$ <?= $assinaturaAtivo['preco_servico'] ?></span>
                                         </div>
                                         <div class="content-card-block">
-                                            <h3>Assinado em: </h3>
+                                            <h3>Assinado em </h3>
                                             <span>
                                                 <?= $assinaturaAtivo['data_inicio'] ?>
                                             </span>
                                         </div>
                                         <div class="content-card-block">
-                                            <h3>Expira em: </h3>
+                                            <h3>Expira em </h3>
                                             <span>
                                                 Expira em <?= $assinaturaAtivo['data_expiracao'] ?>
                                             </span>
@@ -152,15 +152,15 @@ if (isset($_POST['excluirAssinatura'])) {
                                             <span><?= $comprovante['cpf'] ?></span>
                                         </div>
                                         <div class="content-card-block">
-                                            <h3>Preço do Serviço:</h3>
+                                            <h3>Preço do Serviço</h3>
                                             <span> R$ <?= $comprovante['preco_servico'] ?></span>
                                         </div>
                                         <div class="content-card-block">
-                                            <h3>Total:</h3>
+                                            <h3>Total</h3>
                                             <span> R$ <?= $comprovante['total'] ?></span>
                                         </div>
                                         <div class="content-card-block">
-                                            <h3>Assinado em: </h3>
+                                            <h3>Assinado em </h3>
                                             <span><?= $comprovante['data'] ?></span>
                                         </div>
                                     </div>

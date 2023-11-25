@@ -48,7 +48,7 @@ if ($assinaturaAtivaInfo && is_array($assinaturaAtivaInfo)) {
                                     <img src="/assets/img/icons/dynamic-form.svg">
                                     <div>
                                         <h4><?= $assinaturaAtivo['servico_assinado'] ?></h4>
-                                        <p>--- </p>
+                                        <p>Expira em <?= $assinaturaAtivo['data_expiracao'] ?> </p>
                                     </div>
                                 </div>
                                 <a href="./assinatura/gerenciar.php" class="btn">

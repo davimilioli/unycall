@@ -95,7 +95,7 @@ class Gerenciador
                 'cpf' => $modulos->formatarCpf($pagamento->pegarPgtoCpf()),
                 'servico_assinado' => $pagamento->pegarServicoAssinado(),
                 'preco_servico' => str_replace('.', ',', $pagamento->pegarServicoPreco()),
-                'total' => $pagamento->pegarTotal(),
+                'total' => str_replace('.', ',', $pagamento->pegarTotal()),
                 'data' => date("d/m/Y", strtotime($pagamento->pegarDataPagamento()))
             );
         }
@@ -136,7 +136,7 @@ class Gerenciador
                             'servico_assinado' => $pagamento['servico_assinado'],
                             'preco_servico' => $pagamento['preco_servico'],
                             'total' => $pagamento['total'],
-                            'data' => $pagamento['total']
+                            'data' => $pagamento['data']
                         );
 
                         $servico = array(
