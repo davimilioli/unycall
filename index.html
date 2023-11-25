@@ -21,11 +21,28 @@
                 <li class="menu-list-item"><a href="./contato.html">Contato</a></li>
             </ul>
             <div class="header-actions">
-                <a class="btn secondary" href="./php/cadastro/cadastro.php">Cadastrar-se</a>
+                <a class="btn secondary" href="/unycall/php/cadastro/cadastro.php">Cadastrar-se</a>
                 <a class="btn" href="./php/login/login.php">Login</a>
             </div>
         </nav>
-        <button type="button" class="menu-mobile">
+        <nav class="nav-mobile">
+            <div class="nav-mobile-header">
+                <div class="logo">
+                    <a href="/unycall/"><img src="./assets/img/logo.png" alt="Logo UnyCall"></a>
+                </div>
+                <button type="button" id="closeNavMobile">X</button>
+            </div>
+            <ul class="nav-mobile-links">
+                <!-- <li class="menu-list-item"><a href="#">Sobre</a></li> -->
+                <li class="nav-mobile-links-item"><a href="./servicos.html">Serviços</a></li>
+                <li class="nav-mobile-links-item"><a href="./contato.html">Contato</a></li>
+            </ul>
+            <div class="nav-mobile-buttons">
+                <a class="btn secondary" href="/unycall/php/cadastro/cadastro.php">Cadastrar-se</a>
+                <a class="btn" href="./php/login/login.php">Login</a>
+            </div>
+        </nav>
+        <button type="button" class="menu-mobile principal">
             <span></span>
             <span></span>
             <span></span>
@@ -116,7 +133,7 @@
                                     é pago de forma integral.
                                 </span>
                                 <p class="item-header-price-month">+ 2 Meses Grátis</p>
-                                <a href="/php/cadastro/cadastro.php" class="btn">Começar agora</a>
+                                <a href="/unycall/php/cadastro/cadastro.php" class="btn">Começar agora</a>
                                 <span class="item-header-estimated">
                                     R$ 22,99/mes* ao renovar
                                 </span>
@@ -177,7 +194,7 @@
                                     é pago de forma integral.
                                 </span>
                                 <p class="item-header-price-month">+ 2 Meses Grátis</p>
-                                <a href="/php/cadastro/cadastro.php" class="btn">Começar agora</a>
+                                <a href="/unycall/php/cadastro/cadastro.php" class="btn">Começar agora</a>
                                 <span class="item-header-estimated">
                                     R$ 22,99/mes* ao renovar
                                 </span>
@@ -235,7 +252,7 @@
                                     é pago de forma integral.
                                 </span>
                                 <p class="item-header-price-month">+ 2 Meses Grátis</p>
-                                <a href="/php/cadastro/cadastro.php" class="btn">Começar agora</a>
+                                <a href="/unycall/php/cadastro/cadastro.php" class="btn">Começar agora</a>
                                 <span class="item-header-estimated">
                                     R$ 22,99/mes* ao renovar
                                 </span>
@@ -556,10 +573,8 @@
         </section>
         <section class="join">
             <div class="join-content container">
-
-                <a href="/php/cadastro/cadastro.php" class="btn">Começar agora</a>
+                <a href="/unycall/php/cadastro/cadastro.php" class="btn">Começar agora</a>
                 <p class=""><img src="./assets/img/icons/shield.svg"> 30 dias para pedir reembolso</p>
-
             </div>
         </section>
     </main>
@@ -627,6 +642,7 @@
             </div>
         </div>
     </footer>
+    <script src="/unycall/assets/js/header.js"></script>
     <script src="/unycall/assets/js/home.js"></script>
 </body>
 

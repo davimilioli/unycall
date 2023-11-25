@@ -32,7 +32,7 @@ if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
     <title>Unycall - Login</title>
 </head>
 
-<body style="overflow: hidden;">
+<body>
     <header class="header">
         <div class="logo">
             <a href="<?= CAMINHO_PADRAO ?>/"><img src="<?= CAMINHO_PADRAO ?>/assets/img/logo.png" alt="Logo UnyCall"></a>
@@ -40,15 +40,32 @@ if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
         <nav class="menu">
             <ul class="menu-list">
                 <!-- <li class="menu-list-item"><a href="#">Sobre</a></li> -->
-                <li class="menu-list-item"><a href="../../servicos.html">Serviços</a></li>
-                <li class="menu-list-item"><a href="../../contato.html">Contato</a></li>
+                <li class="menu-list-item"><a href="/unycall/servicos.html">Serviços</a></li>
+                <li class="menu-list-item"><a href="/unycall/contato.html">Contato</a></li>
             </ul>
             <div class="header-actions">
                 <a class="btn secondary" href="<?= CAMINHO_PADRAO ?>/php/cadastro/cadastro.php">Cadastrar-se</a>
                 <a class="btn" href="<?= CAMINHO_PADRAO ?>/php/login/login.php">Login</a>
             </div>
         </nav>
-        <button type="button" class="menu-mobile">
+        <nav class="nav-mobile">
+            <div class="nav-mobile-header">
+                <div class="logo">
+                    <a href="<?= CAMINHO_PADRAO ?>/"><img src="<?= CAMINHO_PADRAO ?>/assets/img/logo.png" alt="Logo UnyCall"></a>
+                </div>
+                <button type="button" id="closeNavMobile">X</button>
+            </div>
+            <ul class="nav-mobile-links">
+                <!-- <li class="menu-list-item"><a href="#">Sobre</a></li> -->
+                <li class="nav-mobile-links-item"><a href="/unycall/servicos.html">Serviços</a></li>
+                <li class="nav-mobile-links-item"><a href="/unycall/servicos.html">Contato</a></li>
+            </ul>
+            <div class="nav-mobile-buttons">
+                <a class="btn secondary" href="/unycall/php/cadastro/cadastro.php">Cadastrar-se</a>
+                <a class="btn" href="/unycall/php/login/login.php">Login</a>
+            </div>
+        </nav>
+        <button type="button" class="menu-mobile principal">
             <span></span>
             <span></span>
             <span></span>
@@ -104,6 +121,7 @@ if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
         </div>
         </div>
     </section>
+    <script src="/unycall/assets/js/header.js"></script>
     <script src="<?= CAMINHO_PADRAO ?>/assets/js/login-form.js"></script>
 </body>
 

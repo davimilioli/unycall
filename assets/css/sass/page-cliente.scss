@@ -373,6 +373,9 @@
                                         color: $text-color;
                                         padding: .25rem;
                                         text-align: left;
+                                        white-space: nowrap;
+                                        overflow: hidden;
+                                        text-overflow: ellipsis;
 
                                         @media(max-width: $sm) {
                                             width: 100%;
@@ -984,7 +987,8 @@
                                     overflow: auto;
 
                                     @media(max-width: $sm) {
-                                        height: 80vh;
+                                        height: 75vh;
+                                        padding: 0 1rem;
 
                                         .form-category {
                                             margin-top: 1rem;
@@ -1106,7 +1110,7 @@
                                     overflow: auto;
 
                                     @media (max-width: $sm) {
-                                        height: 80vh;
+                                        height: 75vh;
                                     }
                                 }
 
@@ -1389,7 +1393,7 @@
                             overflow: auto;
 
                             @media (max-width: $sm) {
-                                height: 75vh;
+                                height: 70vh;
                             }
 
                             .modal-body-content {

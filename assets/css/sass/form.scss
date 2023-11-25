@@ -68,6 +68,10 @@
                 font-size: 1.1rem;
                 text-align: center;
             }
+
+            @media(max-width: $sm) {
+                padding: 0 .2rem;
+            }
         }
 
         .inputs-group {

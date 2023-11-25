@@ -1,8 +1,11 @@
 .page-services {
-    margin-top: 5rem;
 
     .cards.block-1 {
         background-color: #fafbff;
+
+        @media(max-width: $md) {
+            padding: 1rem;
+        }
 
         .cards-content {
             flex-wrap: wrap;
@@ -10,6 +13,10 @@
             .cards-item {
                 width: 30%;
                 height: 100%;
+
+                @media(max-width: $md) {
+                    width: 100%;
+                }
 
                 .cards-item-footer {
                     justify-content: end

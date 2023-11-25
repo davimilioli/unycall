@@ -41,6 +41,10 @@
         gap: 10px;
     }
 
+    .nav-mobile {
+        display: none;
+    }
+
     .menu-mobile {
         display: none;
     }
@@ -49,6 +53,10 @@
 
         .menu {
             display: none;
+        }
+
+        .nav-mobile {
+            display: none;
             position: fixed;
             right: -213px;
 
@@ -56,13 +64,65 @@
                 display: block;
                 flex-direction: column;
                 gap: 13px;
-                top: 80px;
+                top: 0;
                 right: 0;
-                width: 63%;
+                width: 100%;
                 height: 100%;
                 background-color: #FFF;
-                padding: 1rem;
                 z-index: 9;
+
+                .nav-mobile-header {
+                    display: flex;
+                    padding: 0.5rem 1rem;
+                    justify-content: space-between;
+                    align-items: center;
+                    border-bottom: 1px solid $border-color;
+
+                    #closeNavMobile {
+
+                        padding: 1rem;
+                        display: block;
+                        border: none;
+                        background: none;
+                        color: $description-color;
+                        font-size: 1.4rem;
+
+                    }
+                }
+
+                .nav-mobile-links {
+                    border-bottom: 1px solid $border-color;
+                    padding: .5rem;
+
+                    .nav-mobile-links-item {
+                        color: $description-color;
+                        width: 100%;
+
+                        a {
+                            width: 100%;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            padding: .35rem .35rem .35rem 1rem;
+                            border-radius: .375rem;
+                            color: $description-color;
+                            transition: .3s;
+                            cursor: pointer;
+                            text-decoration: none;
+                            font-size: 1rem;
+
+                            &:hover {
+                                background-color: #f0eded;
+                                transition: .3s;
+                            }
+                        }
+                    }
+                }
+
+                .nav-mobile-buttons {
+                    padding: 0 1rem;
+                }
+
 
                 .menu-list {
                     flex-direction: column;
@@ -168,7 +228,7 @@
 
                     .menu-profile-header {
                         padding: 1rem;
-                        border-bottom: 1px solid #dad9da;
+                        border-bottom: 1px solid $border-color;
 
                         .menu-profile-header-profile {
                             display: flex;
@@ -225,7 +285,7 @@
 
                     .menu-profile-footer {
                         padding: 1rem;
-                        border-top: 1px solid #dad9da;
+                        border-top: 1px solid $border-color;
 
                         .btn {
                             display: flex;
