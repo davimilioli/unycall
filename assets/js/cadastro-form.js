@@ -50,36 +50,19 @@ document.addEventListener('DOMContentLoaded', () => {
         return encontrado;
     }
 
-    const sexo = document.querySelector('#sexo');
-
-    function setarBorda(seletor, color) {
-        if (color == true) {
-            const element = document.querySelector(seletor);
-            element.style.borderColor = 'green';
-        } else {
-            const element = document.querySelector(seletor);
-            element.style.borderColor = 'red';
-        }
-    }
-
     function validarNome() {
-
         const nome = document.querySelector('#nome');
         let nomeValido = false;
         let nomeRegex = /^[A-Za-z\s]+$/;
 
-        nome.addEventListener('keyup', () => {
-            if (nome.value.length < 15 || /\s\s/.test(nome.value) || nome.value.length > 65) {
-                nomeValido = false;
-                setarBorda('#nome', false);
+        nome.addEventListener('input', () => {
+            if (nome.value.length < 15 || /\s\s/.test(nome.value) || nome.value.length > 65 || !nomeRegex.test(nome.value)) {
+                nomeValido = false
+                nome.value = nome.value.replace(/[0-9]/g, '');
             } else {
                 nomeValido = true;
-                console.log(nomeValido);
-                setarBorda('#nome', true);
             }
-
-            return nomeValido;
-        })
+        });
     }
 
     function validarDataNascimento() {
@@ -98,16 +81,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (nascimentoValue.length === 10) {
                 validaData = true;
-                setarBorda('#data-nascimento', true);
             } else {
                 validaData = false;
-                setarBorda('#data-nascimento', false);
             }
 
             dataNascimento.value = nascimentoValue;
         });
 
-        return validaData;
+        dataNascimento.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace') {
+                let nascimentoValue = dataNascimento.value.replace(/[^0-9]/g, '');
+                if (nascimentoValue.length > 0) {
+                    nascimentoValue = nascimentoValue.slice(0, -1);
+                }
+                dataNascimento.value = nascimentoValue;
+            }
+        });
     }
 
     function validarCpf() {
@@ -125,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 } else if (i === 9) {
                     validarFormatacao += '-';
                 } else if (i === 11) {
-                    setarBorda('#cpf', true);
                 }
                 validarFormatacao += formatarCpf[i];
             }
@@ -145,10 +133,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (verificarCpfExiste) {
 
                     mensagemAviso.style.display = 'flex';
-                    setarBorda('#cpf', false);
                 } else {
                     mensagemAviso.style.display = 'none';
-                    setarBorda('#cpf', true);
                 }
             }
         });
@@ -176,43 +162,57 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (resto !== parseInt(cpf.charAt(10))) return false;
 
-            setarBorda('#cpf', true);
             return true;
         }
     }
 
     function validarNomeMaterno() {
-
+        const nome = document.querySelector('#nome');
         const nomeMaterno = document.querySelector('#nomeMaterno');
-        let nomeValido = false;
+        const mensagemAviso = document.querySelector('.message_notice.nomematerno');
+        let nomeMaternoValido = false;
+        let nomeMaternoRegex = /^[A-Za-z\s]+$/;
 
-        nomeMaterno.addEventListener('keyup', () => {
-            if (nomeMaterno.value.length < 15 || /\s\s/.test(nomeMaterno.value) || nomeMaterno.value.length > 65) {
-                nomeValido = false;
-                setarBorda('#nomeMaterno', false);
+        nomeMaterno.addEventListener('input', () => {
+            if (nomeMaterno.value.length < 15 || /\s\s/.test(nomeMaterno.value) || nomeMaterno.value.length > 65 || !nomeMaternoRegex.test(nomeMaterno.value)) {
+                mensagemAviso.style.display = 'none';
+                nomeMaternoValido = false;
+                nomeMaterno.value = nomeMaterno.value.replace(/[0-9]/g, '');
             } else {
-                nomeValido = true;
-                setarBorda('#nomeMaterno', true);
-                console.log('NOME MATERNO: ' + nomeValido);
+                nomeMaternoValido = true;
+                console.log('NOME MATERNO: ' + nomeMaternoValido);
+                if (nomeMaterno.value == nome.value) {
+                    mensagemAviso.style.display = 'flex';
+                } else {
+                    mensagemAviso.style.display = 'none';
+                }
             }
-        })
+        });
     }
+
 
     function validarEmail() {
 
         const email = document.querySelector('#email');
+        const mensagemAvisoEmail = document.querySelector('.message_notice.email')
         let validaEmail = false;
-
-        email.addEventListener('input', function () {
+        email.addEventListener('input', async () => {
             const emailValue = email.value;
             const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
             if (emailPattern.test(emailValue)) {
+                if (emailValue.length > 6) {
+                    const verificarEmailExiste = await verificarDadoExiste('email', emailValue);
+                    if (verificarEmailExiste) {
+                        mensagemAvisoEmail.style.display = 'flex';
+                    } else {
+                        mensagemAvisoEmail.style.display = 'none';
+                    }
+                } else {
+                    mensagemAvisoEmail.style.display = 'none';
+                }
                 validaEmail = true;
-                setarBorda('#email', true);
-                console.log('email: ' + validaEmail);
             } else {
-                setarBorda('#email', false);
                 validaEmail = false;
             }
         });
@@ -226,26 +226,45 @@ document.addEventListener('DOMContentLoaded', () => {
             let celularFormatado = '';
 
             if (numero.length > 0) {
-                telefoneFormatado = `(+${numero.slice(0, 2)})`;
+                celularFormatado = `(+${numero.slice(0, 2)})`;
 
                 if (numero.length > 2) {
-                    telefoneFormatado += ` ${numero.slice(2, 4)}-`;
+                    celularFormatado += ` ${numero.slice(2, 4)}-`;
 
                     if (numero.length > 4) {
-                        telefoneFormatado += numero.slice(4, 13);
+                        celularFormatado += numero.slice(4, 13);
                     }
                 }
             }
 
-            if (numero.length == 13) {
-                setarBorda('#celular', true);
-            } else {
-                setarBorda('#celular', false);
-            }
+            celular.value = celularFormatado;
+        });
 
-            celular.value = telefoneFormatado;
+        celular.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace') {
+                let numero = celular.value.replace(/\D/g, '');
+                if (numero.length > 0) {
+                    numero = numero.slice(0, -1);
+                    let celularFormatado = '';
+
+                    if (numero.length > 0) {
+                        celularFormatado = `(+${numero.slice(0, 2)})`;
+
+                        if (numero.length > 2) {
+                            celularFormatado += ` ${numero.slice(2, 4)}-`;
+
+                            if (numero.length > 4) {
+                                celularFormatado += numero.slice(4, 13);
+                            }
+                        }
+                    }
+
+                    celular.value = celularFormatado;
+                }
+            }
         });
     }
+
 
     function validarTelefone() {
         const telefone = document.querySelector('#telefone');
@@ -266,16 +285,34 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
 
-            if (numero.length == 12) {
-                setarBorda('#telefone', true);
-            } else {
-                setarBorda('#telefone', false);
-            }
-
             telefone.value = telefoneFormatado;
         });
 
+        telefone.addEventListener('keydown', (e) => {
+            if (e.key === 'Backspace') {
+                let numero = telefone.value.replace(/\D/g, '');
+                if (numero.length > 0) {
+                    numero = numero.slice(0, -1);
+                    let telefoneFormatado = '';
+
+                    if (numero.length > 0) {
+                        telefoneFormatado = `(+${numero.slice(0, 2)})`;
+
+                        if (numero.length > 2) {
+                            telefoneFormatado += ` ${numero.slice(2, 4)}-`;
+
+                            if (numero.length > 4) {
+                                telefoneFormatado += numero.slice(4, 12);
+                            }
+                        }
+                    }
+
+                    telefone.value = telefoneFormatado;
+                }
+            }
+        });
     }
+
 
     function validarCep() {
 
@@ -289,6 +326,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const inputsAddress = document.querySelectorAll('[data-input-address]');
         const numEndereco = document.querySelector('#numend');
         const complemento = document.querySelector('#complemento');
+
         function formatCEP(cepValue) {
             const cleanValue = cepValue.replace(/\D/g, '');
             return cleanValue.replace(/(\d{5})(\d{3})/, '$1-$2');
@@ -305,10 +343,9 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         cep.addEventListener('input', function (e) {
-            const inputValue = e.target.value;
+            const inputValue = e.target.value.replace(/\D/g, '').slice(0, 8);
             const formattedCEP = formatCEP(inputValue);
             e.target.value = formattedCEP;
-
         });
 
         cep.addEventListener('keyup', function (e) {
@@ -317,51 +354,26 @@ document.addEventListener('DOMContentLoaded', () => {
             if (inputValue.length === 9) {
                 const cepValue = inputValue.replace(/\D/g, '');
                 getAddress(cepValue);
-                if (getAddress(cepValue)) {
-                    inputsAddress.forEach((item) => {
-                        if (item.getAttribute('id') == 'numend' || item.getAttribute('id') == 'complemento') {
-                            item.style.borderColor = 'none';
-                        } else {
-                            item.style.borderColor = 'green';
-                        }
-                    })
-                }
-            }
-        });
-
-        numEndereco.addEventListener('keyup', function () {
-
-            if (numEndereco.value.length > 0) {
-                setarBorda('#numend', true);
-            } else {
-                setarBorda('#numend', false);
-            }
-        });
-
-        complemento.addEventListener('keyup', function () {
-
-            if (numEndereco.value.length > 0) {
-                setarBorda('#complemento', true);
             }
         });
 
         async function getAddress(cep) {
 
+            const mensagemAviso = document.querySelector('.message_notice.cep');
             const url = `https://viacep.com.br/ws/${cep}/json/`;
 
             const response = await fetch(url);
 
             const data = await response.json();
-
-            if (data.erro) {
-                validaCep = false;
-
+            if (data.erro === true) {
+                mensagemAviso.style.display = 'flex';
                 inputsAddress.forEach(function (input) {
                     input.value = '';
                 });
 
                 return;
             } else {
+                mensagemAviso.style.display = 'none';
                 validaCep = true;
             }
 
@@ -400,28 +412,20 @@ document.addEventListener('DOMContentLoaded', () => {
             const valorLogin = login.value;
             if (valorLogin.length < 6) {
                 validaLogin = false;
-                setarBorda('#login', false);
             } else {
-                setarBorda('#login', true);
                 validaLogin = true;
                 console.log('Login: ' + validaLogin);
             }
 
-            if (valorLogin === '') {
-                login.style.borderColor = '#d5dfff';
-
-            } else if (valorLogin.length < 6) {
+            if (valorLogin.length < 6) {
                 mensagemAvisoLogin.style.display = 'none';
-                login.style.borderColor = '#d5dfff';
 
             } else if (valorLogin.length == 6) {
                 const verificarLoginExiste = await verificarDadoExiste('login', valorLogin);
                 if (verificarLoginExiste) {
                     mensagemAvisoLogin.style.display = 'flex';
-                    setarBorda('#login', false);
                 } else {
                     mensagemAvisoLogin.style.display = 'none';
-                    setarBorda('#login', true);
                 }
             }
         })
@@ -443,9 +447,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (quantidadeAlfabeticos >= 8) {
                     validaSenha = true;
                     console.log('Senha: ' + validaSenha)
-                    setarBorda('#senha', true);
                 } else {
-                    setarBorda('#senha', false);
                     validaSenha = false;
                 }
             })
@@ -453,12 +455,10 @@ document.addEventListener('DOMContentLoaded', () => {
             confirmaSenha.addEventListener('input', () => {
                 if (confirmaSenha.value == senha.value) {
                     validaConfirma = true;
-                    setarBorda('#confirmar-senha', true);
                     console.log('confirmar senha: ' + validaConfirma);
                     mensagemAvisoSenha.style.display = 'none';
                 } else {
                     validaConfirma = false;
-                    setarBorda('#confirmar-senha', false);
                     mensagemAvisoSenha.style.display = 'flex';
 
                 }
@@ -499,21 +499,38 @@ document.addEventListener('DOMContentLoaded', () => {
                         const nomeMaterno = document.querySelector('#nomeMaterno');
                         const cpf = document.querySelector('#cpf');
                         const dataNascimento = document.querySelector('#data-nascimento');
+                        btnCadastrar.style.opacity = '0.5';
+                        btnCadastrar.innerHTML = `
+                            <div class="loading">
+                                <div class="loading-content">
+                                    <div class="spinner-one"></div>
+                                </div>
+                            </div> ` + 'Validando...';
 
-                        if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && nomeMaterno.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && cep.value !== '' && login.value !== '' && senha && confirmaSenha.value !== '') {
+                        validarDadosExistentes(cpf.value, email.value, login.value)
+                            .then((dadosExistentes) => {
+                                if (dadosExistentes === true) {
 
-                            btnCadastrar.style.opacity = '0.5';
-                            btnCadastrar.innerHTML = `
-                                <div class="loading">
-                                    <div class="loading-content">
-                                        <div class="spinner-one"></div>
-                                    </div>
-                                </div> ` + 'Validando...';
-                            setTimeout(() => {
-                                form.submit();
-                                btnCadastrar.innerHTML = 'Cadastrar';
-                            }, 2000)
-                        }
+                                    if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && nomeMaterno.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && cep.value !== '' && login.value !== '' && senha && confirmaSenha.value !== '') {
+                                        setTimeout(() => {
+                                            form.submit();
+                                            btnCadastrar.innerHTML = 'Cadastrar';
+                                        }, 2000);
+                                    } else {
+                                        btnCadastrar.style.opacity = '1';
+                                        btnCadastrar.innerHTML = 'Cadastrar';
+                                    }
+
+                                } else {
+                                    const mensagemValidacao = document.querySelector('.message.validacao');
+                                    mensagemValidacao.style.display = 'flex';
+                                    btnCadastrar.style.opacity = '1';
+                                    btnCadastrar.innerHTML = 'Cadastrar';
+                                }
+                            })
+                            .catch((error) => {
+                                console.error('Erro ao validar dados existentes:', error);
+                            });
                     }
                 })
             })
@@ -524,7 +541,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function validacaoEdicaoUsuario() {
         const atualizarUsuario = document.querySelector('#updateUser');
         const form = document.querySelector('.form')
-        console.log(atualizarUsuario)
         if (atualizarUsuario) {
             atualizarUsuario.addEventListener('click', (e) => {
                 e.preventDefault();
@@ -543,5 +559,19 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         }
     }
+
+    async function validarDadosExistentes(cpf, email, login) {
+        const validarCpf = await verificarDadoExiste('cpf', cpf);
+        const validarEmail = await verificarDadoExiste('email', email);
+        const validarLogin = await verificarDadoExiste('login', login);
+
+        if (validarCpf !== true && validarEmail !== true && validarLogin !== true) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
 
 });

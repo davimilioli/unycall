@@ -38,7 +38,8 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
         'sexo' => $sexo,
         'celular' => $celular,
         'telefone' => $telefone,
-        'login' => $senha,
+        'login' => $login,
+        'senha' => $senha,
         'cep' => $cep,
         'logradouro' => $logradouro,
         'numero' => $numero,
@@ -116,7 +117,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                         </div>
                         <div class="form-group">
                             <label for="">Sexo <span>*</span></label>
-                            <select name="sexo" required>
+                            <select name="sexo" required id="sexo">
                                 <option value="" selected>Sexo</option>
                                 <option value="masculino">Masculino</option>
                                 <option value="feminino">Feminino</option>
@@ -134,10 +135,18 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                         <div class="form-group">
                             <label for="nomeMaterno">Nome Materno <span>*</span></label>
                             <input type="text" name="nomeMaterno" id="nomeMaterno" required>
+                            <span class="message_notice nomematerno" style="display: none;">
+                                <img src="/assets/img/icons/danger-notice.svg" alt="">
+                                Nome Completo não pode ser igual ao Nome Materno
+                            </span>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input type="email" name="email" id="email" required>
+                            <span class="message_notice email" style="display: none;">
+                                <img src="/assets/img/icons/danger-notice.svg" alt="">
+                                Email já existente
+                            </span>
                         </div>
                         <div class="inputs-group">
                             <div class="form-group">
@@ -154,7 +163,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                         <h2>Endereço</h2>
                         <div class="form-group">
                             <label for="cep">Cep <span>*</span></label>
-                            <input type="text" name="cep" id="cep" data-input-address required>
+                            <input type="text" name="cep" id="cep" data-input-address required placeholder="00000-000">
                         </div>
                         <div class="inputs-group endereco">
                             <div class="form-group">
@@ -213,6 +222,10 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                             <label for="complemento">Complemento</label>
                             <input type="text" name="complemento" id="complemento" data-input-address>
                         </div>
+                        <span class="message_notice cep" style="display: none;">
+                            <img src="/assets/img/icons/danger-notice.svg" alt="">
+                            Cep Inválido
+                        </span>
                     </div>
                     <div class="form-category">
                         <h2>Login</h2>
@@ -254,6 +267,11 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                             </p>
                         </div>
                     <?php endif ?>
+                    <div class="message error validacao" style="display: none;">
+                        <p>
+                            <img src="/assets/img/icons/danger.svg">Cpf ou Email ou Login já existentes
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
