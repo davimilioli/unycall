@@ -174,7 +174,7 @@ if (isset($_POST['excluirAssinatura'])) {
                         </div>
                     </div>
                 <?php else : ?>
-                    <div class="form-content active" id="formSignature">
+                    <div class="form-content" id="formSignature">
                         <form method="POST" class="form">
                             <div class="form-container">
                                 <div class="form-category">

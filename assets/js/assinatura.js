@@ -15,16 +15,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     inicializacao();
 
-    function setarBorda(seletor, color) {
-        if (color == true) {
-            const element = document.querySelector(seletor);
-            element.style.borderColor = 'green';
-        } else {
-            const element = document.querySelector(seletor);
-            element.style.borderColor = 'red';
-        }
-    }
-
     function activeLayout() {
 
         const buttonSignature = document.querySelector('#buttonSignature');
@@ -52,14 +42,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 }
 
                 numeroCartao.value = inputValue;
-
-                if (numeroCartao.value.length == 0) {
-                    numeroCartao.style.borderColor = '#d5dfff';
-                } else if (numeroCartao.value.length == 19) {
-                    setarBorda('#numCartao', true);
-                } else {
-                    setarBorda('#numCartao', false);
-                }
             });
         }
     }
@@ -70,22 +52,15 @@ document.addEventListener("DOMContentLoaded", () => {
             cvv.addEventListener('input', () => {
                 let inputValue = cvv.value.replace(/\D/g, '');
                 inputValue = inputValue.slice(0, 3);
-
                 cvv.value = inputValue;
 
-                if (inputValue.length === 0) {
-                    cvv.style.borderColor = '#d5dfff';
-                } else if (inputValue.length === 3) {
-                    setarBorda('#cvv', true);
-                } else {
-                    setarBorda('#cvv', true);
-                }
             });
         }
     }
 
     function validarValidade() {
         const validade = document.querySelector('#validade');
+
         if (validade) {
             validade.addEventListener('input', () => {
                 let inputValue = validade.value.replace(/\D/g, '');
@@ -98,30 +73,34 @@ document.addEventListener("DOMContentLoaded", () => {
                     inputValue = inputValue.slice(0, 2) + '/' + inputValue.slice(2);
                 }
 
-                if (inputValue.length == 5) {
-                    setarBorda('#validade', true);
-                } else {
-                    setarBorda('#validade', false);
-                }
-
                 validade.value = inputValue;
+            });
+
+            validade.addEventListener('keydown', (e) => {
+                if (e.key === 'Backspace') {
+                    let inputValue = validade.value.replace(/\D/g, '');
+                    if (inputValue.length > 0) {
+                        inputValue = inputValue.slice(0, -1);
+                        if (inputValue.length >= 2) {
+                            inputValue = inputValue.slice(0, 2) + '/' + inputValue.slice(2);
+                        }
+                        validade.value = inputValue;
+                    }
+                }
             });
         }
     }
 
     function validarTitular() {
         const titular = document.querySelector('#titular');
+        let titularRegex = /^[A-Za-z\s]+$/;
 
-        if (titular) {
-            titular.addEventListener('input', () => {
-                let inputValue = titular.value;
-                if (inputValue.length < 15 || /\s\s/.test(inputValue) || inputValue.length > 65) {
-                    setarBorda('#titular', false);
-                } else {
-                    setarBorda('#titular', true);
-                }
-            })
-        }
+        titular.addEventListener('input', () => {
+            if (titular.value.length < 15 || /\s\s/.test(titular.value) || titular.value.length > 65 || !titularRegex.test(titular.value)) {
+                titularValido = false
+                titular.value = titular.value.replace(/[0-9]/g, '');
+            }
+        });
     }
 
     function validarCpf() {
@@ -137,24 +116,12 @@ document.addEventListener("DOMContentLoaded", () => {
                         validarFormatacao += '.';
                     } else if (i === 9) {
                         validarFormatacao += '-';
-                    } else if (i === 11) {
-                        setarBorda('#cpfTitular', true);
                     }
                     validarFormatacao += formatarCpf[i];
                 }
 
                 cpf.value = validarFormatacao;
                 validarCPF(formatarCpf);
-
-                if (cpf.value === '') {
-                    cpf.style.borderColor = '#d5dfff';
-
-                } else if (cpf.value.length < 11) {
-                    setarBorda('#cpfTitular', false);
-
-                } else if (cpf.value.length == 14) {
-                    setarBorda('#cpfTitular', true);
-                }
             });
         }
 
@@ -181,7 +148,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (resto !== parseInt(cpf.charAt(10))) return false;
 
-            setarBorda('#cpfTitular', true);
             return true;
         }
     }
