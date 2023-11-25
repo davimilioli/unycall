@@ -91,7 +91,7 @@ class BancoDeDados
             `nome` varchar(255) NOT NULL,
             `cpf` varchar(50) NOT NULL DEFAULT '',
             `servico_assinado` varchar(255) NOT NULL,
-            `preco_servico` varchar(255) NOT NULL,
+            `preco_servico` float NOT NULL,
             `total` float NOT NULL,
             `data_pagamento` date NOT NULL,
             PRIMARY KEY (`id`) USING BTREE,
@@ -106,7 +106,7 @@ class BancoDeDados
             `tipo` varchar(255) NOT NULL,
             `nome` varchar(255) NOT NULL,
             `disp_regiao` varchar(255) NOT NULL,
-            `custo` float,
+            `custo` float NOT NULL,
             `status` INT(1) DEFAULT 0,
             PRIMARY KEY (`id`)
             ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;";
