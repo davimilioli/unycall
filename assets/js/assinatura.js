@@ -93,14 +93,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function validarTitular() {
         const titular = document.querySelector('#titular');
-        let titularRegex = /^[A-Za-z\s]+$/;
 
-        titular.addEventListener('input', () => {
-            if (titular.value.length < 15 || /\s\s/.test(titular.value) || titular.value.length > 65 || !titularRegex.test(titular.value)) {
-                titularValido = false
-                titular.value = titular.value.replace(/[0-9]/g, '');
-            }
-        });
+        if (titular) {
+            let titularRegex = /^[A-Za-z\s]+$/;
+
+            titular.addEventListener('input', () => {
+                if (titular.value.length < 15 || /\s\s/.test(titular.value) || titular.value.length > 65 || !titularRegex.test(titular.value)) {
+                    titularValido = false
+                    titular.value = titular.value.replace(/[0-9]/g, '');
+                }
+            });
+        }
     }
 
     function validarCpf() {
