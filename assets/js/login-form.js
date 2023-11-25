@@ -1,27 +1,4 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const login = document.querySelector('#login');
-    const senha = document.querySelector('#senha');
-    const bntEntrar = document.querySelector('#entrar');
-    const form = document.querySelector('.form');
-
-    bntEntrar.addEventListener('click', (e) => {
-        e.preventDefault()
-
-        bntEntrar.style.opacity = '0.5';
-        bntEntrar.innerHTML = `
-        <div class="loading">
-            <div class="loading-content">
-                <div class="spinner-one"></div>
-            </div>
-        </div> ` + 'Validando...';
-
-        setTimeout(() => {
-            form.submit();
-            bntEntrar.innerHTML = 'Entrar';
-        }, 2000)
-
-    })
-
     const btnType = document.querySelectorAll('.button-type');
     const inputType = document.querySelector('[name=tipoLogin]');
 

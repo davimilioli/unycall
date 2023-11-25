@@ -176,19 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         if (numeroCartao.value != '' && cvv.value.length != '' && validade.value.length != '' && titular.value.length !== '' && cpf.value.length != '') {
                             console.log('formulário validado');
-
-                            botaoAssinar.style.opacity = '0.5';
-                            botaoAssinar.innerHTML = `
-                            <div class="loading">
-                                <div class="loading-content">
-                                    <div class="spinner-one"></div>
-                                </div>
-                            </div> ` + 'Validando...';
-
-                            setTimeout(() => {
-                                form.submit();
-                                botaoAssinar.innerHTML = 'Assinar';
-                            }, 2000)
+                            form.submit();
                         }
                     }
                 })
@@ -252,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const excluirAssinatura = document.querySelector('#excluirAssinatura');
                 excluirAssinatura.addEventListener('click', (e) => {
                     e.preventDefault();
-                    window.location.href = '/php/cliente/cliente.php';
+                    window.location.href = '/unycall/php/cliente/cliente.php';
                     formExclude.submit();
                 })
             });

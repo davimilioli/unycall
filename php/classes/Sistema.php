@@ -276,12 +276,12 @@ class Sistema
             $permissao = $consultarDados['permissao'];
 
             if ($tipoLogin == 'administrador' && $permissao == 'administrador') {
-                header('Location: /php/cliente/cliente.php');
+                header('location:' . CAMINHO_PADRAO . '/php/cliente/cliente.php');
                 exit;
             } elseif ($tipoLogin == 'administrador' && $permissao != 'administrador') {
                 $erro = 'Você não tem permissão';
             } elseif ($tipoLogin == 'normal' && $permissao == '') {
-                header('Location: /php/cliente/dois_fatores.php');
+                header('location:' . CAMINHO_PADRAO . '/php/cliente/dois_fatores.php');
                 exit;
             } elseif ($tipoLogin == 'normal' && $permissao == 'administrador') {
                 $erro = 'Você precisa entrar como administrador';
@@ -303,9 +303,8 @@ class Sistema
             $usuario->setarId($id);
             $usuario->setarImagem($nomeImagem);
             $this->usuarioSql->salvarImagem($usuario);
-            move_uploaded_file($imagem['tmp_name'], '../../assets/img/perfil/' . $nomeImagem);
-
-            header('location: /php/cliente/informacoes_conta.php');
+            move_uploaded_file($imagem['tmp_name'], CAMINHO_PADRAO . '/php/assets/img/perfil/' . $nomeImagem);
+            header('location:' . CAMINHO_PADRAO . '/php/cliente/informacoes_conta.php');
             exit;
         }
     }
@@ -313,8 +312,8 @@ class Sistema
     public function enviarExclusaoImagem($id, $imagem)
     {
         $this->usuarioSql->excluirImagem($id);
-        unlink('../../assets/img/perfil/' . $imagem);
-        header('location: /php/cliente/informacoes_conta.php');
+        unlink(CAMINHO_PADRAO . '/php/assets/img/perfil/' . $imagem);
+        header('location:' . CAMINHO_PADRAO . '/php/cliente/informacoes_conta.php');
         exit;
     }
 }

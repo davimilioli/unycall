@@ -10,6 +10,7 @@ $id = $_SESSION['id'];
 $dados = $sistema->procurarIdUsuario($id);
 $usuario = $dados['usuario'];
 $endereco = $dados['endereco'];
+
 if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMaterno'], $_POST['email'], $_POST['sexo'], $_POST['celular'], $_POST['telefone'])) {
     $nome = $_POST['nome'];
     $nascimento = $_POST['nascimento'];
@@ -60,7 +61,7 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
         $sistema->atualizarDadosEndereco($dadosEndereco, $usuarioSql);
     }
 
-    header('location: /php/cliente/informacoes_conta.php');
+    header('location:' . CAMINHO_PADRAO . '/php/cliente/informacoes_conta.php');
     exit;
 }
 
@@ -86,7 +87,7 @@ if (isset($_POST['login'])) {
             $erro = 'Senha incorreta';
         }
 
-        header('location: /php/cliente/informacoes_conta.php');
+        header('location:' . CAMINHO_PADRAO . '/php/cliente/informacoes_conta.php');
         exit;
     }
 }
@@ -96,7 +97,7 @@ if (isset($_POST['exclude'])) {
     $gerenciador->enviarExclusao($idExclude);
     $sistema->deletarDados($idExclude);
 
-    header('location: /php/login/login.php');
+    header('location:' . CAMINHO_PADRAO . '/php/login/login.php');
     exit;
 }
 
@@ -118,9 +119,9 @@ if (isset($_POST['imageProfile'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= CAMINHO_PADRAO ?>/assets/img/favicon.ico" type="image/x-icon">
     <title>Unycall - Editor de Usuário</title>
-    <link rel="stylesheet" href="/assets/css/css/style.css">
+    <link rel="stylesheet" href="<?= CAMINHO_PADRAO ?>/assets/css/css/style.css">
 </head>
 
 <body class="system">
@@ -138,7 +139,7 @@ if (isset($_POST['imageProfile'])) {
                             <form method="POST" class="form" enctype="multipart/form-data">
                                 <?php if ($usuario['imagem']) : ?>
                                     <input type="hidden" name="imageProfile" value="<?= $usuario['imagem'] ?>">
-                                    <img src="/assets/img/perfil/<?= $usuario['imagem'] ?>" id="image-profile">
+                                    <img src="<?= CAMINHO_PADRAO ?>/assets/img/perfil/<?= $usuario['imagem'] ?>" id="image-profile">
                                     <div class="info-image-footer">
                                         <button type="submit" class="btn" name="excluirImagem">Excluir</button>
                                     </div>
@@ -277,7 +278,7 @@ if (isset($_POST['imageProfile'])) {
                                                         </div>
                                                     </div>
                                                     <div class="personal-modal-footer">
-                                                        <button class="btn" id="updateData">Atualizar dados</button>
+                                                        <button class="btn" type="submit" id="updateData">Atualizar dados</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -339,13 +340,13 @@ if (isset($_POST['imageProfile'])) {
                                                         <?php if (isset($erro) && $erro != null) :  ?>
                                                             <div class="message error">
                                                                 <p>
-                                                                    <img src="/assets/img/icons/danger.svg"><?= $erro ?>
+                                                                    <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/danger.svg"><?= $erro ?>
                                                                 </p>
                                                             </div>
                                                         <?php endif ?>
                                                     </div>
                                                     <div class="login-modal-footer">
-                                                        <button class="btn" id="updateLogin">Atualizar login</button>
+                                                        <button class="btn" id="updateLogin" type="submit">Atualizar login</button>
                                                     </div>
                                                 </form>
                                             </div>
@@ -356,7 +357,7 @@ if (isset($_POST['imageProfile'])) {
                             <?php if (isset($good) && $good != null) :  ?>
                                 <div class="message good active">
                                     <p>
-                                        <img src="/assets/img/icons/danger.svg"><?= $good ?>
+                                        <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/danger.svg"><?= $good ?>
                                     </p>
                                 </div>
                             <?php endif ?>
@@ -377,8 +378,8 @@ if (isset($_POST['imageProfile'])) {
             </div>
         </main>
     </div>
-    <script src="/assets/js/cliente.js"></script>
-    <script src="/assets/js/informacoes-conta.js"></script>
+    <script src="<?= CAMINHO_PADRAO ?>/assets/js/cliente.js"></script>
+    <script src="<?= CAMINHO_PADRAO ?>/assets/js/informacoes-conta.js"></script>
 </body>
 
 </html>

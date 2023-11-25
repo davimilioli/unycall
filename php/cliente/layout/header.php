@@ -4,16 +4,16 @@ $dados = $sistema->procurarIdUsuario($id);
 
 <header class="header cliente">
     <button class="aside-open">
-        <img src="/assets/img/icons/menu-open.svg">
+        <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/menu-open.svg">
     </button>
     <div class="logo">
-        <a href="/php/cliente/cliente.php">
-            <img src=" /assets/img/logo.png" alt="Logo UnyCall">
+        <a href="<?= CAMINHO_PADRAO ?>/php/cliente/cliente.php">
+            <img src=" <?= CAMINHO_PADRAO ?>/assets/img/logo.png" alt="Logo UnyCall">
         </a>
     </div>
     <div class="menu-profile">
         <button class="menu-profile-button">
-            <img src="/assets/img/icons/profile.svg">
+            <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/profile.svg">
         </button>
         <div class="menu-profile-content">
             <div class="menu-profile-header">
@@ -25,14 +25,14 @@ $dados = $sistema->procurarIdUsuario($id);
             </div>
             <div class="menu-profile-body">
                 <ul class="menu-profile-body-list">
-                    <li class="menu-profile-body-title"><a href="/php/cliente/informacoes_conta.php">Informações da conta</a></li>
+                    <li class="menu-profile-body-title"><a href="<?= CAMINHO_PADRAO ?>/php/cliente/informacoes_conta.php">Informações da conta</a></li>
                     <li class="menu-profile-body-title">Segurança</li>
                     <li class="menu-profile-body-title">Atividades de Conta</li>
                     <li class="menu-profile-body-title">Suporte</li>
                 </ul>
             </div>
             <div class="menu-profile-footer">
-                <a class="btn" href="/php/cliente/sair.php">Sair</a>
+                <a class="btn" href="<?= CAMINHO_PADRAO ?>/php/cliente/sair.php">Sair</a>
             </div>
         </div>
     </div>

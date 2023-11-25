@@ -24,24 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
     botaoFecharPessoal.addEventListener("click", () => {
       modalPessoal.classList.remove("active");
     });
-
-    atualizarDados.addEventListener('click', (e) => {
-      e.preventDefault();
-
-      atualizarDados.style.opacity = '0.5';
-      atualizarDados.innerHTML = `
-        <div class="loading">
-            <div class="loading-content">
-                <div class="spinner-one"></div>
-            </div>
-        </div> ` + 'Atualizando...';
-
-      setTimeout(() => {
-        form.submit();
-        atualizarDados.innerHTML = 'Atualizar dados';
-      }, 2000)
-
-    })
   }
 
   function validarCep() {
@@ -94,20 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           });
         }
-      }
-    });
-
-    numEndereco.addEventListener("keyup", function () {
-      if (numEndereco.value.length > 0) {
-        setarBorda("#numend", true);
-      } else {
-        setarBorda("#numend", false);
-      }
-    });
-
-    complemento.addEventListener("keyup", function () {
-      if (numEndereco.value.length > 0) {
-        setarBorda("#complemento", true);
       }
     });
 
@@ -171,23 +139,6 @@ document.addEventListener("DOMContentLoaded", () => {
     botaoFecharLogin.addEventListener("click", () => {
       modalLogin.classList.remove("active");
     });
-
-    atualizarLogin.addEventListener('click', (e) => {
-      e.preventDefault();
-
-      atualizarLogin.style.opacity = '0.5';
-      atualizarLogin.innerHTML = `
-        <div class="loading">
-            <div class="loading-content">
-                <div class="spinner-one"></div>
-            </div>
-        </div> ` + 'Atualizando...';
-
-      setTimeout(() => {
-        form.submit();
-        atualizarLogin.innerHTML = 'Atualizar login';
-      }, 2000)
-    })
   }
 
   function avisoGood() {

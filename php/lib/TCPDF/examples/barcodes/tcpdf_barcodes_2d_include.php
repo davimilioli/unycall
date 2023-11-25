@@ -25,8 +25,8 @@
 
 // Include the TCPDF 2D barcode class (search the class on the following directories).
 $tcpdf_barcodes_2d_include_dirs = array(
-    realpath(dirname(__FILE__) . '/../../tcpdf_barcodes_2d.php'),// True source file
-	realpath('../../tcpdf_barcodes_2d.php'),// Relative from $PWD
+	realpath(dirname(__FILE__) . '/../../tcpdf_barcodes_2d.php'), // True source file
+	realpath('../../tcpdf_barcodes_2d.php'), // Relative from $PWD
 	'/usr/share/php/tcpdf/tcpdf_barcodes_2d.php',
 	'/usr/share/tcpdf/tcpdf_barcodes_2d.php',
 	'/usr/share/php-tcpdf/tcpdf_barcodes_2d.php',

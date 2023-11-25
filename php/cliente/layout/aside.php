@@ -5,8 +5,8 @@
             <div class="aside-category">
                 <div class="aside-category-title">
                     <span class="aside-category-titles">
-                        <img src="/assets/img/icons/dashboard.svg">
-                        <a href="/php/cliente/cliente.php">Dashboard</a>
+                        <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/dashboard.svg">
+                        <a href="<?= CAMINHO_PADRAO ?>/php/cliente/cliente.php">Dashboard</a>
                     </span>
                 </div>
             </div>
@@ -15,18 +15,18 @@
             <div class="aside-category">
                 <div class="aside-category-title">
                     <span class="aside-category-titles">
-                        <img src="/assets/img/icons/user.svg">
+                        <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/user.svg">
                         Usuarios
                     </span>
-                    <img class="icon-arrow" src="/assets/img/icons/arrow-drop.svg">
+                    <img class="icon-arrow" src="<?= CAMINHO_PADRAO ?>/assets/img/icons/arrow-drop.svg">
                 </div>
                 <div class="aside-nav">
                     <ul class="aside-list">
                         <li class="aside-list-item">
-                            <a href="/php/cliente/lista_usuarios.php">Lista de Usuarios</a>
+                            <a href="<?= CAMINHO_PADRAO ?>/php/cliente/lista_usuarios.php">Lista de Usuarios</a>
                         </li>
                         <li class="aside-list-item">
-                            <a href="/php/cliente/adicionar_usuario.php">Adicionar Usuario</a>
+                            <a href="<?= CAMINHO_PADRAO ?>/php/cliente/adicionar_usuario.php">Adicionar Usuario</a>
                         </li>
                     </ul>
                 </div>
@@ -34,15 +34,15 @@
             <div class="aside-category">
                 <div class="aside-category-title">
                     <span class="aside-category-titles">
-                        <img src="/assets/img/icons/database.svg">
+                        <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/database.svg">
                         Banco de dados
                     </span>
-                    <img class="icon-arrow" src="/assets/img/icons/arrow-drop.svg">
+                    <img class="icon-arrow" src="<?= CAMINHO_PADRAO ?>/assets/img/icons/arrow-drop.svg">
                 </div>
                 <div class="aside-nav">
                     <ul class="aside-list">
                         <li class="aside-list-item">
-                            <a href="/php/cliente/banco/modelo.php">Modelo</a>
+                            <a href="<?= CAMINHO_PADRAO ?>/php/cliente/banco/modelo.php">Modelo</a>
 
                         </li>
                     </ul>
@@ -52,15 +52,15 @@
         <div class="aside-category">
             <div class="aside-category-title">
                 <span class="aside-category-titles">
-                    <img src="/assets/img/icons/user.svg">
+                    <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/user.svg">
                     Assinatura
                 </span>
-                <img class="icon-arrow" src="/assets/img/icons/arrow-drop.svg">
+                <img class="icon-arrow" src="<?= CAMINHO_PADRAO ?>/assets/img/icons/arrow-drop.svg">
             </div>
             <div class="aside-nav">
                 <ul class="aside-list">
                     <li class="aside-list-item">
-                        <a href="/php/cliente/assinatura/gerenciar.php">Gerenciar</a>
+                        <a href="<?= CAMINHO_PADRAO ?>/php/cliente/assinatura/gerenciar.php">Gerenciar</a>
                     </li>
                 </ul>
             </div>
@@ -68,10 +68,10 @@
         <!--         <div class="aside-category">
             <div class="aside-category-title">
                 <span class="aside-category-titles">
-                    <img src="/assets/img/icons/user.svg">
+                    <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/user.svg">
                     Faturas
                 </span>
-                <img class="icon-arrow" src="/assets/img/icons/arrow-drop.svg">
+                <img class="icon-arrow" src="<?= CAMINHO_PADRAO ?>/assets/img/icons/arrow-drop.svg">
             </div>
             <div class="aside-nav">
                 <ul class="aside-list">

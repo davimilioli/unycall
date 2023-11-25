@@ -11,7 +11,6 @@ $gerenciador = new Gerenciador($banco->pegarPdo());
 $servicosDisponiveis = $gerenciador->servicosDisponiveis();
 $assinaturaAtivaInfo = $gerenciador->assinaturaAtiva($id);
 
-
 if ($assinaturaAtivaInfo && is_array($assinaturaAtivaInfo)) {
     $assinaturaAtivo = isset($assinaturaAtivaInfo['servico']) ? $assinaturaAtivaInfo['servico'] : null;
     $comprovante = isset($assinaturaAtivaInfo['comprovante']) ? $assinaturaAtivaInfo['comprovante'] : null;
@@ -55,7 +54,7 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
 if (isset($_POST['excluirAssinatura'])) {
     $id = $_POST['excluirAssinatura'];
     $gerenciador->enviarExclusao($id);
-    header('location: /php/cliente/assinatura/gerenciar.php');
+    header('location:' . CAMINHO_PADRAO . '/php/cliente/assinatura/gerenciar.php');
     exit;
 }
 ?>
@@ -66,9 +65,9 @@ if (isset($_POST['excluirAssinatura'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= CAMINHO_PADRAO ?>/assets/img/favicon.ico" type="image/x-icon">
     <title>Unycall - Gerenciar Assinatura</title>
-    <link rel="stylesheet" href="/assets/css/css/style.css">
+    <link rel="stylesheet" href="<?= CAMINHO_PADRAO ?>/assets/css/css/style.css">
 </head>
 
 <body class="system">
@@ -249,12 +248,12 @@ if (isset($_POST['excluirAssinatura'])) {
                                     <?php if (isset($_GET['erro'])) :  ?>
                                         <div class="message error">
                                             <p>
-                                                <img src="/assets/img/icons/danger.svg"><?= $erro ?>
+                                                <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/danger.svg"><?= $erro ?>
                                             </p>
                                         </div>
                                     <?php endif ?>
                                     <input type="reset" value="Limpar" id="limpar" class="btn secondary">
-                                    <button class="btn" id="assinar">Assinar<button>
+                                    <button class="btn" type="submit" id="assinar">Assinar<button>
                                 </div>
                             </div>
                         </form>
@@ -268,8 +267,8 @@ if (isset($_POST['excluirAssinatura'])) {
             </div>
         </main>
     </div>
-    <script src="/assets/js/cliente.js"></script>
-    <script src="/assets/js/assinatura.js"></script>
+    <script src="<?= CAMINHO_PADRAO ?>/assets/js/cliente.js"></script>
+    <script src="<?= CAMINHO_PADRAO ?>/assets/js/assinatura.js"></script>
 </body>
 
 </html>

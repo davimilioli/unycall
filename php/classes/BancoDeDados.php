@@ -1,4 +1,5 @@
 <?php
+require_once(__DIR__ . '/../../config.php');
 
 class BancoDeDados
 {
@@ -11,10 +12,10 @@ class BancoDeDados
 
     public function conectar()
     {
-        $db_host = "localhost";
-        $db_name = "db_site";
-        $db_charset = "utf8";
-        $db_user = "root";
+        $db_host = DB_HOST;
+        $db_name = DB_NAME;
+        $db_charset = DB_CHARSET;
+        $db_user = DB_USER;
 
         try {
             $this->pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=$db_charset", $db_user);

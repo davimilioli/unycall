@@ -9,7 +9,7 @@ $idAdm = $_SESSION['id'];
 $permissao = $_SESSION['permissao'];
 
 if ($permissao != 'administrador') {
-    header('location: /php/cliente/cliente.php?erroPermissao=true');
+    header('location:' . CAMINHO_PADRAO . '/php/cliente/cliente.php?erroPermissao=true');
     exit;
 }
 
@@ -72,7 +72,7 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
         $sistema->atualizarDadosEndereco($dadosEndereco, $usuarioSql);
     }
 
-    header('location: /php/cliente/lista_usuarios.php');
+    header('location:' . CAMINHO_PADRAO . '/php/cliente/lista_usuarios.php');
     exit;
 }
 ?>
@@ -83,9 +83,9 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= CAMINHO_PADRAO ?>/assets/img/favicon.ico" type="image/x-icon">
     <title>Unycall - Editor de Usuário</title>
-    <link rel="stylesheet" href="/assets/css/css/style.css">
+    <link rel="stylesheet" href="<?= CAMINHO_PADRAO ?>/assets/css/css/style.css">
 </head>
 
 <body class="system">
@@ -110,9 +110,9 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
                         <div class="form-image">
                             <div class="form-image-content">
                                 <?php if ($usuario['imagem']) : ?>
-                                    <img src="/assets/img/perfil/<?= $usuario['imagem'] ?>">
+                                    <img src="<?= CAMINHO_PADRAO ?>/assets/img/perfil/<?= $usuario['imagem'] ?>">
                                 <?php else : ?>
-                                    <img src="/assets/img/sem-imagem.png">
+                                    <img src="<?= CAMINHO_PADRAO ?>/assets/img/sem-imagem.png">
                                 <?php endif ?>
                             </div>
                         </div>
@@ -213,7 +213,7 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
                         </div>
                     </div>
                     <div class="form-buttons">
-                        <button class="btn" class="atualizarDados" id="updateUser">Atualizar</button>
+                        <button class="btn" class="atualizarDados" type="submit" id="updateUser">Atualizar</button>
                         <a class="btn secondary" id="excluirUsuario" data-id-adm="<?= $idAdm ?>" data-id="<?= $usuario['id'] ?>">Excluir</a>
                     </div>
                 </form>
@@ -221,10 +221,9 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
             </div>
         </main>
     </div>
-    <script src="/assets/js/header.js"></script>
-    <script src="/assets/js/cliente.js"></script>
-    <script src="/assets/js/lista-usuarios.js"></script>
-    <script src="/assets/js/cadastro-form.js"></script>
+    <script src="<?= CAMINHO_PADRAO ?>/assets/js/header.js"></script>
+    <script src="<?= CAMINHO_PADRAO ?>/assets/js/cliente.js"></script>
+    <script src="<?= CAMINHO_PADRAO ?>/assets/js/cadastro-form.js"></script>
 </body>
 
 </html>

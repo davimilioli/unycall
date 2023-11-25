@@ -48,9 +48,9 @@ function tamanhoDado($dado)
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= CAMINHO_PADRAO ?>/assets/img/favicon.ico" type="image/x-icon">
     <title>Unycall - Modelo Banco de Dados</title>
-    <link rel="stylesheet" href="/assets/css/css/style.css">
+    <link rel="stylesheet" href="<?= CAMINHO_PADRAO ?>/assets/css/css/style.css">
 </head>
 
 <body class="system">
@@ -99,5 +99,5 @@ function tamanhoDado($dado)
             </div>
         </main>
     </div>
-    <script src="/assets/js/cliente.js"></script>
+    <script src="<?= CAMINHO_PADRAO ?>/assets/js/cliente.js"></script>
 </body>

@@ -24,8 +24,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-
-
     function buscaUsuario() {
         const buscarNomeInput = document.querySelector("#buscarNome");
         const tabela = document.querySelector("tbody");
@@ -48,12 +46,11 @@ document.addEventListener("DOMContentLoaded", () => {
                 let usuarioEncontrado = false;
                 tabela.innerHTML = '';
 
-                listaUsuarios.forEach(function (usuario) {
+                listaUsuarios.forEach((usuario) => {
 
                     const nomeUsuario = usuario.nome.toLowerCase();
                     const cpfUsuario = usuario.cpf.toLowerCase();
                     const emailUsuario = usuario.email.toLowerCase();
-
                     if (termoBusca === '' || nomeUsuario.includes(termoBusca) || cpfUsuario.includes(termoBusca) || emailUsuario.includes(termoBusca)) {
                         const novaLinha = document.createElement("tr");
                         novaLinha.innerHTML = `
@@ -63,15 +60,15 @@ document.addEventListener("DOMContentLoaded", () => {
                             <td>${usuario.email}</td>
                             <td>${usuario.celular}</td>
                             <td>${usuario.telefone}</td>
-                            <td class="table-permissao" id="${usuario.permissao == '' ? 'comum' : usuario.permissao.toLowerCase()}">
-                                <p>${usuario.permissao == '' ? 'Não possui' : usuario.permissao}</p>
+                            <td class="table-permissao" id="${usuario.permissao == 'Não Possui' ? 'comum' : usuario.permissao.toLowerCase()}">
+                                <p>${usuario.permissao == 'Não Possui' ? 'Não possui' : usuario.permissao}</p>
                             </td>
                             <td class="table-buttons">
-                                <a class="btn" title="editar ${usuario.nome}" href="/php/cliente/editar_usuario.php?edit=${usuario.id}">
-                                    <img src="/assets/img/icons/edit.svg">
+                                <a class="btn" title="editar ${usuario.nome}" href="/unycall/php/cliente/editar_usuario.php?edit=${usuario.id}">
+                                    <img src="/unycall/assets/img/icons/edit.svg">
                                 </a>
                                 <a class="btn secondary" title="excluir ${usuario.nome}" id="excluirUsuario" data-id="${usuario.id}">
-                                    <img src="/assets/img/icons/trash.svg">
+                                    <img src="/unycall/assets/img/icons/trash.svg">
                                 </a>
                                 
                             </td>

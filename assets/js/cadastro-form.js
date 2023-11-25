@@ -313,7 +313,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-
     function validarCep() {
 
         let validaCep = false;
@@ -373,7 +372,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 return;
             } else {
-                mensagemAviso.style.display = 'none';
                 validaCep = true;
             }
 
@@ -499,33 +497,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         const nomeMaterno = document.querySelector('#nomeMaterno');
                         const cpf = document.querySelector('#cpf');
                         const dataNascimento = document.querySelector('#data-nascimento');
-                        btnCadastrar.style.opacity = '0.5';
-                        btnCadastrar.innerHTML = `
-                            <div class="loading">
-                                <div class="loading-content">
-                                    <div class="spinner-one"></div>
-                                </div>
-                            </div> ` + 'Validando...';
 
                         validarDadosExistentes(cpf.value, email.value, login.value)
                             .then((dadosExistentes) => {
                                 if (dadosExistentes === true) {
 
                                     if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && nomeMaterno.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && cep.value !== '' && login.value !== '' && senha && confirmaSenha.value !== '') {
-                                        setTimeout(() => {
-                                            form.submit();
-                                            btnCadastrar.innerHTML = 'Cadastrar';
-                                        }, 2000);
+                                        form.submit();
                                     } else {
-                                        btnCadastrar.style.opacity = '1';
-                                        btnCadastrar.innerHTML = 'Cadastrar';
+                                        console.log('erro na validação');
                                     }
 
                                 } else {
                                     const mensagemValidacao = document.querySelector('.message.validacao');
                                     mensagemValidacao.style.display = 'flex';
-                                    btnCadastrar.style.opacity = '1';
-                                    btnCadastrar.innerHTML = 'Cadastrar';
                                 }
                             })
                             .catch((error) => {
@@ -536,28 +521,6 @@ document.addEventListener('DOMContentLoaded', () => {
             })
         }
 
-    }
-
-    function validacaoEdicaoUsuario() {
-        const atualizarUsuario = document.querySelector('#updateUser');
-        const form = document.querySelector('.form')
-        if (atualizarUsuario) {
-            atualizarUsuario.addEventListener('click', (e) => {
-                e.preventDefault();
-
-                atualizarUsuario.style.opacity = '0.5';
-                atualizarUsuario.innerHTML = `
-                    <div class="loading">
-                        <div class="loading-content">
-                            <div class="spinner-one"></div>
-                        </div>
-                    </div> ` + 'Validando...';
-                setTimeout(() => {
-                    form.submit();
-                    atualizarUsuario.innerHTML = 'Atualizar';
-                }, 2000)
-            })
-        }
     }
 
     async function validarDadosExistentes(cpf, email, login) {

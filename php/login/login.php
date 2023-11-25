@@ -27,15 +27,15 @@ if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="/assets/css/css/style.css">
+    <link rel="shortcut icon" href="<?= CAMINHO_PADRAO ?>/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="<?= CAMINHO_PADRAO ?>/assets/css/css/style.css">
     <title>Unycall - Login</title>
 </head>
 
 <body style="overflow: hidden;">
     <header class="header">
         <div class="logo">
-            <a href="/index.html"><img src="/assets/img/logo.png" alt="Logo UnyCall"></a>
+            <a href="<?= CAMINHO_PADRAO ?>/"><img src="<?= CAMINHO_PADRAO ?>/assets/img/logo.png" alt="Logo UnyCall"></a>
         </div>
         <nav class="menu">
             <ul class="menu-list">
@@ -44,8 +44,8 @@ if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
                 <li class="menu-list-item"><a href="../../contato.html">Contato</a></li>
             </ul>
             <div class="header-actions">
-                <a class="btn secondary" href="/php/cadastro/cadastro.php">Cadastrar-se</a>
-                <a class="btn" href="/php/login/login.php">Login</a>
+                <a class="btn secondary" href="<?= CAMINHO_PADRAO ?>/php/cadastro/cadastro.php">Cadastrar-se</a>
+                <a class="btn" href="<?= CAMINHO_PADRAO ?>/php/login/login.php">Login</a>
             </div>
         </nav>
         <button type="button" class="menu-mobile">
@@ -89,14 +89,14 @@ if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
                 <?php if (isset($erro) && $erro != null) :  ?>
                     <div class="message error">
                         <p>
-                            <img src="/assets/img/icons/danger.svg"> <?= $erro ?>
+                            <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/danger.svg"> <?= $erro ?>
                         </p>
                     </div>
                 <?php endif ?>
                 <?php if (isset($_GET['erroSistema'])) :  ?>
                     <div class="message error">
                         <p>
-                            <img src="/assets/img/icons/danger.svg"><?= $erro ?>
+                            <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/danger.svg"><?= $erro ?>
                         </p>
                     </div>
                 <?php endif ?>
@@ -104,7 +104,7 @@ if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
         </div>
         </div>
     </section>
-    <script src="/assets/js/login-form.js"></script>
+    <script src="<?= CAMINHO_PADRAO ?>/assets/js/login-form.js"></script>
 </body>
 
 </html>

@@ -17,7 +17,7 @@ if (isset($_POST['id'], $_POST['slug'], $_POST['resposta'])) {
 
     $sistema->consultarResposta($id, $slug, $resposta);
     if ($sistema->consultarResposta($id, $slug, $resposta)) {
-        header('location: /php/cliente/cliente.php');
+        header('location:' . CAMINHO_PADRAO . '/php/cliente/cliente.php');
         exit;
     } else {
         $erro = 'Resposta incorreta, tente novamente!';
@@ -31,9 +31,9 @@ if (isset($_POST['id'], $_POST['slug'], $_POST['resposta'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= CAMINHO_PADRAO ?>/assets/img/favicon.ico" type="image/x-icon">
     <title>Unycall - Dois Fatores</title>
-    <link rel="stylesheet" href="/assets/css/css/style.css">
+    <link rel="stylesheet" href="<?= CAMINHO_PADRAO ?>/assets/css/css/style.css">
 </head>
 
 <body style="overflow: hidden;">
@@ -56,7 +56,7 @@ if (isset($_POST['id'], $_POST['slug'], $_POST['resposta'])) {
                     <?php if (isset($erro) && $erro != null) :  ?>
                         <div class="message error">
                             <p>
-                                <img src="/assets/img/icons/danger.svg"><?= $erro ?>
+                                <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/danger.svg"><?= $erro ?>
                             </p>
                         </div>
                     <?php endif ?>

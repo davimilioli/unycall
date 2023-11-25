@@ -53,7 +53,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
     $validarCadastro = $sistema->validarCadastro($cadastro);
 
     if ($validarCadastro === true) {
-        header('location: /php/login/login.php');
+        header('location:' . CAMINHO_PADRAO . '/php/login/login.php');
         exit;
     } else {
         $erro = $validarCadastro;
@@ -66,15 +66,15 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= CAMINHO_PADRAO ?>/assets/img/favicon.ico" type="image/x-icon">
     <title>Unycall - Cadastro</title>
-    <link rel="stylesheet" href="/assets/css/css/style.css">
+    <link rel="stylesheet" href="<?= CAMINHO_PADRAO ?>/assets/css/css/style.css">
 </head>
 
 <body>
     <header class="header">
         <div class="logo">
-            <a href="/index.html"><img src="/assets/img/logo.png" alt="Logo UnyCall"></a>
+            <a href="<?= CAMINHO_PADRAO ?>/"><img src="<?= CAMINHO_PADRAO ?>/assets/img/logo.png" alt="Logo UnyCall"></a>
         </div>
         <nav class="menu">
             <ul class="menu-list">
@@ -83,8 +83,8 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                 <li class="menu-list-item"><a href="../../contato.html">Contato</a></li>
             </ul>
             <div class="header-actions">
-                <a class="btn secondary" href="/php/cadastro/cadastro.php">Cadastrar-se</a>
-                <a class="btn" href="/php/login/login.php">Login</a>
+                <a class="btn secondary" href="<?= CAMINHO_PADRAO ?>/php/cadastro/cadastro.php">Cadastrar-se</a>
+                <a class="btn" href="<?= CAMINHO_PADRAO ?>/php/login/login.php">Login</a>
             </div>
         </nav>
         <button type="button" class="menu-mobile">
@@ -96,9 +96,6 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
     <section class="page-form cadastro">
         <div class="form-panel">
             <div class="form-content">
-                <div class="loading hide">
-                    <div class="loading-content"></div>
-                </div>
                 <div class="form-title">
                     <h1>Cadastro</h1>
                     <p>Preencha para ter acesso ao nosso sistema</p>
@@ -128,7 +125,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                             <label for="cpf">CPF <span>*</span></label>
                             <input type="text" name="cpf" id="cpf" maxlength="14" required>
                             <span class="message_notice cpf" style="display: none;">
-                                <img src="/assets/img/icons/danger-notice.svg" alt="">
+                                <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/danger-notice.svg" alt="">
                                 Cpf já existente
                             </span>
                         </div>
@@ -136,7 +133,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                             <label for="nomeMaterno">Nome Materno <span>*</span></label>
                             <input type="text" name="nomeMaterno" id="nomeMaterno" required>
                             <span class="message_notice nomematerno" style="display: none;">
-                                <img src="/assets/img/icons/danger-notice.svg" alt="">
+                                <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/danger-notice.svg" alt="">
                                 Nome Completo não pode ser igual ao Nome Materno
                             </span>
                         </div>
@@ -144,7 +141,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                             <label for="email">Email</label>
                             <input type="email" name="email" id="email" required>
                             <span class="message_notice email" style="display: none;">
-                                <img src="/assets/img/icons/danger-notice.svg" alt="">
+                                <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/danger-notice.svg" alt="">
                                 Email já existente
                             </span>
                         </div>
@@ -223,7 +220,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                             <input type="text" name="complemento" id="complemento" data-input-address>
                         </div>
                         <span class="message_notice cep" style="display: none;">
-                            <img src="/assets/img/icons/danger-notice.svg" alt="">
+                            <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/danger-notice.svg" alt="">
                             Cep Inválido
                         </span>
                     </div>
@@ -233,7 +230,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                             <label for="login">Login <span>*</span></label>
                             <input type="text" name="loginCadastro" id="login" minlength="6" maxlength="6" required>
                             <span class="message_notice login" style="display: none;">
-                                <img src="/assets/img/icons/danger-notice.svg" alt="">
+                                <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/danger-notice.svg" alt="">
                                 Login já existente
                             </span>
                         </div>
@@ -248,7 +245,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                             </div>
                         </div>
                         <span class="message_notice senha" style="display: none;">
-                            <img src="/assets/img/icons/danger-notice.svg" alt="">
+                            <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/danger-notice.svg" alt="">
                             Senhas não iguais
                         </span>
                     </div>
@@ -263,20 +260,20 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                     <?php if (isset($erro) && $erro != null) :  ?>
                         <div class="message error">
                             <p>
-                                <img src="/assets/img/icons/danger.svg"><?= $erro ?>
+                                <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/danger.svg"><?= $erro ?>
                             </p>
                         </div>
                     <?php endif ?>
                     <div class="message error validacao" style="display: none;">
                         <p>
-                            <img src="/assets/img/icons/danger.svg">Cpf ou Email ou Login já existentes
+                            <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/danger.svg">Cpf ou Email ou Login já existentes
                         </p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <script src="/assets/js/cadastro-form.js"></script>
+    <script src="<?= CAMINHO_PADRAO ?>/assets/js/cadastro-form.js"></script>
 </body>
 
 </html>

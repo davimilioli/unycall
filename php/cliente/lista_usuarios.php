@@ -14,7 +14,7 @@ if (isset($_POST['exclude'])) {
     $gerenciador->enviarExclusao($idExclude);
     $sistema->deletarDados($idExclude);
 
-    header('location: /php/cliente/lista_usuarios.php');
+    header('location:' . CAMINHO_PADRAO . '/php/cliente/lista_usuarios.php');
     exit;
 }
 
@@ -27,9 +27,9 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="/assets/img/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?= CAMINHO_PADRAO ?>/assets/img/favicon.ico" type="image/x-icon">
     <title>Unycall - Lista de Usuários</title>
-    <link rel="stylesheet" href="/assets/css/css/style.css">
+    <link rel="stylesheet" href="<?= CAMINHO_PADRAO ?>/assets/css/css/style.css">
 </head>
 
 <body class="system">
@@ -54,12 +54,12 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
                             </div>
                             <?php if (count($lista) > 2) : ?>
                                 <a href="gerar_pdf.php" target="_blank" class="btn pdf">
-                                    <img src="/assets/img/icons/list.svg">
+                                    <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/list.svg">
                                     Importar Lista
                                 </a>
                             <?php endif ?>
                             <a href="adicionar_usuario.php" class="btn">
-                                <img src="/assets/img/icons/plus.svg">
+                                <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/plus.svg">
                                 Adicionar Usuario
                             </a>
                         </div>
@@ -73,7 +73,6 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
                                     <th>CPF</th>
                                     <th>Email</th>
                                     <th>Celular</th>
-                                    <th>Telefone</th>
                                     <th>Permissão</th>
                                     <th>Ações</th>
                                 </tr>
@@ -86,16 +85,15 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
                                         <td><?= $usuario['cpf'] ?></td>
                                         <td><?= $usuario['email'] ?></td>
                                         <td><?= $usuario['celular'] ?></td>
-                                        <td><?= $usuario['telefone'] ?></td>
                                         <td class="table-permissao" id="<?= $usuario['permissao'] == 'Administrador' ? strtolower($usuario['permissao']) : 'comum' ?>">
                                             <p><?= $usuario['permissao'] ?></p>
                                         </td>
                                         <td class="table-buttons">
-                                            <a class="btn" href="/php/cliente/editar_usuario.php?edit=<?= $usuario['id'] ?>">
-                                                <img src="/assets/img/icons/edit.svg">
+                                            <a class="btn" href="<?= CAMINHO_PADRAO ?>/php/cliente/editar_usuario.php?edit=<?= $usuario['id'] ?>">
+                                                <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/edit.svg">
                                             </a>
                                             <a class="btn secondary" id="excluirUsuario" data-id="<?= $usuario['id'] ?>">
-                                                <img src="/assets/img/icons/trash.svg">
+                                                <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/trash.svg">
                                             </a>
                                         </td>
                                     </tr>
@@ -124,8 +122,8 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
             </section>
         </main>
     </div>
-    <script src="/assets/js/cliente.js"></script>
-    <script src="/assets/js/lista-usuarios.js"></script>
+    <script src="<?= CAMINHO_PADRAO ?>/assets/js/cliente.js"></script>
+    <script src="<?= CAMINHO_PADRAO ?>/assets/js/lista-usuarios.js"></script>
 </body>
 
 </html>
