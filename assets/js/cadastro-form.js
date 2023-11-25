@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
         validarLogin();
         validarSenha();
         validarFormulário();
-        validacaoEdicaoUsuario();
 
         console.log('[+] cadastro-form.js iniciado');
     }
@@ -21,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function consultarUsuarioBD() {
         try {
-            const response = await fetch('../cliente/busca_usuario.php');
+            const response = await fetch('/unycall/cliente/busca_usuario.php');
             if (!response.ok) {
                 throw new Error('Erro ao pegar dados');
             }
@@ -520,7 +519,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 })
             })
         }
-
     }
 
     async function validarDadosExistentes(cpf, email, login) {
@@ -535,6 +533,4 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
     }
-
-
 });

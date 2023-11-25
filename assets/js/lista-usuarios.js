@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     async function consultarUsuarioBD() {
         try {
-            const response = await fetch('busca_usuario.php');
+            const response = await fetch('/unycall/cliente/busca_usuario.php');
             if (!response.ok) {
                 throw new Error('Erro ao pegar dados');
             }
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", () => {
                                 <p>${usuario.permissao == 'Não Possui' ? 'Não possui' : usuario.permissao}</p>
                             </td>
                             <td class="table-buttons">
-                                <a class="btn" title="editar ${usuario.nome}" href="/unycall/php/cliente/editar_usuario.php?edit=${usuario.id}">
+                                <a class="btn" title="editar ${usuario.nome}" href="/unycall/cliente/editar_usuario.php?edit=${usuario.id}">
                                     <img src="/unycall/assets/img/icons/edit.svg">
                                 </a>
                                 <a class="btn secondary" title="excluir ${usuario.nome}" id="excluirUsuario" data-id="${usuario.id}">
