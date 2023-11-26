@@ -3,6 +3,7 @@ session_start();
 require_once('../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
+$gerenciador = new Gerenciador($banco->pegarPdo());
 $modulos = new Modulos();
 
 $idAdm = $_SESSION['id'];
@@ -71,6 +72,15 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
         );
         $sistema->atualizarDadosEndereco($dadosEndereco, $usuarioSql);
     }
+
+    header('location:' . CAMINHO_PADRAO . '/cliente/lista_usuarios.php');
+    exit;
+}
+
+if (isset($_POST['exclude'])) {
+    $idExclude = $_POST['exclude'];
+    $gerenciador->enviarExclusao($idExclude);
+    $sistema->deletarDados($idExclude);
 
     header('location:' . CAMINHO_PADRAO . '/cliente/lista_usuarios.php');
     exit;
@@ -221,6 +231,7 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
             </div>
         </main>
     </div>
+    <script src="<?= CAMINHO_PADRAO ?>/assets/js/editar-usuario.js"></script>
     <script src="<?= CAMINHO_PADRAO ?>/assets/js/header.js"></script>
     <script src="<?= CAMINHO_PADRAO ?>/assets/js/cliente.js"></script>
     <script src="<?= CAMINHO_PADRAO ?>/assets/js/cadastro-form.js"></script>
