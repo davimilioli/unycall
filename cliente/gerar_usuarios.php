@@ -14,11 +14,11 @@ if (isset($_GET['numero'])) {
     for ($i = 0; $i < $_GET['numero']; $i++) {
         $dados = new Usuario();
         $endereco = new Endereco();
-    
+
         $dados->setarNome(gerarNomeAleatorio());
         $dados->setarNascimento("1990-01-01");
         $dados->setarEmail(gerarEmailAleatorio());
-    
+
         $dados->setarCpf(gerarCpfAleatorio());
         $dados->setarNomeMaterno(gerarNomeAleatorio());
         $dados->setarSexo("Masculino");
@@ -27,7 +27,8 @@ if (isset($_GET['numero'])) {
         $dados->setarLogin("usuario" . $i);
         $dados->setarSenha("senha" . $i);
         $dados->setarPermissao("");
-    
+        $dados->setarImagem("");
+
         $endereco->setarCepEndereco(gerarCepAleatorio());
         $endereco->setarLogradouroEndereco(gerarLogradouroAleatorio());
         $endereco->setarNumeroEndereco("123");
@@ -35,7 +36,7 @@ if (isset($_GET['numero'])) {
         $endereco->setarCidadeEndereco(gerarCidadeAleatoria());
         $endereco->setarEstadoEndereco("UF");
         $endereco->setarComplementoEndereco("Complemento " . $i);
-    
+
         $usuarioSql->criarUsuario($dados);
         $enderecoSql->criarEndereco($endereco);
     }
@@ -43,7 +44,8 @@ if (isset($_GET['numero'])) {
     echo 'Usuários gerados com sucesso!!';
 }
 
-function gerarNomeAleatorio() {
+function gerarNomeAleatorio()
+{
     $nomes = ['Neymar', 'Messi', 'Cristiano', 'Ronaldo', 'Lionel', 'Davi', 'Arrascaeta', 'Rafael', 'Gabigol', 'Camila'];
     $sobrenomes = ['Milioli', 'Ronaldinho', 'Junior', 'Pereira', 'Souza', 'Ornelas', 'Alves', 'Carvalho', 'Gomes', 'Rodrigues'];
 
@@ -51,41 +53,48 @@ function gerarNomeAleatorio() {
     return $nome;
 }
 
-function gerarEmailAleatorio() {
+function gerarEmailAleatorio()
+{
     $dominios = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'example.com'];
     $nome = str_replace(' ', '', gerarNomeAleatorio());
     $email = preg_replace('/[^A-Za-z0-9]/', '', strtolower($nome)) . '@' . 'gmail.com';
     return $email;
 }
 
-function gerarCpfAleatorio() {
+function gerarCpfAleatorio()
+{
     $cpf = rand(100, 999) . '.' . rand(100, 999) . '.' . rand(100, 999) . '-' . rand(10, 99);
     return $cpf;
 }
 
-function gerarTelefoneAleatorio() {
+function gerarTelefoneAleatorio()
+{
     $ddd = rand(11, 99);
     $numero = rand(900000000, 999999999);
     $telefone = "$ddd$numero";
     return $telefone;
 }
 
-function gerarCepAleatorio() {
+function gerarCepAleatorio()
+{
     $cep = rand(10000000, 99999999);
     return substr($cep, 0, 5) . '-' . substr($cep, 5, 3);
 }
 
-function gerarLogradouroAleatorio() {
+function gerarLogradouroAleatorio()
+{
     $logradouros = ['Rua A', 'Avenida B', 'Travessa C', 'Alameda D', 'Praça E'];
     return $logradouros[array_rand($logradouros)];
 }
 
-function gerarBairroAleatorio() {
+function gerarBairroAleatorio()
+{
     $bairros = ['Centro', 'Jardim', 'Vila', 'Bela Vista', 'Liberdade'];
     return $bairros[array_rand($bairros)];
 }
 
-function gerarCidadeAleatoria() {
+function gerarCidadeAleatoria()
+{
     $cidades = ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Curitiba', 'Porto Alegre'];
     return $cidades[array_rand($cidades)];
 }
