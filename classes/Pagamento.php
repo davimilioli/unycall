@@ -61,12 +61,12 @@ class Pagamento
         return $this->servico_assinado;
     }
 
-    public function setarServicoPreco(string $preco_servico)
+    public function setarServicoPreco(float $preco_servico)
     {
         $this->preco_servico = $preco_servico;
     }
 
-    public function pegarServicoPreco(): string
+    public function pegarServicoPreco(): float
     {
         return $this->preco_servico;
     }

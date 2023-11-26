@@ -47,7 +47,6 @@ class Gerenciador
         $pagamento->setarServicoPreco($this->precoServico($arrayPagamento['servico_assinado']));
         $pagamento->setarDataPagamento(date("Y-m-d"));
 
-
         $this->GerenciadorMySql->cadastrarPagamento($pagamento);
         return true;
     }
@@ -76,7 +75,7 @@ class Gerenciador
 
         foreach ($servicos as $item) {
             if ($item['nome'] == $servico_assinado) {
-                $resultado = $item['custo'];
+                $resultado = str_replace(',', '.', $item['custo']);
             }
         }
 
