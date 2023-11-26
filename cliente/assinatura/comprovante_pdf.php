@@ -78,14 +78,14 @@ $html = '
         <td>1</td>
         <td>' . $assinaturaAtivaInfo['servico_assinado'] .  '</td>
         <td>1</td>
-        <td> R$ ' . number_format($assinaturaAtivaInfo['total'], 2, ',', '.') . '</td>
-        <td> R$ ' . number_format($assinaturaAtivaInfo['total'], 2, ',', '.') . '</td>
+        <td> R$ ' . $assinaturaAtivaInfo['total'] . '</td>
+        <td> R$ ' . $assinaturaAtivaInfo['total'] . '</td>
       </tr>
     </tbody>
     <tfoot>
       <tr>
         <td colspan="4">Total:</td>
-        <td>R$ ' . number_format($assinaturaAtivaInfo['total'], 2, ',', '.') . '</td>
+        <td>R$ ' . $assinaturaAtivaInfo['total'] . '</td>
       </tr>
     </tfoot>
   </table>';
