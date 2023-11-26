@@ -7,10 +7,10 @@ class BancoDeDados
 
     public function __construct()
     {
-        $this->conectar();
+        $this->conexao();
     }
 
-    public function conectar()
+    public function conexao()
     {
         $db_host = DB_HOST;
         $db_name = DB_NAME;
@@ -21,9 +21,37 @@ class BancoDeDados
             $this->pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=$db_charset", $db_user);
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (PDOException $e) {
-            die("Erro na conexão com o banco de dados: <br/>" . $e->getMessage());
+            // Cria o banco
+            $this->criarBanco();
+
+            // Faz mais uma conexão
+            try {
+                $this->pdo = new PDO("mysql:host=$db_host;dbname=$db_name;charset=$db_charset", $db_user);
+                $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            } catch (PDOException $mensagemErro) {
+                die("Erro de conexão com o banco de dados: <br/>" . $mensagemErro->getMessage());
+            }
         }
     }
+
+    public function criarBanco()
+    {
+        $db_host = DB_HOST;
+        $db_name = DB_NAME;
+        $db_charset = DB_CHARSET;
+        $db_user = DB_USER;
+
+        try {
+            $pdoTemp = new PDO("mysql:host=$db_host;charset=$db_charset", $db_user);
+            $pdoTemp->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $sql = "CREATE DATABASE IF NOT EXISTS $db_name";
+            $pdoTemp->exec($sql);
+        } catch (PDOException $e) {
+            die("Erro ao criar banco de dados: <br/>" . $e->getMessage());
+        }
+    }
+
 
     public function pegarPdo()
     {
@@ -37,6 +65,7 @@ class BancoDeDados
         if ($criarTabelas) {
             $sql = $this->pdo->query("SHOW TABLES LIKE 'usuarios'");
             if ($sql->rowCount() == 0) {
+                $this->criarBanco();
                 $this->criarTabelas();
             }
         }

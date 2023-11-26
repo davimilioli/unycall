@@ -1,4 +1,11 @@
-<?php require_once('config.php'); ?>
+<?php
+require_once('autoload.php');
+$banco = new BancoDeDados();
+$verificar = $banco->verificarUsuarioExiste();
+if ($verificar == false) {
+    unset($verificar);
+}
+?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
