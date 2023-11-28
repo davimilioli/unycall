@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../autoload.php');
+require_once('../../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
 $id = $_SESSION['id'];
@@ -55,7 +55,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
     $validarCadastro = $sistema->validarCadastro($cadastro);
 
     if ($validarCadastro === true) {
-        header('location:' . CAMINHO_PADRAO . '/sistema/lista-usuarios.php');
+        header('location:' . CAMINHO_PADRAO . '/sistema/usuarios/lista-usuarios.php');
         exit;
     } else {
         $erro = $validarCadastro;
@@ -76,9 +76,9 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
 </head>
 
 <body class="system">
-    <?php require_once(__DIR__ . '/layout/header.php'); ?>
+    <?php require_once(__DIR__ . '../../layout/header.php'); ?>
     <div class="page-cliente">
-        <?php require_once(__DIR__ . '/layout/aside.php'); ?>
+        <?php require_once(__DIR__ . '../../layout/aside.php'); ?>
         <main class="page-cliente-editar">
             <div class="category-title">
                 <h4>Adicionar Usuario</h4>

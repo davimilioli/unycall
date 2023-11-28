@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../autoload.php');
+require_once('../../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
 $sistema->verificarPermissao();
@@ -14,7 +14,7 @@ if (isset($_POST['exclude'])) {
     $gerenciador->enviarExclusao($idExclude);
     $sistema->deletarDados($idExclude);
 
-    header('location:' . CAMINHO_PADRAO . '/sistema/lista-usuarios.php');
+    header('location:' . CAMINHO_PADRAO . '/sistema/usuarios/lista-usuarios.php');
     exit;
 }
 
@@ -33,9 +33,9 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
 </head>
 
 <body class="system">
-    <?php require_once(__DIR__ . '/layout/header.php'); ?>
+    <?php require_once(__DIR__ . '../../layout/header.php'); ?>
     <div class="page-cliente">
-        <?php require_once(__DIR__ . '/layout/aside.php'); ?>
+        <?php require_once(__DIR__ . '../../layout/aside.php'); ?>
         <main class="page-cliente-usuarios">
             <div class="category-title">
                 <h4>Lista Usuarios</h4>
@@ -87,7 +87,7 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
                                             <p><?= $usuario['permissao'] ?></p>
                                         </td>
                                         <td class="table-buttons">
-                                            <a class="btn" href="<?= CAMINHO_PADRAO ?>/sistema/editar-usuario.php?edit=<?= $usuario['id'] ?>">
+                                            <a class="btn" href="<?= CAMINHO_PADRAO ?>/sistema/usuarios/editar-usuario.php?edit=<?= $usuario['id'] ?>">
                                                 <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/edit.svg">
                                             </a>
                                             <a class="btn secondary" id="excluirUsuario" data-id="<?= $usuario['id'] ?>">

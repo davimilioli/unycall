@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../autoload.php');
+require_once('../../autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
 $gerenciador = new Gerenciador($banco->pegarPdo());
@@ -73,7 +73,7 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
         $sistema->atualizarDadosEndereco($dadosEndereco, $usuarioSql);
     }
 
-    header('location:' . CAMINHO_PADRAO . '/sistema/lista-usuarios.php');
+    header('location:' . CAMINHO_PADRAO . '/sistema/usuarios/lista-usuarios.php');
     exit;
 }
 
@@ -82,7 +82,7 @@ if (isset($_POST['exclude'])) {
     $gerenciador->enviarExclusao($idExclude);
     $sistema->deletarDados($idExclude);
 
-    header('location:' . CAMINHO_PADRAO . '/sistema/lista-usuarios.php');
+    header('location:' . CAMINHO_PADRAO . '/sistema/usuarios/lista-usuarios.php');
     exit;
 }
 ?>
@@ -99,9 +99,9 @@ if (isset($_POST['exclude'])) {
 </head>
 
 <body class="system">
-    <?php require_once(__DIR__ . '/layout/header.php'); ?>
+    <?php require_once(__DIR__ . '../../layout/header.php'); ?>
     <div class="page-cliente">
-        <?php require_once(__DIR__ . '/layout/aside.php'); ?>
+        <?php require_once(__DIR__ . '../../layout/aside.php'); ?>
         <main class="page-cliente-editar">
             <div class="category-title">
                 <h4>Editar Usuario</h4>

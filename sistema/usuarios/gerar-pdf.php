@@ -1,6 +1,6 @@
 <?php
-require_once('../autoload.php');
-require_once('../lib/tcpdf/tcpdf.php');
+require_once('../../autoload.php');
+require_once('../../lib/tcpdf/tcpdf.php');
 
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());

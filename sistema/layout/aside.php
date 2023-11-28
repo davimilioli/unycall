@@ -23,10 +23,10 @@
                 <div class="aside-nav">
                     <ul class="aside-list">
                         <li class="aside-list-item">
-                            <a href="<?= CAMINHO_PADRAO ?>/sistema/lista-usuarios.php">Lista de Usuarios</a>
+                            <a href="<?= CAMINHO_PADRAO ?>/sistema/usuarios/lista-usuarios.php">Lista de Usuarios</a>
                         </li>
                         <li class="aside-list-item">
-                            <a href="<?= CAMINHO_PADRAO ?>/sistema/adicionar-usuario.php">Adicionar Usuario</a>
+                            <a href="<?= CAMINHO_PADRAO ?>/sistema/usuarios/adicionar-usuario.php">Adicionar Usuario</a>
                         </li>
                     </ul>
                 </div>
