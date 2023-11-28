@@ -10,7 +10,7 @@ $idAdm = $_SESSION['id'];
 $permissao = $_SESSION['permissao'];
 
 if ($permissao != 'administrador') {
-    header('location:' . CAMINHO_PADRAO . '/cliente/cliente.php?erroPermissao=true');
+    header('location:' . CAMINHO_PADRAO . '/sistema/sistema.php?erroPermissao=true');
     exit;
 }
 
@@ -73,7 +73,7 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
         $sistema->atualizarDadosEndereco($dadosEndereco, $usuarioSql);
     }
 
-    header('location:' . CAMINHO_PADRAO . '/cliente/lista_usuarios.php');
+    header('location:' . CAMINHO_PADRAO . '/sistema/lista-usuarios.php');
     exit;
 }
 
@@ -82,7 +82,7 @@ if (isset($_POST['exclude'])) {
     $gerenciador->enviarExclusao($idExclude);
     $sistema->deletarDados($idExclude);
 
-    header('location:' . CAMINHO_PADRAO . '/cliente/lista_usuarios.php');
+    header('location:' . CAMINHO_PADRAO . '/sistema/lista-usuarios.php');
     exit;
 }
 ?>

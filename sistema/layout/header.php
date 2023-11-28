@@ -7,7 +7,7 @@ $dados = $sistema->procurarIdUsuario($id);
         <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/menu-open.svg">
     </button>
     <div class="logo">
-        <a href="<?= CAMINHO_PADRAO ?>/cliente/cliente.php">
+        <a href="<?= CAMINHO_PADRAO ?>/sistema/sistema.php">
             <img src=" <?= CAMINHO_PADRAO ?>/assets/img/logo.png" alt="Logo UnyCall">
         </a>
     </div>
@@ -25,14 +25,14 @@ $dados = $sistema->procurarIdUsuario($id);
             </div>
             <div class="menu-profile-body">
                 <ul class="menu-profile-body-list">
-                    <li class="menu-profile-body-title"><a href="<?= CAMINHO_PADRAO ?>/cliente/informacoes_conta.php">Informações da conta</a></li>
+                    <li class="menu-profile-body-title"><a href="<?= CAMINHO_PADRAO ?>/sistema/informacoes-conta.php">Informações da conta</a></li>
                     <li class="menu-profile-body-title">Segurança</li>
                     <li class="menu-profile-body-title">Atividades de Conta</li>
                     <li class="menu-profile-body-title">Suporte</li>
                 </ul>
             </div>
             <div class="menu-profile-footer">
-                <a class="btn" href="<?= CAMINHO_PADRAO ?>/cliente/sair.php">Sair</a>
+                <a class="btn" href="<?= CAMINHO_PADRAO ?>/sistema/sair.php">Sair</a>
             </div>
         </div>
     </div>

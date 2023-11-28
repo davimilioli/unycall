@@ -65,7 +65,7 @@ if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
                         </div>
                     </div>
                 </form>
-                <a href="esqueceu_senha.php" class="text-password">Esqueci minha senha</a></p>
+                <a href="esqueceu-senha.php" class="text-password">Esqueci minha senha</a></p>
                 <?php if (isset($erro) && $erro != null) :  ?>
                     <div class="message error">
                         <p>

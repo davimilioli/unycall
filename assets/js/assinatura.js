@@ -240,7 +240,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const excluirAssinatura = document.querySelector('#excluirAssinatura');
                 excluirAssinatura.addEventListener('click', (e) => {
                     e.preventDefault();
-                    window.location.href = '/unycall/cliente/cliente.php';
+                    window.location.href = '/unycall/sistema/sistema.php';
                     formExclude.submit();
                 })
             });

@@ -14,7 +14,7 @@ if (isset($_POST['exclude'])) {
     $gerenciador->enviarExclusao($idExclude);
     $sistema->deletarDados($idExclude);
 
-    header('location:' . CAMINHO_PADRAO . '/cliente/lista_usuarios.php');
+    header('location:' . CAMINHO_PADRAO . '/sistema/lista-usuarios.php');
     exit;
 }
 
@@ -52,11 +52,11 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
                                     </div>
                                 </form>
                             </div>
-                            <a href="gerar_pdf.php" target="_blank" class="btn pdf">
+                            <a href="gerar-pdf.php" target="_blank" class="btn pdf">
                                 <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/list.svg">
                                 Importar Lista
                             </a>
-                            <a href="adicionar_usuario.php" class="btn">
+                            <a href="adicionar-usuario.php" class="btn">
                                 <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/plus.svg">
                                 Adicionar Usuario
                             </a>
@@ -87,7 +87,7 @@ $totalPaginas = ceil(count($lista) / $qtdUsuarios);
                                             <p><?= $usuario['permissao'] ?></p>
                                         </td>
                                         <td class="table-buttons">
-                                            <a class="btn" href="<?= CAMINHO_PADRAO ?>/cliente/editar_usuario.php?edit=<?= $usuario['id'] ?>">
+                                            <a class="btn" href="<?= CAMINHO_PADRAO ?>/sistema/editar-usuario.php?edit=<?= $usuario['id'] ?>">
                                                 <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/edit.svg">
                                             </a>
                                             <a class="btn secondary" id="excluirUsuario" data-id="<?= $usuario['id'] ?>">

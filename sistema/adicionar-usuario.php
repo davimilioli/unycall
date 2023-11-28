@@ -55,7 +55,7 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
     $validarCadastro = $sistema->validarCadastro($cadastro);
 
     if ($validarCadastro === true) {
-        header('location:' . CAMINHO_PADRAO . '/cliente/lista_usuarios.php');
+        header('location:' . CAMINHO_PADRAO . '/sistema/lista-usuarios.php');
         exit;
     } else {
         $erro = $validarCadastro;

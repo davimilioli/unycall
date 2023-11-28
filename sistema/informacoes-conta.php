@@ -61,7 +61,7 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
         $sistema->atualizarDadosEndereco($dadosEndereco, $usuarioSql);
     }
 
-    header('location:' . CAMINHO_PADRAO . '/cliente/informacoes_conta.php');
+    header('location:' . CAMINHO_PADRAO . '/sistema/informacoes-conta.php');
     exit;
 }
 
@@ -87,7 +87,7 @@ if (isset($_POST['login'])) {
             $erro = 'Senha incorreta';
         }
 
-        header('location:' . CAMINHO_PADRAO . '/cliente/informacoes_conta.php');
+        header('location:' . CAMINHO_PADRAO . '/sistema/informacoes-conta.php');
         exit;
     }
 }

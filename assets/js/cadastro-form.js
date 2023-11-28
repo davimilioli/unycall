@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     async function consultarUsuarioBD() {
         try {
-            const response = await fetch('/unycall/cliente/busca_usuario.php');
+            const response = await fetch('/unycall/sistema/busca-usuario.php');
             if (!response.ok) {
                 throw new Error('Erro ao pegar dados');
             }

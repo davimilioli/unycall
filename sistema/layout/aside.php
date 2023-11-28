@@ -6,7 +6,7 @@
                 <div class="aside-category-title">
                     <span class="aside-category-titles">
                         <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/dashboard.svg">
-                        <a href="<?= CAMINHO_PADRAO ?>/cliente/cliente.php">Dashboard</a>
+                        <a href="<?= CAMINHO_PADRAO ?>/sistema/sistema.php">Dashboard</a>
                     </span>
                 </div>
             </div>
@@ -23,10 +23,10 @@
                 <div class="aside-nav">
                     <ul class="aside-list">
                         <li class="aside-list-item">
-                            <a href="<?= CAMINHO_PADRAO ?>/cliente/lista_usuarios.php">Lista de Usuarios</a>
+                            <a href="<?= CAMINHO_PADRAO ?>/sistema/lista-usuarios.php">Lista de Usuarios</a>
                         </li>
                         <li class="aside-list-item">
-                            <a href="<?= CAMINHO_PADRAO ?>/cliente/adicionar_usuario.php">Adicionar Usuario</a>
+                            <a href="<?= CAMINHO_PADRAO ?>/sistema/adicionar-usuario.php">Adicionar Usuario</a>
                         </li>
                     </ul>
                 </div>
@@ -42,7 +42,7 @@
                 <div class="aside-nav">
                     <ul class="aside-list">
                         <li class="aside-list-item">
-                            <a href="<?= CAMINHO_PADRAO ?>/cliente/banco/modelo.php">Modelo</a>
+                            <a href="<?= CAMINHO_PADRAO ?>/sistema/banco/modelo.php">Modelo</a>
 
                         </li>
                     </ul>
@@ -60,7 +60,7 @@
             <div class="aside-nav">
                 <ul class="aside-list">
                     <li class="aside-list-item">
-                        <a href="<?= CAMINHO_PADRAO ?>/cliente/assinatura/gerenciar.php">Gerenciar</a>
+                        <a href="<?= CAMINHO_PADRAO ?>/sistema/assinatura/gerenciar.php">Gerenciar</a>
                     </li>
                 </ul>
             </div>

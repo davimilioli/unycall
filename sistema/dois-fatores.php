@@ -17,7 +17,7 @@ if (isset($_POST['id'], $_POST['slug'], $_POST['resposta'])) {
 
     $sistema->consultarResposta($id, $slug, $resposta);
     if ($sistema->consultarResposta($id, $slug, $resposta)) {
-        header('location:' . CAMINHO_PADRAO . '/cliente/cliente.php');
+        header('location:' . CAMINHO_PADRAO . '/sistema/sistema.php');
         exit;
     } else {
         $erro = 'Resposta incorreta, tente novamente!';

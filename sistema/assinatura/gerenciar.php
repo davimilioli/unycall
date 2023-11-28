@@ -54,7 +54,7 @@ if (isset($_POST['servico'], $_POST['numCartao'], $_POST['cvv'],  $_POST['valida
 if (isset($_POST['excluirAssinatura'])) {
     $id = $_POST['excluirAssinatura'];
     $gerenciador->enviarExclusao($id);
-    header('location:' . CAMINHO_PADRAO . '/cliente/assinatura/gerenciar.php');
+    header('location:' . CAMINHO_PADRAO . '/sistema/assinatura/gerenciar.php');
     exit;
 }
 ?>
@@ -166,7 +166,7 @@ if (isset($_POST['excluirAssinatura'])) {
                                 </div>
                             </div>
                             <div class="signature-modal-footer">
-                                <a class="btn" href="comprovante_pdf.php?id=<?= $id ?>" target="_blank">Importar Comprovante</a>
+                                <a class="btn" href="comprovante-pdf.php?id=<?= $id ?>" target="_blank">Importar Comprovante</a>
                                 <button class="btn secondary" type="button" data-id="<?= $id ?>">Cancelar Assinatura</button>
                             </div>
                             <div class="modal-exclude"></div>

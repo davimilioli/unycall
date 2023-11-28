@@ -277,12 +277,12 @@ class Sistema
             $permissao = $consultarDados['permissao'];
 
             if ($tipoLogin == 'administrador' && $permissao == 'administrador') {
-                header('location:' . CAMINHO_PADRAO . '/cliente/cliente.php');
+                header('location:' . CAMINHO_PADRAO . '/sistema/sistema.php');
                 exit;
             } elseif ($tipoLogin == 'administrador' && $permissao != 'administrador') {
                 $erro = 'Você não tem permissão';
             } elseif ($tipoLogin == 'normal' && $permissao == '') {
-                header('location:' . CAMINHO_PADRAO . '/cliente/dois_fatores.php');
+                header('location:' . CAMINHO_PADRAO . '/sistema/dois-fatores.php');
                 exit;
             } elseif ($tipoLogin == 'normal' && $permissao == 'administrador') {
                 $erro = 'Você precisa entrar como administrador';
@@ -327,7 +327,7 @@ class Sistema
             $usuario->setarImagem($nomeImagem);
             $this->usuarioSql->salvarImagem($usuario);
 
-            header('location:' . CAMINHO_PADRAO . '/cliente/informacoes_conta.php');
+            header('location:' . CAMINHO_PADRAO . '/sistema/informacoes-conta.php');
             exit;
             return true;
         } else {
@@ -341,7 +341,7 @@ class Sistema
         $this->usuarioSql->excluirImagem($id);
         $caminhoPastaImagem = __DIR__ . '../../assets/perfil/';
         unlink($caminhoPastaImagem . $imagem);
-        header('location:' . CAMINHO_PADRAO . '/cliente/informacoes_conta.php');
+        header('location:' . CAMINHO_PADRAO . '/sistema/informacoes-conta.php');
         exit;
     }
 }

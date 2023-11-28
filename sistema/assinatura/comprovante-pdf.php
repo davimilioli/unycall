@@ -13,7 +13,7 @@ $pdf = new TCPDF();
 $pdf->SetTitle('Comprovante');
 $pdf->AddPage();
 
-$pdf->Image(__DIR__ . '/assets/img/logo.png', 10, 10, 50, 50);
+$pdf->Image(__DIR__ . '../../logo.png', 10, 10, 50, 50);
 
 
 $html = '
