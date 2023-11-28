@@ -312,9 +312,16 @@ class Sistema
         }
 
         $nomeImagem = md5(time() . rand(0, 100)) . '.' . str_replace('image/', '', $imagem['type']);
+        $caminhoPastaImagem = __DIR__ . '../../assets/perfil/';
 
-        if (move_uploaded_file($imagem['tmp_name'], $_SERVER['DOCUMENT_ROOT'] . CAMINHO_PADRAO . '/assets/img/perfil/' . $nomeImagem)) {
+        if (!file_exists($caminhoPastaImagem)) {
+            if (!mkdir($caminhoPastaImagem, 0777, true) && !is_dir($caminhoPastaImagem)) {
+                $erroImagem = 'Erro ao criar pasta';
+                return $erroImagem;
+            }
+        }
 
+        if (move_uploaded_file($imagem['tmp_name'], $caminhoPastaImagem . $nomeImagem)) {
             $usuario = new Usuario();
             $usuario->setarId($id);
             $usuario->setarImagem($nomeImagem);
@@ -332,7 +339,8 @@ class Sistema
     public function enviarExclusaoImagem($id, $imagem)
     {
         $this->usuarioSql->excluirImagem($id);
-        unlink($_SERVER['DOCUMENT_ROOT'] . CAMINHO_PADRAO . '/assets/img/perfil/' . $imagem);
+        $caminhoPastaImagem = __DIR__ . '../../assets/perfil/';
+        unlink($caminhoPastaImagem . $imagem);
         header('location:' . CAMINHO_PADRAO . '/cliente/informacoes_conta.php');
         exit;
     }

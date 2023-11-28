@@ -103,10 +103,7 @@ if (isset($_POST['exclude'])) {
 
 if (isset($_POST['enviarImagem'])) {
     $imagem = $_FILES['imagem'];
-
-    if ($sistema->fazerUpload($id, $imagem) !== true) {
-        $erroImagem = $sistema->fazerUpload($id, $imagem);
-    }
+    $sistema->fazerUpload($id, $imagem);
 }
 
 if (isset($_POST['imageProfile'])) {
@@ -142,7 +139,7 @@ if (isset($_POST['imageProfile'])) {
                             <form method="POST" class="form" enctype="multipart/form-data">
                                 <?php if ($usuario['imagem']) : ?>
                                     <input type="hidden" name="imageProfile" value="<?= $usuario['imagem'] ?>">
-                                    <img src="<?= CAMINHO_PADRAO ?>/assets/img/perfil/<?= $usuario['imagem'] ?>" id="image-profile">
+                                    <img src="<?= CAMINHO_PADRAO ?>/assets/perfil/<?= $usuario['imagem'] ?>" id="image-profile">
                                     <div class="info-image-footer">
                                         <button type="submit" class="btn" name="excluirImagem">Excluir</button>
                                     </div>
