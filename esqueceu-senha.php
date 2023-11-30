@@ -168,6 +168,7 @@ if (isset($_POST['senha'], $_POST['confirmarSenha'])) {
             </div>
         </div>
     </main>
+    <script src="<?= CAMINHO_PADRAO ?>/assets/js/dois-fatores.js"></script>
 </body>
 
 </html>

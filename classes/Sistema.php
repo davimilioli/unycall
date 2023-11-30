@@ -282,7 +282,7 @@ class Sistema
             } elseif ($tipoLogin == 'administrador' && $permissao != 'administrador') {
                 $erro = 'Você não tem permissão';
             } elseif ($tipoLogin == 'normal' && $permissao == '') {
-                header('location:' . CAMINHO_PADRAO . '/sistema/dois-fatores.php');
+                header('location:' . CAMINHO_PADRAO . '/dois-fatores.php');
                 exit;
             } elseif ($tipoLogin == 'normal' && $permissao == 'administrador') {
                 $erro = 'Você precisa entrar como administrador';

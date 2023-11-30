@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once('../autoload.php');
+require_once('autoload.php');
 $banco = new BancoDeDados();
 $sistema = new Sistema($banco->pegarPdo());
 
@@ -12,7 +12,6 @@ if (isset($_POST['id'], $_POST['slug'], $_POST['resposta'])) {
     $id = $_POST['id'];
     $slug = $_POST['slug'];
     $resposta = $_POST['resposta'];
-
     $sistema = new Sistema($banco->pegarPdo());
 
     $sistema->consultarResposta($id, $slug, $resposta);
@@ -36,8 +35,9 @@ if (isset($_POST['id'], $_POST['slug'], $_POST['resposta'])) {
     <link rel="stylesheet" href="<?= CAMINHO_PADRAO ?>/assets/css/css/style.css">
 </head>
 
-<body style="overflow: hidden;">
-    <main class="page-dois-fatores">
+<body>
+    <?php require_once(__DIR__ . '/layout/header.php'); ?>
+    <section class="page-dois-fatores">
         <div class="form-panel">
             <div class="form-content">
                 <form method="POST" class="form">
@@ -63,7 +63,9 @@ if (isset($_POST['id'], $_POST['slug'], $_POST['resposta'])) {
                 </form>
             </div>
         </div>
-    </main>
+    </section>
+    <?php require_once(__DIR__ . '/layout/footer.php'); ?>
+    <script src="<?= CAMINHO_PADRAO ?>/assets/js/dois-fatores.js"></script>
 </body>
 
 </html>
