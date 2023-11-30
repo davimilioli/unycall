@@ -163,7 +163,7 @@ class BancoDeDados
 
         /* CRIAÇÃO DO USUARIO MASTER */
         $senha = password_hash('admin', PASSWORD_DEFAULT);
-        $criarUsuarioMaster = "INSERT INTO usuarios (nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha, permissao) VALUES ('admin','2002-11-28', '21977880448', 'admin', 'admin@gmail.com', 'Masculino', '9378699813', '338018469', 'admin', :senha, 'administrador')";
+        $criarUsuarioMaster = "INSERT INTO usuarios (nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha, permissao, imagem) VALUES ('admin','2002-11-28', '21977880448', 'admin', 'admin@gmail.com', 'Masculino', '9378699813', '338018469', 'admin', :senha, 'administrador', '')";
         $sql = $this->pdo->prepare($criarUsuarioMaster);
         $sql->bindParam(':senha', $senha);
         $sql->execute();
@@ -175,6 +175,22 @@ class BancoDeDados
         $criarEndMaster = "INSERT INTO endereco (id_usuario, cep, logradouro, numero, bairro, cidade, estado, complemento) VALUES (:idUsuario, '97601740', 'Rua Alfredo Lima', '42', 'Capixaba', 'Rio De Janeiro', 'casa', 'casa')";
         $sql = $this->pdo->prepare($criarEndMaster);
         $sql->bindValue(':idUsuario', $usuarioAdmin['id']);
+        $sql->execute();
+
+        /* CRIAÇÃO DO USUARIO COMUM */
+        $senha = password_hash('user', PASSWORD_DEFAULT);
+        $criarUsuarioComum = "INSERT INTO usuarios (nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha, permissao, imagem) VALUES ('Davi Rafael','2002-08-21', '22222222222', 'Rafael', 'davi@gmail.com', 'Masculino', '5521999999999', '5521888888888', 'user', :senha, '', '')";
+        $sql = $this->pdo->prepare($criarUsuarioComum);
+        $sql->bindParam(':senha', $senha);
+        $sql->execute();
+
+        $sql = $this->pdo->prepare("SELECT id FROM usuarios WHERE nome = 'Davi Rafael'");
+        $sql->execute();
+        $usuarioComum = $sql->fetch(PDO::FETCH_ASSOC);
+
+        $criarEndComum = "INSERT INTO endereco (id_usuario, cep, logradouro, numero, bairro, cidade, estado, complemento) VALUES (:idUsuario, '97601740', 'Rua Alfredo Lima', '42', 'Capixaba', 'Rio De Janeiro', 'casa', 'casa')";
+        $sql = $this->pdo->prepare($criarEndComum);
+        $sql->bindValue(':idUsuario', $usuarioComum['id']);
         $sql->execute();
 
         /* CRIAÇÃO DE SERVIÇO PADRÃO */
