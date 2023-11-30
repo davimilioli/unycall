@@ -29,21 +29,12 @@ if ($verificar == false) {
                     <ul class="list-content">
                         <li class="before">
                             Conexão confiavel
-                            <span class="tooltip-trigger" data-tooltip="Oferecemos uma rede confiável e estável para garantir que suas chamadas sejam sempre claras e sem interrupções.">
-                                <img src="./assets/img/icons/help.svg">
-                            </span>
                         </li>
                         <li class="before">
                             Cobertura Abrangente
-                            <span class="tooltip-trigger" data-tooltip="Nossa cobertura se estende a diversas áreas, garantindo que você possa se comunicar onde quer que esteja.">
-                                <img src="./assets/img/icons/help.svg">
-                            </span>
                         </li>
                         <li class="before">
                             Tecnologia de Ponta
-                            <span class="tooltip-trigger" data-tooltip="Estamos comprometidos em usar tecnologia de ponta para proporcionar a você as mais recentes inovações em serviços telefônicos.">
-                                <img src="./assets/img/icons/help.svg">
-                            </span>
                         </li>
                     </ul>
                     <div class="anuncio-price">
@@ -89,14 +80,14 @@ if ($verificar == false) {
                         <div class="plans-cards-item-header">
                             <div class="item-header-promotion">
                                 <div class="item-header-promotion-price">
-                                    R$ 47,99
+                                    R$ 155,88
                                 </div>
                                 <div class="item-header-promotion-percentage">
                                     economize 73%
                                 </div>
                             </div>
                             <div class="item-header-price">
-                                <p>R$ <strong>12,99</strong> /mes*</p>
+                                <p>R$ <strong>113,81</strong> /mes*</p>
                                 <span class="item-header-estimated">*Estimativa de gasto mensal durante 48
                                     meses. Plano
                                     é pago de forma integral.
@@ -104,7 +95,7 @@ if ($verificar == false) {
                                 <p class="item-header-price-month">+ 2 Meses Grátis</p>
                                 <a href="/unycall/cadastro.php" class="btn">Começar agora</a>
                                 <span class="item-header-estimated">
-                                    R$ 22,99/mes* ao renovar
+                                    R$ 108,12/mes* ao renovar
                                 </span>
                             </div>
                             <div class="item-header-body">
@@ -112,21 +103,12 @@ if ($verificar == false) {
                                 <ul class="list-content">
                                     <li class="before">
                                         Conexão confiavel
-                                        <span class="tooltip-trigger" data-tooltip="Oferecemos uma rede confiável e estável para garantir que suas chamadas sejam sempre claras e sem interrupções.">
-                                            <img src="./assets/img/icons/help.svg">
-                                        </span>
                                     </li>
                                     <li class="before">
                                         Cobertura Abrangente
-                                        <span class="tooltip-trigger" data-tooltip="Nossa cobertura se estende a diversas áreas, garantindo que você possa se comunicar onde quer que esteja.">
-                                            <img src="./assets/img/icons/help.svg">
-                                        </span>
                                     </li>
                                     <li class="before">
                                         Tecnologia de Ponta
-                                        <span class="tooltip-trigger" data-tooltip="Estamos comprometidos em usar tecnologia de ponta para proporcionar a você as mais recentes inovações em serviços telefônicos.">
-                                            <img src="./assets/img/icons/help.svg">
-                                        </span>
                                     </li>
                                 </ul>
                             </div>
@@ -146,14 +128,14 @@ if ($verificar == false) {
                         <div class="plans-cards-item-header">
                             <div class="item-header-promotion">
                                 <div class="item-header-promotion-price">
-                                    R$ 47,99
+                                    R$ 215,88
                                 </div>
                                 <div class="item-header-promotion-percentage">
                                     economize 73%
                                 </div>
                             </div>
                             <div class="item-header-price">
-                                <p>R$ <strong>17,99</strong> /mes*</p>
+                                <p>R$ <strong>157,78</strong> /mes*</p>
                                 <span class="item-header-estimated">*Estimativa de gasto mensal durante 48
                                     meses. Plano
                                     é pago de forma integral.
@@ -161,7 +143,7 @@ if ($verificar == false) {
                                 <p class="item-header-price-month">+ 2 Meses Grátis</p>
                                 <a href="/unycall/cadastro.php" class="btn">Começar agora</a>
                                 <span class="item-header-estimated">
-                                    R$ 22,99/mes* ao renovar
+                                    R$ 149,98/mes* ao renovar
                                 </span>
                             </div>
                             <div class="item-header-body">
@@ -169,21 +151,12 @@ if ($verificar == false) {
                                 <ul class="list-content">
                                     <li class="before">
                                         Conexão confiavel
-                                        <span class="tooltip-trigger" data-tooltip="Oferecemos uma rede confiável e estável para garantir que suas chamadas sejam sempre claras e sem interrupções.">
-                                            <img src="./assets/img/icons/help.svg">
-                                        </span>
                                     </li>
                                     <li class="before">
                                         Cobertura Abrangente
-                                        <span class="tooltip-trigger" data-tooltip="Nossa cobertura se estende a diversas áreas, garantindo que você possa se comunicar onde quer que esteja.">
-                                            <img src="./assets/img/icons/help.svg">
-                                        </span>
                                     </li>
                                     <li class="before">
                                         Tecnologia de Ponta
-                                        <span class="tooltip-trigger" data-tooltip="Estamos comprometidos em usar tecnologia de ponta para proporcionar a você as mais recentes inovações em serviços telefônicos.">
-                                            <img src="./assets/img/icons/help.svg">
-                                        </span>
                                     </li>
                                 </ul>
                             </div>
@@ -200,14 +173,14 @@ if ($verificar == false) {
                         <div class="plans-cards-item-header">
                             <div class="item-header-promotion">
                                 <div class="item-header-promotion-price">
-                                    R$ 47,99
+                                    R$ 599,88
                                 </div>
                                 <div class="item-header-promotion-percentage">
                                     economize 73%
                                 </div>
                             </div>
                             <div class="item-header-price">
-                                <p>R$ <strong>49,99</strong> /mes*</p>
+                                <p>R$ <strong>437,90</strong> /mes*</p>
                                 <span class="item-header-estimated">*Estimativa de gasto mensal durante 48
                                     meses. Plano
                                     é pago de forma integral.
@@ -215,7 +188,7 @@ if ($verificar == false) {
                                 <p class="item-header-price-month">+ 2 Meses Grátis</p>
                                 <a href="/unycall/cadastro.php" class="btn">Começar agora</a>
                                 <span class="item-header-estimated">
-                                    R$ 22,99/mes* ao renovar
+                                    R$ 416,01/mes* ao renovar
                                 </span>
                             </div>
                             <div class="item-header-body">
@@ -223,21 +196,12 @@ if ($verificar == false) {
                                 <ul class="list-content">
                                     <li class="before">
                                         Conexão confiavel
-                                        <span class="tooltip-trigger" data-tooltip="Oferecemos uma rede confiável e estável para garantir que suas chamadas sejam sempre claras e sem interrupções.">
-                                            <img src="./assets/img/icons/help.svg">
-                                        </span>
                                     </li>
                                     <li class="before">
                                         Cobertura Abrangente
-                                        <span class="tooltip-trigger" data-tooltip="Nossa cobertura se estende a diversas áreas, garantindo que você possa se comunicar onde quer que esteja.">
-                                            <img src="./assets/img/icons/help.svg">
-                                        </span>
                                     </li>
                                     <li class="before">
                                         Tecnologia de Ponta
-                                        <span class="tooltip-trigger" data-tooltip="Estamos comprometidos em usar tecnologia de ponta para proporcionar a você as mais recentes inovações em serviços telefônicos.">
-                                            <img src="./assets/img/icons/help.svg">
-                                        </span>
                                     </li>
                                 </ul>
                             </div>
@@ -264,29 +228,17 @@ if ($verificar == false) {
                 <div class="solutions-company-description">
                     <h2>Soluções completas para a sua empresa</h2>
                     <ul class="list-content">
-                        <li>
-                            Planos a partir de 78,99
-                            <span class="tooltip-trigger" data-tooltip="Oferecemos uma rede confiável e estável para garantir que suas chamadas sejam sempre claras e sem interrupções.">
-                                <img src="./assets/img/icons/help.svg">
-                            </span>
+                        <li class="before">
+                            Planos Flexíveis
                         </li>
-                        <li>
-                            Gerencie seus pontos de internet
-                            <span class="tooltip-trigger" data-tooltip="Oferecemos uma rede confiável e estável para garantir que suas chamadas sejam sempre claras e sem interrupções.">
-                                <img src="./assets/img/icons/help.svg">
-                            </span>
+                        <li class="before">
+                            Tecnologia de Ponta
                         </li>
-                        <li>
-                            Planos Customizados
-                            <span class="tooltip-trigger" data-tooltip="Nossa cobertura se estende a diversas áreas, garantindo que você possa se comunicar onde quer que esteja.">
-                                <img src="./assets/img/icons/help.svg">
-                            </span>
+                        <li class="before">
+                            Atendimento ao Cliente Excepcional
                         </li>
-                        <li>
-                            Atendimento diferenciado
-                            <span class="tooltip-trigger" data-tooltip="Estamos comprometidos em usar tecnologia de ponta para proporcionar a você as mais recentes inovações em serviços telefônicos.">
-                                <img src="./assets/img/icons/help.svg">
-                            </span>
+                        <li class="before">
+                            Preços Competitivos
                         </li>
                     </ul>
                 </div>
@@ -302,9 +254,7 @@ if ($verificar == false) {
                         <h3>Neymar Jr</h3>
                     </div>
                     <div class="cards-item-body">
-                        <p>ri odit dignissimos vel, neque ut molestias mollitia eius tempore, totam iure aliquid
-                            error!
-                        </p>
+                        <p>A empresa está sempre se atualizando com tecnologias avançadas, o que se reflete na qualidade do serviço oferecido</p>
                     </div>
                     <div class="cards-item-footer">
                         <div>
@@ -322,9 +272,7 @@ if ($verificar == false) {
                         <h3>Cristiano Ronaldo</h3>
                     </div>
                     <div class="cards-item-body">
-                        <p>ri odit dignissimos vel, neque ut molestias mollitia eius tempore, totam iure aliquid
-                            error!
-                        </p>
+                        <p>O produto é inovador e possui recursos que não encontrei em outros similares no mercado.</p>
                     </div>
                     <div class="cards-item-footer">
                         <div>
@@ -342,9 +290,7 @@ if ($verificar == false) {
                         <h3>Lionel Messi</h3>
                     </div>
                     <div class="cards-item-body">
-                        <p>ri odit dignissimos vel, neque ut molestias mollitia eius tempore, totam iure aliquid
-                            error!
-                        </p>
+                        <p>A empresa se preocupa com questões ambientais e sociais, o que me faz sentir bem ao escolher comprar aqui</p>
                     </div>
                     <div class="cards-item-footer">
                         <div>
@@ -370,21 +316,12 @@ if ($verificar == false) {
                     <ul class="list-content">
                         <li class="before">
                             Conexão confiavel
-                            <span class="tooltip-trigger" data-tooltip="Oferecemos uma rede confiável e estável para garantir que suas chamadas sejam sempre claras e sem interrupções.">
-                                <img src="./assets/img/icons/help.svg">
-                            </span>
                         </li>
                         <li class="before">
                             Cobertura Abrangente
-                            <span class="tooltip-trigger" data-tooltip="Nossa cobertura se estende a diversas áreas, garantindo que você possa se comunicar onde quer que esteja.">
-                                <img src="./assets/img/icons/help.svg">
-                            </span>
                         </li>
                         <li class="before">
                             Tecnologia de Ponta
-                            <span class="tooltip-trigger" data-tooltip="Estamos comprometidos em usar tecnologia de ponta para proporcionar a você as mais recentes inovações em serviços telefônicos.">
-                                <img src="./assets/img/icons/help.svg">
-                            </span>
                         </li>
                     </ul>
                 </div>
@@ -398,22 +335,13 @@ if ($verificar == false) {
                         <h2>Segurança de dados</h2>
                         <ul class="list-content">
                             <li class="before">
-                                Conexão confiavel
-                                <span class="tooltip-trigger" data-tooltip="Oferecemos uma rede confiável e estável para garantir que suas chamadas sejam sempre claras e sem interrupções.">
-                                    <img src="./assets/img/icons/help.svg">
-                                </span>
+                                Proteção da Confidencialidade
                             </li>
                             <li class="before">
-                                Cobertura Abrangente
-                                <span class="tooltip-trigger" data-tooltip="Nossa cobertura se estende a diversas áreas, garantindo que você possa se comunicar onde quer que esteja.">
-                                    <img src="./assets/img/icons/help.svg">
-                                </span>
+                                Conformidade com Regulamentações:
                             </li>
                             <li class="before">
-                                Tecnologia de Ponta
-                                <span class="tooltip-trigger" data-tooltip="Estamos comprometidos em usar tecnologia de ponta para proporcionar a você as mais recentes inovações em serviços telefônicos.">
-                                    <img src="./assets/img/icons/help.svg">
-                                </span>
+                                Proteção contra Ameaças Cibernéticas
                             </li>
                         </ul>
                     </div>
@@ -425,9 +353,7 @@ if ($verificar == false) {
                                 <h3>Neymar Jr</h3>
                             </div>
                             <div class="cards-item-body">
-                                <p>ri odit dignissimos vel, neque ut molestias mollitia eius tempore, totam iure aliquid
-                                    error!
-                                </p>
+                                <p>Estou extremamente satisfeito com a qualidade do produto. Superou minhas expectativas!</p>
                             </div>
                             <div class="cards-item-footer">
                                 <div>
@@ -445,9 +371,7 @@ if ($verificar == false) {
                                 <h3>Cristiano Ronaldo</h3>
                             </div>
                             <div class="cards-item-body">
-                                <p>ri odit dignissimos vel, neque ut molestias mollitia eius tempore, totam iure aliquid
-                                    error!
-                                </p>
+                                <p>O atendimento ao cliente foi excelente! A equipe foi muito prestativa e resolveu meu problema rapidamente.</p>
                             </div>
                             <div class="cards-item-footer">
                                 <div>
@@ -465,9 +389,7 @@ if ($verificar == false) {
                                 <h3>Lionel Messi</h3>
                             </div>
                             <div class="cards-item-body">
-                                <p>ri odit dignissimos vel, neque ut molestias mollitia eius tempore, totam iure aliquid
-                                    error!
-                                </p>
+                                <p>A experiência de compra foi incrível. O processo foi rápido e eficiente</p>
                             </div>
                             <div class="cards-item-footer">
                                 <div>
@@ -491,25 +413,16 @@ if ($verificar == false) {
                     <img src="./assets/img/undraw_analysis_dq08.svg" alt="">
                 </div>
                 <div class="solutions-company-description">
-                    <h2>Aumente a velocidade da sua internet</h2>
+                    <h2>Preços competitivos</h2>
                     <ul class="list-content">
                         <li class="before">
-                            Conexão confiavel
-                            <span class="tooltip-trigger" data-tooltip="Oferecemos uma rede confiável e estável para garantir que suas chamadas sejam sempre claras e sem interrupções.">
-                                <img src="./assets/img/icons/help.svg">
-                            </span>
+                            Oferecemos melhores preços
                         </li>
                         <li class="before">
-                            Cobertura Abrangente
-                            <span class="tooltip-trigger" data-tooltip="Nossa cobertura se estende a diversas áreas, garantindo que você possa se comunicar onde quer que esteja.">
-                                <img src="./assets/img/icons/help.svg">
-                            </span>
+                            Qualidade do Produto ou Serviço
                         </li>
                         <li class="before">
-                            Tecnologia de Ponta
-                            <span class="tooltip-trigger" data-tooltip="Estamos comprometidos em usar tecnologia de ponta para proporcionar a você as mais recentes inovações em serviços telefônicos.">
-                                <img src="./assets/img/icons/help.svg">
-                            </span>
+                            Garantias e Política de Devolução
                         </li>
                     </ul>
                 </div>

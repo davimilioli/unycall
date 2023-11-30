@@ -58,10 +58,10 @@ if (isset($_POST['tipoLogin'], $_POST['login'], $_POST['senha'])) {
                     </div>
                     <div class="form-buttons">
                         <div class="form-actions">
-                            <button type="submit" class="btn" class="enviarForm" id="entrar">
+                            <button type="submit" class="btn login" class="enviarForm" id="entrar">
                                 Entrar
                             </button>
-                            <input type="reset" value="Limpar" id="limpar" class="btn secondary">
+                            <input type="reset" value="Limpar" id="limpar" class="btn secondary login">
                         </div>
                     </div>
                 </form>

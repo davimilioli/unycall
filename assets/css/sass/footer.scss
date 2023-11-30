@@ -43,6 +43,19 @@
                     margin-right: 0;
                 }
 
+                a {
+                    color: $description-color;
+                    text-decoration: none;
+                    align-items: center;
+                    display: flex;
+                    transition: .3s;
+
+                    &:hover {
+                        color: $primary-color;
+                        transition: .3s;
+                    }
+                }
+
                 @media screen and (max-width: $sm) {
                     width: 100%;
                     max-width: 100%;

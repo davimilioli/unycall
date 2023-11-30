@@ -106,10 +106,13 @@
                 }
 
                 .btn {
-                    width: 100%;
                     padding-left: 3rem;
                     padding-right: 3rem;
                     position: relative;
+
+                    &.login {
+                        width: 100%;
+                    }
                 }
             }
         }

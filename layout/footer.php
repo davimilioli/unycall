@@ -9,35 +9,31 @@
         </div>
         <div class="footer-itens-description">
             <div class="footer-item">
-                <h4>Contato</h4>
+                <h4>Unycall</h4>
                 <ul>
-                    <li>Fale Conosco</li>
-                    <li>Trabale Conosco</li>
-                    <li>Cadastre-se</li>
+                    <li><a href="<?= CAMINHO_PADRAO ?>/cadastro.php">Cadastre-se</a></li>
                 </ul>
             </div>
             <div class="footer-item">
                 <h4>Contato</h4>
                 <ul>
-                    <li>Fale Conosco</li>
-                    <li>Trabale Conosco</li>
-                    <li>Cadastre-se</li>
+                    <li><a href="<?= CAMINHO_PADRAO ?>/contato.php">Fale Conosco</a></li>
+                    <li><a href="<?= CAMINHO_PADRAO ?>/contato.php">Trabalhe Conosco</a></li>
                 </ul>
             </div>
             <div class="footer-item">
-                <h4>Contato</h4>
+                <h4>Institucional</h4>
                 <ul>
-                    <li>Fale Conosco</li>
-                    <li>Trabale Conosco</li>
-                    <li>Cadastre-se</li>
+                    <li><a href="<?= CAMINHO_PADRAO ?>/sobre.php">Sobre</a></li>
+                    <li><a href="#">Política de Privacidade</a></li>
                 </ul>
             </div>
             <div class="footer-item">
-                <h4>Contato</h4>
+                <h4>Redes Sociais</h4>
                 <ul>
-                    <li>Fale Conosco</li>
-                    <li>Trabale Conosco</li>
-                    <li>Cadastre-se</li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
                 </ul>
             </div>
         </div>
