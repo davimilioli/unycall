@@ -114,6 +114,10 @@
                         width: 100%;
                     }
                 }
+
+                &.signature {
+                    justify-content: end;
+                }
             }
         }
 

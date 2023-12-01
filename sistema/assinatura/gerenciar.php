@@ -246,7 +246,7 @@ if (isset($_POST['excluirAssinatura'])) {
                                 </div>
                             </div>
                             <div class="form-buttons">
-                                <div class="form-actions">
+                                <div class="form-actions signature">
                                     <?php if (isset($_GET['erro'])) :  ?>
                                         <div class="message error">
                                             <p>
@@ -255,7 +255,7 @@ if (isset($_POST['excluirAssinatura'])) {
                                         </div>
                                     <?php endif ?>
                                     <input type="reset" value="Limpar" id="limpar" class="btn secondary">
-                                    <button class="btn" type="submit" id="assinar">Assinar<button>
+                                    <button class="btn" type="submit" id="assinar">Assinar</button>
                                 </div>
                             </div>
                         </form>
