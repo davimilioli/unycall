@@ -14,15 +14,15 @@ if ($permissao != 'administrador') {
     exit;
 }
 
-$id = filter_input(INPUT_GET, 'edit');
+$idEdit = filter_input(INPUT_GET, 'edit');
 
-if ($id) {
-    $dados = $sistema->procurarIdUsuario($id);
+if ($idEdit) {
+    $dados = $sistema->procurarIdUsuario($idEdit);
     $usuario = $dados['usuario'];
     $endereco = $dados['endereco'];
 }
 
-if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMaterno'], $_POST['email'], $_POST['sexo'], $_POST['celular'], $_POST['telefone'], $_POST['login'])) {
+if (isset($idEdit, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMaterno'], $_POST['email'], $_POST['sexo'], $_POST['celular'], $_POST['telefone'], $_POST['login'])) {
     $nome = $_POST['nome'];
     $nascimento = $_POST['nascimento'];
     $cpf = $_POST['cpf'];
@@ -35,7 +35,7 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
     $permissao = $_POST['permissao'];
 
     $dadosUsuario = array(
-        'id' => $id,
+        'id' => $idEdit,
         'nome' => $nome,
         'nascimento' => $nascimento,
         'cpf' => $cpf,
@@ -61,7 +61,7 @@ if (isset($id, $_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nome
         $complemento = $_POST['complemento'];
 
         $dadosEndereco = array(
-            'id_usuario' => $id,
+            'id_usuario' => $idEdit,
             'cep' => str_replace('-', '', $cep),
             'logradouro' => $logradouro,
             'numero' => $numero,
