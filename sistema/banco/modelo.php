@@ -85,11 +85,25 @@ function tamanhoDado($dado)
                                     <tr>
                                         <td><?= $coluna['Field'] ?></td>
                                         <td><?= tipoDado($coluna['Type']) ?></td>
-                                        <td><?= tamanhoDado($coluna['Type']) ?></td>
+                                        <td>
+                                            <?php if (tamanhoDado($coluna['Type']) == '') : ?>
+                                                Não possui
+                                            <?php else : ?>
+                                                <?= tamanhoDado($coluna['Type']) ?>
+                                            <?php endif ?>
+                                        </td>
                                         <td><?= $coluna['Null'] == 'NO' ? 'Não' : 'Sim' ?></td>
-                                        <td><?= $coluna['Key'] == 'PRI' ? 'Primária' : $coluna['Key'] ?></td>
-                                        <td><?= $coluna['Default'] ?></td>
-                                        <td><?= $coluna['Extra'] == 'auto_increment' ? 'Auto Increment' : $coluna['Extra'] ?></td>
+                                        <td><?= $coluna['Key'] == 'PRI' ? 'Primária' : 'Não possui' ?></td>
+                                        <td><?= $coluna['Default'] == '' ? 'Não Possui' : $coluna['Default'] ?></td>
+                                        <td>
+                                            <?php if ($coluna['Extra'] == '') : ?>
+                                                Não possui
+                                            <?php elseif ($coluna['Extra'] == 'auto_increment') : ?>
+                                                Auto Increment
+                                            <?php else : ?>
+                                                <?= $coluna['Extra'] ?>
+                                            <?php endif ?>
+                                        </td>
                                     </tr>
                                 <?php endforeach ?>
                             </tbody>
