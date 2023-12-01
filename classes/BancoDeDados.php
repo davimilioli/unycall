@@ -201,7 +201,7 @@ class BancoDeDados
         ('Internet', 'Business', 'Rio de Janeiro', 157.78, 1)";
 
         $criarServicoOpStartup = "INSERT INTO `servicos` (`tipo`, `nome`, `disp_regiao`, `custo`, `status`) VALUES
-        ('Internet', 'Optimization Startup', 'Rio de Janeiro', 437,90, 1)";
+        ('Internet', 'Optimization Startup', 'Rio de Janeiro', 437.90, 1)";
 
         $this->pdo->exec($criarServicoPremium);
         $this->pdo->exec($criarServicoBusiness);
