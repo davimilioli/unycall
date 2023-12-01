@@ -14,22 +14,70 @@ class Gerenciador
         $this->GerenciadorMySql = new GerenciadorMySql($pdo);
     }
 
+    public function cadastroServico(array $cadastroServico)
+    {
+        $servico = new Servico();
+        $servico->setarServicoTipo($cadastroServico['tipo']);
+        $servico->setarServicoNome($cadastroServico['nome']);
+        $servico->setarDispRegiao($cadastroServico['disp_regiao']);
+        $servico->setarServicoCusto(str_replace(',', '.', $cadastroServico['preco']));
+        $servico->setarServicoStatus($cadastroServico['status']);
+        $this->GerenciadorMySql->criarServico($servico);
+    }
+
+    public function enviarExclusaoServico($id)
+    {
+        $this->GerenciadorMySql->excluirServico($id);
+    }
+
+    public function atualizarDadosServico(array $dadosServico)
+    {
+        $servico = new Servico();
+        $servico->setarServicoId($dadosServico['id']);
+        $servico->setarServicoTipo($dadosServico['tipo']);
+        $servico->setarServicoNome($dadosServico['nome']);
+        $servico->setarDispRegiao($dadosServico['disp_regiao']);
+        $servico->setarServicoCusto($dadosServico['custo']);
+        $servico->setarServicoStatus($dadosServico['status']);
+        $this->GerenciadorMySql->atualizarServico($servico);
+    }
+
+    public function consultarDadosServico($id)
+    {
+        $dadosServico = [];
+        $servicos = $this->GerenciadorMySql->consultarServicos();
+        foreach ($servicos as $item) {
+            if ($item->pegarServicoId() == $id) {
+
+                $dadosServico = array(
+                    'id' => $item->pegarServicoId(),
+                    'nome' => $item->pegarServicoNome(),
+                    'custo' => str_replace('.', ',', $item->pegarServicoCusto()),
+                    'tipo' => $item->pegarServicoTipo(),
+                    'disp_regiao' => $item->pegarDispRegiao(),
+                    'status' => $item->pegarServicoStatus()
+                );
+            }
+        }
+
+        return $dadosServico;
+    }
+
     public function servicosDisponiveis()
     {
         $servicosDisponiveis = [];
         $servicos = $this->GerenciadorMySql->consultarServicos();
 
         foreach ($servicos as $item) {
-            if ($item->pegarServicoStatus() != 0) {
 
-                $servicosDisponiveis[] = array(
-                    'id' => $item->pegarServicoId(),
-                    'nome' => $item->pegarServicoNome(),
-                    'custo' => str_replace('.', ',', $item->pegarServicoCusto()),
-                    'tipo' => $item->pegarServicoTipo(),
-                    'disp_regiao' => $item->pegarDispRegiao()
-                );
-            }
+            $servicosDisponiveis[] = array(
+                'id' => $item->pegarServicoId(),
+                'nome' => $item->pegarServicoNome(),
+                'custo' => str_replace('.', ',', $item->pegarServicoCusto()),
+                'tipo' => $item->pegarServicoTipo(),
+                'disp_regiao' => $item->pegarDispRegiao(),
+                'status' => $item->pegarServicoStatus()
+            );
         }
 
         return $servicosDisponiveis;

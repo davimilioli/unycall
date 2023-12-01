@@ -62,6 +62,14 @@
                     <li class="aside-list-item">
                         <a href="<?= CAMINHO_PADRAO ?>/sistema/assinatura/gerenciar.php">Gerenciar</a>
                     </li>
+                    <?php if ($verificarPermissao  === true) : ?>
+                        <li class="aside-list-item">
+                            <a href="<?= CAMINHO_PADRAO ?>/sistema/assinatura/adicionar-servico.php">Adicionar Serviço</a>
+                        </li>
+                        <li class="aside-list-item">
+                            <a href="<?= CAMINHO_PADRAO ?>/sistema/assinatura/lista-servicos.php">Lista de Serviços</a>
+                        </li>
+                    <?php endif ?>
                 </ul>
             </div>
         </div>

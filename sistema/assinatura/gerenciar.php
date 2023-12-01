@@ -198,23 +198,25 @@ if (isset($_POST['excluirAssinatura'])) {
                                         </div>
                                         <div class="signature-list-content">
                                             <?php foreach ($servicosDisponiveis as $key => $item) : ?>
-                                                <label class="signature-list-options-content" for="<?= $item['nome'] ?>">
-                                                    <input type="hidden" name="preco" value="<?= $item['custo'] ?>">
-                                                    <input type="radio" name="servico" id="<?= $item['nome'] ?>" value="<?= $item['nome'] ?>" required <?= $key == 0 ? 'checked' : '' ?>>
-                                                    <input type="hidden" name="idServico" value="<?= $item['id'] ?>">
-                                                    <div class="signature-list-option-item">
-                                                        <?= $item['tipo']; ?>
-                                                    </div>
-                                                    <div class="signature-list-option-item">
-                                                        <?= $item['nome'] ?>
-                                                    </div>
-                                                    <div class="signature-list-option-item">
-                                                        <?= $item['disp_regiao'] ?>
-                                                    </div>
-                                                    <div class="signature-list-option-item">
-                                                        R$ <?= $item['custo'] ?>
-                                                    </div>
-                                                </label>
+                                                <?php if ($item['status'] != 0) : ?>
+                                                    <label class="signature-list-options-content" for="<?= $item['nome'] ?>">
+                                                        <input type="hidden" name="preco" value="<?= $item['custo'] ?>">
+                                                        <input type="radio" name="servico" id="<?= $item['nome'] ?>" value="<?= $item['nome'] ?>" required <?= $key == 0 ? 'checked' : '' ?>>
+                                                        <input type="hidden" name="idServico" value="<?= $item['id'] ?>">
+                                                        <div class="signature-list-option-item">
+                                                            <?= $item['tipo']; ?>
+                                                        </div>
+                                                        <div class="signature-list-option-item">
+                                                            <?= $item['nome'] ?>
+                                                        </div>
+                                                        <div class="signature-list-option-item">
+                                                            <?= $item['disp_regiao'] ?>
+                                                        </div>
+                                                        <div class="signature-list-option-item">
+                                                            R$ <?= $item['custo'] ?>
+                                                        </div>
+                                                    </label>
+                                                <?php endif ?>
                                             <?php endforeach ?>
                                         </div>
                                     </div>

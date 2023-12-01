@@ -10,6 +10,43 @@ class GerenciadorMySql
         $this->pdo = $driver;
     }
 
+    public function criarServico(Servico $servico)
+    {
+        $sql = $this->pdo->prepare("INSERT INTO servicos (tipo, nome, disp_regiao, custo, status) VALUES (:tipo, :nome, :disp_regiao, :custo, :status)");
+        $sql->bindValue(':tipo', $servico->pegarServicoTipo());
+        $sql->bindValue(':nome', $servico->pegarServicoNome());
+        $sql->bindValue(':disp_regiao', $servico->pegarDispRegiao());
+        $sql->bindValue(':custo', $servico->pegarServicoCusto());
+        $sql->bindValue(':status', $servico->pegarServicoStatus());
+        $sql->execute();
+
+        $servico->setarServicoId($this->pdo->lastInsertId());
+
+        return true;
+    }
+
+    public function excluirServico($id)
+    {
+        $sql = $this->pdo->prepare("DELETE FROM servicos WHERE id = :id");
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+        return true;
+    }
+
+    public function atualizarServico(Servico $servico)
+    {
+        $sql = $this->pdo->prepare("UPDATE servicos SET tipo = :tipo, nome = :nome, disp_regiao = :disp_regiao, custo = :custo, status = :status WHERE id = :id");
+        $sql->bindValue(':tipo', $servico->pegarServicoTipo());
+        $sql->bindValue(':nome', $servico->pegarServicoNome());
+        $sql->bindValue(':disp_regiao', $servico->pegarDispRegiao());
+        $sql->bindValue(':custo', $servico->pegarServicoCusto());
+        $sql->bindValue(':status', $servico->pegarServicoStatus());
+        $sql->bindValue(':id', $servico->pegarServicoId());
+        $sql->execute();
+
+        return true;
+    }
+
     public function consultarServicos()
     {
         $array = [];
