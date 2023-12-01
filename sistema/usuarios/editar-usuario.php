@@ -120,7 +120,7 @@ if (isset($_POST['exclude'])) {
                         <div class="form-image">
                             <div class="form-image-content">
                                 <?php if ($usuario['imagem']) : ?>
-                                    <img src="<?= CAMINHO_PADRAO ?>/assets/img/perfil/<?= $usuario['imagem'] ?>">
+                                    <img src="<?= CAMINHO_PADRAO ?>/assets/perfil/<?= $usuario['imagem'] ?>">
                                 <?php else : ?>
                                     <img src="<?= CAMINHO_PADRAO ?>/assets/img/sem-imagem.png">
                                 <?php endif ?>
