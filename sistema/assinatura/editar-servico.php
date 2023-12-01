@@ -16,7 +16,6 @@ if (isset($_POST['exclude'])) {
     header('location:' . CAMINHO_PADRAO . '/sistema/assinatura/lista-servicos.php');
     exit;
 }
-var_dump($_POST);
 
 if (isset($_POST['tipo'], $_POST['nome'], $_POST['disp_regiao'], $_POST['preco'], $_POST['status'])) {
     $id = $_GET['edit'];
