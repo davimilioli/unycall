@@ -289,7 +289,7 @@ class BancoDeDados
         }
 
         for ($i = 0; $i < 15; $i++) {
-            $nome = gerarNomeAleatorio();
+            $nome = gerarNomeAleatorio() . $i;
             $cpf = gerarCPF();
             $dataNascimento = gerarDataNascimento();
             $email = gerarEmailAleatorio();
