@@ -45,6 +45,11 @@
                 }
             }
 
+            .label-message {
+                display: flex;
+                gap: 10px;
+            }
+
             input,
             select,
             textarea {

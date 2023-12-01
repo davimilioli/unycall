@@ -497,40 +497,40 @@ document.addEventListener('DOMContentLoaded', () => {
                         const cpf = document.querySelector('#cpf');
                         const dataNascimento = document.querySelector('#data-nascimento');
 
-                        validarDadosExistentes(cpf.value, email.value, login.value)
+                        /* validarDadosExistentes(cpf.value, email.value, login.value)
                             .then((dadosExistentes) => {
-                                if (dadosExistentes === true) {
+                                if (dadosExistentes === true) { */
 
-                                    if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && nomeMaterno.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && cep.value !== '' && login.value !== '' && senha && confirmaSenha.value !== '') {
-                                        form.submit();
-                                    } else {
-                                        console.log('erro na validação');
-                                    }
+                        if (nome.value !== '' && dataNascimento.value !== '' && cpf.value !== '' && nomeMaterno.value !== '' && email.value !== '' && celular.value !== '' && telefone.value !== '' && cep.value !== '' && login.value !== '' && senha && confirmaSenha.value !== '') {
+                            form.submit();
+                        } else {
+                            console.log('erro na validação');
+                        }
 
-                                } else {
-                                    const mensagemValidacao = document.querySelector('.message.validacao');
-                                    mensagemValidacao.style.display = 'flex';
-                                }
-                            })
-                            .catch((error) => {
-                                console.error('Erro ao validar dados existentes:', error);
-                            });
+                        /*   } else {
+                              const mensagemValidacao = document.querySelector('.message.validacao');
+                              mensagemValidacao.style.display = 'flex';
+                          }
+                      })
+                      .catch((error) => {
+                          console.error('Erro ao validar dados existentes:', error);
+                      }); */
                     }
                 })
             })
         }
     }
 
-    async function validarDadosExistentes(cpf, email, login) {
-        const validarCpf = await verificarDadoExiste('cpf', cpf);
-        const validarEmail = await verificarDadoExiste('email', email);
-        const validarLogin = await verificarDadoExiste('login', login);
-
-        if (validarCpf !== true && validarEmail !== true && validarLogin !== true) {
-            return true;
-        } else {
-            return false;
-        }
-
-    }
+    /*     async function validarDadosExistentes(cpf, email, login) {
+            const validarCpf = await verificarDadoExiste('cpf', cpf);
+            const validarEmail = await verificarDadoExiste('email', email);
+            const validarLogin = await verificarDadoExiste('login', login);
+    
+            if (validarCpf !== true && validarEmail !== true && validarLogin !== true) {
+                return true;
+            } else {
+                return false;
+            }
+    
+        } */
 });

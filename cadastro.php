@@ -208,7 +208,12 @@ if (isset($_POST['nome'], $_POST['nascimento'], $_POST['cpf'], $_POST['nomeMater
                     <div class="form-category">
                         <h2>Login</h2>
                         <div class="form-group">
-                            <label for="login">Login <span>*</span></label>
+                            <div class="label-message">
+                                <label for="login">Login <span>*</span></label>
+                                <span class="message_notice">
+                                    Mínimo e máximo de 6 caracteres
+                                </span>
+                            </div>
                             <input type="text" name="loginCadastro" id="login" minlength="6" maxlength="6" required>
                             <span class="message_notice login" style="display: none;">
                                 <img src="<?= CAMINHO_PADRAO ?>/assets/img/icons/danger-notice.svg" alt="">
