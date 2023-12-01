@@ -288,7 +288,7 @@ class BancoDeDados
             return $cidades[array_rand($cidades)];
         }
 
-        for ($i = 0; $i < 20; $i++) {
+        for ($i = 0; $i < 15; $i++) {
             $nome = gerarNomeAleatorio();
             $cpf = gerarCPF();
             $dataNascimento = gerarDataNascimento();
@@ -299,9 +299,9 @@ class BancoDeDados
             $bairro = gerarBairroAleatorio();
             $cidade = gerarCidadeAleatoria();
 
-            $senha = password_hash('user', PASSWORD_DEFAULT);
+            $senha = password_hash("user-$i", PASSWORD_DEFAULT);
 
-            $criarUsuario = "INSERT INTO usuarios (nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha, permissao, imagem) VALUES (:nome, :nascimento, :cpf, 'Rafael', :email, 'Masculino', '5521999999999', '5521888888888', 'user', :senha, '', '')";
+            $criarUsuario = "INSERT INTO usuarios (nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha, permissao, imagem) VALUES (:nome, :nascimento, :cpf, 'Rafael', :email, 'Masculino', '5521999999999', '5521888888888', 'user-$i', :senha, '', '')";
             $sql = $this->pdo->prepare($criarUsuario);
             $sql->bindParam(':nome', $nome);
             $sql->bindParam(':nascimento', $dataNascimento);
