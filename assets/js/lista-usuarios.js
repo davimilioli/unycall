@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 listaUsuarios.forEach((usuario) => {
 
                     const nomeUsuario = usuario.nome.toLowerCase();
-                    const cpfUsuario = usuario.cpf.toLowerCase();
+                    const cpfUsuario = usuario.cpf.toLowerCase().replace('.', '');
                     const emailUsuario = usuario.email.toLowerCase();
                     if (termoBusca === '' || nomeUsuario.includes(termoBusca) || cpfUsuario.includes(termoBusca) || emailUsuario.includes(termoBusca)) {
                         const novaLinha = document.createElement("tr");
