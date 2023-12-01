@@ -70,7 +70,7 @@ if (isset($_POST['tipo'], $_POST['nome'], $_POST['disp_regiao'], $_POST['preco']
                             </div>
                             <div class="form-group">
                                 <label for="preco">Preço em R$ <span>*</span></label>
-                                <input type="text" name="preco" id="preco" required>
+                                <input type="text" name="preco" id="preco" required placeholder="ex: 550,88">
                             </div>
                         </div>
                         <div class="form-category">
