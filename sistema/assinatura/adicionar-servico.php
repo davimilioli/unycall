@@ -78,7 +78,7 @@ if (isset($_POST['tipo'], $_POST['nome'], $_POST['disp_regiao'], $_POST['preco']
                             <div class="form-group">
                                 <label for="">Status <span>*</span></label>
                                 <select name="status" required>
-                                    <option value="1">Ativado</option>
+                                    <option value="1">Ativo</option>
                                     <option value="0">Inativo</option>
                                 </select>
                             </div>
