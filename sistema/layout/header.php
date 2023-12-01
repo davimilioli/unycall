@@ -1,4 +1,5 @@
 <?php
+$id = $_SESSION['id'];
 $dados = $sistema->procurarIdUsuario($id);
 ?>
 
