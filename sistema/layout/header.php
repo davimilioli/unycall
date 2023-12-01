@@ -26,9 +26,9 @@ $dados = $sistema->procurarIdUsuario($id);
             <div class="menu-profile-body">
                 <ul class="menu-profile-body-list">
                     <li class="menu-profile-body-title"><a href="<?= CAMINHO_PADRAO ?>/sistema/informacoes-conta.php">Informações da conta</a></li>
-                    <li class="menu-profile-body-title">Segurança</li>
+                    <!--                     <li class="menu-profile-body-title">Segurança</li>
                     <li class="menu-profile-body-title">Atividades de Conta</li>
-                    <li class="menu-profile-body-title">Suporte</li>
+                    <li class="menu-profile-body-title">Suporte</li> -->
                 </ul>
             </div>
             <div class="menu-profile-footer">
