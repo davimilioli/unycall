@@ -163,7 +163,7 @@ class BancoDeDados
 
         /* CRIAÇÃO DO USUARIO MASTER */
         $senha = password_hash('admin', PASSWORD_DEFAULT);
-        $criarUsuarioMaster = "INSERT INTO usuarios (nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha, permissao, imagem) VALUES ('admin','2002-11-28', '21977880448', 'admin', 'admin@gmail.com', 'Masculino', '9378699813', '338018469', 'admin', :senha, 'administrador', '')";
+        $criarUsuarioMaster = "INSERT INTO usuarios (nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha, permissao, imagem) VALUES ('admin','2002-11-28', '11111111111', 'admin', 'admin@gmail.com', 'Masculino', '9378699813', '338018469', 'admin', :senha, 'administrador', '')";
         $sql = $this->pdo->prepare($criarUsuarioMaster);
         $sql->bindParam(':senha', $senha);
         $sql->execute();
@@ -206,5 +206,125 @@ class BancoDeDados
         $this->pdo->exec($criarServicoPremium);
         $this->pdo->exec($criarServicoBusiness);
         $this->pdo->exec($criarServicoOpStartup);
+
+        $this->gerarDadosAleatorios();
+    }
+
+    public function gerarDadosAleatorios()
+    {
+        $dadosAleatorios = [];
+
+        function gerarNomeAleatorio()
+        {
+            $nomes = ['Neymar', 'Messi', 'Cristiano', 'Ronaldo', 'Lionel', 'Davi', 'Arrascaeta', 'Rafael', 'Gabigol', 'Camila'];
+            $sobrenomes = ['Milioli', 'Ronaldinho', 'Junior', 'Pereira', 'Souza', 'Ornelas', 'Alves', 'Carvalho', 'Gomes', 'Rodrigues'];
+
+            $nome = $nomes[array_rand($nomes)] . ' ' . $sobrenomes[array_rand($sobrenomes)];
+            return $nome;
+        }
+
+        function gerarCPF()
+        {
+            $n1 = rand(0, 9);
+            $n2 = rand(0, 9);
+            $n3 = rand(0, 9);
+            $n4 = rand(0, 9);
+            $n5 = rand(0, 9);
+            $n6 = rand(0, 9);
+            $n7 = rand(0, 9);
+            $n8 = rand(0, 9);
+            $n9 = rand(0, 9);
+
+            $d1 = $n9 * 2 + $n8 * 3 + $n7 * 4 + $n6 * 5 + $n5 * 6 + $n4 * 7 + $n3 * 8 + $n2 * 9 + $n1 * 10;
+            $d1 = 11 - ($d1 % 11);
+            if ($d1 >= 10) {
+                $d1 = 0;
+            }
+
+            $d2 = $d1 * 2 + $n9 * 3 + $n8 * 4 + $n7 * 5 + $n6 * 6 + $n5 * 7 + $n4 * 8 + $n3 * 9 + $n2 * 10 + $n1 * 11;
+            $d2 = 11 - ($d2 % 11);
+            if ($d2 >= 10) {
+                $d2 = 0;
+            }
+
+            return "$n1$n2$n3$n4$n5$n6$n7$n8$n9$d1$d2";
+        }
+
+        function gerarDataNascimento()
+        {
+            $data = date('Y-m-d', mt_rand(strtotime('1950-01-01'), strtotime('2003-01-01')));
+            return $data;
+        }
+
+        function gerarEmailAleatorio()
+        {
+            $dominios = ['gmail.com', 'yahoo.com', 'hotmail.com', 'outlook.com', 'example.com'];
+            $nome = str_replace(' ', '', gerarNomeAleatorio());
+            $email = preg_replace('/[^A-Za-z0-9]/', '', strtolower($nome)) . '@' . $dominios[array_rand($dominios)];
+            return $email;
+        }
+
+        function gerarCepAleatorio()
+        {
+            $cep = rand(10000000, 99999999);
+            return substr($cep, 0, 5) . '-' . substr($cep, 5, 3);
+        }
+
+        function gerarLogradouroAleatorio()
+        {
+            $logradouros = ['Rua A', 'Avenida B', 'Travessa C', 'Alameda D', 'Praça E'];
+            return $logradouros[array_rand($logradouros)];
+        }
+
+        function gerarBairroAleatorio()
+        {
+            $bairros = ['Centro', 'Jardim', 'Vila', 'Bela Vista', 'Liberdade'];
+            return $bairros[array_rand($bairros)];
+        }
+
+        function gerarCidadeAleatoria()
+        {
+            $cidades = ['São Paulo', 'Rio de Janeiro', 'Belo Horizonte', 'Curitiba', 'Porto Alegre'];
+            return $cidades[array_rand($cidades)];
+        }
+
+        for ($i = 0; $i < 20; $i++) {
+            $nome = gerarNomeAleatorio();
+            $cpf = gerarCPF();
+            $dataNascimento = gerarDataNascimento();
+            $email = gerarEmailAleatorio();
+
+            $cep = gerarCepAleatorio();
+            $logradouro = gerarLogradouroAleatorio();
+            $bairro = gerarBairroAleatorio();
+            $cidade = gerarCidadeAleatoria();
+
+            $senha = password_hash('user', PASSWORD_DEFAULT);
+
+            $criarUsuario = "INSERT INTO usuarios (nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha, permissao, imagem) VALUES (:nome, :nascimento, :cpf, 'Rafael', :email, 'Masculino', '5521999999999', '5521888888888', 'user', :senha, '', '')";
+            $sql = $this->pdo->prepare($criarUsuario);
+            $sql->bindParam(':nome', $nome);
+            $sql->bindParam(':nascimento', $dataNascimento);
+            $sql->bindParam(':cpf', $cpf);
+            $sql->bindParam(':email', $email);
+            $sql->bindParam(':senha', $senha);
+            $sql->execute();
+
+            $sql = $this->pdo->prepare("SELECT id FROM usuarios WHERE nome = :nome");
+            $sql->bindParam(':nome', $nome);
+            $sql->execute();
+            $usuario = $sql->fetch(PDO::FETCH_ASSOC);
+
+            $criarEndereco = "INSERT INTO endereco (id_usuario, cep, logradouro, numero, bairro, cidade, estado, complemento) VALUES (:idUsuario, :cep, :logradouro, '42', :bairro, :cidade, 'casa', 'casa')";
+            $sql = $this->pdo->prepare($criarEndereco);
+            $sql->bindValue(':idUsuario', $usuario['id']);
+            $sql->bindParam(':cep', $cep);
+            $sql->bindParam(':logradouro', $logradouro);
+            $sql->bindParam(':bairro', $bairro);
+            $sql->bindParam(':cidade', $cidade);
+            $sql->execute();
+        }
+
+        return $dadosAleatorios;
     }
 }
