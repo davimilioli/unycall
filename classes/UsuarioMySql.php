@@ -14,7 +14,7 @@ class UsuarioMySql implements UsuarioSqlInterface
     // CRIAR USUARIO
     public function criarUsuario(Usuario $usuario)
     {
-        $sql = $this->pdo->prepare("INSERT INTO usuarios (nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha, permissao) VALUES (:nome, :nascimento, :cpf, :nomematerno, :email, :sexo, :celular, :telefone, :login, :senha, :permissao)");
+        $sql = $this->pdo->prepare("INSERT INTO usuarios (nome, nascimento, cpf, nomematerno, email, sexo, celular, telefone, login, senha, permissao, imagem) VALUES (:nome, :nascimento, :cpf, :nomematerno, :email, :sexo, :celular, :telefone, :login, :senha, :permissao, :imagem)");
         $sql->bindValue(':nome', $usuario->pegarNome());
         $sql->bindValue(':nascimento', $usuario->pegarNascimento());
         $sql->bindValue(':cpf', $usuario->pegarCpf());
@@ -26,6 +26,7 @@ class UsuarioMySql implements UsuarioSqlInterface
         $sql->bindValue(':login', $usuario->pegarLogin());
         $sql->bindValue(':senha', $usuario->pegarSenha());
         $sql->bindValue(':permissao', $usuario->pegarPermissao());
+        $sql->bindValue(':imagem', $usuario->pegarImagem());
         $sql->execute();
         $usuario->setarId($this->pdo->lastInsertId());
 
