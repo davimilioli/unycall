@@ -83,12 +83,11 @@ if (isset($_POST['login'])) {
 
         if ($sistema->verificarSenhaConta($senha)) {
             $good = 'Senha atualizada';
+            header('location:' . CAMINHO_PADRAO . '/sistema/informacoes-conta.php');
+            exit;
         } else {
             $erro = 'Senha incorreta';
         }
-
-        header('location:' . CAMINHO_PADRAO . '/sistema/informacoes-conta.php');
-        exit;
     }
 }
 
